@@ -1,0 +1,16 @@
+<header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-slate-200 bg-white/90 px-4 backdrop-blur sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3">
+        <button id="kol-sidebar-toggle" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 lg:hidden" aria-label="Buka menu">
+            <i class="bi bi-list text-xl"></i>
+        </button>
+        <div>
+            <p class="text-xs font-medium text-slate-400">Portal KOL / Majapahit Influence</p>
+            <h1 class="text-lg font-bold text-slate-950">@yield('page-title', 'Dashboard')</h1>
+        </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+        <x-dashboard.notification-link route="kol.notifications.index" :count="$unreadNotificationCount" />
+        <div class="flex size-9 items-center justify-center rounded-full bg-amber-100 text-sm font-bold text-amber-700">KO</div>
+    </div>
+</header>

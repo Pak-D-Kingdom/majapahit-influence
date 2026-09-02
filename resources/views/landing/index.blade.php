@@ -47,11 +47,11 @@
             {{-- Navbar Actions --}}
             <div class="navbar-actions">
 
-                <a href="#" class="btn-login">
+                <a href="{{ route('login') }}" class="btn-login">
                     Masuk
                 </a>
 
-                <a href="#" class="btn-primary btn-small">
+                <a href="{{ route('registration.create') }}" class="btn-primary btn-small">
                     Join as KOL
                     <i class="bi bi-arrow-up-right"></i>
                 </a>
@@ -80,11 +80,11 @@
 
             <div class="mobile-nav-actions">
 
-                <a href="#" class="btn-login">
+                <a href="{{ route('login') }}" class="btn-login">
                     Masuk
                 </a>
 
-                <a href="#" class="btn-primary">
+                <a href="{{ route('registration.create') }}" class="btn-primary">
                     Join as KOL
                 </a>
 
@@ -136,7 +136,7 @@
 
                     <div class="hero-actions">
 
-                        <a href="#" class="btn-primary btn-large">
+                        <a href="{{ route('registration.create') }}" class="btn-primary btn-large">
 
                             Join as KOL
 

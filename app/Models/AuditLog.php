@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use App\Services\AuditLogService;
 
 class AuditLog extends Model
 {
@@ -49,17 +48,6 @@ class AuditLog extends Model
         ?array $newValues = null,
         ?User $user = null
     ): self {
-        $userId = $user ? $user->id : Auth::id();
-
-        return self::create([
-            'user_id' => $userId,
-            'action' => $action,
-            'entity_type' => $entityType,
-            'entity_id' => $entityId,
-            'old_values' => $oldValues,
-            'new_values' => $newValues,
-            'ip_address' => Request::ip(),
-            'user_agent' => Request::userAgent(),
-        ]);
+        return app(AuditLogService::class)->record($action, $entityType, $entityId, $oldValues, $newValues, $user);
     }
 }

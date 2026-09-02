@@ -1,0 +1,1 @@
+<h1>Selamat datang di Majapahit Influence, {{ $user->name }}</h1><p>Akun KOL Anda telah disetujui. Klik tombol berikut untuk membuat password:</p><p><a href="{{ url('/set-password?token='.$token.'&email='.urlencode($user->email)) }}">Buat password saya</a></p><p>Link ini memiliki masa berlaku terbatas.</p>
