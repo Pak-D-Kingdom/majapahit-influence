@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Majapahit Influence — Kembangkan Pengaruhmu, Buka Peluangmu')
+@section('title', 'Majapahit Agency — Kembangkan Pengaruhmu, Buka Peluangmu')
 @section('content')
 
     {{-- ================================
@@ -13,12 +13,12 @@
             {{-- Logo --}}
             <a href="{{ url('/') }}" class="brand">
                 <div class="brand-mark">
-                    MI
+                    MA
                 </div>
 
                 <div class="brand-text">
                     <span>MAJAPAHIT</span>
-                    <strong>INFLUENCE</strong>
+                    <strong>AGENCY</strong>
                 </div>
             </a>
 
@@ -52,7 +52,7 @@
                 </a>
 
                 <a href="#" class="btn-primary btn-small">
-                    Join as KOL
+                    Gabung sebagai KOL
                     <i class="bi bi-arrow-up-right"></i>
                 </a>
 
@@ -85,7 +85,7 @@
                 </a>
 
                 <a href="#" class="btn-primary">
-                    Join as KOL
+                    Gabung sebagai KOL
                 </a>
 
             </div>
@@ -127,7 +127,7 @@
 
 
                     <p class="hero-description">
-                        Majapahit Influence adalah program KOL dari Pak De Group
+                        Majapahit Agency adalah program KOL dari Pak De Group
                         yang membuka kesempatan bagi para kreator untuk
                         berkolaborasi dengan produk-produk kami dan berbagai
                         brand menarik yang bergabung bersama kami.
@@ -138,7 +138,7 @@
 
                         <a href="#" class="btn-primary btn-large">
 
-                            Join as KOL
+                            Gabung sebagai KOL
 
                             <i class="bi bi-arrow-up-right"></i>
 
@@ -160,7 +160,7 @@
 
                         <div class="trust-avatars">
 
-                            <span>MI</span>
+                            <span>MA</span>
                             <span>PD</span>
                             <span>+</span>
 
@@ -280,7 +280,7 @@
 
                         <div>
                             <strong>KOL</strong>
-                            <small>Join our network</small>
+                            <small>Gabung bersama kami</small>
                         </div>
 
                     </div>
@@ -288,7 +288,7 @@
 
                     {{-- Decorative Circle --}}
                     <div class="hero-circle">
-                        <span>MI</span>
+                        <span>MA</span>
                     </div>
 
                 </div>
@@ -299,7 +299,7 @@
 
 
         {{-- ================================
-    TENTANG KAMI
+    TENTANG KAMA
 ================================= --}}
         <section class="about-section company-section" id="tentang">
 
@@ -309,7 +309,7 @@
 
                     <div class="section-label">
                         <span></span>
-                        TENTANG KAMI
+                        TENTANG KAMA
                     </div>
 
                     <div>
@@ -367,7 +367,7 @@
                         <p class="company-lead">
 
                             Pak De Group menjadi bagian di balik
-                            hadirnya Majapahit Influence sebagai wadah
+                            hadirnya Majapahit Agency sebagai wadah
                             untuk membangun kolaborasi bersama para
                             kreator dan influencer.
 
@@ -386,7 +386,7 @@
 
                         <p>
 
-                            Majapahit Influence hadir untuk mempertemukan
+                            Majapahit Agency hadir untuk mempertemukan
                             kreativitas, audiens, produk, dan peluang
                             kolaborasi dalam satu ekosistem yang terus
                             berkembang.
@@ -424,7 +424,7 @@
                 <div class="company-divider"></div>
 
 
-                {{-- MAJAPAHIT INFLUENCE --}}
+                {{-- MAJAPAHIT AGENCY --}}
                 <div class="program-intro" id="program">
 
                     <div class="program-label">
@@ -432,7 +432,7 @@
                         <span>02</span>
 
                         <small>
-                            MAJAPAHIT INFLUENCE
+                            MAJAPAHIT AGENCY
                         </small>
 
                     </div>
@@ -536,7 +536,7 @@
                         </h2>
 
                         <p>
-                            Majapahit Influence hadir untuk memberikan ruang bagi
+                            Majapahit Agency hadir untuk memberikan ruang bagi
                             kreator untuk berkembang, membangun koneksi, dan membuka
                             lebih banyak peluang kolaborasi.
                         </p>
@@ -633,7 +633,7 @@
                             <p>
                                 Terhubung dengan ekosistem kreator dan
                                 peluang kolaborasi yang terus berkembang
-                                bersama Majapahit Influence.
+                                bersama Majapahit Agency.
                             </p>
 
                         </div>
@@ -675,6 +675,313 @@
                         </div>
 
                     </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{-- ================================
+            PRODUK & BRAND / MATRA
+        ================================= --}}
+        <section class="partners-section" id="mitra">
+
+            <div class="container">
+
+                <div class="partners-header">
+
+                    <div class="section-label">
+                        <span></span>
+                        PRODUK & BRAND
+                    </div>
+
+                    <div class="partners-heading">
+                        <h2>
+                            Kolaborasi dimulai dari
+                            <span>produk yang tepat.</span>
+                        </h2>
+
+                        <p>
+                            Majapahit Agency membuka ruang kolaborasi bersama
+                            produk-produk Pak De Group dan brand yang bergabung
+                            dalam jaringan kami.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="partners-intro">
+
+                    <div class="partners-main-card">
+                        <div class="partners-card-number">01</div>
+
+                        <div class="partners-card-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+
+                        <div>
+                            <small>PRODUK UTAMA</small>
+                            <h3>Produk Pak De Group</h3>
+                            <p>
+                                Kenali berbagai produk yang hadir dari Pak De Group
+                                dan temukan peluang untuk menceritakannya kepada
+                                audiensmu.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="partners-network-card">
+                        <div class="partners-card-number">02</div>
+
+                        <div class="partners-card-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+
+                        <div>
+                            <small>JARINGAN KOLABORASI</small>
+                            <h3>Brand Partner</h3>
+                            <p>
+                                Seiring berkembangnya jaringan, berbagai brand
+                                partner dapat membuka peluang campaign dan
+                                kolaborasi baru bagi para kreator.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="partners-note">
+                    <div class="partners-note-icon">
+                        <i class="bi bi-stars"></i>
+                    </div>
+
+                    <div>
+                        <strong>Terus berkembang bersama kami.</strong>
+                        <span>
+                            Daftar brand dan produk akan terus bertambah seiring
+                            berkembangnya ekosistem Majapahit Agency.
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        {{-- ================================
+            CARA BERGABUNG
+        ================================= --}}
+        <section class="join-section" id="cara-bergabung">
+
+            <div class="container">
+
+                {{-- Section Header --}}
+                <div class="join-header">
+
+                    <div class="section-label">
+                        <span></span>
+                        CARA BERGABUNG
+                    </div>
+
+                    <div class="join-heading">
+
+                        <h2>
+                            Mulai perjalananmu
+                            <span>bersama kami.</span>
+                        </h2>
+
+                        <p>
+                            Bergabung dengan Majapahit Agency cukup dengan
+                            beberapa langkah sederhana. Daftarkan dirimu,
+                            tunggu proses review, dan buka peluang kolaborasi
+                            bersama berbagai brand.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Steps --}}
+                <div class="join-steps">
+
+                    {{-- Step 01 --}}
+                    <div class="join-step">
+
+                        <div class="join-step-top">
+                            <span class="join-step-number">01</span>
+
+                            <div class="join-step-icon">
+                                <i class="bi bi-person-plus"></i>
+                            </div>
+                        </div>
+
+                        <div class="join-step-content">
+
+                            <h3>Daftar sebagai KOL</h3>
+
+                            <p>
+                                Lengkapi data diri, platform sosial media,
+                                niche, followers, rate card, dan informasi
+                                lainnya melalui formulir pendaftaran.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Step 02 --}}
+                    <div class="join-step">
+
+                        <div class="join-step-top">
+                            <span class="join-step-number">02</span>
+
+                            <div class="join-step-icon">
+                                <i class="bi bi-search"></i>
+                            </div>
+                        </div>
+
+                        <div class="join-step-content">
+
+                            <h3>Proses Review</h3>
+
+                            <p>
+                                Tim Majapahit Agency akan meninjau profil
+                                dan informasi yang kamu kirimkan sebelum
+                                menentukan status pendaftaranmu.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Step 03 --}}
+                    <div class="join-step">
+
+                        <div class="join-step-top">
+                            <span class="join-step-number">03</span>
+
+                            <div class="join-step-icon">
+                                <i class="bi bi-patch-check"></i>
+                            </div>
+                        </div>
+
+                        <div class="join-step-content">
+
+                            <h3>Diterima sebagai KOL</h3>
+
+                            <p>
+                                Setelah pendaftaran disetujui, kamu akan
+                                mendapatkan akses sebagai KOL dan dapat
+                                mulai mengikuti ekosistem Majapahit Agency.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Step 04 --}}
+                    <div class="join-step">
+
+                        <div class="join-step-top">
+                            <span class="join-step-number">04</span>
+
+                            <div class="join-step-icon">
+                                <i class="bi bi-stars"></i>
+                            </div>
+                        </div>
+
+                        <div class="join-step-content">
+
+                            <h3>Mulai Berkolaborasi</h3>
+
+                            <p>
+                                Dapatkan kesempatan mengikuti campaign,
+                                endorsement, dan berbagai peluang kolaborasi
+                                yang sesuai dengan profilmu.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Bottom Note --}}
+                <div class="join-note">
+
+                    <div class="join-note-icon">
+                        <i class="bi bi-info-circle"></i>
+                    </div>
+
+                    <div>
+                        <strong>
+                            Pendaftaran bukan berarti langsung mendapatkan campaign.
+                        </strong>
+
+                        <span>
+                            Setiap peluang kolaborasi akan disesuaikan dengan
+                            kebutuhan campaign dan profil KOL.
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        {{-- ================================
+            CTA GABUNG SEBAGAI KOL
+        ================================= --}}
+        <section class="cta-section" id="gabung">
+
+            <div class="cta-decoration cta-decoration-one"></div>
+            <div class="cta-decoration cta-decoration-two"></div>
+
+            <div class="container">
+
+                <div class="cta-content">
+
+                    <div class="section-label cta-label">
+                        <span></span>
+                        SIAP BERGABUNG?
+                    </div>
+
+                    <h2>
+                        Siap membuka
+                        <span>peluangmu?</span>
+                    </h2>
+
+                    <p>
+                        Jadilah bagian dari Majapahit Agency dan buka kesempatan
+                        untuk berkembang bersama berbagai peluang kolaborasi.
+                    </p>
+
+                    <div class="cta-actions">
+
+                        <a href="#cara-bergabung" class="btn-primary btn-large">
+                            Gabung sebagai KOL
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
+
+                        <a href="#home" class="btn-secondary btn-large">
+                            Kembali ke Atas
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+
+                    </div>
+
+                    <small class="cta-note">
+                        Pendaftaran terbuka untuk kreator dan influencer yang
+                        ingin berkembang bersama ekosistem kami.
+                    </small>
 
                 </div>
 
