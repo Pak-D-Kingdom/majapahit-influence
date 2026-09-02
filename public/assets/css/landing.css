@@ -2225,3 +2225,174 @@ button {
     }
 
 }
+
+
+/* =================================
+   BENEFITS / KENAPA GABUNG
+================================= */
+
+.benefits-section {
+    position: relative;
+    padding: 120px 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+.benefits-header {
+    display: grid;
+    grid-template-columns: 0.8fr 1.4fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 70px;
+}
+
+.benefits-heading h2 {
+    margin: 0 0 20px;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: #421b13;
+}
+
+.benefits-heading h2 span {
+    display: block;
+    color: #d57028;
+}
+
+.benefits-heading p {
+    max-width: 620px;
+    margin: 0;
+    color: #6d625e;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* Benefits Grid */
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid rgba(66, 27, 19, 0.15);
+    border-left: 1px solid rgba(66, 27, 19, 0.15);
+}
+
+.benefit-card {
+    position: relative;
+    min-height: 320px;
+    padding: 35px;
+    border-right: 1px solid rgba(66, 27, 19, 0.15);
+    border-bottom: 1px solid rgba(66, 27, 19, 0.15);
+    background: #fff;
+    transition: transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    background: #fffaf5;
+    box-shadow: 0 20px 50px rgba(66, 27, 19, 0.08);
+}
+
+.benefit-number {
+    position: absolute;
+    top: 30px;
+    right: 32px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #b86021;
+}
+
+.benefit-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 70px;
+    border-radius: 14px;
+    background: #fec200;
+    color: #421b13;
+    font-size: 1.4rem;
+}
+
+.benefit-content {
+    max-width: 470px;
+}
+
+.benefit-content h3 {
+    margin: 0 0 14px;
+    color: #421b13;
+    font-size: 1.45rem;
+    line-height: 1.25;
+}
+
+.benefit-content p {
+    margin: 0;
+    color: #746b67;
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+.benefit-arrow {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(66, 27, 19, 0.18);
+    border-radius: 50%;
+    color: #421b13;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover .benefit-arrow {
+    background: #d5282d;
+    border-color: #d5282d;
+    color: #fff;
+}
+
+
+/* Responsive */
+
+@media (max-width: 900px) {
+
+    .benefits-header {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .benefits-section {
+        padding: 80px 0;
+    }
+
+    .benefit-card {
+        min-height: 300px;
+        padding: 28px;
+    }
+
+    .benefit-icon {
+        margin-bottom: 55px;
+    }
+
+    .benefit-number {
+        top: 25px;
+        right: 25px;
+    }
+
+}
