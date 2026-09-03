@@ -513,6 +513,175 @@
 
         </section>
 
+        {{-- ================================
+    KENAPA GABUNG?
+================================= --}}
+        <section class="benefits-section" id="benefits">
+
+            <div class="container">
+
+                {{-- Section Header --}}
+                <div class="benefits-header">
+
+                    <div class="section-label">
+                        <span></span>
+                        KENAPA GABUNG?
+                    </div>
+
+                    <div class="benefits-heading">
+
+                        <h2>
+                            Lebih dari sekadar
+                            <span>promosi produk.</span>
+                        </h2>
+
+                        <p>
+                            Majapahit Influence hadir untuk memberikan ruang bagi
+                            kreator untuk berkembang, membangun koneksi, dan membuka
+                            lebih banyak peluang kolaborasi.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Benefits Grid --}}
+                <div class="benefits-grid">
+
+                    {{-- Benefit 01 --}}
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            01
+                        </div>
+
+                        <div class="benefit-icon">
+                            <i class="bi bi-megaphone"></i>
+                        </div>
+
+                        <div class="benefit-content">
+
+                            <h3>
+                                Kesempatan Berkolaborasi
+                            </h3>
+
+                            <p>
+                                Dapatkan kesempatan untuk berkolaborasi
+                                dalam berbagai aktivitas bersama produk
+                                dan brand yang tergabung dalam jaringan kami.
+                            </p>
+
+                        </div>
+
+                        <div class="benefit-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    {{-- Benefit 02 --}}
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            02
+                        </div>
+
+                        <div class="benefit-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+
+                        <div class="benefit-content">
+
+                            <h3>
+                                Kenal Produk Lebih Dekat
+                            </h3>
+
+                            <p>
+                                Kenali berbagai produk dari Pak De Group
+                                dan brand partner yang memiliki potensi
+                                untuk kamu ceritakan kepada audiensmu.
+                            </p>
+
+                        </div>
+
+                        <div class="benefit-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    {{-- Benefit 03 --}}
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            03
+                        </div>
+
+                        <div class="benefit-icon">
+                            <i class="bi bi-people"></i>
+                        </div>
+
+                        <div class="benefit-content">
+
+                            <h3>
+                                Bangun Networking
+                            </h3>
+
+                            <p>
+                                Terhubung dengan ekosistem kreator dan
+                                peluang kolaborasi yang terus berkembang
+                                bersama Majapahit Influence.
+                            </p>
+
+                        </div>
+
+                        <div class="benefit-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    {{-- Benefit 04 --}}
+                    <div class="benefit-card">
+
+                        <div class="benefit-number">
+                            04
+                        </div>
+
+                        <div class="benefit-icon">
+                            <i class="bi bi-stars"></i>
+                        </div>
+
+                        <div class="benefit-content">
+
+                            <h3>
+                                Buka Peluang Baru
+                            </h3>
+
+                            <p>
+                                Jadikan kreativitas dan pengaruhmu sebagai
+                                jalan untuk menemukan berbagai peluang
+                                baru bersama brand yang tepat.
+                            </p>
+
+                        </div>
+
+                        <div class="benefit-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
 @endsection
