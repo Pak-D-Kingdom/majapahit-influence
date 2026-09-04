@@ -65,7 +65,8 @@ class KolManagementController extends Controller
             $user = User::create([
                 'name'      => $data['full_name'],
                 'email'     => $data['email'],
-                'password'  => \Illuminate\Support\Facades\Hash::make(Str::random(12)),
+                // Set default password 'password' untuk mempermudah testing
+                'password'  => \Illuminate\Support\Facades\Hash::make('password'),
             ]);
             $user->assignRole('kol');
 

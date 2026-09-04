@@ -14,9 +14,9 @@ use Illuminate\View\View;
 class AuthController extends Controller
 {
     /**
-     * Show the login form.
+     * Show the login form (API fallback).
      */
-    public function showLoginForm(): View|RedirectResponse
+    public function showLoginForm()
     {
         if (Auth::check()) {
             $user = Auth::user();
@@ -27,16 +27,19 @@ class AuthController extends Controller
                 return redirect()->route('kol.dashboard');
             }
 
-            return redirect('/');
+            return response()->json(['message' => 'Already authenticated', 'redirect' => '/'], 200);
         }
 
-        return view('auth.login');
+        return response()->json([
+            'message' => 'Please authenticate. Send POST request to /login with email and password.',
+            'login_url' => route('login.post')
+        ], 401);
     }
 
     /**
      * Handle an authentication attempt.
      */
-    public function login(LoginRequest $request): RedirectResponse
+    public function login(LoginRequest $request)
     {
         $request->ensureIsNotRateLimited();
 
@@ -53,9 +56,9 @@ class AuthController extends Controller
                 newValues: ['reason' => 'invalid_credentials'],
             );
 
-            return back()->withErrors([
-                'email' => 'Email atau password yang Anda masukkan salah.',
-            ])->onlyInput('email');
+            return response()->json([
+                'message' => 'Email atau password yang Anda masukkan salah.',
+            ], 401);
         }
 
         $user = Auth::user();
@@ -74,9 +77,9 @@ class AuthController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
-            return back()->withErrors([
-                'email' => 'Akun Anda telah dinonaktifkan. Silakan hubungi administrator.',
-            ])->onlyInput('email');
+            return response()->json([
+                'message' => 'Akun Anda telah dinonaktifkan. Silakan hubungi administrator.',
+            ], 403);
         }
 
         // Reset rate limiter setelah login sukses
@@ -101,22 +104,18 @@ class AuthController extends Controller
             user: $user
         );
 
-        // Redirect dinamis sesuai role
-        if ($user->isAdmin()) {
-            return redirect()->intended(route('admin.dashboard'));
-        }
-
-        if ($user->isKol()) {
-            return redirect()->intended(route('kol.dashboard'));
-        }
-
-        return redirect()->intended('/');
+        // Return JSON response for API testing
+        return response()->json([
+            'message' => 'Login berhasil',
+            'user' => $user,
+            'role' => $user->isAdmin() ? 'admin' : ($user->isKol() ? 'kol' : 'user')
+        ], 200);
     }
 
     /**
      * Log the user out of the application.
      */
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request)
     {
         $user = Auth::user();
 
@@ -136,6 +135,8 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('status', 'Anda telah berhasil logout.');
+        return response()->json([
+            'message' => 'Anda telah berhasil logout.'
+        ], 200);
     }
 }

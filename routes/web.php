@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Route;
 
 // Public Landing Page
 Route::get('/', function () {
-    return view('landing.index');
+    return response()->json([
+        'message' => 'Welcome to Majapahit Influence API',
+        'status' => 'success'
+    ]);
 })->name('home');
 
 // Authentication Routes (Guest Only)
