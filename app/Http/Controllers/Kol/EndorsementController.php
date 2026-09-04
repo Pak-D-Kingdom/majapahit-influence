@@ -7,10 +7,8 @@ use App\Http\Requests\Kol\StoreContentProofRequest;
 use App\Models\Endorsement;
 use App\Services\EndorsementService;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class EndorsementController extends Controller
 {
@@ -21,16 +19,13 @@ class EndorsementController extends Controller
     /**
      * Display a listing of endorsements for the logged-in KOL (Tabs: Aktif, Mendatang, Riwayat).
      */
-    public function index(Request $request): View|JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $user = Auth::user();
         $kolProfile = $user->kolProfile;
 
         if (!$kolProfile) {
-            if ($request->wantsJson()) {
-                return response()->json(['message' => 'Profil KOL tidak ditemukan.'], 404);
-            }
-            abort(404, 'Profil KOL tidak ditemukan.');
+            return response()->json(['message' => 'Profil KOL tidak ditemukan.'], 404);
         }
 
         $tab = $request->input('tab', 'active');
@@ -47,24 +42,19 @@ class EndorsementController extends Controller
 
         $endorsements = $query->orderBy('deadline')->paginate($request->input('per_page', 10));
 
-        if ($request->wantsJson()) {
-            return response()->json($endorsements);
-        }
-
-        return view('kol.endorsements.index', compact('endorsements', 'tab'));
+        return response()->json($endorsements);
     }
 
     /**
      * Display the specified endorsement detail and brief.
      */
-    public function show(Request $request, Endorsement $endorsement): View|JsonResponse
+    public function show(Request $request, Endorsement $endorsement): JsonResponse
     {
         $user = Auth::user();
         $kolProfile = $user->kolProfile;
 
-        // Authorize KOL owns this endorsement (unless admin)
         if ($kolProfile && $endorsement->kol_profile_id !== $kolProfile->id && !$user->isAdmin()) {
-            abort(403, 'Anda tidak memiliki akses ke endorsement ini.');
+            return response()->json(['message' => 'Anda tidak memiliki akses ke endorsement ini.'], 403);
         }
 
         $endorsement->load([
@@ -74,23 +64,19 @@ class EndorsementController extends Controller
             'commission',
         ]);
 
-        if ($request->wantsJson()) {
-            return response()->json($endorsement);
-        }
-
-        return view('kol.endorsements.show', compact('endorsement'));
+        return response()->json($endorsement);
     }
 
     /**
      * Upload content proof for the endorsement (POST /kol/endorsements/{id}/upload-proof).
      */
-    public function uploadProof(Endorsement $endorsement, StoreContentProofRequest $request): RedirectResponse|JsonResponse
+    public function uploadProof(Endorsement $endorsement, StoreContentProofRequest $request): JsonResponse
     {
         $user = Auth::user();
         $kolProfile = $user->kolProfile;
 
         if ($kolProfile && $endorsement->kol_profile_id !== $kolProfile->id && !$user->isAdmin()) {
-            abort(403, 'Anda tidak memiliki akses ke endorsement ini.');
+            return response()->json(['message' => 'Anda tidak memiliki akses ke endorsement ini.'], 403);
         }
 
         $proof = $this->endorsementService->submitProof(
@@ -99,14 +85,9 @@ class EndorsementController extends Controller
             files: $request->file('proof_files', [])
         );
 
-        if ($request->wantsJson()) {
-            return response()->json([
-                'message' => 'Bukti konten berhasil diunggah dan sedang ditinjau oleh Admin.',
-                'data' => $proof->load('files'),
-            ], 201);
-        }
-
-        return redirect()->route('kol.endorsements.show', $endorsement)
-            ->with('success', 'Bukti konten berhasil diunggah dan sedang ditinjau oleh Admin.');
+        return response()->json([
+            'message' => 'Bukti konten berhasil diunggah dan sedang ditinjau oleh Admin.',
+            'data' => $proof->load('files'),
+        ], 201);
     }
 }
