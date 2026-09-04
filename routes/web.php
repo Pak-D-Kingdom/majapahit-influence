@@ -32,8 +32,6 @@ Route::middleware('guest')->group(function () {
 
 // Logout (Authenticated Only)
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
-    return response()->json(['message' => 'API is running']);
-});
 
 use App\Http\Controllers\PublicRegistrationController;
 
