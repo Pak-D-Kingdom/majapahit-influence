@@ -2396,3 +2396,619 @@ button {
     }
 
 }
+
+
+/* =========================================
+   CARA BERGABUNG
+========================================= */
+
+.join-section {
+    padding: 120px 0;
+    background: #ffffff;
+}
+
+.join-header {
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 70px;
+}
+
+.join-heading h2 {
+    margin: 0 0 20px;
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: var(--dark);
+}
+
+.join-heading h2 span {
+    display: block;
+    color: var(--orange);
+}
+
+.join-heading p {
+    max-width: 680px;
+    margin: 0;
+    color: #6d625e;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* Steps */
+
+.join-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    position: relative;
+}
+
+.join-step {
+    position: relative;
+    padding: 28px;
+    min-height: 300px;
+    border: 1px solid rgba(66, 27, 19, 0.12);
+    background: #fff;
+    transition: transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.join-step:hover {
+    transform: translateY(-8px);
+    border-color: rgba(213, 112, 40, 0.35);
+    box-shadow: 0 20px 45px rgba(66, 27, 19, 0.08);
+}
+
+.join-step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+.join-step-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--orange);
+}
+
+.join-step-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(254, 194, 0, 0.14);
+    color: var(--orange);
+    font-size: 1.3rem;
+}
+
+.join-step-content h3 {
+    margin: 0 0 12px;
+    font-size: 1.15rem;
+    color: var(--dark);
+}
+
+.join-step-content p {
+    margin: 0;
+    color: #756965;
+    font-size: 0.92rem;
+    line-height: 1.75;
+}
+
+
+/* Bottom Note */
+
+.join-note {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 35px;
+    padding: 22px 25px;
+    background: #faf7f4;
+    border-left: 3px solid var(--orange);
+}
+
+.join-note-icon {
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: var(--orange);
+    font-size: 1.1rem;
+}
+
+.join-note strong {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+
+.join-note span {
+    display: block;
+    color: #756965;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+
+/* Responsive */
+
+@media (max-width: 991px) {
+
+    .join-header {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .join-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 575px) {
+
+    .join-section {
+        padding: 80px 0;
+    }
+
+    .join-steps {
+        grid-template-columns: 1fr;
+    }
+
+    .join-step {
+        min-height: auto;
+    }
+
+    .join-step-top {
+        margin-bottom: 30px;
+    }
+
+    .join-note {
+        align-items: flex-start;
+    }
+
+}
+
+/* =========================================
+   PRODUK & BRAND / MITRA
+========================================= */
+
+.partners-section {
+    padding: 120px 0;
+    background: #fffaf6;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.partners-header {
+    display: grid;
+    grid-template-columns: 0.8fr 1.5fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 65px;
+}
+
+.partners-heading h2 {
+    margin: 0 0 20px;
+    font-size: clamp(2.4rem, 4vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: var(--dark);
+}
+
+.partners-heading h2 span {
+    display: block;
+    color: var(--orange);
+}
+
+.partners-heading p {
+    max-width: 700px;
+    margin: 0;
+    color: #756965;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   INTRO CARDS
+========================= */
+
+.partners-intro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+
+/* Main Card */
+
+.partners-main-card,
+.partners-network-card {
+    position: relative;
+    min-height: 330px;
+    padding: 38px;
+    overflow: hidden;
+    border: 1px solid rgba(66, 27, 19, 0.1);
+    background: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.partners-main-card:hover,
+.partners-network-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(213, 112, 40, 0.35);
+    box-shadow: 0 25px 55px rgba(66, 27, 19, 0.09);
+}
+
+
+/* =========================
+   CARD NUMBER
+========================= */
+
+.partners-card-number {
+    position: absolute;
+    top: 28px;
+    left: 32px;
+
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+
+    color: var(--orange);
+}
+
+
+/* =========================
+   ICON
+========================= */
+
+.partners-card-icon {
+    width: 58px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 28px;
+
+    background: rgba(254, 194, 0, 0.15);
+    color: var(--orange);
+
+    font-size: 1.4rem;
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.partners-main-card small,
+.partners-network-card small {
+    display: block;
+    margin-bottom: 9px;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+
+    color: var(--orange);
+}
+
+.partners-main-card h3,
+.partners-network-card h3 {
+    margin: 0 0 12px;
+
+    font-size: 1.5rem;
+    line-height: 1.2;
+
+    color: var(--dark);
+}
+
+.partners-main-card p,
+.partners-network-card p {
+    max-width: 540px;
+
+    margin: 0;
+
+    color: #756965;
+
+    font-size: 0.93rem;
+    line-height: 1.75;
+}
+
+
+/* =========================
+   DECORATIVE BACKGROUND
+========================= */
+
+.partners-main-card::after,
+.partners-network-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background: rgba(213, 112, 40, 0.06);
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   BOTTOM NOTE
+========================= */
+
+.partners-note {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    margin-top: 28px;
+    padding: 22px 25px;
+
+    background: #ffffff;
+
+    border-left: 3px solid var(--orange);
+}
+
+.partners-note-icon {
+    flex-shrink: 0;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(254, 194, 0, 0.14);
+    color: var(--orange);
+
+    font-size: 1.1rem;
+}
+
+.partners-note strong {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+
+.partners-note span {
+    display: block;
+
+    color: #756965;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+
+    .partners-header {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .partners-intro {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 575px) {
+
+    .partners-section {
+        padding: 80px 0;
+    }
+
+    .partners-main-card,
+    .partners-network-card {
+        min-height: 300px;
+        padding: 28px;
+    }
+
+    .partners-card-number {
+        top: 22px;
+        left: 25px;
+    }
+
+    .partners-note {
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+}
+
+/* =========================================
+   CTA GABUNG SEBAGAI KOL
+========================================= */
+
+.cta-section {
+    position: relative;
+    padding: 140px 0;
+    overflow: hidden;
+
+    background: var(--dark);
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+
+    max-width: 900px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.cta-label {
+    justify-content: center;
+    color: var(--yellow);
+}
+
+.cta-label span {
+    background: var(--yellow);
+}
+
+.cta-content h2 {
+    margin: 25px 0 20px;
+
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+
+    color: #ffffff;
+}
+
+.cta-content h2 span {
+    display: block;
+    color: var(--yellow);
+}
+
+.cta-content > p {
+    max-width: 650px;
+    margin: 0 auto;
+
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* =========================
+   CTA BUTTONS
+========================= */
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+
+    margin-top: 38px;
+}
+
+.cta-actions .btn-secondary {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.cta-actions .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+
+.cta-note {
+    display: block;
+
+    max-width: 560px;
+    margin: 25px auto 0;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 0.78rem;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   DECORATIONS
+========================= */
+
+.cta-decoration {
+    position: absolute;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.cta-decoration-one {
+    width: 420px;
+    height: 420px;
+
+    top: -220px;
+    right: -120px;
+
+    border: 1px solid rgba(254, 194, 0, 0.15);
+}
+
+.cta-decoration-two {
+    width: 280px;
+    height: 280px;
+
+    bottom: -170px;
+    left: -100px;
+
+    background: rgba(213, 112, 40, 0.12);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 575px) {
+
+    .cta-section {
+        padding: 100px 0;
+    }
+
+    .cta-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .cta-actions a {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .cta-content h2 {
+        font-size: clamp(2.8rem, 13vw, 4rem);
+    }
+
+}
