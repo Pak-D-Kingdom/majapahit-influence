@@ -1,24 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Campaign\StoreCampaignRequest;
-use App\Http\Requests\Campaign\UpdateCampaignRequest;
+use App\Http\Requests\Admin\StoreCampaignRequest;
+use App\Http\Requests\Admin\UpdateCampaignRequest;
 use App\Models\AuditLog;
 use App\Models\Brand;
 use App\Models\Campaign;
-use App\Models\CampaignFile;
 use App\Models\KolProfile;
+use App\Services\CampaignService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class CampaignController extends Controller
 {
+    public function __construct(
+        protected CampaignService $campaignService
+    ) {}
+
     /**
      * Display a listing of campaigns with filters.
      */
@@ -57,44 +60,34 @@ class CampaignController extends Controller
     }
 
     /**
+     * Show the form for creating a new campaign.
+     */
+    public function create(): View
+    {
+        $brands = Brand::where('is_active', true)->orderBy('name')->get();
+        return view('superadmin.campaigns.create', compact('brands'));
+    }
+
+    /**
      * Store a newly created campaign in storage.
      */
     public function store(StoreCampaignRequest $request): RedirectResponse|JsonResponse
     {
-        $validated = $request->validated();
-        $validated['created_by'] = Auth::id();
-
-        $campaign = DB::transaction(function () use ($request, $validated) {
-            $campaign = Campaign::create($validated);
-
-            if ($request->hasFile('brief_files')) {
-                foreach ($request->file('brief_files') as $file) {
-                    $path = $file->store('campaign_briefs', 'public');
-                    CampaignFile::create([
-                        'campaign_id' => $campaign->id,
-                        'file_path' => $path,
-                        'file_name' => $file->getClientOriginalName(),
-                        'file_size' => $file->getSize(),
-                        'mime_type' => $file->getClientMimeType(),
-                    ]);
-                }
-            }
-
-            AuditLog::log(
-                action: 'create_campaign',
-                entityType: 'campaign',
-                entityId: $campaign->id,
-                newValues: $campaign->toArray()
-            );
-
-            return $campaign;
-        });
+        $campaign = $this->campaignService->store(
+            data: $request->validated(),
+            files: $request->file('brief_files', []),
+            creator: Auth::user()
+        );
 
         if ($request->wantsJson()) {
-            return response()->json(['message' => 'Campaign berhasil dibuat.', 'data' => $campaign->load('files')], 201);
+            return response()->json([
+                'message' => 'Campaign berhasil dibuat.',
+                'data' => $campaign->load('files'),
+            ], 201);
         }
 
-        return redirect()->route('superadmin.campaigns.show', $campaign)->with('success', 'Campaign berhasil dibuat.');
+        return redirect()->route('superadmin.campaigns.show', $campaign)
+            ->with('success', 'Campaign berhasil dibuat.');
     }
 
     /**
@@ -116,9 +109,9 @@ class CampaignController extends Controller
         $completedEndorsements = $campaign->endorsements->where('status', 'selesai')->count();
         $progressPct = $totalEndorsements > 0 ? round(($completedEndorsements / $totalEndorsements) * 100, 1) : 0;
 
-        // Active KOLs available for assignment
+        // Active KOLs available for assignment (Dev 2 integration: KolProfile::active())
         $availableKols = KolProfile::with(['user', 'tier', 'niches', 'rateCards'])
-            ->where('status', 'aktif')
+            ->active()
             ->get();
 
         if ($request->wantsJson()) {
@@ -136,43 +129,34 @@ class CampaignController extends Controller
     }
 
     /**
+     * Show the form for editing the specified campaign.
+     */
+    public function edit(Campaign $campaign): View
+    {
+        $brands = Brand::where('is_active', true)->orderBy('name')->get();
+        return view('superadmin.campaigns.edit', compact('campaign', 'brands'));
+    }
+
+    /**
      * Update the specified campaign.
      */
     public function update(UpdateCampaignRequest $request, Campaign $campaign): RedirectResponse|JsonResponse
     {
-        $validated = $request->validated();
-        $oldValues = $campaign->toArray();
-
-        DB::transaction(function () use ($request, $campaign, $validated, $oldValues) {
-            $campaign->update($validated);
-
-            if ($request->hasFile('brief_files')) {
-                foreach ($request->file('brief_files') as $file) {
-                    $path = $file->store('campaign_briefs', 'public');
-                    CampaignFile::create([
-                        'campaign_id' => $campaign->id,
-                        'file_path' => $path,
-                        'file_name' => $file->getClientOriginalName(),
-                        'file_size' => $file->getSize(),
-                        'mime_type' => $file->getClientMimeType(),
-                    ]);
-                }
-            }
-
-            AuditLog::log(
-                action: 'update_campaign',
-                entityType: 'campaign',
-                entityId: $campaign->id,
-                oldValues: $oldValues,
-                newValues: $campaign->fresh()->toArray()
-            );
-        });
+        $updatedCampaign = $this->campaignService->update(
+            campaign: $campaign,
+            data: $request->validated(),
+            files: $request->file('brief_files', [])
+        );
 
         if ($request->wantsJson()) {
-            return response()->json(['message' => 'Campaign berhasil diperbarui.', 'data' => $campaign->fresh(['brand', 'files'])]);
+            return response()->json([
+                'message' => 'Campaign berhasil diperbarui.',
+                'data' => $updatedCampaign,
+            ]);
         }
 
-        return redirect()->route('superadmin.campaigns.show', $campaign)->with('success', 'Campaign berhasil diperbarui.');
+        return redirect()->route('superadmin.campaigns.show', $campaign)
+            ->with('success', 'Campaign berhasil diperbarui.');
     }
 
     /**

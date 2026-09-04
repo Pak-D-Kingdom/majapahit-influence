@@ -119,11 +119,12 @@ class Dev3EndorsementTest extends TestCase
         $campaign = Campaign::create([
             'brand_id' => $brand->id,
             'name' => 'Gojek Hemat Campaign',
+            'description' => 'Brief hemat',
             'status' => 'aktif',
         ]);
 
         $response = $this->actingAs($this->adminUser)
-            ->postJson(route('superadmin.campaigns.endorsements.store', $campaign), [
+            ->postJson(route('superadmin.campaigns.assign', $campaign), [
                 'kol_profile_id' => $this->kolProfile->id,
                 'content_type' => 'reels',
                 'fee' => 5000000.00,
@@ -152,6 +153,7 @@ class Dev3EndorsementTest extends TestCase
         $campaign = Campaign::create([
             'brand_id' => $brand->id,
             'name' => 'WIB Campaign',
+            'description' => 'Brief WIB',
             'status' => 'aktif',
         ]);
 
@@ -169,7 +171,7 @@ class Dev3EndorsementTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->adminUser)
-            ->postJson(route('superadmin.campaigns.endorsements.store', $campaign), [
+            ->postJson(route('superadmin.campaigns.assign', $campaign), [
                 'kol_profile_id' => $inactiveKol->id,
                 'content_type' => 'reels',
                 'fee' => 3000000.00,
@@ -180,23 +182,29 @@ class Dev3EndorsementTest extends TestCase
             ->assertJsonValidationErrors(['kol_profile_id']);
     }
 
-    public function test_kol_can_upload_content_proof(): void
+    public function test_kol_can_view_endorsements_and_upload_content_proof(): void
     {
         $brand = Brand::create(['name' => 'Shopee']);
-        $campaign = Campaign::create(['brand_id' => $brand->id, 'name' => 'Shopee 9.9']);
+        $campaign = Campaign::create(['brand_id' => $brand->id, 'name' => 'Shopee 9.9', 'description' => 'Brief 9.9']);
         $endorsement = Endorsement::create([
             'campaign_id' => $campaign->id,
             'kol_profile_id' => $this->kolProfile->id,
-            'content_type' => 'instagram_story',
+            'content_type' => 'story',
             'fee' => 2000000.00,
             'deadline' => now()->addDays(3)->toDateString(),
             'status' => 'in_progress',
         ]);
 
+        // View index
+        $indexResponse = $this->actingAs($this->kolUser)
+            ->getJson(route('kol.endorsements.index', ['tab' => 'active']));
+        $indexResponse->assertStatus(200);
+
+        // Upload Proof
         $screenshot = UploadedFile::fake()->image('proof_screenshot.png');
 
         $response = $this->actingAs($this->kolUser)
-            ->postJson(route('kol.endorsements.upload-proof', $endorsement), [
+            ->postJson(route('kol.endorsements.upload', $endorsement), [
                 'posted_at' => now()->toDateString(),
                 'post_url' => 'https://instagram.com/stories/dimas/123456789',
                 'notes' => 'Sudah diposting pukul 12 siang.',
@@ -214,10 +222,10 @@ class Dev3EndorsementTest extends TestCase
         $this->assertEquals('content_submitted', $endorsement->fresh()->status);
     }
 
-    public function test_superadmin_can_reject_proof_with_revision_notes(): void
+    public function test_superadmin_can_review_and_reject_proof_with_notes(): void
     {
         $brand = Brand::create(['name' => 'Traveloka']);
-        $campaign = Campaign::create(['brand_id' => $brand->id, 'name' => 'Epic Sale']);
+        $campaign = Campaign::create(['brand_id' => $brand->id, 'name' => 'Epic Sale', 'description' => 'Brief Epic']);
         $endorsement = Endorsement::create([
             'campaign_id' => $campaign->id,
             'kol_profile_id' => $this->kolProfile->id,
@@ -235,9 +243,9 @@ class Dev3EndorsementTest extends TestCase
         ]);
 
         $response = $this->actingAs($this->adminUser)
-            ->postJson(route('superadmin.content-proofs.review', $proof), [
-                'action' => 'reject',
-                'review_notes' => 'Logo brand di video belum terlihat jelas, tolong re-upload potongan awal.',
+            ->postJson(route('superadmin.endorsements.review', $endorsement), [
+                'status' => 'rejected',
+                'notes' => 'Logo brand di video belum terlihat jelas, tolong re-upload potongan awal.',
             ]);
 
         $response->assertStatus(200);
@@ -245,10 +253,10 @@ class Dev3EndorsementTest extends TestCase
         $this->assertEquals('content_rejected', $endorsement->fresh()->status);
     }
 
-    public function test_superadmin_can_approve_proof_and_auto_calculates_commission(): void
+    public function test_superadmin_can_approve_proof_and_mark_completed_with_commission(): void
     {
         $brand = Brand::create(['name' => 'Blibli']);
-        $campaign = Campaign::create(['brand_id' => $brand->id, 'name' => 'Histeria 10.10']);
+        $campaign = Campaign::create(['brand_id' => $brand->id, 'name' => 'Histeria 10.10', 'description' => 'Brief 10.10']);
         $fee = 10000000.00; // 10 juta
 
         $endorsement = Endorsement::create([
@@ -267,14 +275,22 @@ class Dev3EndorsementTest extends TestCase
             'review_status' => 'pending',
         ]);
 
+        // 1. Approve proof
         $response = $this->actingAs($this->adminUser)
-            ->postJson(route('superadmin.content-proofs.review', $proof), [
-                'action' => 'approve',
-                'review_notes' => 'Konten bagus sesuai brief!',
+            ->postJson(route('superadmin.endorsements.review', $endorsement), [
+                'status' => 'approved',
+                'notes' => 'Konten bagus sesuai brief!',
             ]);
 
         $response->assertStatus(200);
         $this->assertEquals('approved', $proof->fresh()->review_status);
+        $this->assertEquals('content_approved', $endorsement->fresh()->status);
+
+        // 2. Complete endorsement
+        $completeResponse = $this->actingAs($this->adminUser)
+            ->postJson(route('superadmin.endorsements.complete', $endorsement));
+
+        $completeResponse->assertStatus(200);
         $this->assertEquals('selesai', $endorsement->fresh()->status);
 
         // Commission calculation BR1 check:

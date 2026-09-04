@@ -10,75 +10,37 @@ use App\Models\ContentProofFile;
 use App\Models\Endorsement;
 use App\Models\KolProfile;
 use App\Models\Notification;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class EndorsementService
 {
     /**
-     * Assign an active KOL to a campaign (Business Rules BR2 & BR3).
+     * Assign active KOL to a campaign (Business Rules BR2 & BR3).
      */
     public function assignKol(Campaign $campaign, array $data, ?User $assigner = null): Endorsement
     {
-        $kol = KolProfile::findOrFail($data['kol_profile_id']);
-
-        if ($kol->status !== 'aktif') {
-            throw ValidationException::withMessages([
-                'kol_profile_id' => ["KOL berstatus '{$kol->status}' tidak dapat di-assign. Hanya KOL aktif yang diperbolehkan."],
-            ]);
-        }
-
-        return DB::transaction(function () use ($campaign, $kol, $data, $assigner) {
-            $endorsement = Endorsement::create([
-                'campaign_id' => $campaign->id,
-                'kol_profile_id' => $kol->id,
-                'content_type' => $data['content_type'],
-                'fee' => $data['fee'],
-                'deadline' => $data['deadline'],
-                'start_date' => $data['start_date'] ?? null,
-                'status' => 'assigned',
-                'assigned_by' => $assigner?->id,
-                'notes' => $data['notes'] ?? null,
-            ]);
-
-            // Audit log
-            AuditLog::log(
-                action: 'assign_kol_endorsement',
-                entityType: 'endorsement',
-                entityId: $endorsement->id,
-                newValues: $endorsement->toArray(),
-                user: $assigner
-            );
-
-            // In-app notification for KOL
-            if ($kol->user_id) {
-                Notification::create([
-                    'user_id' => $kol->user_id,
-                    'type' => 'new_endorsement',
-                    'title' => 'Tugas Endorsement Baru',
-                    'body' => "Anda telah ditugaskan untuk campaign '{$campaign->name}' ({$endorsement->content_type}). Deadline: {$endorsement->deadline->format('d/m/Y')}.",
-                    'target_url' => "/kol/endorsements/{$endorsement->id}",
-                ]);
-            }
-
-            return $endorsement;
-        });
+        return app(CampaignService::class)->assignKol($campaign, $data, $assigner);
     }
 
     /**
      * Submit content proof (by KOL).
      *
+     * @param array<string, mixed> $data
      * @param array<UploadedFile> $files
      */
-    public function submitProof(Endorsement $endorsement, array $data, array $files): ContentProof
+    public function submitProof(Endorsement $endorsement, array $data, array $files = []): ContentProof
     {
         return DB::transaction(function () use ($endorsement, $data, $files) {
+            $postedAt = $data['posted_at'] ?? ($data['post_date'] ?? now()->toDateString());
+
             $proof = ContentProof::create([
                 'endorsement_id' => $endorsement->id,
-                'posted_at' => $data['posted_at'],
+                'posted_at' => $postedAt,
                 'post_url' => $data['post_url'],
                 'notes' => $data['notes'] ?? null,
                 'review_status' => 'pending',
@@ -108,36 +70,54 @@ class EndorsementService
                 newValues: ['endorsement_status' => 'content_submitted', 'proof_id' => $proof->id]
             );
 
+            // Notify Admins
+            $adminRole = Role::where('name', 'admin')->first();
+            if ($adminRole) {
+                foreach ($adminRole->users as $admin) {
+                    Notification::create([
+                        'user_id' => $admin->id,
+                        'type' => 'content_submitted',
+                        'title' => 'Bukti Konten Baru Diserahkan',
+                        'body' => "KOL {$endorsement->kolProfile?->nickname} telah mengunggah bukti konten untuk campaign '{$endorsement->campaign?->name}'.",
+                        'target_url' => "/superadmin/endorsements/{$endorsement->id}",
+                    ]);
+                }
+            }
+
             return $proof;
         });
     }
 
     /**
-     * Review submitted content proof (Approve or Reject with revision notes).
+     * Review submitted content proof (Approve or Reject).
      */
-    public function reviewProof(ContentProof $proof, string $action, ?string $notes = null, ?User $reviewer = null): ContentProof
+    public function reviewProof(Endorsement|ContentProof $target, string $status, ?string $notes = null, ?User $admin = null): ContentProof
     {
-        return DB::transaction(function () use ($proof, $action, $notes, $reviewer) {
-            $endorsement = $proof->endorsement;
+        $proof = $target instanceof ContentProof ? $target : $target->latestContentProof;
 
-            if ($action === 'approve') {
+        if (!$proof) {
+            throw ValidationException::withMessages([
+                'proof' => ['Bukti konten tidak ditemukan pada endorsement ini.'],
+            ]);
+        }
+
+        $adminUser = $admin ?? Auth::user();
+
+        return DB::transaction(function () use ($proof, $status, $notes, $adminUser) {
+            $endorsement = $proof->endorsement;
+            $normalizedStatus = in_array($status, ['approve', 'approved']) ? 'approved' : 'rejected';
+
+            if ($normalizedStatus === 'approved') {
                 $proof->update([
                     'review_status' => 'approved',
                     'review_notes' => $notes,
-                    'reviewed_by' => $reviewer?->id,
+                    'reviewed_by' => $adminUser?->id,
                     'reviewed_at' => now(),
                 ]);
 
                 $endorsement->update([
-                    'status' => 'selesai',
-                    'completed_at' => now(),
+                    'status' => 'content_approved',
                 ]);
-
-                // Auto-generate Commission calculation (BR1) if not already created
-                if (!$endorsement->commission) {
-                    $commission = Commission::calculateCommission($endorsement);
-                    $commission->save();
-                }
 
                 // In-app Notification for KOL
                 if ($endorsement->kolProfile?->user_id) {
@@ -145,7 +125,7 @@ class EndorsementService
                         'user_id' => $endorsement->kolProfile->user_id,
                         'type' => 'content_approved',
                         'title' => 'Bukti Konten Disetujui',
-                        'body' => "Bukti konten untuk campaign '{$endorsement->campaign?->name}' telah disetujui. Komisi telah dicatat.",
+                        'body' => "Bukti konten untuk campaign '{$endorsement->campaign?->name}' telah disetujui oleh Admin.",
                         'target_url' => "/kol/endorsements/{$endorsement->id}",
                     ]);
                 }
@@ -154,14 +134,14 @@ class EndorsementService
                     action: 'approve_content_proof',
                     entityType: 'content_proof',
                     entityId: $proof->id,
-                    newValues: ['review_status' => 'approved', 'endorsement_status' => 'selesai'],
-                    user: $reviewer
+                    newValues: ['review_status' => 'approved', 'endorsement_status' => 'content_approved'],
+                    user: $adminUser
                 );
-            } elseif ($action === 'reject') {
+            } else {
                 $proof->update([
                     'review_status' => 'rejected',
                     'review_notes' => $notes,
-                    'reviewed_by' => $reviewer?->id,
+                    'reviewed_by' => $adminUser?->id,
                     'reviewed_at' => now(),
                 ]);
 
@@ -169,7 +149,7 @@ class EndorsementService
                     'status' => 'content_rejected',
                 ]);
 
-                // In-app Notification for KOL (Revision Request)
+                // In-app Notification for KOL
                 if ($endorsement->kolProfile?->user_id) {
                     Notification::create([
                         'user_id' => $endorsement->kolProfile->user_id,
@@ -185,7 +165,7 @@ class EndorsementService
                     entityType: 'content_proof',
                     entityId: $proof->id,
                     newValues: ['review_status' => 'rejected', 'endorsement_status' => 'content_rejected', 'notes' => $notes],
-                    user: $reviewer
+                    user: $adminUser
                 );
             }
 
@@ -194,7 +174,49 @@ class EndorsementService
     }
 
     /**
-     * Cancel endorsement.
+     * Mark an endorsement as completed and auto-calculate commission (BR1).
+     */
+    public function markAsCompleted(Endorsement $endorsement, ?User $admin = null): Endorsement
+    {
+        $adminUser = $admin ?? Auth::user();
+
+        return DB::transaction(function () use ($endorsement, $adminUser) {
+            $endorsement->update([
+                'status' => 'selesai',
+                'completed_at' => now(),
+            ]);
+
+            // Auto-calculate Commission (BR1) if not existing
+            if (!$endorsement->commission) {
+                $commission = Commission::calculateCommission($endorsement);
+                $commission->save();
+            }
+
+            // In-app Notification for KOL
+            if ($endorsement->kolProfile?->user_id) {
+                Notification::create([
+                    'user_id' => $endorsement->kolProfile->user_id,
+                    'type' => 'endorsement_completed',
+                    'title' => 'Endorsement Selesai',
+                    'body' => "Endorsement untuk campaign '{$endorsement->campaign?->name}' telah selesai. Komisi telah dicatat.",
+                    'target_url' => "/kol/endorsements/{$endorsement->id}",
+                ]);
+            }
+
+            AuditLog::log(
+                action: 'complete_endorsement',
+                entityType: 'endorsement',
+                entityId: $endorsement->id,
+                newValues: ['status' => 'selesai', 'completed_at' => $endorsement->completed_at],
+                user: $adminUser
+            );
+
+            return $endorsement->fresh(['commission']);
+        });
+    }
+
+    /**
+     * Cancel an endorsement.
      */
     public function cancelEndorsement(Endorsement $endorsement, ?string $reason = null, ?User $actor = null): void
     {

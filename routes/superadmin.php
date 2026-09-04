@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CampaignController;
+use App\Http\Controllers\Admin\EndorsementController;
 use App\Http\Controllers\Superadmin\BrandController;
-use App\Http\Controllers\Superadmin\CampaignController;
-use App\Http\Controllers\Superadmin\ContentProofReviewController;
-use App\Http\Controllers\Superadmin\EndorsementController;
 use Illuminate\Support\Facades\Route;
 
 // Superadmin Brand Management
@@ -12,11 +11,9 @@ Route::resource('brands', BrandController::class);
 // Superadmin Campaign Management
 Route::resource('campaigns', CampaignController::class);
 
-// Superadmin KOL Assignment & Endorsement Management
-Route::post('campaigns/{campaign}/endorsements', [EndorsementController::class, 'store'])->name('campaigns.endorsements.store');
-Route::patch('endorsements/{endorsement}/status', [EndorsementController::class, 'updateStatus'])->name('endorsements.update-status');
+// Superadmin KOL Assignment & Endorsement Lifecycle
+Route::post('campaigns/{campaign}/assign', [EndorsementController::class, 'assign'])->name('campaigns.assign');
+Route::post('campaigns/{campaign}/endorsements', [EndorsementController::class, 'assign'])->name('campaigns.endorsements.store');
+Route::post('endorsements/{endorsement}/review', [EndorsementController::class, 'reviewProof'])->name('endorsements.review');
+Route::post('endorsements/{endorsement}/complete', [EndorsementController::class, 'complete'])->name('endorsements.complete');
 Route::delete('endorsements/{endorsement}', [EndorsementController::class, 'destroy'])->name('endorsements.destroy');
-
-// Superadmin Content Proof Review
-Route::get('content-proofs/{proof}', [ContentProofReviewController::class, 'show'])->name('content-proofs.show');
-Route::post('content-proofs/{proof}/review', [ContentProofReviewController::class, 'review'])->name('content-proofs.review');
