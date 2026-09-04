@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\RegistrationReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Note: 'role:admin' middleware will be created by Dev 1. For now, we just use auth.
+    // Note: 'role:superadmin' middleware will be created by Dev 1. For now, we just use auth.
     
     // Pendaftaran
     Route::get('/pendaftaran', [RegistrationReviewController::class, 'index'])->name('registrations.index');

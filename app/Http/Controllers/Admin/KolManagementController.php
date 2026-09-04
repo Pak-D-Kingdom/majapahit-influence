@@ -40,7 +40,7 @@ class KolManagementController extends Controller
         $tiers = Tier::all();
         $niches = Niche::all();
 
-        return view('superadmin.kol.index', compact('kols', 'filters', 'tiers', 'niches'));
+        return response()->json(compact('kols', 'filters', 'tiers', 'niches'));
     }
 
     /**
@@ -51,7 +51,7 @@ class KolManagementController extends Controller
         $tiers = Tier::all();
         $niches = Niche::all();
 
-        return view('superadmin.kol.create', compact('tiers', 'niches'));
+        return response()->json(compact('tiers', 'niches'));
     }
 
     /**
@@ -79,7 +79,7 @@ class KolManagementController extends Controller
                 'nickname'  => $data['nickname'],
                 'bio'       => $data['bio'] ?? null,
                 'city'      => $data['city'] ?? null,
-                'province  '=> $data['province'] ?? null,
+                'province'  => $data['province'] ?? null,
                 'tier_id'   => $data['tier_id'] ?? null,
                 'bank_name'           => $data['bank_name'] ?? null,
                 'bank_account_number' => $data['bank_account_number'] ?? null,
@@ -109,7 +109,7 @@ class KolManagementController extends Controller
             }
         });
 
-        return redirect()->route('admin.kol.index')->with('success', 'KOL berhasil ditambahkan secara manual.');
+        return response()->json(['message' => 'KOL berhasil ditambahkan secara manual.'], 201);
     }
 
     /**
@@ -118,7 +118,7 @@ class KolManagementController extends Controller
     public function show(KolProfile $kol)
     {
         $kol->load(['user', 'tier', 'niches', 'socialMedia', 'rateCards', 'endorsements', 'commissions']);
-        return view('superadmin.kol.show', compact('kol'));
+        return response()->json(compact('kol'));
     }
 
     /**
@@ -130,7 +130,7 @@ class KolManagementController extends Controller
         $tiers = Tier::all();
         $niches = Niche::all();
 
-        return view('superadmin.kol.edit', compact('kol', 'tiers', 'niches'));
+        return response()->json(compact('kol', 'tiers', 'niches'));
     }
 
     /**
@@ -139,11 +139,11 @@ class KolManagementController extends Controller
     public function update(UpdateProfileRequest $request, KolProfile $kol)
     {
         try {
-            $admin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'admin@admin.com'], ['name' => 'Admin', 'password' => bcrypt('password')]);
-            $this->service->updateProfile($kol, $request->validated(), $admin);
-            return redirect()->route('admin.kol.show', $kol->id)->with('success', 'Profil KOL berhasil diperbarui.');
+            $superadmin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $this->service->updateProfile($kol, $request->validated(), $superadmin);
+            return response()->json(['message' => 'Profil KOL berhasil diperbarui.']);
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal update: ' . $e->getMessage());
+            return response()->json(['error' => 'Gagal update: ' . $e->getMessage()], 422);
         }
     }
 
@@ -153,16 +153,16 @@ class KolManagementController extends Controller
     public function updateStatus(UpdateKolStatusRequest $request, KolProfile $kol)
     {
         try {
-            $admin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'admin@admin.com'], ['name' => 'Admin', 'password' => bcrypt('password')]);
+            $superadmin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
             $this->service->changeStatus(
                 $kol, 
                 $request->input('status'), 
                 $request->input('status_reason'), 
-                $admin
+                $superadmin
             );
-            return back()->with('success', 'Status berhasil diubah.');
+            return response()->json(['message' => 'Status berhasil diubah.']);
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal ubah status: ' . $e->getMessage());
+            return response()->json(['error' => 'Gagal ubah status: ' . $e->getMessage()], 422);
         }
     }
 
@@ -171,7 +171,6 @@ class KolManagementController extends Controller
      */
     public function export(Request $request)
     {
-        // TODO: Koordinasi dengan Dev 4 untuk mekanisme Export CSV
-        return back()->with('info', 'Fitur export sedang dikembangkan oleh Dev 4.');
+        return response()->json(['info' => 'Fitur export sedang dikembangkan oleh Dev 4.']);
     }
 }

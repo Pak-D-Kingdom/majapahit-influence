@@ -25,11 +25,11 @@ class ProfileController extends Controller
         $kol = auth()->user()->kolProfile;
         
         if (!$kol) {
-            return redirect()->route('dashboard')->with('error', 'Profil KOL tidak ditemukan.');
+            return response()->json(['error' => 'Profil KOL tidak ditemukan.'], 404);
         }
 
         $kol->load(['tier', 'niches', 'socialMedia', 'rateCards', 'endorsements', 'commissions']);
-        return view('kol.profile.show', compact('kol'));
+        return response()->json(compact('kol'));
     }
 
     /**
@@ -40,14 +40,14 @@ class ProfileController extends Controller
         $kol = auth()->user()->kolProfile;
 
         if (!$kol) {
-            return redirect()->route('dashboard')->with('error', 'Profil KOL tidak ditemukan.');
+            return response()->json(['error' => 'Profil KOL tidak ditemukan.'], 404);
         }
 
         $kol->load(['tier', 'niches', 'socialMedia', 'rateCards']);
         $tiers = Tier::all();
         $niches = Niche::all();
 
-        return view('kol.profile.edit', compact('kol', 'tiers', 'niches'));
+        return response()->json(compact('kol', 'tiers', 'niches'));
     }
 
     /**
@@ -58,14 +58,14 @@ class ProfileController extends Controller
         $kol = auth()->user()->kolProfile;
 
         if (!$kol) {
-            return redirect()->route('dashboard')->with('error', 'Profil KOL tidak ditemukan.');
+            return response()->json(['error' => 'Profil KOL tidak ditemukan.'], 404);
         }
 
         try {
             $this->service->updateProfile($kol, $request->validated(), auth()->user());
-            return redirect()->route('kol.profile.show')->with('success', 'Profil berhasil diperbarui.');
+            return response()->json(['message' => 'Profil berhasil diperbarui.']);
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal update: ' . $e->getMessage());
+            return response()->json(['error' => 'Gagal update: ' . $e->getMessage()], 422);
         }
     }
 }

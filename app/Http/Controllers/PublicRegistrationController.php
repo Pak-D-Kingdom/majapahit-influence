@@ -17,12 +17,12 @@ class PublicRegistrationController extends Controller
     }
 
     /**
-     * Tampilkan form pendaftaran.
+     * Tampilkan data awal pendaftaran jika diperlukan (API).
      */
     public function create()
     {
         $niches = Niche::where('is_active', true)->get();
-        return view('public.registration.create', compact('niches'));
+        return response()->json(['data' => compact('niches')]);
     }
 
     /**
@@ -35,19 +35,17 @@ class PublicRegistrationController extends Controller
 
         $registration = $this->service->store($data, $files);
 
-        return redirect()->route('public.kol.confirmation')
-            ->with('registration_number', $registration->registration_number);
+        return response()->json([
+            'message' => 'Pendaftaran berhasil',
+            'registration_number' => $registration->registration_number
+        ], 201);
     }
 
     /**
-     * Tampilkan halaman konfirmasi sukses daftar.
+     * Tampilkan halaman konfirmasi sukses daftar (opsional untuk API).
      */
     public function confirmation()
     {
-        if (!session('registration_number')) {
-            return redirect()->route('public.kol.register');
-        }
-
-        return view('public.registration.confirmation');
+        return response()->json(['message' => 'Silakan simpan nomor pendaftaran Anda.']);
     }
 }

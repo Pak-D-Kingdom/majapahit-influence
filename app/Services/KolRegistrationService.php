@@ -52,13 +52,13 @@ class KolRegistrationService
     /**
      * Approve a KOL registration.
      */
-    public function approve(KolRegistration $registration, User $admin, array $data): User
+    public function approve(KolRegistration $registration, User $superadmin, array $data): User
     {
-        return DB::transaction(function () use ($registration, $admin, $data) {
+        return DB::transaction(function () use ($registration, $superadmin, $data) {
             // Update registration status
             $registration->update([
                 'status'      => 'approved',
-                'approved_by' => $admin->id,
+                'approved_by' => $superadmin->id,
                 'approved_at' => now(),
                 'notes'       => $data['notes'] ?? null,
             ]);
@@ -69,7 +69,6 @@ class KolRegistrationService
                 'name'      => $registration->full_name,
                 'email'     => $registration->email,
                 'password'  => \Illuminate\Support\Facades\Hash::make($password),
-                'is_active' => true,
             ]);
             $user->assignRole('kol');
 
@@ -121,7 +120,7 @@ class KolRegistrationService
                 $registration->id, 
                 ['status' => 'pending_review'], 
                 ['status' => 'approved', 'user_id' => $user->id], 
-                $admin
+                $superadmin
             );
 
             // TODO: Notify Dev 5 for sending email credential to $registration->email with $password
@@ -133,9 +132,9 @@ class KolRegistrationService
     /**
      * Reject a KOL registration.
      */
-    public function reject(KolRegistration $registration, User $admin, string $reason): void
+    public function reject(KolRegistration $registration, User $superadmin, string $reason): void
     {
-        DB::transaction(function () use ($registration, $admin, $reason) {
+        DB::transaction(function () use ($registration, $superadmin, $reason) {
             // Log audit before deleting
             AuditLog::log(
                 'kol_registration_rejected', 
@@ -146,7 +145,7 @@ class KolRegistrationService
                     'email' => $registration->email
                 ], 
                 ['rejection_reason' => $reason], 
-                $admin
+                $superadmin
             );
 
             // Delete files physically

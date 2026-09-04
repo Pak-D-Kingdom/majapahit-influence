@@ -70,7 +70,7 @@ class KolProfileService
     /**
      * Change KolProfile status (Aktif, Nonaktif, Blacklist).
      */
-    public function changeStatus(KolProfile $profile, string $newStatus, ?string $reason, User $admin): void
+    public function changeStatus(KolProfile $profile, string $newStatus, ?string $reason, User $superadmin): void
     {
         $oldStatus = $profile->status;
 
@@ -83,7 +83,7 @@ class KolProfileService
             throw new \InvalidArgumentException("Alasan wajib diisi untuk mengubah status menjadi '{$newStatus}'.");
         }
 
-        DB::transaction(function () use ($profile, $oldStatus, $newStatus, $reason, $admin) {
+        DB::transaction(function () use ($profile, $oldStatus, $newStatus, $reason, $superadmin) {
             $profile->update([
                 'status' => $newStatus,
                 'status_reason' => $reason,
@@ -94,8 +94,8 @@ class KolProfileService
                 'kol_profile',
                 $profile->id,
                 ['status' => $oldStatus],
-                ['status' => $newStatus, 'reason' => $reason],
-                $admin
+                ['status' => $newStatus, 'status_reason' => $reason],
+                $superadmin
             );
         });
     }

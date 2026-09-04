@@ -33,7 +33,7 @@ class RegistrationReviewController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(15);
 
-        return view('superadmin.registrations.index', compact('registrations', 'status'));
+        return response()->json(compact('registrations', 'status'));
     }
 
     /**
@@ -44,7 +44,7 @@ class RegistrationReviewController extends Controller
         $registration->load('files');
         $tiers = Tier::all();
 
-        return view('superadmin.registrations.show', compact('registration', 'tiers'));
+        return response()->json(compact('registration', 'tiers'));
     }
 
     /**
@@ -53,15 +53,15 @@ class RegistrationReviewController extends Controller
     public function approve(ApproveRegistrationRequest $request, KolRegistration $registration)
     {
         if ($registration->status !== 'pending_review') {
-            return back()->with('error', 'Status pendaftaran ini sudah tidak pending.');
+            return response()->json(['error' => 'Status pendaftaran ini sudah tidak pending.'], 400);
         }
 
         try {
-            $admin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'admin@admin.com'], ['name' => 'Admin', 'password' => bcrypt('password')]);
-            $user = $this->service->approve($registration, $admin, $request->validated());
-            return redirect()->route('admin.registrations.index')->with('success', "Pendaftaran {$registration->full_name} berhasil di-approve.");
+            $superadmin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $user = $this->service->approve($registration, $superadmin, $request->validated());
+            return response()->json(['message' => "Pendaftaran {$registration->full_name} berhasil di-approve."]);
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal menyetujui: ' . $e->getMessage());
+            return response()->json(['error' => 'Gagal menyetujui: ' . $e->getMessage()], 422);
         }
     }
 
@@ -71,15 +71,15 @@ class RegistrationReviewController extends Controller
     public function reject(RejectRegistrationRequest $request, KolRegistration $registration)
     {
         if ($registration->status !== 'pending_review') {
-            return back()->with('error', 'Status pendaftaran ini sudah tidak pending.');
+            return response()->json(['error' => 'Status pendaftaran ini sudah tidak pending.'], 400);
         }
 
         try {
-            $admin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'admin@admin.com'], ['name' => 'Admin', 'password' => bcrypt('password')]);
-            $this->service->reject($registration, $admin, $request->input('rejection_reason'));
-            return redirect()->route('admin.registrations.index')->with('success', 'Pendaftaran berhasil di-reject dan dihapus.');
+            $superadmin = auth()->user() ?? \App\Models\User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $this->service->reject($registration, $superadmin, $request->input('rejection_reason'));
+            return response()->json(['message' => 'Pendaftaran berhasil di-reject dan dihapus.']);
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal me-reject: ' . $e->getMessage());
+            return response()->json(['error' => 'Gagal me-reject: ' . $e->getMessage()], 422);
         }
     }
 }
