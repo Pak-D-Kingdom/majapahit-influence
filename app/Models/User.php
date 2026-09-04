@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -91,15 +92,15 @@ class User extends Authenticatable
      */
     public function hasRole(string $roleName): bool
     {
-        return $this->roles->contains('name', $roleName);
+        return $this->roles()->where('name', $roleName)->exists();
     }
 
     /**
-     * Check if user is Admin.
+     * Check if user is a superadmin.
      */
     public function isAdmin(): bool
     {
-        return $this->hasRole('admin') || $this->hasRole('superadmin');
+        return $this->hasRole('superadmin');
     }
 
     /**
@@ -120,6 +121,18 @@ class User extends Authenticatable
             $this->roles()->syncWithoutDetaching([$roleModel->id]);
         } else {
             $this->roles()->syncWithoutDetaching([$role->id]);
+        }
+    }
+
+    /**
+     * Revoke all server-side sessions belonging to this user.
+     */
+    public function revokeSessions(): void
+    {
+        if (config('session.driver') === 'database') {
+            DB::table(config('session.table', 'sessions'))
+                ->where('user_id', $this->getKey())
+                ->delete();
         }
     }
 }

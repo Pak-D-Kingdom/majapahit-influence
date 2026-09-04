@@ -39,8 +39,11 @@ class ResetPasswordController extends Controller
                     'remember_token' => Str::random(60),
                 ])->save();
 
+                // A password reset invalidates all previously issued sessions.
+                $user->revokeSessions();
+
                 AuditLog::log(
-                    action: 'password_reset',
+                    action: 'auth.password_reset',
                     entityType: 'User',
                     entityId: $user->id,
                     oldValues: null,

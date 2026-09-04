@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -20,7 +21,7 @@ class AuthTest extends TestCase
     {
         parent::setUp();
 
-        $adminRole = Role::firstOrCreate(['name' => 'admin'], ['display_name' => 'Admin']);
+        $superadminRole = Role::firstOrCreate(['name' => 'superadmin'], ['display_name' => 'Superadmin']);
         $kolRole = Role::firstOrCreate(['name' => 'kol'], ['display_name' => 'KOL']);
 
         $this->adminUser = User::firstOrCreate(
@@ -31,7 +32,7 @@ class AuthTest extends TestCase
                 'is_active' => true,
             ]
         );
-        $this->adminUser->assignRole('admin');
+        $this->adminUser->assignRole('superadmin');
 
         $this->kolUser = User::firstOrCreate(
             ['email' => 'kol_test@majapahit.com'],
@@ -64,7 +65,7 @@ class AuthTest extends TestCase
         // Pastikan login tercatat di audit_logs
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $this->adminUser->id,
-            'action' => 'login',
+            'action' => 'auth.login',
             'entity_type' => 'User',
         ]);
     }
@@ -82,7 +83,7 @@ class AuthTest extends TestCase
         // Pastikan login tercatat di audit_logs
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $this->kolUser->id,
-            'action' => 'login',
+            'action' => 'auth.login',
             'entity_type' => 'User',
         ]);
     }
@@ -96,6 +97,21 @@ class AuthTest extends TestCase
 
         $this->assertGuest();
         $response->assertSessionHasErrors('email');
+    }
+
+    public function test_failed_login_is_recorded_without_password(): void
+    {
+        $response = $this->post('/login', [
+            'email' => 'admin_test@majapahit.com',
+            'password' => 'wrong-password',
+        ]);
+
+        $response->assertSessionHasErrors('email');
+        $this->assertDatabaseHas('audit_logs', [
+            'action' => 'auth.login_failed',
+            'entity_type' => 'User',
+        ]);
+        $this->assertDatabaseMissing('audit_logs', ['new_values' => json_encode(['password' => 'wrong-password'])]);
     }
 
     public function test_inactive_user_cannot_login(): void
@@ -145,6 +161,51 @@ class AuthTest extends TestCase
         $response->assertStatus(403);
     }
 
+    public function test_guest_cannot_access_superadmin_dashboard(): void
+    {
+        $response = $this->get('/admin/dashboard');
+
+        $response->assertRedirect(route('login'));
+    }
+
+    public function test_guest_gets_json_401_for_superadmin_dashboard(): void
+    {
+        $response = $this->getJson('/admin/dashboard');
+
+        $response->assertUnauthorized();
+    }
+
+    public function test_inactive_user_cannot_access_protected_dashboard(): void
+    {
+        $inactiveUser = User::factory()->create(['is_active' => false]);
+        $inactiveUser->assignRole('superadmin');
+
+        $response = $this->actingAs($inactiveUser)->get('/admin/dashboard');
+
+        $response->assertStatus(403);
+        $this->assertGuest();
+    }
+
+    public function test_user_without_role_cannot_access_protected_dashboard(): void
+    {
+        $user = User::factory()->create(['is_active' => true]);
+
+        $response = $this->actingAs($user)->get('/admin/dashboard');
+
+        $response->assertStatus(403);
+    }
+
+    public function test_inactive_user_gets_json_403(): void
+    {
+        $inactiveUser = User::factory()->create(['is_active' => false]);
+        $inactiveUser->assignRole('kol');
+
+        $response = $this->actingAs($inactiveUser)->getJson('/kol/dashboard');
+
+        $response->assertForbidden();
+        $this->assertGuest();
+    }
+
     public function test_user_can_logout_and_audit_log_created(): void
     {
         $response = $this->actingAs($this->adminUser)->post('/logout');
@@ -154,7 +215,7 @@ class AuthTest extends TestCase
 
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $this->adminUser->id,
-            'action' => 'logout',
+            'action' => 'auth.logout',
             'entity_type' => 'User',
         ]);
     }
@@ -186,7 +247,7 @@ class AuthTest extends TestCase
         // Verify audit log
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $this->kolUser->id,
-            'action' => 'set_initial_password',
+            'action' => 'auth.password_changed',
             'entity_type' => 'User',
         ]);
     }
@@ -216,8 +277,31 @@ class AuthTest extends TestCase
 
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $this->adminUser->id,
-            'action' => 'password_reset',
+            'action' => 'auth.password_reset',
             'entity_type' => 'User',
         ]);
+    }
+
+    public function test_password_reset_revokes_existing_database_sessions(): void
+    {
+        DB::table('sessions')->insert([
+            'id' => 'session-to-revoke',
+            'user_id' => $this->adminUser->id,
+            'ip_address' => '127.0.0.1',
+            'user_agent' => 'test-agent',
+            'payload' => 'payload',
+            'last_activity' => now()->timestamp,
+        ]);
+
+        $token = \Illuminate\Support\Facades\Password::broker()->createToken($this->adminUser);
+
+        $this->post('/reset-password', [
+            'token' => $token,
+            'email' => 'admin_test@majapahit.com',
+            'password' => 'brandnewpass123',
+            'password_confirmation' => 'brandnewpass123',
+        ]);
+
+        $this->assertDatabaseMissing('sessions', ['id' => 'session-to-revoke']);
     }
 }

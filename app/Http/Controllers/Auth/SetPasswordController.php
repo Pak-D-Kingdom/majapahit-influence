@@ -41,6 +41,9 @@ class SetPasswordController extends Controller
                     'is_active' => true,
                 ])->save();
 
+                // Password activation invalidates any pre-existing sessions.
+                $user->revokeSessions();
+
                 // Pastikan profil KOL aktif jika ada
                 if ($user->kolProfile) {
                     $user->kolProfile->update(['status' => 'aktif']);
@@ -48,7 +51,7 @@ class SetPasswordController extends Controller
 
                 // Catat di Audit Trail
                 AuditLog::log(
-                    action: 'set_initial_password',
+                    action: 'auth.password_changed',
                     entityType: 'User',
                     entityId: $user->id,
                     oldValues: null,
@@ -58,6 +61,7 @@ class SetPasswordController extends Controller
 
                 // Langsung login-kan user
                 Auth::login($user);
+                request()->session()->regenerate();
             }
         );
 

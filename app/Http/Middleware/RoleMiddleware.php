@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
@@ -30,7 +29,7 @@ class RoleMiddleware
 
         // 2. Pastikan akun user aktif
         if (! $user->is_active) {
-            Auth::logout();
+            auth()->logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
 
@@ -45,23 +44,14 @@ class RoleMiddleware
 
         // 3. Validasi role jika ada parameter role yang ditentukan
         if (! empty($roles)) {
-            $allowedRoles = [];
-            foreach ($roles as $role) {
-                foreach (explode(',', $role) as $r) {
-                    $cleaned = trim($r);
-                    if ($cleaned !== '') {
-                        $allowedRoles[] = $cleaned;
-                    }
-                }
-            }
+            $allowedRoles = collect($roles)
+                ->flatMap(fn (string $role) => explode(',', $role))
+                ->map(fn (string $role) => trim($role))
+                ->filter()
+                ->unique()
+                ->values();
 
-            $hasAccess = false;
-            foreach ($allowedRoles as $role) {
-                if ($user->hasRole($role)) {
-                    $hasAccess = true;
-                    break;
-                }
-            }
+            $hasAccess = $allowedRoles->contains(fn (string $role) => $user->hasRole($role));
 
             if (! $hasAccess) {
                 if ($request->expectsJson()) {

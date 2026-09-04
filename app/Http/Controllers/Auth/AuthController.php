@@ -8,6 +8,7 @@ use App\Models\AuditLog;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -45,6 +46,13 @@ class AuthController extends Controller
         if (! Auth::attempt($credentials, $remember)) {
             $request->hitRateLimiter();
 
+            AuditLog::log(
+                action: 'auth.login_failed',
+                entityType: 'User',
+                entityId: User::where('email', $request->string('email'))->value('id'),
+                newValues: ['reason' => 'invalid_credentials'],
+            );
+
             return back()->withErrors([
                 'email' => 'Email atau password yang Anda masukkan salah.',
             ])->onlyInput('email');
@@ -54,6 +62,14 @@ class AuthController extends Controller
 
         // Cek apakah akun aktif
         if (! $user->is_active) {
+            AuditLog::log(
+                action: 'auth.login_failed',
+                entityType: 'User',
+                entityId: $user->id,
+                newValues: ['reason' => 'inactive_account'],
+                user: $user,
+            );
+
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
@@ -74,7 +90,7 @@ class AuthController extends Controller
 
         // Catat jejak login ke audit_logs
         AuditLog::log(
-            action: 'login',
+            action: 'auth.login',
             entityType: 'User',
             entityId: $user->id,
             oldValues: null,
@@ -106,7 +122,7 @@ class AuthController extends Controller
 
         if ($user) {
             AuditLog::log(
-                action: 'logout',
+                action: 'auth.logout',
                 entityType: 'User',
                 entityId: $user->id,
                 oldValues: null,

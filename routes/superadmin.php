@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 | Prefix: /admin
 | Name: admin.
-| Middleware: web, auth, role:admin
+| Middleware: web, auth, role:superadmin
 */
 
 Route::get('/dashboard', function () {
