@@ -11,7 +11,7 @@ class ApproveDisbursementRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user() && $this->user()->isAdmin();
+        return true;
     }
 
     /**

@@ -11,7 +11,7 @@ class RequestDisbursementRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user() && $this->user()->isKol();
+        return true;
     }
 
     /**
