@@ -18,14 +18,24 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->group(base_path('routes/superadmin.php'));
 
             Route::middleware('web')
+                ->prefix('admin')
+                ->name('admin.')
+                ->group(base_path('routes/superadmin.php'));
+
+            Route::middleware('web')
                 ->prefix('kol')
                 ->name('kol.')
                 ->group(base_path('routes/kol.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->alias([
+            'role' => \App\Http\Middleware\RoleMiddleware::class,
+        ]);
+
         $middleware->validateCsrfTokens(except: [
             'superadmin/*',
+            'admin/*',
             'kol/*',
         ]);
     })

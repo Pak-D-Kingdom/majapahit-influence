@@ -3,6 +3,19 @@
 use App\Http\Controllers\Kol\EndorsementController;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| KOL Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboard', function () {
+    return response()->json([
+        'message' => 'KOL Dashboard',
+        'user' => auth()->user(),
+    ]);
+})->name('dashboard');
+
 // KOL Endorsements & Proof Upload
 Route::get('endorsements', [EndorsementController::class, 'index'])->name('endorsements.index');
 Route::get('endorsements/{endorsement}', [EndorsementController::class, 'show'])->name('endorsements.show');

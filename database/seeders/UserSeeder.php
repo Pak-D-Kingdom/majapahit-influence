@@ -19,12 +19,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $adminRole = Role::where('name', 'admin')->first();
+        $superadminRole = Role::where('name', 'superadmin')->first();
         $kolRole = Role::where('name', 'kol')->first();
         $microTier = Tier::where('name', 'Micro')->first();
 
         // 1. Superadmin User
-        $admin = User::firstOrCreate(
+        $superadmin = User::firstOrCreate(
             ['email' => 'admin@majapahit.com'],
             [
                 'name' => 'Superadmin Majapahit',
@@ -32,8 +32,8 @@ class UserSeeder extends Seeder
                 'is_active' => true,
             ]
         );
-        if ($adminRole) {
-            $admin->roles()->syncWithoutDetaching([$adminRole->id]);
+        if ($superadminRole) {
+            $superadmin->roles()->syncWithoutDetaching([$superadminRole->id]);
         }
 
         // 2. Sample Active KOL User

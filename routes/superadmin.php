@@ -5,6 +5,19 @@ use App\Http\Controllers\Admin\EndorsementController;
 use App\Http\Controllers\Superadmin\BrandController;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Superadmin & Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboard', function () {
+    return response()->json([
+        'message' => 'Admin Dashboard',
+        'user' => auth()->user(),
+    ]);
+})->name('dashboard');
+
 // Superadmin Brand Management
 Route::resource('brands', BrandController::class);
 
