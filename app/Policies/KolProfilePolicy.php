@@ -7,7 +7,6 @@ use App\Models\User;
 
 class KolProfilePolicy
 {
-<<<<<<< HEAD
     public function viewAny(User $user): bool
     {
         return $user->hasRole('superadmin') || $user->hasRole('kol');
@@ -26,15 +25,5 @@ class KolProfilePolicy
     public function delete(User $user, KolProfile $profile): bool
     {
         return $user->hasRole('superadmin');
-=======
-    public function view(User $user, KolProfile $kolProfile): bool
-    {
-        return $user->isSuperadmin() || $kolProfile->user_id === $user->id;
-    }
-
-    public function update(User $user, KolProfile $kolProfile): bool
-    {
-        return $user->isSuperadmin() || $kolProfile->user_id === $user->id;
->>>>>>> origin/chanan
     }
 }

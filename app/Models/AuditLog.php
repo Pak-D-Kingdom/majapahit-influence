@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Services\AuditLogger;
-use App\Services\AuditLogService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Services\AuditLogger;
 
 class AuditLog extends Model
 {
@@ -49,17 +48,13 @@ class AuditLog extends Model
         ?array $newValues = null,
         ?User $user = null
     ): self {
-        if (class_exists(AuditLogger::class)) {
-            return app(AuditLogger::class)->record(
-                action: $action,
-                subject: $entityType,
-                subjectId: $entityId,
-                oldValues: $oldValues,
-                newValues: $newValues,
-                actor: $user,
-            );
-        }
-
-        return app(AuditLogService::class)->record($action, $entityType, $entityId, $oldValues, $newValues, $user);
+        return app(AuditLogger::class)->record(
+            action: $action,
+            subject: $entityType,
+            subjectId: $entityId,
+            oldValues: $oldValues,
+            newValues: $newValues,
+            actor: $user,
+        );
     }
 }

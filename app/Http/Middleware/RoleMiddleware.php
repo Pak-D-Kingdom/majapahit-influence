@@ -8,20 +8,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-<<<<<<< HEAD
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      * @param  string  ...$roles
      */
-=======
->>>>>>> origin/chanan
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
         $user = $request->user();
 
-<<<<<<< HEAD
         // 1. Pastikan user sudah login
         if (! $user) {
             if ($request->expectsJson()) {
@@ -65,9 +61,6 @@ class RoleMiddleware
                 abort(403, 'Akses ditolak. Anda tidak memiliki izin untuk mengakses halaman ini.');
             }
         }
-=======
-        abort_unless($user && collect($roles)->contains(fn (string $role) => $user->hasRole($role)), 403);
->>>>>>> origin/chanan
 
         return $next($request);
     }

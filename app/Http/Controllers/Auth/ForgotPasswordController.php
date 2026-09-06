@@ -3,19 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-<<<<<<< HEAD
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 use Illuminate\Http\RedirectResponse;
-=======
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
->>>>>>> origin/chanan
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
 class ForgotPasswordController extends Controller
 {
-<<<<<<< HEAD
     /**
      * Display the form to request a password reset link.
      */
@@ -38,16 +32,5 @@ class ForgotPasswordController extends Controller
         }
 
         return back()->withErrors(['email' => __($status)]);
-=======
-    public function create(): View { return view('auth.forgot-password'); }
-
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate(['email' => ['required', 'email']]);
-        $status = Password::sendResetLink($request->only('email'));
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with('success', 'Link reset password telah dikirim ke email Anda.')
-            : back()->withErrors(['email' => 'Email tidak ditemukan atau belum dapat menerima reset password.']);
->>>>>>> origin/chanan
     }
 }
