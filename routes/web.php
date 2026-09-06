@@ -4,14 +4,23 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SetPasswordController;
+use App\Http\Controllers\PublicRegistrationController;
 use Illuminate\Support\Facades\Route;
 
 // Public Landing Page
 Route::get('/', function () {
-    return view('landing.index');
+    if (view()->exists('landing.index')) {
+        return view('landing.index');
+    }
+    return response()->json(['message' => 'Majapahit Influence API is running']);
 })->name('home');
 
-// Authentication Routes (Guest Only)
+// Public KOL Registration (Dev 2)
+Route::get('/daftar', [PublicRegistrationController::class, 'create'])->name('public.register');
+Route::post('/daftar', [PublicRegistrationController::class, 'store'])->name('public.register.store');
+Route::get('/daftar/konfirmasi', [PublicRegistrationController::class, 'confirmation'])->name('public.register.confirmation');
+
+// Authentication Routes (Guest Only) (Dev 1)
 Route::middleware('guest')->group(function () {
     // Login
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

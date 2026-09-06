@@ -25,3 +25,19 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# IDE & AI Agents
+.agents/
+.claude/
+.mcp.json
+opencode.json
+boost.json
+AGENTS.md
+CLAUDE.md
+
+# Prompts & Artifacts
+prompt*.md
+postman_testing_guide*.md
+Implementation plan*.md
+DEV1-ROADMAP-DAN-PROMPT.md
+PRD-Platform-Agensi-KOL.md
