@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\Kol\CommissionController;
+use App\Http\Controllers\Kol\ContentProofController;
 use App\Http\Controllers\Kol\DashboardController;
 use App\Http\Controllers\Kol\EndorsementController;
-use App\Http\Controllers\Kol\ContentProofController;
-use App\Http\Controllers\Kol\CommissionController;
+use App\Http\Controllers\Kol\ProfileController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,9 @@ Route::middleware(['auth', 'role:kol'])->group(function (): void {
     Route::get('/commissions', [CommissionController::class, 'index'])->name('commissions.index');
     Route::get('/commissions/{commission}', [CommissionController::class, 'show'])->name('commissions.show');
     Route::post('/commissions/{commission}/request-disbursement', [CommissionController::class, 'requestDisbursement'])->name('commissions.request-disbursement');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read-all', [NotificationController::class, 'readAll'])->name('notifications.read-all');
     Route::patch('/notifications/{notification}/read', [NotificationController::class, 'read'])->name('notifications.read');

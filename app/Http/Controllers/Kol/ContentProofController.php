@@ -16,13 +16,14 @@ class ContentProofController extends Controller
     public function create(Endorsement $endorsement): View
     {
         $this->authorize('view', $endorsement);
+        abort_unless(in_array($endorsement->status, ['assigned', 'in_progress', 'content_rejected']), 403, 'Tidak dapat mengunggah bukti pada status ini.');
         return view('kol.endorsements.proof', compact('endorsement'));
     }
 
     public function store(ContentProofRequest $request, Endorsement $endorsement): RedirectResponse
     {
         $this->authorize('view', $endorsement);
-        abort_if($endorsement->status === 'selesai', 422, 'Endorsement sudah selesai.');
+        abort_unless(in_array($endorsement->status, ['assigned', 'in_progress', 'content_rejected']), 403, 'Tidak dapat mengunggah bukti pada status ini.');
         DB::transaction(function () use ($request, $endorsement): void {
             $data = $request->validated();
             $proof = $endorsement->contentProofs()->create(collect($data)->except('files')->all());

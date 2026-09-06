@@ -1,16 +1,29 @@
-<header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-slate-200 bg-white/90 px-4 backdrop-blur sm:px-6 lg:px-8">
+<header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-[#421b13]/8 bg-[#fff9f4]/90 px-4 backdrop-blur-md transition sm:px-6 lg:px-8">
     <div class="flex items-center gap-3">
-        <button id="kol-sidebar-toggle" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 lg:hidden" aria-label="Buka menu">
-            <i class="bi bi-list text-xl"></i>
+        <button id="kol-sidebar-toggle" type="button" class="rounded-xl p-2 text-[#765f58] hover:bg-[#f7eee8] hover:text-[#421b13] transition lg:hidden" aria-label="Buka menu">
+            <i class="bi bi-list text-2xl"></i>
         </button>
         <div>
-            <p class="text-xs font-medium text-slate-400">Portal KOL / Majapahit Influence</p>
-            <h1 class="text-lg font-bold text-slate-950">@yield('page-title', 'Dashboard')</h1>
+            <div class="flex items-center gap-2 text-xs font-semibold text-[#d57028] font-heading">
+                <span>PORTAL KOL</span>
+                <span class="text-[#421b13]/30">•</span>
+                <span class="text-[#765f58]">MAJAPAHIT INFLUENCE</span>
+            </div>
+            <h1 class="text-xl font-extrabold tracking-tight text-[#421b13] font-heading">@yield('page-title', 'Dashboard')</h1>
         </div>
     </div>
 
-    <div class="flex items-center gap-3">
-        <x-dashboard.notification-link route="kol.notifications.index" :count="$unreadNotificationCount" />
-        <div class="flex size-9 items-center justify-center rounded-full bg-amber-100 text-sm font-bold text-amber-700">KO</div>
+    <div class="flex items-center gap-3 sm:gap-4">
+        <x-dashboard.notification-link route="kol.notifications.index" :count="$unreadNotificationCount ?? 0" />
+
+        <div class="flex items-center gap-3 pl-2 border-l border-[#421b13]/10">
+            <div class="hidden sm:block text-right">
+                <p class="text-xs font-bold text-[#421b13] font-heading leading-tight">{{ auth()->user()->name ?? 'KOL Creator' }}</p>
+                <p class="text-[11px] text-[#765f58] leading-tight">Creator Partner</p>
+            </div>
+            <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#d57028] to-[#d5282d] text-sm font-bold text-white shadow-sm shadow-[#d57028]/25 font-heading">
+                {{ strtoupper(substr(auth()->user()->name ?? 'K', 0, 2)) }}
+            </div>
+        </div>
     </div>
 </header>
