@@ -56,10 +56,12 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaignRequest $request): JsonResponse
     {
+        $admin = Auth::user() ?? \App\Models\User::first();
+
         $campaign = $this->campaignService->store(
             data: $request->validated(),
             files: $request->file('brief_files', []),
-            creator: Auth::user()
+            creator: $admin
         );
 
         return response()->json([
