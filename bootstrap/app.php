@@ -13,7 +13,6 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         then: function () {
             Route::middleware('web')
-<<<<<<< HEAD
                 ->prefix('superadmin')
                 ->name('superadmin.')
                 ->group(base_path('routes/superadmin.php'));
@@ -35,22 +34,10 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->validateCsrfTokens(except: [
+            '/daftar',
             'superadmin/*',
             'admin/*',
             'kol/*',
-=======
-                ->group(base_path('routes/superadmin.php'));
-                
-            Route::middleware('web')
-                ->group(base_path('routes/kol.php'));
-        },
-    )
-    ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->validateCsrfTokens(except: [
-            '/daftar',
-            '/admin/*',
-            '/kol/*',
->>>>>>> origin/farhan
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

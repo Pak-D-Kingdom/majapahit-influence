@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Kol\CommissionController;
 use App\Http\Controllers\Kol\EndorsementController;
 use App\Http\Controllers\Kol\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dashboard', function () {
+    if (view()->exists('kol.dashboard')) {
+        return view('kol.dashboard');
+    }
     return response()->json([
         'message' => 'KOL Dashboard',
         'user' => auth()->user(),
@@ -27,3 +31,7 @@ Route::get('endorsements', [EndorsementController::class, 'index'])->name('endor
 Route::get('endorsements/{endorsement}', [EndorsementController::class, 'show'])->name('endorsements.show');
 Route::post('endorsements/{endorsement}/upload-proof', [EndorsementController::class, 'uploadProof'])->name('endorsements.upload');
 Route::post('endorsements/{endorsement}/upload', [EndorsementController::class, 'uploadProof'])->name('endorsements.upload-alias');
+
+// Dev 4: KOL Commissions
+Route::get('commissions', [CommissionController::class, 'index'])->name('commissions.index');
+Route::post('commissions/request', [CommissionController::class, 'requestDisbursement'])->name('commissions.request');

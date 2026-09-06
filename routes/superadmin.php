@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\CampaignController;
+use App\Http\Controllers\Admin\CommissionController;
 use App\Http\Controllers\Admin\EndorsementController;
 use App\Http\Controllers\Admin\KolManagementController;
 use App\Http\Controllers\Admin\RegistrationReviewController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Superadmin\BrandController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dashboard', function () {
+    if (view()->exists('superadmin.dashboard')) {
+        return view('superadmin.dashboard');
+    }
     return response()->json([
         'message' => 'Admin Dashboard',
         'user' => auth()->user(),
@@ -43,3 +48,15 @@ Route::post('campaigns/{campaign}/endorsements', [EndorsementController::class, 
 Route::post('endorsements/{endorsement}/review', [EndorsementController::class, 'reviewProof'])->name('endorsements.review');
 Route::post('endorsements/{endorsement}/complete', [EndorsementController::class, 'complete'])->name('endorsements.complete');
 Route::delete('endorsements/{endorsement}', [EndorsementController::class, 'destroy'])->name('endorsements.destroy');
+
+// Dev 4: Commission Management
+Route::get('commissions/export', [CommissionController::class, 'export'])->name('commissions.export');
+Route::get('commissions', [CommissionController::class, 'index'])->name('commissions.index');
+Route::get('commissions/{commission}', [CommissionController::class, 'show'])->name('commissions.show');
+Route::post('commissions/approve', [CommissionController::class, 'approve'])->name('commissions.approve');
+Route::post('commissions/{commission}/process', [CommissionController::class, 'process'])->name('commissions.process');
+
+// Dev 4: Reports
+Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('reports/commissions/export', [ReportController::class, 'exportCommissions'])->name('reports.commissions.export');
+Route::get('reports/kol/export', [ReportController::class, 'exportKol'])->name('reports.kol.export');
