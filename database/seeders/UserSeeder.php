@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $superadminRole = Role::where('name', 'superadmin')->first();
+        $superadminRole = Role::where('name', 'superadmin')->first() ?? Role::where('name', 'admin')->first();
         $kolRole = Role::where('name', 'kol')->first();
         $microTier = Tier::where('name', 'Micro')->first();
 

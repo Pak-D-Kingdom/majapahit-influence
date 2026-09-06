@@ -11,13 +11,18 @@ return Application::configure(basePath: dirname(__DIR__))
         web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
+<<<<<<< HEAD
         then: function () {
+=======
+        then: function (): void {
+>>>>>>> origin/chanan
             Route::middleware('web')
                 ->prefix('superadmin')
                 ->name('superadmin.')
                 ->group(base_path('routes/superadmin.php'));
 
             Route::middleware('web')
+<<<<<<< HEAD
                 ->prefix('admin')
                 ->name('admin.')
                 ->group(base_path('routes/superadmin.php'));
@@ -27,11 +32,18 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->name('kol.')
                 ->group(base_path('routes/kol.php'));
         }
+=======
+                ->prefix('kol')
+                ->name('kol.')
+                ->group(base_path('routes/kol.php'));
+        },
+>>>>>>> origin/chanan
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'role' => \App\Http\Middleware\RoleMiddleware::class,
         ]);
+<<<<<<< HEAD
 
         $middleware->validateCsrfTokens(except: [
             '/daftar',
@@ -39,6 +51,8 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin/*',
             'kol/*',
         ]);
+=======
+>>>>>>> origin/chanan
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

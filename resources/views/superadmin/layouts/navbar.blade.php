@@ -1,25 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom px-4 py-3">
-    <div class="container-fluid p-0">
-        <h5 class="mb-0 fw-bold">@yield('page_title', 'Dashboard')</h5>
-        
-        <div class="d-flex align-items-center ms-auto">
-            <span class="badge bg-primary me-3">Admin Agensi</span>
-            <div class="dropdown">
-                <a class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle fs-4 me-2"></i>
-                    <span class="fw-semibold">{{ auth()->user()->name ?? 'Superadmin' }}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                    <li><a class="dropdown-item" href="/"><i class="bi bi-house me-2"></i> Ke Landing Page</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form method="POST" action="/logout">
-                            @csrf
-                            <button type="submit" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i> Keluar</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</nav>
+<header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-slate-200 bg-white/90 px-4 backdrop-blur sm:px-6 lg:px-8">
+    <div class="flex items-center gap-3"><button id="sidebar-toggle" type="button" class="rounded-lg p-2 text-slate-500 hover:bg-slate-100 lg:hidden" aria-label="Buka menu"><i class="bi bi-list text-xl"></i></button><div><p class="text-xs font-medium text-slate-400">Workspace / Superadmin</p><h1 class="text-lg font-bold text-slate-950">@yield('page-title', 'Dashboard')</h1></div></div>
+    <div class="flex items-center gap-3"><x-dashboard.notification-link route="superadmin.notifications.index" :count="$unreadNotificationCount"/><div class="hidden h-8 w-px bg-slate-200 sm:block"></div><div class="flex items-center gap-3"><div class="flex size-9 items-center justify-center rounded-full bg-indigo-100 text-sm font-bold text-indigo-700">SA</div><div class="hidden sm:block"><p class="text-sm font-semibold text-slate-800">Superadmin</p><p class="text-xs text-slate-400">Admin Agensi</p></div></div></div>
+</header>

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             TierSeeder::class,
             NicheSeeder::class,
             UserSeeder::class,
+            DemoDataSeeder::class,
         ]);
     }
 }

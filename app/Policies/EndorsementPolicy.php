@@ -9,12 +9,17 @@ class EndorsementPolicy
 {
     public function view(User $user, Endorsement $endorsement): bool
     {
+<<<<<<< HEAD
         return $user->hasRole('superadmin')
             || $endorsement->kolProfile()->where('user_id', $user->id)->exists();
+=======
+        return $user->isSuperadmin() || $endorsement->kolProfile?->user_id === $user->id;
+>>>>>>> origin/chanan
     }
 
     public function update(User $user, Endorsement $endorsement): bool
     {
+<<<<<<< HEAD
         return $user->hasRole('superadmin')
             || $endorsement->kolProfile()->where('user_id', $user->id)->exists();
     }
@@ -22,5 +27,8 @@ class EndorsementPolicy
     public function delete(User $user, Endorsement $endorsement): bool
     {
         return $user->hasRole('superadmin');
+=======
+        return $user->isSuperadmin();
+>>>>>>> origin/chanan
     }
 }

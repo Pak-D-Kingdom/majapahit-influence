@@ -1,102 +1,37 @@
-@extends('layouts.auth')
+@extends('layouts.app')
 
-@section('title', 'Masuk ke Akun')
+@section('title', 'Masuk')
 
 @section('content')
-    <div class="auth-header">
-        <h2>Selamat Datang Kembali</h2>
-        <p>Masuk untuk mengelola campaign, endorsement, atau komisi Anda.</p>
-    </div>
-
-    @if (session('status'))
-        <div class="alert alert-success">
-            <i class="bi bi-check-circle-fill"></i>
-            <div>{{ session('status') }}</div>
-        </div>
-    @endif
-
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            <div>
-                @foreach ($errors->all() as $error)
-                    <div>{{ $error }}</div>
-                @endforeach
-            </div>
-        </div>
-    @endif
-
-    <form method="POST" action="{{ route('login.post') }}" novalidate>
-        @csrf
-
-        {{-- Email Field --}}
-        <div class="form-group">
-            <label for="email" class="form-label">Alamat Email</label>
-            <div class="input-wrapper">
-                <i class="bi bi-envelope input-icon"></i>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    class="form-control @error('email') is-invalid @enderror"
-                    placeholder="nama@email.com"
-                    value="{{ old('email') }}"
-                    required
-                    autofocus
-                >
-            </div>
-            @error('email')
-                <div class="invalid-feedback">
-                    <i class="bi bi-info-circle"></i> {{ $message }}
-                </div>
-            @enderror
-        </div>
-
-        {{-- Password Field --}}
-        <div class="form-group">
-            <label for="password" class="form-label">Kata Sandi</label>
-            <div class="input-wrapper">
-                <i class="bi bi-lock input-icon"></i>
-                <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    class="form-control @error('password') is-invalid @enderror"
-                    placeholder="••••••••"
-                    required
-                >
-                <button
-                    type="button"
-                    class="password-toggle-btn"
-                    onclick="togglePassword('password', this)"
-                    title="Tampilkan / Sembunyikan Password"
-                >
-                    <i class="bi bi-eye"></i>
-                </button>
-            </div>
-            @error('password')
-                <div class="invalid-feedback">
-                    <i class="bi bi-info-circle"></i> {{ $message }}
-                </div>
-            @enderror
-        </div>
-
-        {{-- Remember Me & Forgot Password --}}
-        <div class="form-options">
-            <label class="custom-checkbox">
-                <input type="checkbox" name="remember" id="remember" value="1" {{ old('remember') ? 'checked' : '' }}>
-                <span>Ingat saya di perangkat ini</span>
-            </label>
-
-            <a href="{{ route('password.request') }}" class="auth-link">
-                Lupa password?
+    <main class="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10">
+        <div class="w-full max-w-md">
+            <a href="{{ url('/') }}" class="mb-8 flex items-center justify-center gap-3">
+                <span class="flex size-11 items-center justify-center rounded-xl bg-slate-950 font-extrabold text-amber-400">MI</span>
+                <span class="text-sm font-bold tracking-[0.18em] text-slate-950">MAJAPAHIT <span class="text-amber-500">INFLUENCE</span></span>
             </a>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+                <h1 class="text-2xl font-bold tracking-tight text-slate-950">Selamat datang kembali</h1>
+                <p class="mt-2 text-sm text-slate-500">Masuk untuk mengelola aktivitas Majapahit Influence.</p>
+                @if (session('success'))
+                    <div class="mt-5 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{{ session('success') }}</div>
+                @endif
+                @if ($errors->any())
+                    <div class="mt-5 rounded-xl bg-rose-50 p-3 text-sm text-rose-700">{{ $errors->first() }}</div>
+                @endif
+                <form method="POST" action="{{ route('login.store') }}" class="mt-6 space-y-5">
+                    @csrf
+                    <label class="block text-sm font-medium text-slate-700">Email
+                        <input type="email" name="email" value="{{ old('email') }}" required autofocus class="mt-2 w-full rounded-xl border-slate-200 text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </label>
+                    <label class="block text-sm font-medium text-slate-700">Password
+                        <input type="password" name="password" required class="mt-2 w-full rounded-xl border-slate-200 text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </label>
+                    <label class="flex items-center gap-2 text-sm text-slate-500"><input type="checkbox" name="remember" value="1" class="rounded border-slate-300 text-indigo-600">Ingat saya</label>
+                    <a href="{{ route('password.request') }}" class="block text-right text-sm font-semibold text-indigo-600">Lupa password?</a>
+                    <button class="w-full rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800">Masuk <i class="bi bi-arrow-right ml-1"></i></button>
+                </form>
+                <p class="mt-6 text-center text-sm text-slate-500">Belum terdaftar sebagai KOL? <a href="{{ route('registration.create') }}" class="font-semibold text-indigo-600">Daftar sekarang</a></p>
+            </div>
         </div>
-
-        {{-- Submit Button --}}
-        <button type="submit" class="btn-submit">
-            <span>Masuk Sekarang</span>
-            <i class="bi bi-arrow-right-short" style="font-size: 20px;"></i>
-        </button>
-    </form>
+    </main>
 @endsection

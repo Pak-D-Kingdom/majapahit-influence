@@ -9,6 +9,7 @@ use App\Services\EndorsementService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class EndorsementController extends Controller
 {
@@ -19,12 +20,15 @@ class EndorsementController extends Controller
     /**
      * Display a listing of endorsements for the logged-in KOL (Tabs: Aktif, Mendatang, Riwayat).
      */
-    public function index(Request $request): JsonResponse
+    public function index(Request $request): JsonResponse|View
     {
         $kolProfile = Auth::user()?->kolProfile ?? \App\Models\KolProfile::first();
 
         if (!$kolProfile) {
-            return response()->json(['message' => 'Profil KOL tidak ditemukan.'], 404);
+            if ($request->wantsJson()) {
+                return response()->json(['message' => 'Profil KOL tidak ditemukan.'], 404);
+            }
+            abort(404, 'Profil KOL tidak ditemukan.');
         }
 
         $tab = $request->input('tab', 'active');
@@ -39,7 +43,15 @@ class EndorsementController extends Controller
             $query->whereIn('status', ['content_approved', 'selesai']);
         }
 
-        $endorsements = $query->orderBy('deadline')->paginate($request->input('per_page', 10));
+        $endorsements = $query->orderBy('deadline')->paginate($request->input('per_page', 10))->withQueryString();
+
+        if ($request->wantsJson()) {
+            return response()->json($endorsements);
+        }
+
+        if (view()->exists('kol.endorsements.index')) {
+            return view('kol.endorsements.index', compact('endorsements', 'tab'));
+        }
 
         return response()->json($endorsements);
     }
@@ -47,7 +59,7 @@ class EndorsementController extends Controller
     /**
      * Display the specified endorsement detail and brief.
      */
-    public function show(Request $request, Endorsement $endorsement): JsonResponse
+    public function show(Request $request, Endorsement $endorsement): JsonResponse|View
     {
         $endorsement->load([
             'campaign.brand',
@@ -55,6 +67,14 @@ class EndorsementController extends Controller
             'contentProofs.files',
             'commission',
         ]);
+
+        if ($request->wantsJson()) {
+            return response()->json($endorsement);
+        }
+
+        if (view()->exists('kol.endorsements.show')) {
+            return view('kol.endorsements.show', compact('endorsement'));
+        }
 
         return response()->json($endorsement);
     }

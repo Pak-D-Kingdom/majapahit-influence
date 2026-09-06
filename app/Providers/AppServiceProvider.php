@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,7 +23,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function (User $user, string $ability): ?bool {
-            return $user->hasRole('superadmin') ? true : null;
+            return $user->hasRole('superadmin') || $user->hasRole('admin') ? true : null;
+        });
+
+        View::composer(['superadmin.layouts.navbar', 'kol.layouts.navbar', 'superadmin/layouts/navbar', 'kol/layouts/navbar'], function ($view): void {
+            $view->with('unreadNotificationCount', auth()->check() ? auth()->user()->notifications()->where('is_read', false)->count() : 0);
         });
     }
 }

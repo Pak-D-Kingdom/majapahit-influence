@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\EndorsementController;
 use App\Http\Controllers\Admin\KolManagementController;
 use App\Http\Controllers\Admin\RegistrationReviewController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Superadmin\AuditTrailController;
 use App\Http\Controllers\Superadmin\BrandController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,3 +62,11 @@ Route::post('commissions/{commission}/process', [CommissionController::class, 'p
 Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
 Route::get('reports/commissions/export', [ReportController::class, 'exportCommissions'])->name('reports.commissions.export');
 Route::get('reports/kol/export', [ReportController::class, 'exportKol'])->name('reports.kol.export');
+
+// Audit Trail & Notifications
+if (class_exists(AuditTrailController::class)) {
+    Route::get('/audit-trail', [AuditTrailController::class, 'index'])->name('audit.index');
+}
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
+Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
