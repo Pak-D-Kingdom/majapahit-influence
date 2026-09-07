@@ -9,21 +9,21 @@ class KolProfilePolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('superadmin') || $user->hasRole('kol');
+        return $user->isSuperadmin() || $user->hasRole('kol');
     }
 
     public function view(User $user, KolProfile $profile): bool
     {
-        return $user->hasRole('superadmin') || $profile->user_id === $user->id;
+        return $user->isSuperadmin() || $profile->user_id === $user->id;
     }
 
     public function update(User $user, KolProfile $profile): bool
     {
-        return $user->hasRole('superadmin') || $profile->user_id === $user->id;
+        return $user->isSuperadmin() || $profile->user_id === $user->id;
     }
 
     public function delete(User $user, KolProfile $profile): bool
     {
-        return $user->hasRole('superadmin');
+        return $user->isSuperadmin();
     }
 }

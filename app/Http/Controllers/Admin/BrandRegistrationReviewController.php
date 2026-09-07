@@ -63,9 +63,12 @@ class BrandRegistrationReviewController extends Controller
      */
     public function approve(Request $request, BrandRegistration $brandRegistration): Response|RedirectResponse
     {
+        $user = $request->user();
+        abort_unless($user && $user->isSuperadmin(), 403, 'Unauthorized.');
+
         $brandRegistration->update([
             'status' => 'approved',
-            'reviewed_by' => auth()->id(),
+            'reviewed_by' => $user->id,
             'reviewed_at' => now(),
             'admin_notes' => $request->input('admin_notes', 'Disetujui untuk kemitraan.'),
         ]);
@@ -102,13 +105,16 @@ class BrandRegistrationReviewController extends Controller
      */
     public function reject(Request $request, BrandRegistration $brandRegistration): Response|RedirectResponse
     {
+        $user = $request->user();
+        abort_unless($user && $user->isSuperadmin(), 403, 'Unauthorized.');
+
         $request->validate([
             'admin_notes' => ['required', 'string', 'max:1000'],
         ]);
 
         $brandRegistration->update([
             'status' => 'rejected',
-            'reviewed_by' => auth()->id(),
+            'reviewed_by' => $user->id,
             'reviewed_at' => now(),
             'admin_notes' => $request->input('admin_notes'),
         ]);

@@ -1,4 +1,126 @@
 @extends('superadmin.layouts.app')
-@section('title','Endorsement')
-@section('page-title','Endorsement')
-@section('content')<div class="mb-6"><p class="text-sm text-slate-500">Monitor seluruh pekerjaan KOL dari assignment sampai selesai.</p><h2 class="mt-1 text-2xl font-bold text-slate-950">Endorsement</h2></div><form class="mb-5 flex flex-wrap gap-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><input name="search" value="{{ request('search') }}" placeholder="Cari campaign atau KOL..." class="rounded-xl border-slate-200 text-sm"><select name="status" class="rounded-xl border-slate-200 text-sm"><option value="">Semua status</option>@foreach(['assigned'=>'Assigned','in_progress'=>'In progress','content_submitted'=>'Content submitted','content_approved'=>'Content approved','content_rejected'=>'Content rejected','selesai'=>'Selesai'] as $v=>$l)<option value="{{ $v }}" @selected(request('status')===$v)>{{ $l }}</option>@endforeach</select><select name="campaign_id" class="rounded-xl border-slate-200 text-sm"><option value="">Semua campaign</option>@foreach($campaigns as $campaign)<option value="{{ $campaign->id }}" @selected(request('campaign_id')==$campaign->id)>{{ $campaign->name }}</option>@endforeach</select><button class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Filter</button></form><div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div class="overflow-x-auto"><table class="w-full min-w-[850px] text-left text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-400"><tr><th class="px-5 py-3">KOL</th><th class="px-5 py-3">Campaign / Brand</th><th class="px-5 py-3">Fee</th><th class="px-5 py-3">Deadline</th><th class="px-5 py-3">Status</th><th class="px-5 py-3"></th></tr></thead><tbody class="divide-y divide-slate-100">@forelse($endorsements as $endorsement)<tr class="hover:bg-slate-50"><td class="px-5 py-4 font-semibold text-slate-800">{{ $endorsement->kolProfile->user->name }}</td><td class="px-5 py-4"><p class="font-semibold text-slate-700">{{ $endorsement->campaign->name }}</p><p class="text-xs text-slate-400">{{ $endorsement->campaign->brand->name }}</p></td><td class="px-5 py-4 text-slate-600">Rp{{ number_format($endorsement->fee,0,',','.') }}</td><td class="px-5 py-4"><span class="{{ $endorsement->deadline->isPast() && $endorsement->status !== 'selesai' ? 'font-semibold text-rose-600' : 'text-slate-500' }}">{{ $endorsement->deadline->format('d M Y') }}</span></td><td class="px-5 py-4"><x-dashboard.status-badge :status="$endorsement->status"/></td><td class="px-5 py-4 text-right"><a href="{{ route('superadmin.endorsements.show',$endorsement) }}" class="font-semibold text-indigo-600">Detail <i class="bi bi-arrow-right"></i></a></td></tr>@empty<tr><td colspan="6" class="px-5 py-16 text-center text-sm text-slate-400">Belum ada endorsement.</td></tr>@endforelse</tbody></table></div><div class="border-t border-slate-100 px-5 py-4">{{ $endorsements->links() }}</div></div>@endsection
+
+@section('title', 'Manajemen Endorsement | Superadmin')
+@section('page-title', 'Endorsement')
+
+@section('content')
+<div class="space-y-6">
+    {{-- Header --}}
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-[#d57028] font-heading">Siklus Kerja Kreator</p>
+            <h2 class="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-[#421b13] font-heading">Manajemen Endorsement</h2>
+            <p class="mt-1 text-xs text-[#765f58]">Pantau seluruh assignment pekerjaan kreator mulai dari pengajuan brief hingga publikasi konten.</p>
+        </div>
+    </div>
+
+    {{-- Filter Form --}}
+    <form method="GET" class="flex flex-wrap items-center gap-3 rounded-2xl border border-[#421b13]/8 bg-white p-4 shadow-xs">
+        <div class="relative min-w-[220px] flex-1">
+            <i class="bi bi-search absolute left-3.5 top-2.5 text-xs text-[#765f58]"></i>
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama campaign atau kreator..." class="w-full rounded-xl border border-[#421b13]/15 bg-white py-2 pl-9 pr-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+        </div>
+
+        <div class="w-48">
+            <select name="status" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                <option value="">Semua Status Pekerjaan</option>
+                @foreach (['assigned' => 'Ditugaskan', 'in_progress' => 'Sedang Berjalan', 'content_submitted' => 'Konten Diajukan', 'content_approved' => 'Konten Disetujui', 'content_rejected' => 'Perlu Revisi', 'selesai' => 'Selesai'] as $key => $label)
+                    <option value="{{ $key }}" @selected(request('status') === $key)>{{ $label }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="w-48">
+            <select name="campaign_id" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                <option value="">Semua Campaign</option>
+                @foreach ($campaigns as $campaign)
+                    <option value="{{ $campaign->id }}" @selected(request('campaign_id') == $campaign->id)>{{ $campaign->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" class="rounded-xl bg-[#421b13] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#190906] font-heading">
+            Filter
+        </button>
+        <a href="{{ route('superadmin.endorsements.index') }}" class="rounded-xl border border-[#421b13]/15 px-4 py-2 text-xs font-bold text-[#765f58] transition hover:bg-[#f7eee8] font-heading">
+            Reset
+        </a>
+    </form>
+
+    {{-- Endorsements Table Card --}}
+    <div class="overflow-hidden rounded-2xl border border-[#421b13]/8 bg-white shadow-xs">
+        <div class="overflow-x-auto">
+            <table class="w-full min-w-[850px] text-left text-sm">
+                <thead class="border-y border-[#421b13]/10 bg-[#fbf7f4] text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">
+                    <tr>
+                        <th class="px-5 py-3.5">Kreator (KOL)</th>
+                        <th class="px-5 py-3.5">Campaign & Brand</th>
+                        <th class="px-5 py-3.5">Fee Endorsement</th>
+                        <th class="px-5 py-3.5">Deadline</th>
+                        <th class="px-5 py-3.5">Status Pengerjaan</th>
+                        <th class="px-5 py-3.5 text-right">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#421b13]/5">
+                    @forelse ($endorsements as $endorsement)
+                        <tr class="transition hover:bg-[#f7eee8]/40">
+                            <td class="px-5 py-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="flex size-9 items-center justify-center rounded-lg bg-gradient-to-br from-[#d57028] to-[#d5282d] text-xs font-black text-white font-heading">
+                                        {{ str($endorsement->kolProfile->user->name)->substr(0, 1)->upper() }}
+                                    </div>
+                                    <div>
+                                        <p class="font-extrabold text-[#421b13] font-heading">{{ $endorsement->kolProfile->user->name }}</p>
+                                        <p class="text-[11px] text-[#765f58]">{{ str($endorsement->content_type)->replace('_', ' ')->title() }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-5 py-4">
+                                <p class="font-bold text-[#421b13] font-heading">{{ $endorsement->campaign->name }}</p>
+                                <p class="text-xs text-[#765f58]">{{ $endorsement->campaign->brand->name }}</p>
+                            </td>
+                            <td class="px-5 py-4 font-bold text-[#421b13]">
+                                Rp{{ number_format($endorsement->fee, 0, ',', '.') }}
+                            </td>
+                            <td class="px-5 py-4">
+                                @php
+                                    $isOverdue = $endorsement->deadline->isPast() && $endorsement->status !== 'selesai';
+                                @endphp
+                                <span class="{{ $isOverdue ? 'font-bold text-[#d5282d]' : 'text-[#765f58]' }} text-xs">
+                                    {{ $endorsement->deadline->format('d M Y') }}
+                                    @if ($isOverdue)
+                                        <span class="block text-[10px] uppercase font-bold text-[#d5282d]">Lewat Deadline</span>
+                                    @endif
+                                </span>
+                            </td>
+                            <td class="px-5 py-4">
+                                <x-dashboard.status-badge :status="$endorsement->status" />
+                            </td>
+                            <td class="px-5 py-4 text-right">
+                                <a href="{{ route('superadmin.endorsements.show', $endorsement) }}" class="inline-flex items-center gap-1 text-xs font-bold text-[#d57028] hover:text-[#b86021] font-heading">
+                                    <span>Detail</span>
+                                    <i class="bi bi-arrow-right text-[10px]"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-5 py-16 text-center">
+                                <i class="bi bi-briefcase mb-3 block text-3xl text-[#765f58]/30"></i>
+                                <p class="text-sm font-bold text-[#421b13] font-heading">Belum Ada Endorsement</p>
+                                <p class="mt-1 text-xs text-[#765f58]">Assignment endorsement akan muncul saat Anda menugaskan KOL ke campaign.</p>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        @if ($endorsements->hasPages())
+            <div class="border-t border-[#421b13]/5 p-4">
+                {{ $endorsements->links() }}
+            </div>
+        @endif
+    </div>
+</div>
+@endsection

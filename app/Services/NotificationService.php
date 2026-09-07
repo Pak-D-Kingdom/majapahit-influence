@@ -20,7 +20,7 @@ class NotificationService
 
     public function notifySuperadmins(string $type, string $title, string $body, ?string $targetUrl = null): void
     {
-        User::whereHas('roles', fn ($query) => $query->where('name', 'superadmin'))
+        User::whereHas('roles', fn ($query) => $query->whereIn('name', ['superadmin', 'admin']))
             ->each(fn (User $user) => $this->send($user, $type, $title, $body, $targetUrl));
     }
 

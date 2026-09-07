@@ -52,7 +52,9 @@ Route::resource('campaigns', CampaignController::class);
 // Dev 3: Superadmin KOL Assignment & Endorsement Lifecycle
 Route::get('endorsements', [App\Http\Controllers\Superadmin\EndorsementController::class, 'index'])->name('endorsements.index');
 Route::get('endorsements/{endorsement}', [App\Http\Controllers\Superadmin\EndorsementController::class, 'show'])->name('endorsements.show');
-Route::get('campaigns/{campaign}/assign', fn ($campaign) => redirect()->route('superadmin.campaigns.show', $campaign));
+Route::get('endorsements/{endorsement}/edit', [App\Http\Controllers\Superadmin\EndorsementController::class, 'edit'])->name('endorsements.edit');
+Route::put('endorsements/{endorsement}', [App\Http\Controllers\Superadmin\EndorsementController::class, 'update'])->name('endorsements.update');
+Route::get('campaigns/{campaign}/assign', fn ($campaign) => redirect()->route('superadmin.campaigns.show', $campaign))->name('campaigns.assign.view');
 Route::post('campaigns/{campaign}/assign', [EndorsementController::class, 'assign'])->name('campaigns.assign');
 Route::post('campaigns/{campaign}/endorsements', [EndorsementController::class, 'assign'])->name('campaigns.endorsements.store');
 Route::post('endorsements/{endorsement}/review', [EndorsementController::class, 'reviewProof'])->name('endorsements.review');

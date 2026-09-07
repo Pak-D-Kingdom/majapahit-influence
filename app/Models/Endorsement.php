@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\EndorsementStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,6 +34,11 @@ class Endorsement extends Model
             'start_date' => 'date',
             'completed_at' => 'datetime',
         ];
+    }
+
+    public function statusEnum(): EndorsementStatus
+    {
+        return EndorsementStatus::tryFrom($this->status) ?? EndorsementStatus::Assigned;
     }
 
     public function campaign(): BelongsTo

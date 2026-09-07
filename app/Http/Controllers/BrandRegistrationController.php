@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BrandRegistrationRequest;
 use App\Models\BrandRegistration;
 use App\Models\Notification;
 use App\Models\ProductCategory;
-use App\Models\User;
+use App\Services\NotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -37,39 +38,18 @@ class BrandRegistrationController extends Controller
     /**
      * Handle incoming Brand registration request.
      */
-    public function store(Request $request): View|Response|RedirectResponse
+    public function store(BrandRegistrationRequest $request): View|Response|RedirectResponse
     {
-        $validated = $request->validate([
-            'brand_name' => ['required', 'string', 'max:255'],
-            'company_name' => ['nullable', 'string', 'max:255'],
-            'industry_category' => ['required', 'string', 'max:100'],
-            'pic_name' => ['required', 'string', 'max:255'],
-            'pic_title' => ['nullable', 'string', 'max:100'],
-            'pic_email' => ['required', 'email', 'max:255'],
-            'pic_phone' => ['required', 'string', 'max:30'],
-            'social_media' => ['nullable', 'string', 'max:255'],
-            'website' => ['nullable', 'string', 'max:255'],
-            'service_need' => ['required', 'in:endorsement,maklon,both'],
-            'notes' => ['nullable', 'string', 'max:2000'],
-        ]);
-
-        $registration = BrandRegistration::create($validated);
+        $registration = BrandRegistration::create($request->validated());
 
         // Notify Superadmins
         try {
-            $admins = User::whereHas('roles', function ($q) {
-                $q->whereIn('name', ['superadmin', 'admin']);
-            })->get();
-
-            foreach ($admins as $admin) {
-                Notification::create([
-                    'user_id' => $admin->id,
-                    'title' => 'Pendaftaran Brand Baru: '.$registration->brand_name,
-                    'message' => 'Brand '.$registration->brand_name.' (PIC: '.$registration->pic_name.') telah mengajukan kemitraan ['.$registration->service_need_label.'].',
-                    'type' => 'brand_registration',
-                    'action_url' => route('superadmin.brand-registrations.show', $registration->id),
-                ]);
-            }
+            app(NotificationService::class)->notifySuperadmins(
+                'brand_registration',
+                'Pendaftaran Brand Baru: '.$registration->brand_name,
+                'Brand '.$registration->brand_name.' (PIC: '.$registration->pic_name.') telah mengajukan kemitraan ['.$registration->service_need_label.'].',
+                route('superadmin.brand-registrations.show', $registration->id)
+            );
         } catch (\Throwable) {
             // Non-blocking notification fail
         }

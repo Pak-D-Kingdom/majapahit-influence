@@ -10,7 +10,7 @@
 
     <meta
         name="description"
-        content="Majapahit Influence — Connect, Create, and Grow with Brands."
+        content="Majapahit Influence: Connect, Create, and Grow with Brands."
     >
 
     {{-- Google Fonts --}}
@@ -28,8 +28,32 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     >
 
-    {{-- Tailwind CSS CDN & Landing CSS --}}
+    {{-- Tailwind CSS CDN & Custom Tokens --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        majapahit: {
+                            orange: '#d57028',
+                            red: '#d5282d',
+                            yellow: '#fec200',
+                            dark: '#421b13',
+                            brown: '#b86021',
+                            cream: '#fff9f4',
+                            sand: '#f7eee8',
+                            muted: '#765f58',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['"DM Sans"', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
     <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
 
     @stack('styles')

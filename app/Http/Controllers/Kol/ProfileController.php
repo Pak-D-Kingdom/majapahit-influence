@@ -27,7 +27,7 @@ class ProfileController extends Controller
         }
 
         $profile = $user->kolProfile()
-            ->with(['user', 'tier', 'niches', 'socialMedia', 'rateCards', 'endorsements', 'commissions'])
+            ->with(['user', 'tier', 'niches', 'socialMedia', 'rateCards'])
             ->first();
 
         if (! $profile) {

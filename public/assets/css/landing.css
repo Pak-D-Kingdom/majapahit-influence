@@ -2511,7 +2511,8 @@ button {
     margin-top: 35px;
     padding: 22px 25px;
     background: #faf7f4;
-    border-left: 3px solid var(--orange);
+    border: 1px solid rgba(213, 112, 40, 0.2);
+    border-radius: 16px;
 }
 
 .join-note-icon {
@@ -2782,7 +2783,8 @@ button {
 
     background: #ffffff;
 
-    border-left: 3px solid var(--orange);
+    border: 1px solid rgba(213, 112, 40, 0.2);
+    border-radius: 16px;
 }
 
 .partners-note-icon {
@@ -3011,4 +3013,46 @@ button {
         font-size: clamp(2.8rem, 13vw, 4rem);
     }
 
+}
+
+/* ==========================================================================
+   IMPECCABLE ENHANCEMENTS: Mobile Drawer, Focus Outlines & Reduced Motion
+   ========================================================================== */
+
+#mobileNav.open {
+    display: block !important;
+    animation: mobileDrawerFade 200ms ease-out forwards;
+}
+
+@keyframes mobileDrawerFade {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accessible focus visible rings */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid #d57028 !important;
+    outline-offset: 2px !important;
+}
+
+/* Motion sensitivity protection */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

@@ -51,6 +51,8 @@ class ProductManagementController extends Controller
      */
     public function store(Request $request): Response|RedirectResponse
     {
+        abort_unless($request->user() && $request->user()->isSuperadmin(), 403, 'Unauthorized.');
+
         $validated = $request->validate([
             'brand_id' => ['required', 'exists:brands,id'],
             'category_id' => ['required', 'exists:product_categories,id'],
@@ -125,6 +127,8 @@ class ProductManagementController extends Controller
      */
     public function update(Request $request, Product $product): Response|RedirectResponse
     {
+        abort_unless($request->user() && $request->user()->isSuperadmin(), 403, 'Unauthorized.');
+
         $validated = $request->validate([
             'brand_id' => ['required', 'exists:brands,id'],
             'category_id' => ['required', 'exists:product_categories,id'],
@@ -160,6 +164,8 @@ class ProductManagementController extends Controller
      */
     public function destroy(Request $request, Product $product): Response|RedirectResponse
     {
+        abort_unless($request->user() && $request->user()->isSuperadmin(), 403, 'Unauthorized.');
+
         $product->delete();
 
         if ($request->wantsJson()) {

@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\CommissionStatus;
+use App\Services\CommissionService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -37,6 +39,11 @@ class Commission extends Model
         ];
     }
 
+    public function statusEnum(): CommissionStatus
+    {
+        return CommissionStatus::tryFrom($this->status) ?? CommissionStatus::Pending;
+    }
+
     public function endorsement(): BelongsTo
     {
         return $this->belongsTo(Endorsement::class);
@@ -53,34 +60,10 @@ class Commission extends Model
     }
 
     /**
-     * Calculate commission amounts based on Business Rule 1.
+     * Calculate commission amounts based on Business Rule 1 (delegates to CommissionService).
      */
     public static function calculateCommission(Endorsement $endorsement, ?float $overridePct = null, ?string $overrideReason = null): self
     {
-        $kol = $endorsement->kolProfile;
-        $fee = (float) $endorsement->fee;
-
-        if (!is_null($overridePct)) {
-            $pct = $overridePct;
-            $isOverride = true;
-        } else {
-            $pct = $kol->effective_commission_pct;
-            $isOverride = !is_null($kol->commission_override_pct);
-        }
-
-        $commissionAmount = $fee * ($pct / 100);
-        $agencyAmount = $fee - $commissionAmount;
-
-        return new self([
-            'endorsement_id' => $endorsement->id,
-            'kol_profile_id' => $kol->id,
-            'endorsement_fee' => $fee,
-            'commission_pct' => $pct,
-            'commission_amount' => $commissionAmount,
-            'agency_amount' => $agencyAmount,
-            'is_override' => $isOverride,
-            'override_reason' => $overrideReason ?? $kol->status_reason,
-            'status' => 'pending',
-        ]);
+        return app(CommissionService::class)->calculateAndCreate($endorsement, $overridePct, $overrideReason);
     }
 }

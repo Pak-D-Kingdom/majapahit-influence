@@ -9,18 +9,18 @@ class EndorsementPolicy
 {
     public function view(User $user, Endorsement $endorsement): bool
     {
-        return $user->hasRole('superadmin')
+        return $user->isSuperadmin()
             || $endorsement->kolProfile()->where('user_id', $user->id)->exists();
     }
 
     public function update(User $user, Endorsement $endorsement): bool
     {
-        return $user->hasRole('superadmin')
+        return $user->isSuperadmin()
             || $endorsement->kolProfile()->where('user_id', $user->id)->exists();
     }
 
     public function delete(User $user, Endorsement $endorsement): bool
     {
-        return $user->hasRole('superadmin');
+        return $user->isSuperadmin();
     }
 }

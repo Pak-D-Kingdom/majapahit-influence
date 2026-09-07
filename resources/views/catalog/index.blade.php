@@ -23,7 +23,7 @@
                     <a href="{{ url('/') }}" class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold transition-colors">
                         <i class="bi bi-house mr-1"></i> Beranda
                     </a>
-                    <a href="{{ route('brand.register') }}" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-gray-950 text-xs font-black transition-all shadow-md">
+                    <a href="{{ route('brand.register') }}" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-amber-950 text-xs font-black transition-all shadow-md">
                         <i class="bi bi-plus-circle mr-1"></i> Daftarkan Produk Brand
                     </a>
                 </div>
@@ -81,16 +81,32 @@
 
             {{-- Horizontal Category Pills --}}
             <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-2 border-t border-gray-100 no-scrollbar">
-                <a href="{{ route('catalog.index', array_merge(request()->except('category'), [])) }}" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all {{ !request('category') ? 'bg-amber-600 text-white shadow-sm' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                    Semua Kategori
-                </a>
-                @foreach ($categories as $cat)
-                    <a href="{{ route('catalog.index', array_merge(request()->except('category'), ['category' => $cat->slug])) }}" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 {{ request('category') == $cat->slug ? 'bg-amber-600 text-white shadow-sm' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
-                        <span>{{ $cat->name }}</span>
-                        <span class="px-1.5 py-0.2 rounded-full text-[10px] {{ request('category') == $cat->slug ? 'bg-amber-800 text-white' : 'bg-gray-200 text-gray-600' }}">
-                            {{ $cat->products_count }}
-                        </span>
+                @if (!request('category'))
+                    <a href="{{ route('catalog.index', array_merge(request()->except('category'), [])) }}" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-amber-600 text-white shadow-sm">
+                        Semua Kategori
                     </a>
+                @else
+                    <a href="{{ route('catalog.index', array_merge(request()->except('category'), [])) }}" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all bg-gray-100 text-gray-700 hover:bg-gray-200">
+                        Semua Kategori
+                    </a>
+                @endif
+
+                @foreach ($categories as $cat)
+                    @if (request('category') == $cat->slug)
+                        <a href="{{ route('catalog.index', array_merge(request()->except('category'), ['category' => $cat->slug])) }}" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 bg-amber-600 text-white shadow-sm">
+                            <span>{{ $cat->name }}</span>
+                            <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-amber-800 text-amber-100">
+                                {{ $cat->products_count }}
+                            </span>
+                        </a>
+                    @else
+                        <a href="{{ route('catalog.index', array_merge(request()->except('category'), ['category' => $cat->slug])) }}" class="px-3.5 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 bg-gray-100 text-gray-700 hover:bg-gray-200">
+                            <span>{{ $cat->name }}</span>
+                            <span class="px-1.5 py-0.5 rounded-full text-[10px] bg-gray-200 text-gray-600">
+                                {{ $cat->products_count }}
+                            </span>
+                        </a>
+                    @endif
                 @endforeach
             </div>
         </div>

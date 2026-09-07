@@ -1,8 +1,181 @@
 @extends('superadmin.layouts.app')
-@section('title', 'Data KOL')
-@section('page-title', 'Data KOL')
+
+@section('title', 'Database KOL | Superadmin Majapahit Influence')
+@section('page-title', 'Database KOL')
+
 @section('content')
-<div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-sm text-slate-500">Kelola seluruh profil kreator dalam jaringan.</p><h2 class="mt-1 text-2xl font-bold tracking-tight text-slate-950">Data KOL</h2></div><a href="{{ route('superadmin.kol.create') }}" class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-800"><i class="bi bi-plus-lg"></i>Tambah KOL</a></div>
-<form method="GET" class="mb-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><div class="grid gap-3 md:grid-cols-2 lg:grid-cols-5"><label class="relative lg:col-span-2"><span class="sr-only">Cari KOL</span><i class="bi bi-search absolute left-3 top-3 text-slate-400"></i><input name="search" value="{{ request('search') }}" placeholder="Cari nama atau email..." class="w-full rounded-xl border-slate-200 py-2.5 pl-10 text-sm focus:border-indigo-500 focus:ring-indigo-500"></label><select name="status" class="rounded-xl border-slate-200 text-sm"><option value="">Semua status</option>@foreach (['aktif' => 'Aktif', 'pending' => 'Pending', 'nonaktif' => 'Nonaktif', 'blacklist' => 'Blacklist'] as $value => $label)<option value="{{ $value }}" @selected(request('status') === $value)>{{ $label }}</option>@endforeach</select><select name="tier_id" class="rounded-xl border-slate-200 text-sm"><option value="">Semua tier</option>@foreach ($tiers as $tier)<option value="{{ $tier->id }}" @selected((string) request('tier_id') === (string) $tier->id)>{{ $tier->name }}</option>@endforeach</select><select name="per_page" class="rounded-xl border-slate-200 text-sm"><option value="10">10 per halaman</option><option value="25" @selected(request('per_page') == 25)>25 per halaman</option><option value="50" @selected(request('per_page') == 50)>50 per halaman</option></select></div><div class="mt-3 flex flex-wrap items-center gap-2"><select name="niche_id" class="rounded-lg border-slate-200 text-xs"><option value="">Semua niche</option>@foreach ($niches as $niche)<option value="{{ $niche->id }}" @selected((string) request('niche_id') === (string) $niche->id)>{{ $niche->name }}</option>@endforeach</select><select name="sort" class="rounded-lg border-slate-200 text-xs"><option value="joined">Terbaru bergabung</option><option value="name" @selected(request('sort') === 'name')>Nama</option><option value="followers" @selected(request('sort') === 'followers')>Followers</option><option value="engagement" @selected(request('sort') === 'engagement')>Engagement rate</option></select><select name="direction" class="rounded-lg border-slate-200 text-xs"><option value="desc">Terbesar / terbaru</option><option value="asc" @selected(request('direction') === 'asc')>Terkecil / terlama</option></select><button class="rounded-lg bg-indigo-600 px-3 py-2 text-xs font-semibold text-white hover:bg-indigo-700">Terapkan filter</button><a href="{{ route('superadmin.kol.index') }}" class="rounded-lg px-3 py-2 text-xs font-semibold text-slate-500 hover:bg-slate-100">Reset</a></div></form>
-<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div class="flex items-center justify-between border-b border-slate-100 px-5 py-4"><p class="text-sm text-slate-500">Menampilkan <span class="font-semibold text-slate-800">{{ $kols->total() }}</span> KOL</p><button class="text-sm font-semibold text-indigo-600"><i class="bi bi-download mr-1"></i>Export CSV</button></div>@if ($kols->isEmpty())<div class="flex min-h-72 items-center justify-center text-center text-slate-400"><p><i class="bi bi-people mb-2 block text-3xl"></i>Tidak ada KOL yang sesuai filter.</p></div>@else<div class="overflow-x-auto"><table class="w-full min-w-[900px] text-left text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-400"><tr><th class="px-5 py-3 font-semibold">KOL</th><th class="px-5 py-3 font-semibold">Niche</th><th class="px-5 py-3 font-semibold">Platform</th><th class="px-5 py-3 font-semibold">Followers</th><th class="px-5 py-3 font-semibold">Engagement</th><th class="px-5 py-3 font-semibold">Tier</th><th class="px-5 py-3 font-semibold">Status</th><th class="px-5 py-3"></th></tr></thead><tbody class="divide-y divide-slate-100">@foreach ($kols as $kol)<tr class="transition hover:bg-slate-50"><td class="px-5 py-4"><div class="flex items-center gap-3"><div class="flex size-10 items-center justify-center rounded-full bg-indigo-100 font-bold text-indigo-700">{{ str($kol->user->name)->substr(0, 1)->upper() }}</div><div><a href="{{ route('superadmin.kol.show', $kol) }}" class="font-semibold text-slate-800 hover:text-indigo-600">{{ $kol->user->name }}</a><p class="text-xs text-slate-400">{{ $kol->user->email }}</p></div></div></td><td class="px-5 py-4 text-slate-500">{{ $kol->niches->pluck('name')->join(', ') ?: '-' }}</td><td class="px-5 py-4 text-slate-500">{{ $kol->socialMedia->pluck('platform')->map(fn ($p) => str($p)->title())->join(', ') ?: '-' }}</td><td class="px-5 py-4 font-semibold text-slate-700">{{ number_format($kol->socialMedia->max('followers_count') ?? 0) }}</td><td class="px-5 py-4 text-slate-500">{{ number_format($kol->socialMedia->max('engagement_rate') ?? 0, 2) }}%</td><td class="px-5 py-4"><span class="rounded-lg bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-700">{{ $kol->tier?->name ?: '-' }}</span></td><td class="px-5 py-4"><x-dashboard.status-badge :status="$kol->status"/></td><td class="px-5 py-4 text-right"><a href="{{ route('superadmin.kol.show', $kol) }}" class="text-slate-400 hover:text-indigo-600"><i class="bi bi-chevron-right"></i></a></td></tr>@endforeach</tbody></table></div><div class="border-t border-slate-100 px-5 py-4">{{ $kols->links() }}</div>@endif</div>
+<div class="space-y-6">
+    {{-- Header --}}
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+            <h1 class="text-2xl font-extrabold tracking-tight text-[#421b13] font-heading">Database Kreator KOL</h1>
+            <p class="text-xs text-[#765f58] mt-1">Kelola seluruh profil kreator dalam jaringan agensi, status aktif, dan klasifikasi tier.</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="{{ route('superadmin.kol.export', request()->query()) }}" class="btn-majapahit-secondary text-xs">
+                <i class="bi bi-download"></i>
+                <span>Export CSV</span>
+            </a>
+            <a href="{{ route('superadmin.kol.create') }}" class="btn-majapahit-primary text-xs">
+                <i class="bi bi-plus-lg"></i>
+                <span>Tambah KOL Baru</span>
+            </a>
+        </div>
+    </div>
+
+    {{-- Filter Card --}}
+    <form method="GET" class="rounded-2xl border border-[#421b13]/8 bg-white p-5 shadow-sm">
+        <div class="grid gap-3 md:grid-cols-2 lg:grid-cols-5">
+            <div class="lg:col-span-2">
+                <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Pencarian</label>
+                <div class="relative">
+                    <i class="bi bi-search absolute left-3 top-2.5 text-[#765f58]"></i>
+                    <input name="search" value="{{ request('search') }}" placeholder="Cari nama atau email kreator..." class="w-full rounded-xl border border-[#421b13]/15 py-2 pl-9 pr-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Status Keaktifan</label>
+                <select name="status" class="w-full rounded-xl border border-[#421b13]/15 py-2 px-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                    <option value="">Semua Status</option>
+                    @foreach (['aktif' => 'Aktif', 'pending' => 'Pending', 'nonaktif' => 'Nonaktif', 'blacklist' => 'Blacklist'] as $value => $label)
+                        <option value="{{ $value }}" @selected(request('status') === $value)>{{ $label }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Klasifikasi Tier</label>
+                <select name="tier_id" class="w-full rounded-xl border border-[#421b13]/15 py-2 px-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                    <option value="">Semua Tier</option>
+                    @foreach ($tiers as $tier)
+                        <option value="{{ $tier->id }}" @selected((string) request('tier_id') === (string) $tier->id)>{{ $tier->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Per Halaman</label>
+                <select name="per_page" class="w-full rounded-xl border border-[#421b13]/15 py-2 px-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                    <option value="10">10 per halaman</option>
+                    <option value="25" @selected(request('per_page') == 25)>25 per halaman</option>
+                    <option value="50" @selected(request('per_page') == 50)>50 per halaman</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mt-4 flex flex-wrap items-center gap-2 pt-3 border-t border-[#421b13]/8">
+            <select name="niche_id" class="rounded-xl border border-[#421b13]/15 py-1.5 px-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                <option value="">Semua Niche</option>
+                @foreach ($niches as $niche)
+                    <option value="{{ $niche->id }}" @selected((string) request('niche_id') === (string) $niche->id)>{{ $niche->name }}</option>
+                @endforeach
+            </select>
+
+            <select name="sort" class="rounded-xl border border-[#421b13]/15 py-1.5 px-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                <option value="joined">Terbaru Bergabung</option>
+                <option value="name" @selected(request('sort') === 'name')>Nama</option>
+                <option value="followers" @selected(request('sort') === 'followers')>Followers</option>
+                <option value="engagement" @selected(request('sort') === 'engagement')>Engagement Rate</option>
+            </select>
+
+            <select name="direction" class="rounded-xl border border-[#421b13]/15 py-1.5 px-3 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-none">
+                <option value="desc">Terbesar / Terbaru</option>
+                <option value="asc" @selected(request('direction') === 'asc')>Terkecil / Terlama</option>
+            </select>
+
+            <button type="submit" class="btn-majapahit-primary text-xs py-1.5 px-3.5">
+                Terapkan Filter
+            </button>
+            <a href="{{ route('superadmin.kol.index') }}" class="btn-majapahit-secondary text-xs py-1.5 px-3">
+                Reset
+            </a>
+        </div>
+    </form>
+
+    {{-- Table Card --}}
+    <div class="overflow-hidden rounded-2xl border border-[#421b13]/8 bg-white shadow-sm">
+        <div class="flex items-center justify-between border-b border-[#421b13]/8 px-5 py-3.5 bg-[#fbf7f4]">
+            <p class="text-xs font-bold text-[#765f58] font-heading">
+                Menampilkan <span class="text-[#421b13] font-extrabold">{{ $kols->total() }}</span> KOL terdaftar
+            </p>
+        </div>
+
+        @if ($kols->isEmpty())
+            <div class="flex min-h-72 flex-col items-center justify-center p-8 text-center text-[#765f58]">
+                <div class="flex size-12 items-center justify-center rounded-2xl bg-[#f7eee8] text-[#765f58] mb-3">
+                    <i class="bi bi-people text-xl"></i>
+                </div>
+                <p class="font-medium text-sm">Tidak ada data KOL yang sesuai kriteria filter.</p>
+            </div>
+        @else
+            <div class="overflow-x-auto">
+                <table class="w-full min-w-[900px] text-left text-xs">
+                    <thead class="bg-[#fbf7f4] border-b border-[#421b13]/8 text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">
+                        <tr>
+                            <th class="px-5 py-3.5">KOL</th>
+                            <th class="px-5 py-3.5">Niche</th>
+                            <th class="px-5 py-3.5">Platform</th>
+                            <th class="px-5 py-3.5">Followers</th>
+                            <th class="px-5 py-3.5">Engagement</th>
+                            <th class="px-5 py-3.5">Tier</th>
+                            <th class="px-5 py-3.5">Status</th>
+                            <th class="px-5 py-3.5 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#421b13]/6">
+                        @foreach ($kols as $kol)
+                            <tr class="transition hover:bg-[#fff9f4]/60">
+                                <td class="px-5 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#d57028] to-[#d5282d] font-bold text-white shadow-xs font-heading">
+                                            {{ str($kol->user->name ?? 'K')->substr(0, 1)->upper() }}
+                                        </div>
+                                        <div>
+                                            <a href="{{ route('superadmin.kol.show', $kol) }}" class="font-bold text-[#421b13] font-heading hover:text-[#d57028] transition">
+                                                {{ $kol->user->name }}
+                                            </a>
+                                            <p class="text-[11px] text-[#765f58]">{{ $kol->user->email }}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-4 text-[#765f58] font-medium">
+                                    {{ $kol->niches->pluck('name')->join(', ') ?: '-' }}
+                                </td>
+                                <td class="px-5 py-4 text-[#421b13] font-semibold">
+                                    {{ $kol->socialMedia->pluck('platform')->map(fn ($p) => str($p)->title())->join(', ') ?: '-' }}
+                                </td>
+                                <td class="px-5 py-4 font-bold text-[#421b13] font-heading">
+                                    {{ number_format($kol->socialMedia->max('followers_count') ?? 0) }}
+                                </td>
+                                <td class="px-5 py-4 text-[#765f58] font-medium">
+                                    {{ number_format($kol->socialMedia->max('engagement_rate') ?? 0, 2) }}%
+                                </td>
+                                <td class="px-5 py-4">
+                                    <span class="rounded-lg bg-[#f7eee8] border border-[#421b13]/10 px-2.5 py-1 text-xs font-bold text-[#421b13]">
+                                        {{ $kol->tier?->name ?: '-' }}
+                                    </span>
+                                </td>
+                                <td class="px-5 py-4">
+                                    <x-dashboard.status-badge :status="$kol->status"/>
+                                </td>
+                                <td class="px-5 py-4 text-center whitespace-nowrap">
+                                    <a href="{{ route('superadmin.kol.show', $kol) }}" class="btn-majapahit-primary text-xs py-1.5 px-3">
+                                        <span>Detail</span>
+                                        <i class="bi bi-chevron-right text-xs"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @if ($kols->hasPages())
+                <div class="border-t border-[#421b13]/8 px-5 py-4">
+                    {{ $kols->links() }}
+                </div>
+            @endif
+        @endif
+    </div>
+</div>
 @endsection

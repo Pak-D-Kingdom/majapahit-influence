@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\KolStatus;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,11 @@ class KolProfile extends Model
             'commission_override_pct' => 'decimal:2',
             'joined_at' => 'datetime',
         ];
+    }
+
+    public function statusEnum(): KolStatus
+    {
+        return KolStatus::tryFrom($this->status) ?? KolStatus::Active;
     }
 
     public function user(): BelongsTo
@@ -83,7 +89,7 @@ class KolProfile extends Model
      */
     public function getEffectiveCommissionPctAttribute(): float
     {
-        if (!is_null($this->commission_override_pct)) {
+        if (! is_null($this->commission_override_pct)) {
             return (float) $this->commission_override_pct;
         }
 

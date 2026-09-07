@@ -9,12 +9,10 @@ use App\Models\AuditLog;
 use App\Models\Brand;
 use App\Models\Campaign;
 use App\Models\KolProfile;
-use App\Models\User;
 use App\Services\CampaignService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CampaignController extends Controller
@@ -81,7 +79,10 @@ class CampaignController extends Controller
      */
     public function store(StoreCampaignRequest $request): RedirectResponse|JsonResponse
     {
-        $admin = Auth::user() ?? User::first();
+        $this->authorize('create', Campaign::class);
+
+        $admin = $request->user();
+        abort_unless($admin, 401, 'Unauthenticated.');
 
         $campaign = $this->campaignService->store(
             data: $request->validated(),
@@ -104,6 +105,8 @@ class CampaignController extends Controller
      */
     public function show(Request $request, Campaign $campaign): View|JsonResponse
     {
+        $this->authorize('view', $campaign);
+
         $campaign->load([
             'brand',
             'creator',
@@ -150,6 +153,8 @@ class CampaignController extends Controller
      */
     public function edit(Request $request, Campaign $campaign): View|JsonResponse
     {
+        $this->authorize('update', $campaign);
+
         $brands = Brand::where('is_active', true)->orderBy('name')->get();
 
         if ($request->wantsJson()) {
@@ -168,6 +173,8 @@ class CampaignController extends Controller
      */
     public function update(UpdateCampaignRequest $request, Campaign $campaign): RedirectResponse|JsonResponse
     {
+        $this->authorize('update', $campaign);
+
         $updatedCampaign = $this->campaignService->update(
             campaign: $campaign,
             data: $request->validated(),
@@ -189,6 +196,8 @@ class CampaignController extends Controller
      */
     public function destroy(Request $request, Campaign $campaign): RedirectResponse|JsonResponse
     {
+        $this->authorize('delete', $campaign);
+
         $campaignId = $campaign->id;
         $campaign->delete();
 

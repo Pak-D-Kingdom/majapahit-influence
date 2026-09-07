@@ -135,6 +135,8 @@ class KolManagementController extends Controller
      */
     public function show(Request $request, KolProfile $kol)
     {
+        $this->authorize('view', $kol);
+
         $kol->load(['user', 'tier', 'niches', 'socialMedia', 'rateCards', 'endorsements', 'commissions']);
 
         if ($request->wantsJson()) {
@@ -149,6 +151,8 @@ class KolManagementController extends Controller
      */
     public function edit(Request $request, KolProfile $kol)
     {
+        $this->authorize('update', $kol);
+
         $kol->load(['user', 'tier', 'niches', 'socialMedia', 'rateCards']);
         $tiers = Tier::all();
         $niches = Niche::all();
@@ -170,8 +174,11 @@ class KolManagementController extends Controller
      */
     public function update(UpdateProfileRequest $request, KolProfile $kol)
     {
+        $this->authorize('update', $kol);
+
         try {
-            $superadmin = auth()->user() ?? User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $superadmin = $request->user();
+            abort_unless($superadmin, 401, 'Unauthenticated.');
             $this->service->updateProfile($kol, $request->validated(), $superadmin);
 
             if ($request->wantsJson()) {
@@ -193,8 +200,11 @@ class KolManagementController extends Controller
      */
     public function updateStatus(UpdateKolStatusRequest $request, KolProfile $kol)
     {
+        $this->authorize('update', $kol);
+
         try {
-            $superadmin = auth()->user() ?? User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $superadmin = $request->user();
+            abort_unless($superadmin, 401, 'Unauthenticated.');
             $this->service->changeStatus(
                 $kol,
                 $request->input('status'),

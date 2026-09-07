@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-[#421b13]/8 bg-[#fff9f4]/90 px-4 backdrop-blur-md transition sm:px-6 lg:px-8">
     <div class="flex items-center gap-3">
-        <button id="kol-sidebar-toggle" type="button" class="rounded-xl p-2 text-[#765f58] hover:bg-[#f7eee8] hover:text-[#421b13] transition lg:hidden" aria-label="Buka menu">
+        <button id="kol-sidebar-toggle" type="button" class="rounded-xl p-2 text-[#765f58] hover:bg-[#f7eee8] hover:text-[#421b13] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] lg:hidden" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="kol-dashboard-sidebar">
             <i class="bi bi-list text-2xl"></i>
         </button>
         <div>
