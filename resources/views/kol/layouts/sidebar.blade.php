@@ -26,6 +26,7 @@
             @php
                 $menuItems = [
                     ['route' => 'kol.dashboard', 'label' => 'Dashboard', 'icon' => 'bi-grid-1x2-fill'],
+                    ['route' => 'catalog.index', 'label' => 'Katalog & Bank Konten', 'icon' => 'bi-shop'],
                     ['route' => 'kol.endorsements.index', 'label' => 'Endorsement', 'icon' => 'bi-megaphone-fill'],
                     ['route' => 'kol.commissions.index', 'label' => 'Komisi Saya', 'icon' => 'bi-wallet2'],
                     ['route' => 'kol.profile.show', 'label' => 'Profil Saya', 'icon' => 'bi-person-circle'],

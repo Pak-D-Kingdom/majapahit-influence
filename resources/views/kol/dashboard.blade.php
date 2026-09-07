@@ -1,6 +1,6 @@
 @extends('kol.layouts.app')
 
-@section('title', 'Dashboard KOL')
+@section('title', 'KOL Dashboard')
 @section('page-title', 'Dashboard Saya')
 
 @section('content')

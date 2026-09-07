@@ -13,7 +13,10 @@ class LoginController extends Controller
 {
     public function create(): View|RedirectResponse
     {
-        if (auth()->check()) return $this->redirectByRole();
+        if (auth()->check()) {
+            return $this->redirectByRole();
+        }
+
         return view('auth.login');
     }
 
@@ -25,6 +28,7 @@ class LoginController extends Controller
         }
         $request->session()->regenerate();
         $request->user()->update(['last_login_at' => now()]);
+
         return $this->redirectByRole();
     }
 
@@ -33,14 +37,19 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('login')->with('success', 'Anda berhasil keluar.');
+
+        return redirect('/')->with('success', 'Anda berhasil keluar.');
     }
 
     private function redirectByRole(): RedirectResponse
     {
         $user = auth()->user();
-        if ($user->isSuperadmin()) return redirect()->route('superadmin.dashboard');
-        if ($user->isKol()) return redirect()->route('kol.dashboard');
+        if ($user->isSuperadmin()) {
+            return redirect()->route('superadmin.dashboard');
+        }
+        if ($user->isKol()) {
+            return redirect()->route('kol.dashboard');
+        }
         Auth::logout();
         abort(403, 'Akun belum memiliki role yang valid.');
     }

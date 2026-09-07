@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\AuditLog;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -21,7 +21,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             $user = Auth::user();
             if ($user->isAdmin()) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('superadmin.dashboard');
             }
             if ($user->isKol()) {
                 return redirect()->route('kol.dashboard');
@@ -103,14 +103,14 @@ class AuthController extends Controller
 
         // Redirect dinamis sesuai role
         if ($user->isAdmin()) {
-            return redirect()->intended(route('admin.dashboard'));
+            return redirect()->route('superadmin.dashboard');
         }
 
         if ($user->isKol()) {
-            return redirect()->intended(route('kol.dashboard'));
+            return redirect()->route('kol.dashboard');
         }
 
-        return redirect()->intended('/');
+        return redirect('/');
     }
 
     /**
@@ -136,6 +136,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('status', 'Anda telah berhasil logout.');
+        return redirect('/')->with('status', 'Anda telah berhasil logout.');
     }
 }

@@ -17,4 +17,10 @@ class CommissionPolicy
     {
         return $user->hasRole('superadmin');
     }
+
+    public function requestDisbursement(User $user, Commission $commission): bool
+    {
+        return $user->hasRole('superadmin')
+            || $commission->kolProfile()->where('user_id', $user->id)->exists();
+    }
 }

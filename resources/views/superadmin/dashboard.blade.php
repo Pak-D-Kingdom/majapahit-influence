@@ -1,6 +1,6 @@
 @extends('superadmin.layouts.app')
 
-@section('title', 'Dashboard Superadmin')
+@section('title', 'Admin Dashboard')
 @section('page-title', 'Ringkasan operasional')
 
 @section('content')

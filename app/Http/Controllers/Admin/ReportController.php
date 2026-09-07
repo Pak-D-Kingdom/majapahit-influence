@@ -38,7 +38,11 @@ class ReportController extends Controller
             ]);
         }
 
-        return view('superadmin.reports.index', compact('stats', 'tiers'));
+        if (view()->exists('superadmin.reports.index')) {
+            return view('superadmin.reports.index', compact('stats', 'tiers'));
+        }
+
+        return view('superadmin.reports.report', compact('stats', 'tiers'));
     }
 
     /**

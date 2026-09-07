@@ -2,12 +2,13 @@
 
 namespace Tests\Feature;
 
-use App\Models\AuditLog;
+use App\Models\KolProfile;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -15,6 +16,7 @@ class AuthTest extends TestCase
     use RefreshDatabase;
 
     protected User $adminUser;
+
     protected User $kolUser;
 
     protected function setUp(): void
@@ -43,6 +45,10 @@ class AuthTest extends TestCase
             ]
         );
         $this->kolUser->assignRole('kol');
+        KolProfile::firstOrCreate(
+            ['user_id' => $this->kolUser->id],
+            ['nickname' => 'Test KOL', 'status' => 'aktif']
+        );
     }
 
     public function test_login_screen_can_be_rendered(): void
@@ -59,7 +65,7 @@ class AuthTest extends TestCase
             'password' => 'password123',
         ]);
 
-        $response->assertRedirect(route('admin.dashboard'));
+        $response->assertRedirect(route('superadmin.dashboard'));
         $this->assertAuthenticatedAs($this->adminUser);
 
         // Pastikan login tercatat di audit_logs
@@ -211,7 +217,7 @@ class AuthTest extends TestCase
         $response = $this->actingAs($this->adminUser)->post('/logout');
 
         $this->assertGuest();
-        $response->assertRedirect(route('login'));
+        $response->assertRedirect('/');
 
         $this->assertDatabaseHas('audit_logs', [
             'user_id' => $this->adminUser->id,
@@ -229,7 +235,7 @@ class AuthTest extends TestCase
 
     public function test_kol_can_set_password_with_valid_token_and_redirects_to_dashboard(): void
     {
-        $token = \Illuminate\Support\Facades\Password::broker()->createToken($this->kolUser);
+        $token = Password::broker()->createToken($this->kolUser);
 
         $response = $this->post('/kol/set-password', [
             'token' => $token,
@@ -263,7 +269,7 @@ class AuthTest extends TestCase
 
     public function test_user_can_reset_password_with_valid_token(): void
     {
-        $token = \Illuminate\Support\Facades\Password::broker()->createToken($this->adminUser);
+        $token = Password::broker()->createToken($this->adminUser);
 
         $response = $this->post('/reset-password', [
             'token' => $token,
@@ -293,7 +299,7 @@ class AuthTest extends TestCase
             'last_activity' => now()->timestamp,
         ]);
 
-        $token = \Illuminate\Support\Facades\Password::broker()->createToken($this->adminUser);
+        $token = Password::broker()->createToken($this->adminUser);
 
         $this->post('/reset-password', [
             'token' => $token,

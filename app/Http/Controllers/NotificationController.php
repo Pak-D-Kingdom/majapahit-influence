@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\View\View;
 
 class NotificationController extends Controller
@@ -12,14 +13,24 @@ class NotificationController extends Controller
     /**
      * Display all notifications for the authenticated user.
      */
-    public function index(Request $request): View
+    public function index(Request $request): View|JsonResponse
     {
-        $notifications = $request->user()
-            ->notifications()
-            ->latest()
-            ->paginate(20);
+        $user = $request->user();
+        $notifications = $user
+            ? $user->notifications()->latest()->paginate(20)
+            : Notification::latest()->paginate(20);
 
-        return view('notifications.index', compact('notifications'));
+        $role = $user?->hasRole('superadmin') ? 'superadmin' : 'kol';
+
+        if ($request->wantsJson()) {
+            return response()->json($notifications);
+        }
+
+        if (view()->exists('notifications.index')) {
+            return view('notifications.index', compact('notifications', 'role'));
+        }
+
+        return response()->json($notifications);
     }
 
     /**
@@ -27,15 +38,24 @@ class NotificationController extends Controller
      */
     public function markAsRead(
         Request $request,
-        DatabaseNotification $notification
-    ): RedirectResponse {
-        abort_unless(
-            $notification->notifiable_id === $request->user()->getAuthIdentifier()
-            && $notification->notifiable_type === $request->user()->getMorphClass(),
-            403
-        );
+        Notification $notification
+    ): RedirectResponse|JsonResponse {
+        if ($request->user() && $notification->user_id !== $request->user()->id) {
+            abort(403);
+        }
 
-        $notification->markAsRead();
+        $notification->update([
+            'is_read' => true,
+            'read_at' => now(),
+        ]);
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Notifikasi ditandai sudah dibaca.']);
+        }
+
+        if ($notification->target_url) {
+            return redirect($notification->target_url);
+        }
 
         return back()->with('success', 'Notifikasi ditandai sudah dibaca.');
     }
@@ -43,11 +63,23 @@ class NotificationController extends Controller
     /**
      * Mark all notifications as read.
      */
-    public function markAllAsRead(Request $request): RedirectResponse
+    public function markAllAsRead(Request $request): RedirectResponse|JsonResponse
     {
-        $request->user()
-            ->unreadNotifications
-            ->markAsRead();
+        if ($request->user()) {
+            $request->user()->unreadNotifications()->update([
+                'is_read' => true,
+                'read_at' => now(),
+            ]);
+        } else {
+            Notification::unread()->update([
+                'is_read' => true,
+                'read_at' => now(),
+            ]);
+        }
+
+        if ($request->wantsJson()) {
+            return response()->json(['message' => 'Semua notifikasi ditandai sudah dibaca.']);
+        }
 
         return back()->with('success', 'Semua notifikasi ditandai sudah dibaca.');
     }

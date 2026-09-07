@@ -11,8 +11,7 @@ class RoleMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @param  string  ...$roles
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next, string ...$roles): Response
     {
@@ -37,9 +36,7 @@ class RoleMiddleware
                 return response()->json(['message' => 'Akun Anda dinonaktifkan. Silakan hubungi administrator.'], 403);
             }
 
-            return redirect()->route('login')->withErrors([
-                'email' => 'Akun Anda telah dinonaktifkan. Silakan hubungi administrator.',
-            ]);
+            abort(403, 'Akun Anda telah dinonaktifkan. Silakan hubungi administrator.');
         }
 
         // 3. Validasi role jika ada parameter role yang ditentukan

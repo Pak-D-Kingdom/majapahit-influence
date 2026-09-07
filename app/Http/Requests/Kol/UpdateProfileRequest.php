@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Kol;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateProfileRequest extends FormRequest
@@ -11,35 +12,41 @@ class UpdateProfileRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return $this->user()?->isKol() ?? false;
     }
 
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'nickname'      => ['required', 'string', 'max:100'],
-            'bio'           => ['nullable', 'string'],
-            'city'          => ['nullable', 'string', 'max:100'],
-            'province'      => ['nullable', 'string', 'max:100'],
-            'photo'         => ['nullable', 'image', 'max:2048'], // maks 2MB
-            'social_media'                   => ['sometimes', 'required', 'array', 'min:1'],
-            'social_media.*.platform'        => ['required_with:social_media', 'string'],
-            'social_media.*.username'        => ['required_with:social_media', 'string', 'max:255'],
-            'social_media.*.profile_url'     => ['required_with:social_media', 'url'],
-            'social_media.*.followers_count' => ['required_with:social_media', 'integer', 'min:0'],
-            'social_media.*.engagement_rate' => ['required_with:social_media', 'numeric', 'min:0', 'max:100'],
-            'rate_cards'                => ['sometimes', 'required', 'array', 'min:1'],
-            'rate_cards.*.platform'     => ['required_with:rate_cards', 'string'],
-            'rate_cards.*.content_type' => ['required_with:rate_cards', 'string'],
-            'rate_cards.*.rate'         => ['required_with:rate_cards', 'numeric', 'min:0'],
-            'bank_name'           => ['nullable', 'string', 'max:100'],
+            'nickname' => ['required', 'string', 'max:100'],
+            'bio' => ['nullable', 'string', 'max:1000'],
+            'city' => ['nullable', 'string', 'max:100'],
+            'province' => ['nullable', 'string', 'max:100'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'], // maks 2MB
+
+            'social_media' => ['required', 'array', 'min:1'],
+            'social_media.*.id' => ['nullable', 'integer', 'exists:kol_social_media,id'],
+            'social_media.*.platform' => ['required', 'string', 'max:50'],
+            'social_media.*.username' => ['required', 'string', 'max:255'],
+            'social_media.*.profile_url' => ['nullable', 'url', 'max:500'],
+            'social_media.*.followers_count' => ['required', 'integer', 'min:0'],
+            'social_media.*.engagement_rate' => ['required', 'numeric', 'min:0', 'max:100'],
+
+            'rate_cards' => ['nullable', 'array'],
+            'rate_cards.*.id' => ['nullable', 'integer', 'exists:kol_rate_cards,id'],
+            'rate_cards.*.platform' => ['required', 'string', 'max:50'],
+            'rate_cards.*.content_type' => ['required', 'string', 'max:50'],
+            'rate_cards.*.rate' => ['required', 'numeric', 'min:0'],
+
+            'bank_name' => ['nullable', 'string', 'max:100'],
             'bank_account_number' => ['nullable', 'string', 'max:50'],
-            'bank_account_name'   => ['nullable', 'string', 'max:255'],
+            'bank_account_name' => ['nullable', 'string', 'max:255'],
+            'npwp' => ['nullable', 'string', 'max:30'],
         ];
     }
 }

@@ -24,13 +24,12 @@ class AuditLogger
         'remember_token',
         'secret',
         'api_key',
+        'api_token',
         'bank_account_number',
         'npwp',
     ];
 
-    public function __construct(private readonly ?Request $request = null)
-    {
-    }
+    public function __construct(private readonly ?Request $request = null) {}
 
     public function record(
         string $action,
@@ -79,6 +78,7 @@ class AuditLogger
         foreach ($values as $key => $value) {
             if (in_array(strtolower((string) $key), self::SENSITIVE_FIELDS, true)) {
                 $redacted[$key] = '[REDACTED]';
+
                 continue;
             }
 

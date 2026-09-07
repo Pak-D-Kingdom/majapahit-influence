@@ -6,9 +6,21 @@
     <div class="flex-1 overflow-y-auto px-4 py-6">
         <p class="mb-3 px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Workspace</p>
         <nav class="space-y-1">
-            @php $items = [['superadmin.dashboard','Dashboard','bi-grid-1x2-fill'], ['superadmin.kol.index','Data KOL','bi-people-fill'], ['superadmin.registrations.index','Pendaftaran','bi-person-plus-fill'], ['superadmin.brands.index','Brand & Klien','bi-building'], ['superadmin.campaigns.index','Campaign','bi-megaphone-fill'], ['superadmin.endorsements.index','Endorsement','bi-clipboard-check'], ['superadmin.commissions.index','Komisi','bi-wallet2']]; @endphp
+            @php 
+                $items = [
+                    ['superadmin.dashboard','Dashboard','bi-grid-1x2-fill'], 
+                    ['superadmin.kol.index','Data KOL','bi-people-fill'], 
+                    ['superadmin.registrations.index','Pendaftaran KOL','bi-person-plus-fill'], 
+                    ['superadmin.brand-registrations.index','Pendaftaran Brand','bi-building-add'],
+                    ['superadmin.brands.index','Brand & Klien','bi-building'], 
+                    ['superadmin.products.index','Katalog Produk','bi-shop'],
+                    ['superadmin.campaigns.index','Campaign','bi-megaphone-fill'], 
+                    ['superadmin.endorsements.index','Endorsement','bi-clipboard-check'], 
+                    ['superadmin.commissions.index','Komisi','bi-wallet2']
+                ]; 
+            @endphp
             @foreach ($items as [$route, $label, $icon])
-                <a href="{{ Route::has($route) ? route($route) : '#' }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition {{ request()->routeIs($route) ? 'bg-amber-400 font-semibold text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
+                <a href="{{ Route::has($route) ? route($route) : '#' }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition {{ request()->routeIs($route, $route.'.*', str_replace('.index', '', $route).'.*') ? 'bg-amber-400 font-semibold text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}">
                     <i class="bi {{ $icon }} text-base"></i><span>{{ $label }}</span>
                 </a>
             @endforeach
@@ -16,9 +28,22 @@
         <p class="mb-3 mt-8 px-3 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">System</p>
         <nav class="space-y-1">
             @foreach ([['superadmin.notifications.index','Notifikasi','bi-bell-fill'], ['superadmin.audit.index','Audit Trail','bi-clock-history'], ['superadmin.reports.index','Laporan','bi-file-earmark-bar-graph-fill'], ['superadmin.settings.index','Pengaturan','bi-sliders2-vertical'], ['superadmin.users.index','Kelola User','bi-person-gear']] as [$route, $label, $icon])
-                <a href="{{ Route::has($route) ? route($route) : '#' }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-400 transition hover:bg-white/5 hover:text-white"><i class="bi {{ $icon }} text-base"></i><span>{{ $label }}</span></a>
+                <a href="{{ Route::has($route) ? route($route) : '#' }}" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition {{ request()->routeIs($route, $route.'.*', str_replace('.index', '', $route).'.*') ? 'bg-amber-400 font-semibold text-slate-950' : 'text-slate-400 hover:bg-white/5 hover:text-white' }}"><i class="bi {{ $icon }} text-base"></i><span>{{ $label }}</span></a>
             @endforeach
         </nav>
     </div>
-    <div class="border-t border-white/10 p-4"><div class="rounded-xl bg-white/5 p-3"><p class="text-xs font-semibold text-white">Superadmin</p><p class="mt-1 truncate text-xs text-slate-500">Operasional agensi</p></div></div>
+    <div class="border-t border-white/10 p-4">
+        <div class="flex items-center justify-between rounded-xl bg-white/5 p-3">
+            <div class="min-w-0">
+                <p class="text-xs font-semibold text-white">Superadmin</p>
+                <p class="truncate text-[11px] text-slate-400">{{ auth()->user()->email ?? 'admin@majapahit.com' }}</p>
+            </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" title="Logout" class="flex size-8 items-center justify-center rounded-lg bg-white/10 text-slate-300 hover:bg-rose-500 hover:text-white transition">
+                    <i class="bi bi-box-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
 </aside>
