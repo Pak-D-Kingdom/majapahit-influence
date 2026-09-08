@@ -47,29 +47,45 @@
                     <label class="block text-xs font-black uppercase tracking-wider text-gray-700">
                         1. Pilihan Kebutuhan Layanan <span class="text-red-500">*</span>
                     </label>
-                    <div class="grid sm:grid-cols-3 gap-3">
-                        <label class="relative flex flex-col p-4 border rounded-2xl cursor-pointer hover:border-amber-500 transition-all {{ old('service_need', request('need')) === 'endorsement' ? 'border-amber-600 bg-amber-50/50' : 'border-gray-200' }}">
-                            <input type="radio" name="service_need" value="endorsement" class="sr-only" {{ old('service_need', request('need')) === 'endorsement' ? 'checked' : '' }} required>
-                            <span class="text-xs font-bold text-gray-900 flex items-center gap-1.5">
-                                <i class="bi bi-megaphone-fill text-amber-600"></i> Promosi Produk
-                            </span>
-                            <span class="text-[11px] text-gray-500 mt-1">Produk sudah siap & ingin dipromosikan KOL.</span>
+                    <div class="grid sm:grid-cols-3 gap-3" id="serviceNeedContainer">
+                        @php
+                            $selectedNeed = old('service_need', request('need', 'both'));
+                        @endphp
+
+                        <label class="service-need-card relative flex flex-col justify-between p-4 border-2 rounded-2xl cursor-pointer transition-all hover:border-amber-400 {{ $selectedNeed === 'endorsement' ? 'border-amber-600 bg-amber-50/60 ring-2 ring-amber-500/20' : 'border-gray-200 bg-white' }} has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/60 has-[:checked]:ring-2 has-[:checked]:ring-amber-500/20">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-gray-900 flex items-center gap-1.5">
+                                        <i class="bi bi-megaphone-fill text-amber-600"></i> Promosi Produk
+                                    </span>
+                                    <input type="radio" name="service_need" value="endorsement" class="w-4 h-4 text-amber-600 accent-amber-600 border-gray-300 focus:ring-amber-500 cursor-pointer" {{ $selectedNeed === 'endorsement' ? 'checked' : '' }} required>
+                                </div>
+                                <span class="text-[11px] text-gray-500 mt-2 block leading-relaxed">Produk sudah siap & ingin dipromosikan KOL.</span>
+                            </div>
                         </label>
 
-                        <label class="relative flex flex-col p-4 border rounded-2xl cursor-pointer hover:border-amber-500 transition-all {{ old('service_need', request('need')) === 'maklon' ? 'border-amber-600 bg-amber-50/50' : 'border-gray-200' }}">
-                            <input type="radio" name="service_need" value="maklon" class="sr-only" {{ old('service_need', request('need')) === 'maklon' ? 'checked' : '' }}>
-                            <span class="text-xs font-bold text-gray-900 flex items-center gap-1.5">
-                                <i class="bi bi-gear-wide-connected text-amber-600"></i> Layanan Maklon
-                            </span>
-                            <span class="text-[11px] text-gray-500 mt-1">Ingin formulasi & produksi produk baru.</span>
+                        <label class="service-need-card relative flex flex-col justify-between p-4 border-2 rounded-2xl cursor-pointer transition-all hover:border-amber-400 {{ $selectedNeed === 'maklon' ? 'border-amber-600 bg-amber-50/60 ring-2 ring-amber-500/20' : 'border-gray-200 bg-white' }} has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/60 has-[:checked]:ring-2 has-[:checked]:ring-amber-500/20">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-gray-900 flex items-center gap-1.5">
+                                        <i class="bi bi-gear-wide-connected text-amber-600"></i> Layanan Maklon
+                                    </span>
+                                    <input type="radio" name="service_need" value="maklon" class="w-4 h-4 text-amber-600 accent-amber-600 border-gray-300 focus:ring-amber-500 cursor-pointer" {{ $selectedNeed === 'maklon' ? 'checked' : '' }}>
+                                </div>
+                                <span class="text-[11px] text-gray-500 mt-2 block leading-relaxed">Ingin formulasi & produksi produk baru.</span>
+                            </div>
                         </label>
 
-                        <label class="relative flex flex-col p-4 border rounded-2xl cursor-pointer hover:border-amber-500 transition-all {{ old('service_need', request('need', 'both')) === 'both' ? 'border-amber-600 bg-amber-50/50' : 'border-gray-200' }}">
-                            <input type="radio" name="service_need" value="both" class="sr-only" {{ old('service_need', request('need', 'both')) === 'both' ? 'checked' : '' }}>
-                            <span class="text-xs font-bold text-gray-900 flex items-center gap-1.5">
-                                <i class="bi bi-stars text-amber-600"></i> Keduanya (All-in-One)
-                            </span>
-                            <span class="text-[11px] text-gray-500 mt-1">Maklon produk + langsung dipasarkan KOL.</span>
+                        <label class="service-need-card relative flex flex-col justify-between p-4 border-2 rounded-2xl cursor-pointer transition-all hover:border-amber-400 {{ $selectedNeed === 'both' ? 'border-amber-600 bg-amber-50/60 ring-2 ring-amber-500/20' : 'border-gray-200 bg-white' }} has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/60 has-[:checked]:ring-2 has-[:checked]:ring-amber-500/20">
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-gray-900 flex items-center gap-1.5">
+                                        <i class="bi bi-stars text-amber-600"></i> Keduanya (All-in-One)
+                                    </span>
+                                    <input type="radio" name="service_need" value="both" class="w-4 h-4 text-amber-600 accent-amber-600 border-gray-300 focus:ring-amber-500 cursor-pointer" {{ $selectedNeed === 'both' ? 'checked' : '' }}>
+                                </div>
+                                <span class="text-[11px] text-gray-500 mt-2 block leading-relaxed">Maklon produk + langsung dipasarkan KOL.</span>
+                            </div>
                         </label>
                     </div>
                 </div>
@@ -163,7 +179,29 @@
                     </div>
                 </div>
 
-                {{-- Section 4: Catatan & Rencana --}}
+                {{-- Section 4: Akun Portal Brand --}}
+                <div class="pt-4 border-t border-gray-100 space-y-4">
+                    <h3 class="text-xs font-black uppercase tracking-wider text-gray-700">4. Akun Portal Brand</h3>
+                    <p class="text-[11px] text-gray-500 mb-3">Buat password untuk login ke portal Brand setelah pendaftaran Anda disetujui.</p>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="password" class="block text-xs font-bold text-gray-700 mb-1">
+                                Password Login <span class="text-red-500">*</span>
+                            </label>
+                            <input type="password" id="password" name="password" placeholder="Minimal 8 karakter" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none" required minlength="8">
+                        </div>
+
+                        <div>
+                            <label for="password_confirmation" class="block text-xs font-bold text-gray-700 mb-1">
+                                Konfirmasi Password <span class="text-red-500">*</span>
+                            </label>
+                            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Ketik ulang password" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none" required minlength="8">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Section 5: Catatan & Rencana --}}
                 <div class="pt-4 border-t border-gray-100 space-y-2">
                     <label for="notes" class="block text-xs font-bold text-gray-700">
                         Deskripsi Singkat Rencana Promosi / Kebutuhan Produk (Opsional)
@@ -191,4 +229,48 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const radios = document.querySelectorAll('input[name="service_need"]');
+        const cards = document.querySelectorAll('.service-need-card');
+
+        function updateRadioCards() {
+            radios.forEach((radio) => {
+                const card = radio.closest('.service-need-card');
+                if (!card) return;
+                if (radio.checked) {
+                    card.classList.remove('border-gray-200', 'bg-white');
+                    card.classList.add('border-amber-600', 'bg-amber-50/60', 'ring-2', 'ring-amber-500/20');
+                } else {
+                    card.classList.remove('border-amber-600', 'bg-amber-50/60', 'ring-2', 'ring-amber-500/20');
+                    card.classList.add('border-gray-200', 'bg-white');
+                }
+            });
+        }
+
+        radios.forEach((radio) => {
+            radio.addEventListener('change', updateRadioCards);
+        });
+
+        cards.forEach((card) => {
+            card.addEventListener('click', function(e) {
+                // If clicked directly on the input, change event will handle it
+                if (e.target.tagName.toLowerCase() === 'input') {
+                    return;
+                }
+                const radio = this.querySelector('input[name="service_need"]');
+                if (radio && !radio.checked) {
+                    radio.checked = true;
+                    // Trigger change event to ensure any listener fires
+                    radio.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+            });
+        });
+
+        updateRadioCards();
+    });
+</script>
+@endpush
 @endsection

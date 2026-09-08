@@ -28,6 +28,8 @@ class Product extends Model
         'stock',
         'promotion_pathway',
         'is_active',
+        'verification_status',
+        'rejection_reason',
     ];
 
     protected function casts(): array

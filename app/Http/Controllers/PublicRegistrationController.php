@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Public\StoreKolRegistrationRequest;
 use App\Models\Niche;
 use App\Services\KolRegistrationService;
-use Illuminate\Http\Request;
 
 class PublicRegistrationController extends Controller
 {
@@ -22,6 +21,7 @@ class PublicRegistrationController extends Controller
     public function create()
     {
         $niches = Niche::where('is_active', true)->get();
+
         return response()->json(['data' => compact('niches')]);
     }
 
@@ -37,7 +37,7 @@ class PublicRegistrationController extends Controller
 
         return response()->json([
             'message' => 'Pendaftaran berhasil',
-            'registration_number' => $registration->registration_number
+            'registration_number' => $registration->registration_number,
         ], 201);
     }
 

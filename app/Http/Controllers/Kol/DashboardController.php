@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Kol;
 
-use App\Models\Endorsement;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 

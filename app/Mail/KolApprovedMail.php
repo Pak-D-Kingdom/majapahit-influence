@@ -15,8 +15,7 @@ class KolApprovedMail extends Mailable implements ShouldQueue
 
     public function __construct(
         public string $kolName,
-    ) {
-    }
+    ) {}
 
     public function envelope(): Envelope
     {

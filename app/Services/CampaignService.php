@@ -19,8 +19,8 @@ class CampaignService
     /**
      * Store a newly created Campaign with optional brief files.
      *
-     * @param array<string, mixed> $data
-     * @param array<UploadedFile> $files
+     * @param  array<string, mixed>  $data
+     * @param  array<UploadedFile>  $files
      */
     public function store(array $data, array $files = [], ?User $creator = null): Campaign
     {
@@ -69,8 +69,8 @@ class CampaignService
     /**
      * Update an existing Campaign with optional brief files.
      *
-     * @param array<string, mixed> $data
-     * @param array<UploadedFile> $files
+     * @param  array<string, mixed>  $data
+     * @param  array<UploadedFile>  $files
      */
     public function update(Campaign $campaign, array $data, array $files = []): Campaign
     {
@@ -106,7 +106,7 @@ class CampaignService
     /**
      * Assign active KOL to campaign (Business Rules BR2 & BR3).
      *
-     * @param array<string, mixed> $data
+     * @param  array<string, mixed>  $data
      */
     public function assignKol(Campaign $campaign, array $data, ?User $admin = null): Endorsement
     {
@@ -147,7 +147,7 @@ class CampaignService
                     'user_id' => $kol->user_id,
                     'type' => 'new_endorsement',
                     'title' => 'Tugas Endorsement Baru',
-                    'body' => "Anda telah ditugaskan untuk campaign '{$campaign->name}' ({$endorsement->content_type}). Deadline: " . date('d/m/Y', strtotime($endorsement->deadline)),
+                    'body' => "Anda telah ditugaskan untuk campaign '{$campaign->name}' ({$endorsement->content_type}). Deadline: ".date('d/m/Y', strtotime($endorsement->deadline)),
                     'target_url' => "/kol/endorsements/{$endorsement->id}",
                 ]);
             }

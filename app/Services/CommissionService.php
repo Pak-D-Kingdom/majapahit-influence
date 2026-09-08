@@ -6,11 +6,9 @@ use App\Models\AuditLog;
 use App\Models\Commission;
 use App\Models\CommissionApproval;
 use App\Models\Endorsement;
-use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 
 class CommissionService
 {
@@ -23,12 +21,12 @@ class CommissionService
             $kol = $endorsement->kolProfile;
             $fee = (float) $endorsement->fee;
 
-            if (!is_null($overridePct)) {
+            if (! is_null($overridePct)) {
                 $pct = $overridePct;
                 $isOverride = true;
             } else {
                 $pct = $kol ? $kol->effective_commission_pct : 60.00;
-                $isOverride = $kol ? !is_null($kol->commission_override_pct) : false;
+                $isOverride = $kol ? ! is_null($kol->commission_override_pct) : false;
             }
 
             $commissionAmount = $fee * ($pct / 100);
@@ -104,21 +102,14 @@ class CommissionService
                 $updatedCount++;
             }
 
-            // Notify all Admin users
-            $admins = User::whereHas('roles', function ($q) {
-                $q->where('name', 'admin');
-            })->get();
-
+            // Notify all Admin & Superadmin users
             $requesterName = $requester->name;
-            foreach ($admins as $admin) {
-                Notification::create([
-                    'user_id' => $admin->id,
-                    'type' => 'commission_disbursement_request',
-                    'title' => 'Pengajuan Pencairan Komisi',
-                    'body' => "Terdapat {$updatedCount} pengajuan pencairan komisi baru dari {$requesterName}.",
-                    'target_url' => route('superadmin.commissions.index', ['status' => 'pending_review']),
-                ]);
-            }
+            app(NotificationService::class)->notifySuperadmins(
+                'commission_disbursement_request',
+                'Pengajuan Pencairan Komisi',
+                "Terdapat {$updatedCount} pengajuan pencairan komisi baru dari {$requesterName}.",
+                route('superadmin.commissions.index', ['status' => 'pending_review'])
+            );
 
             return $updatedCount;
         });
@@ -165,13 +156,13 @@ class CommissionService
                 $kolUser = $commission->kolProfile?->user;
                 if ($kolUser) {
                     $statusLabel = $status === 'approved' ? 'disetujui' : 'ditolak';
-                    Notification::create([
-                        'user_id' => $kolUser->id,
-                        'type' => 'commission_status_updated',
-                        'title' => "Pengajuan Komisi " . ucfirst($statusLabel),
-                        'body' => "Pengajuan pencairan komisi Anda sebesar Rp " . number_format($commission->commission_amount, 0, ',', '.') . " telah {$statusLabel}." . ($notes ? " Catatan: {$notes}" : ''),
-                        'target_url' => route('kol.commissions.index'),
-                    ]);
+                    app(NotificationService::class)->send(
+                        $kolUser,
+                        'commission_status_updated',
+                        'Pengajuan Komisi '.ucfirst($statusLabel),
+                        'Pengajuan pencairan komisi Anda sebesar Rp '.number_format($commission->commission_amount, 0, ',', '.')." telah {$statusLabel}.".($notes ? " Catatan: {$notes}" : ''),
+                        route('kol.commissions.index')
+                    );
                 }
 
                 $processedCount++;
@@ -190,7 +181,7 @@ class CommissionService
             $oldStatus = $commission->status;
 
             // Store proof file in public disk
-            $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '_', $file->getClientOriginalName());
+            $filename = time().'_'.preg_replace('/[^a-zA-Z0-9._-]/', '_', $file->getClientOriginalName());
             $proofPath = $file->storeAs("disbursements/{$commission->id}", $filename, 'public');
 
             $commission->status = 'dicairkan';
@@ -223,13 +214,13 @@ class CommissionService
             // Notify KOL
             $kolUser = $commission->kolProfile?->user;
             if ($kolUser) {
-                Notification::create([
-                    'user_id' => $kolUser->id,
-                    'type' => 'commission_disbursed',
-                    'title' => 'Komisi Telah Dicairkan',
-                    'body' => 'Komisi sebesar Rp ' . number_format($commission->commission_amount, 0, ',', '.') . ' telah berhasil ditransfer ke rekening Anda.',
-                    'target_url' => route('kol.commissions.index'),
-                ]);
+                app(NotificationService::class)->send(
+                    $kolUser,
+                    'commission_disbursed',
+                    'Komisi Telah Dicairkan',
+                    'Komisi sebesar Rp '.number_format($commission->commission_amount, 0, ',', '.').' telah berhasil ditransfer ke rekening Anda.',
+                    route('kol.commissions.index')
+                );
             }
 
             return $commission;

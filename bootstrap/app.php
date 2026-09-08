@@ -27,6 +27,11 @@ return Application::configure(basePath: dirname(__DIR__))
                 ->prefix('kol')
                 ->name('kol.')
                 ->group(base_path('routes/kol.php'));
+
+            Route::middleware(['web', 'auth', 'role:brand'])
+                ->prefix('brand')
+                ->name('brand.')
+                ->group(base_path('routes/brand.php'));
         }
     )
     ->withMiddleware(function (Middleware $middleware): void {
@@ -43,6 +48,9 @@ return Application::configure(basePath: dirname(__DIR__))
                 }
                 if ($user?->isKol()) {
                     return route('kol.dashboard');
+                }
+                if ($user?->isBrand()) {
+                    return route('brand.dashboard');
                 }
 
                 return '/';

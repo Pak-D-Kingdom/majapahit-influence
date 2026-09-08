@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Kol;
 
+use App\Enums\CommissionStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Kol\RequestDisbursementRequest;
 use App\Models\Commission;
 use App\Models\KolProfile;
-use App\Models\User;
 use App\Services\AuditLogService;
 use App\Services\CommissionService;
 use App\Services\NotificationService;
@@ -47,18 +47,34 @@ class CommissionController extends Controller
             ->where('kol_profile_id', $kolProfile->id);
 
         if ($request->filled('status') && $request->status !== 'all') {
-            $query->where('status', $request->status);
+            if ($statusEnum = CommissionStatus::tryFrom($request->status)) {
+                $query->where('status', $statusEnum->value);
+            }
         }
 
-        // Summary statistics for this KOL
+        // Summary statistics for this KOL in a single aggregate query
+        $monthStart = now()->startOfMonth()->toDateTimeString();
+        $monthEnd = now()->endOfMonth()->toDateTimeString();
+
+        $statsRow = Commission::where('kol_profile_id', $kolProfile->id)
+            ->selectRaw("
+                COALESCE(SUM(commission_amount), 0) as total_all_time,
+                COALESCE(SUM(CASE WHEN status IN ('pending', 'pending_review') THEN commission_amount ELSE 0 END), 0) as total_pending,
+                COALESCE(SUM(CASE WHEN status = 'approved' THEN commission_amount ELSE 0 END), 0) as total_approved,
+                COALESCE(SUM(CASE WHEN status = 'dicairkan' THEN commission_amount ELSE 0 END), 0) as total_disbursed,
+                COALESCE(SUM(CASE WHEN created_at BETWEEN ? AND ? THEN commission_amount ELSE 0 END), 0) as month,
+                COALESCE(SUM(CASE WHEN status IN ('pending', 'approved', 'pending_review') THEN commission_amount ELSE 0 END), 0) as pending
+            ", [$monthStart, $monthEnd])
+            ->first();
+
         $stats = [
-            'total_all_time' => Commission::where('kol_profile_id', $kolProfile->id)->sum('commission_amount'),
-            'total_pending' => Commission::where('kol_profile_id', $kolProfile->id)->whereIn('status', ['pending', 'pending_review'])->sum('commission_amount'),
-            'total_approved' => Commission::where('kol_profile_id', $kolProfile->id)->where('status', 'approved')->sum('commission_amount'),
-            'total_disbursed' => Commission::where('kol_profile_id', $kolProfile->id)->where('status', 'dicairkan')->sum('commission_amount'),
-            'month' => Commission::where('kol_profile_id', $kolProfile->id)->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->sum('commission_amount'),
-            'pending' => Commission::where('kol_profile_id', $kolProfile->id)->whereIn('status', ['pending', 'approved', 'pending_review'])->sum('commission_amount'),
-            'disbursed' => Commission::where('kol_profile_id', $kolProfile->id)->where('status', 'dicairkan')->sum('commission_amount'),
+            'total_all_time' => (float) ($statsRow->total_all_time ?? 0),
+            'total_pending' => (float) ($statsRow->total_pending ?? 0),
+            'total_approved' => (float) ($statsRow->total_approved ?? 0),
+            'total_disbursed' => (float) ($statsRow->total_disbursed ?? 0),
+            'month' => (float) ($statsRow->month ?? 0),
+            'pending' => (float) ($statsRow->pending ?? 0),
+            'disbursed' => (float) ($statsRow->total_disbursed ?? 0),
         ];
 
         $commissions = $query->latest('id')->paginate(15)->withQueryString();
@@ -82,7 +98,7 @@ class CommissionController extends Controller
     {
         $this->authorize('view', $commission);
 
-        $commission->load(['endorsement.campaign.brand', 'approvals.reviewer']);
+        $commission->load(['endorsement.campaign.brand', 'approvals.performer']);
 
         if ($request->wantsJson()) {
             return response()->json([
@@ -108,10 +124,13 @@ class CommissionController extends Controller
     {
         $this->authorize('requestDisbursement', $commission);
 
-        abort_unless($commission->status === 'approved', 422, 'Komisi belum dapat diajukan untuk pencairan.');
+        abort_unless(in_array($commission->status, ['pending', 'approved', 'rejected'], true), 422, 'Komisi belum dapat diajukan untuk pencairan.');
         abort_if($commission->approvals()->where('action', 'request')->exists(), 422, 'Pencairan komisi sudah pernah diajukan.');
 
         DB::transaction(function () use ($request, $commission): void {
+            $commission->status = 'pending_review';
+            $commission->save();
+
             $commission->approvals()->create([
                 'action' => 'request',
                 'performed_by' => $request->user()->id,
@@ -154,9 +173,10 @@ class CommissionController extends Controller
      */
     public function requestDisbursementBatch(RequestDisbursementRequest $request)
     {
-        $user = auth()->user() ?? User::whereHas('kolProfile')->first();
+        $user = $request->user();
+        abort_unless($user, 401, 'Unauthenticated.');
 
-        if (! $user) {
+        if (! $user->kolProfile) {
             if ($request->wantsJson()) {
                 return response()->json(['status' => 'error', 'message' => 'Profil KOL tidak ditemukan.'], 404);
             }

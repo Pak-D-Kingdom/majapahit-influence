@@ -44,5 +44,5 @@ Route::middleware(['auth', 'role:kol'])->group(function (): void {
     // Notifications
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
-    Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::match(['GET', 'POST', 'PATCH'], '/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 });

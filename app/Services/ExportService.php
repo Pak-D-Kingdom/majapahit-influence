@@ -13,23 +13,23 @@ class ExportService
      */
     public function exportCommissions(array $filters = []): StreamedResponse
     {
-        $filename = 'laporan-komisi-' . now()->format('Y-m-d_His') . '.csv';
+        $filename = 'laporan-komisi-'.now()->format('Y-m-d_His').'.csv';
 
         $query = Commission::with(['kolProfile.user', 'endorsement.campaign.brand']);
 
-        if (!empty($filters['status'])) {
+        if (! empty($filters['status'])) {
             $query->where('status', $filters['status']);
         }
 
-        if (!empty($filters['kol_profile_id'])) {
+        if (! empty($filters['kol_profile_id'])) {
             $query->where('kol_profile_id', $filters['kol_profile_id']);
         }
 
-        if (!empty($filters['start_date'])) {
+        if (! empty($filters['start_date'])) {
             $query->whereDate('created_at', '>=', $filters['start_date']);
         }
 
-        if (!empty($filters['end_date'])) {
+        if (! empty($filters['end_date'])) {
             $query->whereDate('created_at', '<=', $filters['end_date']);
         }
 
@@ -76,12 +76,12 @@ class ExportService
                         $kol?->user?->name ?? '-',
                         $kol?->user?->email ?? '-',
                         $kol?->bank_name ?? '-',
-                        $kol?->bank_account_number ? "'" . $kol->bank_account_number : '-',
+                        $kol?->bank_account_number ? "'".$kol->bank_account_number : '-',
                         $kol?->bank_account_name ?? '-',
                         $campaign?->title ?? '-',
                         $brand?->name ?? '-',
                         number_format($comm->endorsement_fee, 0, ',', '.'),
-                        $comm->commission_pct . '%',
+                        $comm->commission_pct.'%',
                         number_format($comm->commission_amount, 0, ',', '.'),
                         number_format($comm->agency_amount, 0, ',', '.'),
                         ucfirst(str_replace('_', ' ', $comm->status)),
@@ -102,20 +102,20 @@ class ExportService
      */
     public function exportKolProfiles(array $filters = []): StreamedResponse
     {
-        $filename = 'laporan-data-kol-' . now()->format('Y-m-d_His') . '.csv';
+        $filename = 'laporan-data-kol-'.now()->format('Y-m-d_His').'.csv';
 
         $query = KolProfile::with(['user', 'tier', 'niches', 'socialMedia']);
 
-        if (!empty($filters['status'])) {
+        if (! empty($filters['status'])) {
             $query->where('status', $filters['status']);
         }
 
-        if (!empty($filters['tier_id'])) {
+        if (! empty($filters['tier_id'])) {
             $query->where('tier_id', $filters['tier_id']);
         }
 
-        if (!empty($filters['city'])) {
-            $query->where('city', 'like', '%' . $filters['city'] . '%');
+        if (! empty($filters['city'])) {
+            $query->where('city', 'like', '%'.$filters['city'].'%');
         }
 
         $headers = [
@@ -161,9 +161,9 @@ class ExportService
                         $kol->province ?? '-',
                         $kol->tier?->name ?? '-',
                         $niches ?: '-',
-                        $kol->effective_commission_pct . '%',
+                        $kol->effective_commission_pct.'%',
                         $kol->bank_name ?? '-',
-                        $kol->bank_account_number ? "'" . $kol->bank_account_number : '-',
+                        $kol->bank_account_number ? "'".$kol->bank_account_number : '-',
                         $kol->bank_account_name ?? '-',
                         $kol->npwp ?? '-',
                         ucfirst($kol->status),

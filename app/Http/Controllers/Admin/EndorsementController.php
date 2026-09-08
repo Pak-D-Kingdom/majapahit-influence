@@ -7,13 +7,11 @@ use App\Http\Requests\Admin\AssignKolRequest;
 use App\Http\Requests\Admin\ReviewContentProofRequest;
 use App\Models\Campaign;
 use App\Models\Endorsement;
-use App\Models\User;
 use App\Services\CampaignService;
 use App\Services\EndorsementService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class EndorsementController extends Controller
 {
@@ -27,7 +25,9 @@ class EndorsementController extends Controller
      */
     public function assign(Campaign $campaign, AssignKolRequest $request): RedirectResponse|JsonResponse
     {
-        $admin = Auth::user() ?? User::first();
+        $this->authorize('update', $campaign);
+        $admin = $request->user();
+        abort_unless($admin, 401, 'Unauthenticated.');
 
         $endorsement = $this->campaignService->assignKol(
             campaign: $campaign,
@@ -50,7 +50,9 @@ class EndorsementController extends Controller
      */
     public function reviewProof(Endorsement $endorsement, ReviewContentProofRequest $request): RedirectResponse|JsonResponse
     {
-        $admin = Auth::user() ?? User::first();
+        $this->authorize('update', $endorsement);
+        $admin = $request->user();
+        abort_unless($admin, 401, 'Unauthenticated.');
         $status = $request->input('status') ?? ($request->input('action') === 'approve' ? 'approved' : 'rejected');
         $notes = $request->input('notes') ?? $request->input('review_notes');
 
@@ -80,7 +82,9 @@ class EndorsementController extends Controller
      */
     public function complete(Request $request, Endorsement $endorsement): RedirectResponse|JsonResponse
     {
-        $admin = Auth::user() ?? User::first();
+        $this->authorize('update', $endorsement);
+        $admin = $request->user();
+        abort_unless($admin, 401, 'Unauthenticated.');
 
         $completedEndorsement = $this->endorsementService->markAsCompleted(
             endorsement: $endorsement,
@@ -104,9 +108,13 @@ class EndorsementController extends Controller
      */
     public function destroy(Request $request, Endorsement $endorsement): RedirectResponse|JsonResponse
     {
+        $this->authorize('delete', $endorsement);
+        $admin = $request->user();
+        abort_unless($admin, 401, 'Unauthenticated.');
+
         $reason = $request->input('reason', 'Dibatalkan oleh Admin');
 
-        $this->endorsementService->cancelEndorsement($endorsement, $reason, Auth::user());
+        $this->endorsementService->cancelEndorsement($endorsement, $reason, $admin);
 
         $message = 'Penugasan endorsement berhasil dibatalkan.';
 

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\CommissionStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ApproveDisbursementRequest;
 use App\Http\Requests\Admin\ProcessDisbursementRequest;
 use App\Models\Commission;
 use App\Models\KolProfile;
+use App\Models\User;
 use App\Services\CommissionService;
 use App\Services\ExportService;
 use Illuminate\Http\Request;
@@ -29,9 +31,11 @@ class CommissionController extends Controller
             'approvals.performedBy',
         ]);
 
-        // Filter by status
+        // Filter by status (validated against CommissionStatus enum)
         if ($request->filled('status') && $request->status !== 'all') {
-            $query->where('status', $request->status);
+            if ($statusEnum = CommissionStatus::tryFrom($request->status)) {
+                $query->where('status', $statusEnum->value);
+            }
         }
 
         // Filter by KOL
@@ -45,7 +49,7 @@ class CommissionController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->whereHas('kolProfile.user', function ($u) use ($search) {
                     $u->where('name', 'like', "%{$search}%")
-                      ->orWhere('email', 'like', "%{$search}%");
+                        ->orWhere('email', 'like', "%{$search}%");
                 })->orWhereHas('kolProfile', function ($k) use ($search) {
                     $k->where('nickname', 'like', "%{$search}%");
                 })->orWhereHas('endorsement.campaign', function ($c) use ($search) {
@@ -62,16 +66,26 @@ class CommissionController extends Controller
             $query->whereDate('created_at', '<=', $request->date_to);
         }
 
-        // Calculate summary statistics
+        // Calculate summary statistics in a single aggregate query
+        $startOfMonth = now()->startOfMonth()->toDateString();
+        $endOfMonth = now()->endOfMonth()->toDateString();
+
+        $statsRow = Commission::query()
+            ->selectRaw("
+                COALESCE(SUM(CASE WHEN status = 'pending' THEN commission_amount ELSE 0 END), 0) as total_pending,
+                COALESCE(SUM(CASE WHEN status = 'pending_review' THEN commission_amount ELSE 0 END), 0) as total_pending_review,
+                COALESCE(SUM(CASE WHEN status = 'approved' THEN commission_amount ELSE 0 END), 0) as total_approved,
+                COALESCE(SUM(CASE WHEN status = 'dicairkan' AND DATE(disbursed_at) BETWEEN ? AND ? THEN commission_amount ELSE 0 END), 0) as total_disbursed_this_month,
+                COALESCE(SUM(commission_amount), 0) as total_all_time
+            ", [$startOfMonth, $endOfMonth])
+            ->first();
+
         $stats = [
-            'total_pending' => Commission::where('status', 'pending')->sum('commission_amount'),
-            'total_pending_review' => Commission::where('status', 'pending_review')->sum('commission_amount'),
-            'total_approved' => Commission::where('status', 'approved')->sum('commission_amount'),
-            'total_disbursed_this_month' => Commission::where('status', 'dicairkan')
-                ->whereMonth('disbursed_at', now()->month)
-                ->whereYear('disbursed_at', now()->year)
-                ->sum('commission_amount'),
-            'total_all_time' => Commission::sum('commission_amount'),
+            'total_pending' => (float) ($statsRow->total_pending ?? 0),
+            'total_pending_review' => (float) ($statsRow->total_pending_review ?? 0),
+            'total_approved' => (float) ($statsRow->total_approved ?? 0),
+            'total_disbursed_this_month' => (float) ($statsRow->total_disbursed_this_month ?? 0),
+            'total_all_time' => (float) ($statsRow->total_all_time ?? 0),
         ];
 
         $perPage = (int) $request->get('per_page', 15);
@@ -96,6 +110,8 @@ class CommissionController extends Controller
      */
     public function show(Request $request, Commission $commission)
     {
+        $this->authorize('view', $commission);
+
         $commission->load([
             'kolProfile.user',
             'kolProfile.tier',
@@ -118,8 +134,9 @@ class CommissionController extends Controller
      */
     public function approve(ApproveDisbursementRequest $request)
     {
-        $user = auth()->user() ?? \App\Models\User::first(); // Fallback for test environment if auth not yet set up
-        
+        $user = $request->user() ?? auth()->user() ?? User::first();
+        abort_unless($user && $user->isSuperadmin(), 403, 'Unauthorized.');
+
         $count = $this->commissionService->approveDisbursement(
             $request->validated('commission_ids'),
             $request->validated('status'),
@@ -147,7 +164,8 @@ class CommissionController extends Controller
      */
     public function process(Commission $commission, ProcessDisbursementRequest $request)
     {
-        $user = auth()->user() ?? \App\Models\User::first();
+        $user = $request->user() ?? auth()->user() ?? User::first();
+        abort_unless($user, 401, 'Unauthenticated.');
 
         $updatedCommission = $this->commissionService->markAsDisbursed(
             $commission,

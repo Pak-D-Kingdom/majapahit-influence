@@ -6,7 +6,10 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class RegistrationReviewRequest extends FormRequest
 {
-    public function authorize(): bool { return $this->user()?->isSuperadmin() ?? false; }
+    public function authorize(): bool
+    {
+        return $this->user()?->isSuperadmin() ?? false;
+    }
 
     public function rules(): array
     {

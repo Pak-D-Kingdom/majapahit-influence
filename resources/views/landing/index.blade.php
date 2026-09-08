@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Majapahit Influence — Platform Kolaborasi Brand & Influencer Terdepan')
+@section('title', 'Majapahit Influence | Platform Kolaborasi Brand & Influencer Terdepan')
 
 @section('content')
 
@@ -12,22 +12,22 @@
 
             {{-- Logo --}}
             <a href="{{ url('/') }}" class="flex items-center gap-2.5 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 via-red-600 to-amber-500 flex items-center justify-center text-white font-black text-lg shadow-md shadow-amber-500/20 group-hover:scale-105 transition-transform">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#d57028] via-[#d5282d] to-[#fec200] flex items-center justify-center text-white font-black text-lg shadow-md shadow-[#d57028]/20 group-hover:scale-105 transition-transform font-heading">
                     MI
                 </div>
                 <div class="leading-tight">
-                    <span class="block text-[11px] font-bold tracking-widest text-amber-700">MAJAPAHIT</span>
-                    <strong class="block text-base font-extrabold text-gray-900 tracking-tight">INFLUENCE</strong>
+                    <span class="block text-[11px] font-bold tracking-widest text-[#d57028] font-heading">MAJAPAHIT</span>
+                    <strong class="block text-base font-extrabold text-[#421b13] tracking-tight font-heading">INFLUENCE</strong>
                 </div>
             </a>
 
             {{-- Desktop Navigation --}}
-            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-gray-600">
-                <a href="#home" class="hover:text-amber-600 transition-colors">Beranda</a>
-                <a href="#solusi-brand" class="hover:text-amber-600 transition-colors">Solusi Brand</a>
-                <a href="#maklon" class="hover:text-amber-600 transition-colors">Layanan Maklon</a>
-                <a href="#kreator" class="hover:text-amber-600 transition-colors">Untuk Kreator</a>
-                <a href="{{ route('catalog.index') }}" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 text-amber-800 font-bold border border-amber-200/80 hover:bg-amber-100 transition-all">
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#765f58]">
+                <a href="#home" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Beranda</a>
+                <a href="#solusi-brand" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Solusi Brand</a>
+                <a href="#maklon" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Layanan Maklon</a>
+                <a href="#kreator" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Untuk Kreator</a>
+                <a href="{{ route('catalog.index') }}" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#f7eee8] text-[#b86021] font-bold border border-[#d57028]/25 hover:bg-[#d57028]/15 transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
                     <i class="bi bi-shop"></i> Katalog E-Commerce
                 </a>
             </nav>
@@ -36,39 +36,39 @@
             <div class="hidden lg:flex items-center gap-3">
                 @auth
                     @if (auth()->user()->isSuperadmin() || auth()->user()->isAdmin())
-                        <a href="{{ route('superadmin.dashboard') }}" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-sm transition-all">
+                        <a href="{{ route('superadmin.dashboard') }}" class="px-4 py-2 rounded-xl bg-[#d57028] hover:bg-[#b86021] text-white font-bold text-sm shadow-xs transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
                             <i class="bi bi-speedometer2 mr-1"></i> Dashboard Admin
                         </a>
                     @elseif (auth()->user()->isKol())
-                        <a href="{{ route('kol.dashboard') }}" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm shadow-sm transition-all">
+                        <a href="{{ route('kol.dashboard') }}" class="px-4 py-2 rounded-xl bg-[#d57028] hover:bg-[#b86021] text-white font-bold text-sm shadow-xs transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
                             <i class="bi bi-speedometer2 mr-1"></i> Dashboard KOL
                         </a>
                     @endif
 
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
-                        <button type="submit" class="px-3.5 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-xl transition-all">
+                        <button type="submit" class="px-3.5 py-2 text-sm font-semibold text-[#d5282d] hover:bg-[#d5282d]/10 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-[#d5282d] focus-visible:outline-none">
                             <i class="bi bi-box-arrow-right mr-1"></i> Logout
                         </button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-bold text-gray-700 hover:text-amber-600 transition-colors">
+                    <a href="{{ route('login') }}" class="px-4 py-2 text-sm font-bold text-[#421b13] hover:text-[#d57028] transition-colors font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg">
                         Masuk
                     </a>
 
                     <div class="flex items-center gap-2">
-                        <a href="{{ route('brand.register') }}" class="px-4 py-2 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow transition-all">
+                        <a href="{{ route('brand.register') }}" class="px-4 py-2 rounded-xl bg-[#421b13] hover:bg-[#190906] text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:shadow transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#421b13] focus-visible:outline-none">
                             <i class="bi bi-building mr-1"></i> Daftar Brand
                         </a>
-                        <a href="{{ route('registration.create') }}" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs uppercase tracking-wider shadow-sm hover:shadow-amber-500/20 transition-all">
+                        <a href="{{ route('registration.create') }}" class="px-4 py-2 rounded-xl bg-gradient-to-r from-[#d57028] to-[#b86021] hover:from-[#b86021] hover:to-[#934510] text-white font-bold text-xs uppercase tracking-wider shadow-xs hover:shadow-[#d57028]/20 transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
                             <i class="bi bi-person-plus mr-1"></i> Join as KOL
                         </a>
                     </div>
                 @endauth
             </div>
 
-            {{-- Mobile Menu Button --}}
-            <button class="lg:hidden p-2 text-gray-700 hover:text-amber-600 text-2xl" id="mobileMenuToggle" type="button">
+            {{-- Mobile Menu Button (Accessible 44x44px target) --}}
+            <button class="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-[#421b13] hover:text-[#d57028] hover:bg-[#f7eee8] text-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none" id="mobileMenuToggle" type="button" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileNav">
                 <i class="bi bi-list"></i>
             </button>
         </div>
@@ -118,35 +118,40 @@
                     
                     {{-- Left Content --}}
                     <div class="lg:col-span-7 space-y-6">
-                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold tracking-wide uppercase">
-                            <span class="w-2 h-2 rounded-full bg-amber-600 animate-pulse"></span>
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#f7eee8] text-[#b86021] text-xs font-bold tracking-wide uppercase border border-[#d57028]/20 font-heading">
+                            <span class="w-2 h-2 rounded-full bg-[#d57028] animate-pulse"></span>
                             Ekosistem Influencer & Maklon Pak De Group
                         </div>
 
-                        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black text-gray-900 leading-[1.15] tracking-tight">
-                            Percepat Pertumbuhan <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-red-600">Brand</span> Anda & Maksimalkan <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-amber-600">Cuan Kreator</span>.
+                        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black text-[#421b13] leading-[1.15] tracking-tight font-heading">
+                            Percepat Pertumbuhan <span class="text-[#d57028]">Brand</span> Anda & Maksimalkan <span class="text-[#d5282d]">Cuan Kreator</span>.
                         </h1>
 
-                        <p class="text-base lg:text-lg text-gray-600 leading-relaxed max-w-2xl">
+                        <p class="text-base lg:text-lg text-[#765f58] leading-relaxed max-w-2xl">
                             Majapahit Influence adalah platform all-in-one yang menghubungkan Brand dengan ribuan KOL & Affiliate terverifikasi. Dari produksi custom (maklon), bank konten promosi siap pakai, hingga penjualan e-commerce bergaransi komisi transparan.
                         </p>
 
-                        {{-- Dual Action Buttons --}}
-                        <div class="flex flex-wrap gap-4 pt-2">
-                            <a href="{{ route('brand.register') }}" class="px-6 py-3.5 rounded-2xl bg-gray-900 hover:bg-black text-white font-extrabold text-sm shadow-lg shadow-gray-900/10 flex items-center gap-2 transition-all hover:scale-105">
-                                <i class="bi bi-rocket-takeoff-fill text-amber-400 text-lg"></i>
-                                <span>Saya Brand — Mulai Promosi</span>
-                            </a>
+                        {{-- Persona-First Primary Action Buttons --}}
+                        <div class="space-y-3 pt-2">
+                            <div class="flex flex-wrap items-center gap-3.5">
+                                <a href="{{ route('brand.register') }}" class="px-6 py-3.5 rounded-2xl bg-[#421b13] hover:bg-[#190906] text-white font-extrabold text-sm shadow-md shadow-[#421b13]/10 flex items-center gap-2 transition-all hover:scale-105 font-heading focus-visible:ring-2 focus-visible:ring-[#421b13] focus-visible:outline-none">
+                                    <i class="bi bi-rocket-takeoff-fill text-[#fec200] text-lg"></i>
+                                    <span>Saya Brand: Mulai Promosi</span>
+                                </a>
 
-                            <a href="{{ route('registration.create') }}" class="px-6 py-3.5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-sm shadow-lg shadow-amber-600/20 flex items-center gap-2 transition-all hover:scale-105">
-                                <i class="bi bi-camera-reels-fill text-lg"></i>
-                                <span>Saya Kreator — Join KOL</span>
-                            </a>
+                                <a href="{{ route('registration.create') }}" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#d57028] to-[#b86021] hover:from-[#b86021] hover:to-[#934510] text-white font-extrabold text-sm shadow-md shadow-[#d57028]/20 flex items-center gap-2 transition-all hover:scale-105 font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
+                                    <i class="bi bi-camera-reels-fill text-lg"></i>
+                                    <span>Saya Kreator: Join KOL</span>
+                                </a>
+                            </div>
 
-                            <a href="{{ route('catalog.index') }}" class="px-5 py-3.5 rounded-2xl bg-white hover:bg-gray-50 border border-gray-200 text-gray-800 font-bold text-sm flex items-center gap-2 shadow-sm transition-all">
-                                <i class="bi bi-grid-3x3-gap-fill text-amber-600"></i>
-                                <span>Katalog E-Commerce</span>
-                            </a>
+                            <div class="flex items-center gap-2 text-xs font-semibold text-[#765f58] pt-1">
+                                <span>Atau ingin lihat produk siap jual?</span>
+                                <a href="{{ route('catalog.index') }}" class="inline-flex items-center gap-1.5 text-[#d57028] hover:text-[#934510] font-bold hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d57028] rounded">
+                                    <i class="bi bi-grid-3x3-gap-fill"></i>
+                                    <span>Jelajahi Katalog E-Commerce & Bank Konten &rarr;</span>
+                                </a>
+                            </div>
                         </div>
 
                         {{-- Key Stats Highlight --}}
@@ -187,20 +192,20 @@
                             </div>
 
                             {{-- Sample Featured Product Card Preview --}}
-                            <div class="bg-gray-50 rounded-2xl p-4 border border-gray-100 flex gap-4 items-center">
-                                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&auto=format&fit=crop&q=80" alt="Sample Product" class="w-20 h-20 rounded-xl object-cover shadow-sm">
+                            <div class="bg-[#fbf7f4] rounded-2xl p-4 border border-[#421b13]/10 flex gap-4 items-center">
+                                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&auto=format&fit=crop&q=80" alt="GlowUp Niacinamide 10% Serum" loading="lazy" class="w-20 h-20 rounded-xl object-cover shadow-xs">
                                 <div class="space-y-1 flex-1 min-w-0">
-                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Beauty & Skincare</span>
-                                    <h4 class="text-xs font-bold text-gray-900 truncate">GlowUp Niacinamide 10% Serum</h4>
+                                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-[#f7eee8] text-[#b86021] border border-[#d57028]/20 font-heading">Beauty & Skincare</span>
+                                    <h4 class="text-xs font-bold text-[#421b13] truncate font-heading">GlowUp Niacinamide 10% Serum</h4>
                                     <div class="flex items-center justify-between pt-1">
-                                        <span class="text-xs font-extrabold text-gray-900">Rp 120.000</span>
-                                        <span class="text-xs font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">+Rp 48.000 (40%)</span>
+                                        <span class="text-xs font-extrabold text-[#421b13]">Rp 120.000</span>
+                                        <span class="text-xs font-black text-[#b86021] bg-[#f7eee8] px-2 py-0.5 rounded border border-[#d57028]/25 font-heading">+Rp 48.000 (40%)</span>
                                     </div>
                                 </div>
                             </div>
 
                             {{-- Bank Konten Feature Pill --}}
-                            <div class="p-3.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl text-white flex items-center justify-between">
+                            <div class="p-3.5 bg-gradient-to-r from-[#d57028] to-[#b86021] rounded-2xl text-white flex items-center justify-between shadow-xs">
                                 <div class="flex items-center gap-2.5">
                                     <i class="bi bi-folder2-open text-2xl"></i>
                                     <div>
@@ -346,30 +351,31 @@
                         </h2>
 
                         <p class="text-gray-300 text-base leading-relaxed">
-                            <strong>Maklon</strong> adalah layanan manufaktur kontrak di mana Pak De Group meracik, memproduksi, dan mengurus perizinan legalitas (BPOM, Halal, HKI) produk impian Anda dari nol — mulai dari formulasi skincare, suplemen herbal, hingga makanan ringan.
+                            <strong>Maklon</strong> adalah layanan manufaktur kontrak di mana Pak De Group meracik, memproduksi, dan mengurus perizinan legalitas (BPOM, Halal, HKI) produk impian Anda dari nol: mulai dari formulasi skincare, suplemen herbal, hingga makanan ringan.
                         </p>
 
                         <div class="space-y-3 pt-2">
                             <div class="flex items-start gap-3 bg-gray-800/80 p-4 rounded-2xl border border-gray-700">
-                                <i class="bi bi-check-circle-fill text-amber-400 text-xl flex-shrink-0 mt-0.5"></i>
+                                <i class="bi bi-check-circle-fill text-[#fec200] text-xl flex-shrink-0 mt-0.5"></i>
                                 <div>
-                                    <strong class="block text-sm font-bold text-white">Formulasi & Legalitas Lengkap</strong>
+                                    <strong class="block text-sm font-bold text-white font-heading">Formulasi & Legalitas Lengkap</strong>
                                     <span class="text-xs text-gray-400">Pabrik berstandar CPKB/CPPOB dengan jaminan izin edar resmi BPOM & Halal MUI.</span>
                                 </div>
                             </div>
 
                             <div class="flex items-start gap-3 bg-gray-800/80 p-4 rounded-2xl border border-gray-700">
-                                <i class="bi bi-check-circle-fill text-amber-400 text-xl flex-shrink-0 mt-0.5"></i>
+                                <i class="bi bi-check-circle-fill text-[#fec200] text-xl flex-shrink-0 mt-0.5"></i>
                                 <div>
-                                    <strong class="block text-sm font-bold text-white">Distribusi Langsung ke Jaringan KOL</strong>
+                                    <strong class="block text-sm font-bold text-white font-heading">Distribusi Langsung ke Jaringan KOL</strong>
                                     <span class="text-xs text-gray-400">Begitu produk selesai diproduksi, produk langsung masuk ke Bank Konten & dipromosikan jaringan kreator Majapahit.</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="pt-4">
-                            <a href="{{ route('brand.register') }}?need=maklon" class="px-7 py-3.5 rounded-2xl bg-amber-500 hover:bg-amber-600 text-gray-950 font-black text-sm inline-flex items-center gap-2 shadow-lg shadow-amber-500/20 transition-all hover:scale-105">
-                                <i class="bi bi-chat-dots-fill"></i> Konsultasi Maklon Produk Sekarang
+                            <a href="{{ route('brand.register') }}?need=maklon" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-[#d57028] to-[#b86021] hover:from-[#b86021] hover:to-[#934510] text-white font-extrabold text-sm inline-flex items-center gap-2 shadow-lg shadow-[#d57028]/25 transition-all hover:scale-105 font-heading focus-visible:ring-2 focus-visible:ring-white">
+                                <i class="bi bi-chat-dots-fill text-[#fec200]"></i>
+                                <span>Konsultasi Maklon Produk Sekarang</span>
                             </a>
                         </div>
                     </div>
@@ -585,9 +591,9 @@
 
                     {{-- Col 4: Kontak & Kantor --}}
                     <div class="space-y-3">
-                        <h4 class="text-xs font-black uppercase tracking-wider text-amber-400">Hubungi Kami</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">
-                            Pak De Group HQ — Surabaya & Mojokerto, Jawa Timur.<br>
+                        <h4 class="text-xs font-black uppercase tracking-wider text-[#fec200] font-heading">Hubungi Kami</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            Pak De Group HQ: Surabaya & Mojokerto, Jawa Timur.<br>
                             WhatsApp: +62 812-3456-7890<br>
                             Email: halo@majapahit.com
                         </p>
@@ -595,11 +601,11 @@
 
                 </div>
 
-                <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-                    <p>&copy; {{ date('Y') }} Majapahit Influence — Pak De Group. All rights reserved.</p>
+                <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+                    <p>&copy; {{ date('Y') }} Majapahit Influence | Pak De Group. All rights reserved.</p>
                     <div class="flex gap-6">
-                        <a href="#" class="hover:text-gray-300">Kebijakan Privasi</a>
-                        <a href="#" class="hover:text-gray-300">Syarat & Ketentuan</a>
+                        <a href="{{ url('/') }}#solusi-brand" class="hover:text-white transition-colors">Kebijakan Brand</a>
+                        <a href="{{ url('/') }}#kreator" class="hover:text-white transition-colors">Ketentuan Kreator</a>
                     </div>
                 </div>
             </div>

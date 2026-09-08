@@ -21,10 +21,15 @@ class KolRegistrationService
     public function store(array $data, array $files): KolRegistration
     {
         return DB::transaction(function () use ($data, $files) {
+            $password = ! empty($data['password'])
+                ? (Hash::needsRehash($data['password']) ? Hash::make($data['password']) : $data['password'])
+                : null;
+
             $registration = KolRegistration::create([
                 'registration_number' => KolRegistration::generateRegistrationNumber(),
                 'full_name' => $data['full_name'],
                 'email' => $data['email'],
+                'password' => $password,
                 'phone' => $data['phone'],
                 'city' => $data['city'] ?? null,
                 'niches' => $data['niches'],
@@ -64,14 +69,24 @@ class KolRegistrationService
                 'notes' => $data['notes'] ?? null,
             ]);
 
-            // Create or retrieve User (Initial default password: 'password')
+            // Create or retrieve User using password set during registration (or fallback to 'password')
+            $initialPassword = ! empty($registration->password)
+                ? $registration->password
+                : Hash::make('password');
+
             $user = User::firstOrCreate(
                 ['email' => $registration->email],
                 [
                     'name' => $registration->full_name,
-                    'password' => Hash::make('password'),
+                    'password' => $initialPassword,
                 ]
             );
+
+            if ($user->wasRecentlyCreated && ! empty($registration->password)) {
+                $user->password = $registration->password;
+                $user->save();
+            }
+
             $user->assignRole('kol');
 
             // Normalize and parse Social Media Data

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ApproveRegistrationRequest extends FormRequest
@@ -17,13 +18,13 @@ class ApproveRegistrationRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'notes'   => ['nullable', 'string', 'max:1000'],
-            'score'   => ['nullable', 'integer', 'between:1,5'],
+            'notes' => ['nullable', 'string', 'max:1000'],
+            'score' => ['nullable', 'integer', 'between:1,5'],
             'tier_id' => ['nullable', 'exists:tiers,id'],
         ];
     }

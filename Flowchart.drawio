@@ -1,0 +1,565 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="Page-1" id="RdFJ8u_yVlj17cB7ZI7y">
+    <mxGraphModel dx="1900" dy="696" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-62" value="&lt;font style=&quot;font-size: 23px;&quot;&gt;Master Flowchart&lt;/font&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;swimlaneFillColor=#F19C99;startSize=45;" parent="1" vertex="1">
+          <mxGeometry x="-390" y="75" width="900" height="2265" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-180" value="Daftar sebagai kol" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="FPmNT6gqGk3pSWsqNjCq-62" vertex="1">
+          <mxGeometry x="620" y="245" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-179" value="Daftar sebagai brand" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="FPmNT6gqGk3pSWsqNjCq-62" vertex="1">
+          <mxGeometry x="342.5" y="235" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-60" value="KOL" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-210" y="1290" width="460" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-183" value="Disetujui" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;labelBorderColor=none;textShadow=0;" parent="FPmNT6gqGk3pSWsqNjCq-60" vertex="1">
+          <mxGeometry x="50" y="660" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-184" value="Ditolak" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;labelBorderColor=none;textShadow=0;" parent="FPmNT6gqGk3pSWsqNjCq-60" vertex="1">
+          <mxGeometry x="230" y="670" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-21" value="Brand" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="-160" y="350" width="360" height="720" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-181" value="Maklon" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="FPmNT6gqGk3pSWsqNjCq-21" vertex="1">
+          <mxGeometry x="10" y="210" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-182" value="Produk siap" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="FPmNT6gqGk3pSWsqNjCq-21" vertex="1">
+          <mxGeometry x="190" y="230" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-2" target="FPmNT6gqGk3pSWsqNjCq-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-2" value="Landing page" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="115" y="150" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-4" target="FPmNT6gqGk3pSWsqNjCq-6" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-4" target="FPmNT6gqGk3pSWsqNjCq-39" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-4" value="Registrasi" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="120" y="240" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-5" target="FPmNT6gqGk3pSWsqNjCq-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-5" value="Riset formula, BPOM, dll" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-130" y="630" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-6" target="FPmNT6gqGk3pSWsqNjCq-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-6" value="Isi form pendaftaran" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-50" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-7" target="FPmNT6gqGk3pSWsqNjCq-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-7" target="FPmNT6gqGk3pSWsqNjCq-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="95" y="540" />
+              <mxPoint x="95" y="700" />
+              <mxPoint x="20" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-7" value="Kebutuhan" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="490" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-8" target="FPmNT6gqGk3pSWsqNjCq-9" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-8" value="Brand siapkan stok produk" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="720" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-9" target="FPmNT6gqGk3pSWsqNjCq-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-9" value="Superadmin setujui brand baru" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="810" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-10" target="FPmNT6gqGk3pSWsqNjCq-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-10" value="Input produk ke katalog &amp;amp; komisi" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="900" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-11" target="FPmNT6gqGk3pSWsqNjCq-22" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-11" value="Upload ke bank konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="990" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-22" target="FPmNT6gqGk3pSWsqNjCq-24" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-22" target="FPmNT6gqGk3pSWsqNjCq-25" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-22" value="Jalur promosi" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-40" y="1092" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-24" target="FPmNT6gqGk3pSWsqNjCq-30" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-24" value="Brand pilih influencer" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-130" y="1222" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-25" target="FPmNT6gqGk3pSWsqNjCq-28" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-25" value="Produk tayang di katalog" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1222" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-28" target="FPmNT6gqGk3pSWsqNjCq-29" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-28" value="KOL jelajahi katalog" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1330" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-29" target="FPmNT6gqGk3pSWsqNjCq-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-29" value="KOL pilih produk yg ingin dipromosikan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1420" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-30" target="FPmNT6gqGk3pSWsqNjCq-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-30" value="KOL terima tugas campaign" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-130" y="1420" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-31" target="FPmNT6gqGk3pSWsqNjCq-32" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-31" value="KOL buka bank konten produk" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="1510" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-32" target="FPmNT6gqGk3pSWsqNjCq-45" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-32" value="KOL download foto, script, dll" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="1600" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-39" target="FPmNT6gqGk3pSWsqNjCq-40" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-39" value="Isi form pendaftaran" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="230" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-40" target="FPmNT6gqGk3pSWsqNjCq-41" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-40" value="Superadmin review dan tetapkan tier KOL" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="230" y="490" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-41" value="KOL login" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="230" y="580" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-45" target="FPmNT6gqGk3pSWsqNjCq-46" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-45" value="KOL produksi &amp;amp; upload konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="1690" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-46" target="FPmNT6gqGk3pSWsqNjCq-47" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-46" value="KOL upload bukti" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-45" y="1780" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-47" target="FPmNT6gqGk3pSWsqNjCq-48" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-47" target="FPmNT6gqGk3pSWsqNjCq-51" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-47" value="Superadmin verifikasi" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-40" y="1870" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-48" target="FPmNT6gqGk3pSWsqNjCq-49" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-48" value="Komisi masuk ke saldo KOL" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-135" y="2010" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-49" target="FPmNT6gqGk3pSWsqNjCq-50" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-49" value="KOL ajukan penarikan dana" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-135" y="2100" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-50" value="Superadmin transfer dana" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="-135" y="2190" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-51" target="FPmNT6gqGk3pSWsqNjCq-45" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="110" y="2080" />
+              <mxPoint x="220" y="2080" />
+              <mxPoint x="220" y="1715" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-51" value="KOL memperbaiki konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="45" y="2010" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-63" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 30px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Alur Pendaftaran Brand &amp;amp; Layanan Maklon&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="690" y="70" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-64" target="FPmNT6gqGk3pSWsqNjCq-65" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-64" value="Brand akses halaman /daftar-brand" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="830" y="180" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-65" target="FPmNT6gqGk3pSWsqNjCq-67" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-65" target="FPmNT6gqGk3pSWsqNjCq-66" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-65" target="FPmNT6gqGk3pSWsqNjCq-68" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-65" value="Layanan" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="835" y="270" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-66" target="FPmNT6gqGk3pSWsqNjCq-73" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-66" value="Layanan maklon" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="830" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-67" target="FPmNT6gqGk3pSWsqNjCq-73" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-67" value="Promosi produk" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="670" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-68" target="FPmNT6gqGk3pSWsqNjCq-73" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-68" value="All" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="990" y="400" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-73" target="FPmNT6gqGk3pSWsqNjCq-78" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-73" value="Brand lengkapi data nama brand, dll" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="830" y="500" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-78" target="FPmNT6gqGk3pSWsqNjCq-80" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-78" target="FPmNT6gqGk3pSWsqNjCq-88" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-78" value="Submit form pendaftaran" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="830" y="590" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-80" target="FPmNT6gqGk3pSWsqNjCq-81" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-80" value="Notifikasi masuk ke superadmin" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="715" y="680" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-81" target="FPmNT6gqGk3pSWsqNjCq-82" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-81" value="Superadmin buka menu pendaftaran brand" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="715" y="770" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-82" target="FPmNT6gqGk3pSWsqNjCq-83" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-82" value="Superadmin hubungi PID via whatsapp" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="715" y="860" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-83" target="FPmNT6gqGk3pSWsqNjCq-84" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-83" target="FPmNT6gqGk3pSWsqNjCq-85" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-83" value="Hasil review" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="720" y="950" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-84" target="FPmNT6gqGk3pSWsqNjCq-86" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-84" value="Klik setujui dan buat brand" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="632.5" y="1092" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-85" value="Klik tolak dan isi alasan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="797.5" y="1092" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-86" target="FPmNT6gqGk3pSWsqNjCq-87" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-86" value="Sistem otomatis membuat record brand" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="632.5" y="1182.5" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-87" value="Brand siap diberi produk &amp;amp; campaign" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="632.5" y="1272" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-88" value="Brand mendapat halaman konfirmasi pendaftaran sukses" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="950" y="680" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-99" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 30px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Sistem Katalog E-Commerce&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1290" y="70" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-100" target="FPmNT6gqGk3pSWsqNjCq-101" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-100" value="Superadmin tambah produk baru" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1420" y="180" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-101" target="FPmNT6gqGk3pSWsqNjCq-102" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-101" value="Input nama, brand, dll" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1420" y="270" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-102" target="FPmNT6gqGk3pSWsqNjCq-103" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-102" value="Sistem mengunci komisi dari harga retail" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1420" y="360" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-103" target="FPmNT6gqGk3pSWsqNjCq-104" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-103" value="Sistem menyiapkan slot bank konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1420" y="450" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-116" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-104" target="FPmNT6gqGk3pSWsqNjCq-106" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-104" target="FPmNT6gqGk3pSWsqNjCq-105" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-118" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-104" target="FPmNT6gqGk3pSWsqNjCq-107" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-104" value="Jalur promosi" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1425" y="540" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-119" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-105" target="FPmNT6gqGk3pSWsqNjCq-108" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-105" value="Produk masuk katalog e-commerce" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1420" y="680" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-106" value="Produk khusus penugasan KOL" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1260" y="680" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-107" target="FPmNT6gqGk3pSWsqNjCq-108" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-107" value="Keduanya" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1580" y="680" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-121" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-108" target="FPmNT6gqGk3pSWsqNjCq-109" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-108" value="Tayang di katalog" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="770" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-109" target="FPmNT6gqGk3pSWsqNjCq-110" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-109" value="KOL filter berdasarkan kategori (misal)" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="860" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-123" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-110" target="FPmNT6gqGk3pSWsqNjCq-111" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-110" value="KOL buka detail produk" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="950" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-111" value="KOL klik buka bank konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="1040" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-124" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 30px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Alur KOL / Kreator &amp;amp; Fitur Bank Konten&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="1840" y="75" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-125" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-126" target="FPmNT6gqGk3pSWsqNjCq-128" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-126" value="KOL daftar di /daftar-kol" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="180" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-128" target="FPmNT6gqGk3pSWsqNjCq-130" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-128" value="Upload portofolio" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="270" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-129" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-130" target="FPmNT6gqGk3pSWsqNjCq-132" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-130" value="Superadmin review &amp;amp; tetapkan tier" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="360" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-132" target="FPmNT6gqGk3pSWsqNjCq-133" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-132" value="Akun KOL aktif &amp;amp; login" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="450" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-141" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-133" target="FPmNT6gqGk3pSWsqNjCq-134" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-133" value="Buka menu katalog &amp;amp; bank konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="540" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-142" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-134" target="FPmNT6gqGk3pSWsqNjCq-135" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-134" value="Pilih produk yg ingin dipromosikan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="630" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-143" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-135" target="FPmNT6gqGk3pSWsqNjCq-136" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-135" value="Masuk ke halaman bank konten produk" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="720" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-136" target="FPmNT6gqGk3pSWsqNjCq-137" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-136" value="Lihat dan download isi repository bank konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="810" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-145" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-137" target="FPmNT6gqGk3pSWsqNjCq-138" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-137" value="KOL mengedit video &amp;amp; membuat konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="900" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-146" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-138" target="FPmNT6gqGk3pSWsqNjCq-139" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-138" value="KOL memposting konten" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="990" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-139" value="KOL upload bukti" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1970" y="1080" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-147" value="&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 30px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 700; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; background-color: rgb(251, 251, 251); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Alur Superadmin, Verifikasi Bukti &amp;amp; Pencairan Komisi&lt;/span&gt;" style="text;whiteSpace=wrap;html=1;align=center;" parent="1" vertex="1">
+          <mxGeometry x="2360" y="75" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-178" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-151" target="FPmNT6gqGk3pSWsqNjCq-152" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-151" value="KOL kirim bukti tayang" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2490" y="180" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-165" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-152" target="FPmNT6gqGk3pSWsqNjCq-153" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-152" value="Notifikasi masuk ke superadmin" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2490" y="270" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-166" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-153" target="FPmNT6gqGk3pSWsqNjCq-154" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-153" value="Superadmin buka menu endorsement / bukti tayang" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2490" y="360" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-154" target="FPmNT6gqGk3pSWsqNjCq-155" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-168" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-154" target="FPmNT6gqGk3pSWsqNjCq-164" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-154" value="Cek kualits" style="rhombus;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2495" y="450" width="120" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-169" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-155" target="FPmNT6gqGk3pSWsqNjCq-156" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-155" value="Klik verifikasi / selesaikan endorsement" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="590" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-170" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-156" target="FPmNT6gqGk3pSWsqNjCq-157" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-156" value="Status berubah menjadi selesai" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="680" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-171" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-157" target="FPmNT6gqGk3pSWsqNjCq-158" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-157" value="Komisi masuk ke saldo KOL" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="770" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-172" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-158" target="FPmNT6gqGk3pSWsqNjCq-159" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-158" value="KOL membuka menu komisi saya &amp;amp; ajukan pencairan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="860" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-173" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-159" target="FPmNT6gqGk3pSWsqNjCq-160" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-159" value="Pengajuan masuk ke komisi &amp;amp; pencairan superadmin" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="950" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-174" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-160" target="FPmNT6gqGk3pSWsqNjCq-161" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-160" value="Superadmin melakukan transfer ke KOL" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="1040" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-175" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-161" target="FPmNT6gqGk3pSWsqNjCq-162" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-161" value="Superadmin upload bukti transfer &amp;amp; approve pencairan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="1130" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-176" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-162" target="FPmNT6gqGk3pSWsqNjCq-163" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-162" value="Status berubah menjadi dicairkan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="1222" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-163" value="Sistem mencatat transaksi ke audit trail &amp;amp; laporan keuangan" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="1320" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-177" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FPmNT6gqGk3pSWsqNjCq-164" target="FPmNT6gqGk3pSWsqNjCq-151" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2640" y="660" />
+              <mxPoint x="2730" y="660" />
+              <mxPoint x="2730" y="205" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-164" value="Tolak bukti / berikan catatan perbaikan ke KOL" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="2575" y="590" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-186" value="Disetujui" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="630" y="1030" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-187" value="Ditolak" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="797.5" y="1030" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-188" value="Sesuai brief" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="2405" y="535" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="FPmNT6gqGk3pSWsqNjCq-189" value="Tidak sesuai brief" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=default;" parent="1" vertex="1">
+          <mxGeometry x="2570" y="535" width="125" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

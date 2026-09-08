@@ -1,6 +1,7 @@
 @extends('superadmin.layouts.app')
 
-@section('title', 'Katalog Produk & Bank Konten — Superadmin')
+@section('title', 'Katalog Produk & Bank Konten | Superadmin Majapahit Influence')
+@section('page-title', 'Katalog Produk & Bank Konten')
 
 @section('content')
 <div class="space-y-6">
@@ -8,92 +9,85 @@
     {{-- Header --}}
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-black text-gray-900">Katalog Produk & Bank Konten</h1>
-            <p class="text-xs text-gray-500 mt-1">Kelola produk e-commerce, penetapan komisi terkunci 40%, dan materi Bank Konten.</p>
+            <h1 class="text-2xl font-extrabold text-[#421b13] font-heading">Katalog Produk & Bank Konten</h1>
+            <p class="text-xs text-[#765f58] mt-1">Kelola produk e-commerce mitra, penetapan komisi affiliate, dan materi Bank Konten promosi.</p>
         </div>
         <div class="flex items-center gap-3">
-            <a href="{{ route('catalog.index') }}" target="_blank" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 text-xs font-bold rounded-xl transition-colors inline-flex items-center gap-1.5">
+            <a href="{{ route('catalog.index') }}" target="_blank" rel="noopener noreferrer" class="btn-majapahit-secondary text-xs">
                 <i class="bi bi-eye"></i> Lihat Katalog Publik
             </a>
-            <a href="{{ route('superadmin.products.create') }}" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold rounded-xl shadow-sm transition-all inline-flex items-center gap-1.5">
+            <a href="{{ route('superadmin.products.create') }}" class="btn-majapahit-primary text-xs">
                 <i class="bi bi-plus-lg"></i> Tambah Produk Baru
             </a>
         </div>
     </div>
 
-    {{-- Flash Alerts --}}
-    @if (session('success'))
-        <div class="p-4 rounded-2xl bg-green-50 border border-green-200 text-green-800 text-xs font-bold flex items-center gap-2">
-            <i class="bi bi-check-circle-fill text-base text-green-600"></i> {{ session('success') }}
-        </div>
-    @endif
-
     {{-- Product Table Card --}}
-    <div class="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
+    <div class="bg-white rounded-2xl border border-[#421b13]/8 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
-                <thead class="bg-gray-50 border-b border-gray-100 text-gray-500 font-bold uppercase tracking-wider">
+                <thead class="bg-[#fbf7f4] border-b border-[#421b13]/8 text-[#765f58] font-heading font-bold uppercase tracking-wider text-[11px]">
                     <tr>
                         <th class="py-3.5 px-4">Produk</th>
                         <th class="py-3.5 px-4">Brand & Kategori</th>
                         <th class="py-3.5 px-4">Harga Retail</th>
-                        <th class="py-3.5 px-4">Komisi Locked</th>
+                        <th class="py-3.5 px-4">Komisi Terkunci</th>
                         <th class="py-3.5 px-4">Bank Konten</th>
                         <th class="py-3.5 px-4">Jalur Promosi</th>
                         <th class="py-3.5 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100">
+                <tbody class="divide-y divide-[#421b13]/6">
                     @forelse ($products as $prod)
-                        <tr class="hover:bg-gray-50/80 transition-colors">
+                        <tr class="hover:bg-[#fff9f4]/60 transition-colors">
                             <td class="py-4 px-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="{{ $prod->image_path ?: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=100&auto=format&fit=crop&q=80' }}" alt="{{ $prod->name }}" class="w-12 h-12 rounded-xl object-cover shadow-sm flex-shrink-0">
+                                    <img src="{{ $prod->image_path ?: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=100&auto=format&fit=crop&q=80' }}" alt="{{ $prod->name }}" class="w-12 h-12 rounded-xl object-cover shadow-xs border border-[#421b13]/8 shrink-0">
                                     <div>
-                                        <strong class="text-sm font-bold text-gray-900 block leading-snug">{{ $prod->name }}</strong>
-                                        <span class="text-[11px] text-gray-400">SKU: {{ $prod->sku ?: '-' }} | Stok: {{ $prod->stock }}</span>
+                                        <strong class="text-sm font-bold text-[#421b13] font-heading block leading-snug">{{ $prod->name }}</strong>
+                                        <span class="text-[11px] text-[#765f58]">SKU: {{ $prod->sku ?: '-' }} · Stok: {{ $prod->stock }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="py-4 px-4">
-                                <strong class="text-gray-900 block">{{ $prod->brand->name ?? 'Brand Partner' }}</strong>
-                                <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[10px] font-bold mt-1 inline-block">
+                                <strong class="text-[#421b13] font-heading block">{{ $prod->brand->name ?? 'Brand Partner' }}</strong>
+                                <span class="px-2 py-0.5 rounded-md bg-[#f7eee8] text-[#421b13] text-[10px] font-bold mt-1 inline-block border border-[#421b13]/10">
                                     {{ $prod->category->name ?? 'Umum' }}
                                 </span>
                             </td>
-                            <td class="py-4 px-4 font-black text-gray-900">
+                            <td class="py-4 px-4 font-bold text-[#421b13] font-heading">
                                 {{ $prod->formatted_price }}
                             </td>
                             <td class="py-4 px-4">
-                                <span class="px-2.5 py-1 rounded-lg bg-green-50 text-green-700 font-extrabold text-[11px] border border-green-200 block w-max">
+                                <span class="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 font-extrabold text-[11px] border border-emerald-200 block w-max">
                                     {{ number_format($prod->locked_commission_percent, 0) }}% ({{ $prod->formatted_commission }})
                                 </span>
                             </td>
                             <td class="py-4 px-4">
-                                <span class="px-2 py-1 rounded-lg bg-amber-50 text-amber-800 font-bold text-[11px]">
+                                <span class="px-2.5 py-1 rounded-lg bg-[#d57028]/10 text-[#d57028] font-bold text-[11px] border border-[#d57028]/20">
                                     <i class="bi bi-folder2-open mr-1"></i> {{ $prod->contentBanks->count() }} Aset
                                 </span>
                             </td>
                             <td class="py-4 px-4">
-                                <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase
-                                    @if ($prod->promotion_pathway === 'both') bg-purple-50 text-purple-700
-                                    @elseif ($prod->promotion_pathway === 'marketplace') bg-green-50 text-green-700
-                                    @else bg-blue-50 text-blue-700 @endif">
+                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider
+                                    @if ($prod->promotion_pathway === 'both') bg-[#fec200]/20 text-[#b86021] border border-[#fec200]/50
+                                    @elseif ($prod->promotion_pathway === 'marketplace') bg-emerald-50 text-emerald-700 border border-emerald-200
+                                    @else bg-[#d57028]/10 text-[#d57028] border border-[#d57028]/25 @endif">
                                     {{ $prod->promotion_pathway }}
                                 </span>
                             </td>
-                            <td class="py-4 px-4 text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" class="p-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors" title="Lihat Halaman">
+                            <td class="py-4 px-4 text-center whitespace-nowrap">
+                                <div class="flex items-center justify-center gap-1.5">
+                                    <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-[#f7eee8] hover:bg-[#f7eee8]/80 text-[#421b13] transition" title="Lihat Halaman Katalog">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-1.5 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 transition-colors" title="Edit">
+                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-2 rounded-lg bg-[#d57028]/10 hover:bg-[#d57028]/20 text-[#d57028] transition" title="Edit Produk">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <form action="{{ route('superadmin.products.destroy', $prod->id) }}" method="POST" class="inline" onsubmit="return confirm('Hapus produk ini?');">
+                                    <form action="{{ route('superadmin.products.destroy', $prod->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="p-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 transition-colors" title="Hapus">
+                                        <button type="submit" class="p-2 rounded-lg bg-[#d5282d]/10 hover:bg-[#d5282d]/20 text-[#d5282d] transition" title="Hapus Produk">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
@@ -102,16 +96,23 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="py-8 text-center text-gray-400">Belum ada produk di katalog.</td>
+                            <td colspan="7" class="py-12 text-center text-[#765f58]">
+                                <div class="flex size-12 mx-auto items-center justify-center rounded-2xl bg-[#f7eee8] text-[#765f58] mb-3">
+                                    <i class="bi bi-box-seam text-xl"></i>
+                                </div>
+                                <p class="font-medium text-sm">Belum ada produk di katalog.</p>
+                            </td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
 
-        <div class="p-4 border-t border-gray-100">
-            {{ $products->links() }}
-        </div>
+        @if ($products->hasPages())
+            <div class="p-4 border-t border-[#421b13]/8">
+                {{ $products->links() }}
+            </div>
+        @endif
     </div>
 
 </div>

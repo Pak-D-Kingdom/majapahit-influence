@@ -11,6 +11,7 @@ use App\Models\ContentProof;
 use App\Models\Endorsement;
 use App\Models\KolProfile;
 use App\Models\KolRateCard;
+use App\Models\KolRegistration;
 use App\Models\KolSocialMedia;
 use App\Models\Niche;
 use App\Models\Notification;
@@ -18,6 +19,7 @@ use App\Models\Role;
 use App\Models\Tier;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -43,7 +45,7 @@ class DemoDataSeeder extends Seeder
         });
     }
 
-    private function seedKols(Role $kolRole, $tiers, $niches): \Illuminate\Support\Collection
+    private function seedKols(Role $kolRole, $tiers, $niches): Collection
     {
         $data = [
             ['name' => 'Dimas Lifestyle', 'email' => 'kol@majapahit.com', 'nickname' => 'Dimas', 'city' => 'Jakarta Selatan', 'tier' => 'Micro', 'followers' => 75000, 'platform' => 'instagram', 'username' => '@dimas_lifestyle', 'niches' => ['Lifestyle', 'Fashion & Style'], 'status' => 'aktif'],
@@ -63,11 +65,12 @@ class DemoDataSeeder extends Seeder
             $profile->niches()->sync($this->idsFor($item['niches'], $niches));
             KolSocialMedia::updateOrCreate(['kol_profile_id' => $profile->id, 'platform' => $item['platform']], ['username' => $item['username'], 'profile_url' => 'https://'.$item['platform'].'.com/'.$item['username'], 'followers_count' => $item['followers'], 'engagement_rate' => 3.5 + ($index * 0.4)]);
             KolRateCard::updateOrCreate(['kol_profile_id' => $profile->id, 'platform' => $item['platform'], 'content_type' => 'video'], ['rate' => 1500000 + ($index * 500000)]);
+
             return [$profile->id => ['profile' => $profile, 'user' => $user]];
         });
     }
 
-    private function seedBrands(): \Illuminate\Support\Collection
+    private function seedBrands(): Collection
     {
         return collect([
             ['name' => 'Kopi Nusantara', 'industry' => 'Food & Beverage', 'pic_name' => 'Arif Pranoto'],
@@ -78,22 +81,25 @@ class DemoDataSeeder extends Seeder
         ])->mapWithKeys(fn (array $item): array => [$item['name'] => Brand::updateOrCreate(['name' => $item['name']], $item + ['is_active' => true])]);
     }
 
-    private function seedCampaigns($brands, User $superadmin): \Illuminate\Support\Collection
+    private function seedCampaigns($brands, User $superadmin): Collection
     {
         $names = ['Ramadan Ceria', 'Glow Up Everyday', 'Move Better', 'Rumah Nyaman', 'Tech for Everyone', 'Merdeka Berkreasi'];
+
         return collect($names)->mapWithKeys(function (string $name, int $index) use ($brands, $superadmin): array {
             $brand = $brands->values()->get($index % $brands->count());
             $campaign = Campaign::updateOrCreate(['name' => $name], ['brand_id' => $brand->id, 'description' => 'Campaign demo untuk kebutuhan validasi dashboard.', 'start_date' => now()->subMonths(2)->startOfMonth()->toDateString(), 'end_date' => now()->addMonths(1)->endOfMonth()->toDateString(), 'budget' => 25000000 + ($index * 5000000), 'content_requirements' => 'Buat konten sesuai brief brand dan cantumkan CTA.', 'status' => $index === 5 ? 'draft' : ($index === 4 ? 'selesai' : 'aktif'), 'created_by' => $superadmin->id]);
+
             return [$campaign->id => $campaign];
         });
     }
 
-    private function seedEndorsements($campaigns, $profiles, User $superadmin): \Illuminate\Support\Collection
+    private function seedEndorsements($campaigns, $profiles, User $superadmin): Collection
     {
         return collect(range(0, 11))->map(function (int $index) use ($campaigns, $profiles, $superadmin): Endorsement {
             $profile = $profiles->values()->get($index % $profiles->count())['profile'];
             $campaign = $campaigns->values()->get($index % $campaigns->count());
             $statuses = ['assigned', 'in_progress', 'content_submitted', 'content_approved', 'selesai'];
+
             return Endorsement::updateOrCreate(['campaign_id' => $campaign->id, 'kol_profile_id' => $profile->id, 'content_type' => $index % 2 ? 'video' : 'reels'], ['fee' => 3500000 + ($index * 350000), 'deadline' => now()->addDays($index < 4 ? $index + 2 : $index + 14)->toDateString(), 'start_date' => now()->subDays($index + 3)->toDateString(), 'status' => $statuses[$index % count($statuses)], 'assigned_by' => $superadmin->id]);
         });
     }
@@ -112,7 +118,7 @@ class DemoDataSeeder extends Seeder
     private function seedRegistrations($niches): void
     {
         foreach ([['REG-DEMO-0001', 'Gita Prameswari', 'gita@example.com', 'Lifestyle'], ['REG-DEMO-0002', 'Rio Creative', 'rio@example.com', 'Entertainment & Comedy'], ['REG-DEMO-0003', 'Tari Beauty', 'tari@example.com', 'Beauty & Skincare']] as [$number, $name, $email, $niche]) {
-            \App\Models\KolRegistration::updateOrCreate(['registration_number' => $number], ['full_name' => $name, 'email' => $email, 'phone' => '081234567890', 'city' => 'Jakarta', 'niches' => [$niche], 'social_media' => ['platform' => 'instagram', 'username' => strtolower(str_replace(' ', '', $name))], 'join_reason' => 'Ingin berkembang bersama Majapahit Influence.', 'status' => 'pending_review']);
+            KolRegistration::updateOrCreate(['registration_number' => $number], ['full_name' => $name, 'email' => $email, 'phone' => '081234567890', 'city' => 'Jakarta', 'niches' => [$niche], 'social_media' => ['platform' => 'instagram', 'username' => strtolower(str_replace(' ', '', $name))], 'join_reason' => 'Ingin berkembang bersama Majapahit Influence.', 'status' => 'pending_review']);
         }
     }
 

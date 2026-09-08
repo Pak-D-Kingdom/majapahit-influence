@@ -13,8 +13,7 @@ class DeadlineReminderNotification extends Notification
         public string $endorsementTitle,
         public string $deadline,
         public int $daysRemaining,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {

@@ -32,4 +32,9 @@ class CommissionApproval extends Model
     {
         return $this->belongsTo(User::class, 'performed_by');
     }
+
+    public function reviewer(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'performed_by');
+    }
 }

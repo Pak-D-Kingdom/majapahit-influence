@@ -28,7 +28,7 @@ class StoreContentProofRequest extends FormRequest
      */
     public function passedValidation(): void
     {
-        if ($this->has('post_date') && !$this->has('posted_at')) {
+        if ($this->has('post_date') && ! $this->has('posted_at')) {
             $this->merge(['posted_at' => $this->input('post_date')]);
         }
     }

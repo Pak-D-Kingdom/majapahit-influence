@@ -16,6 +16,7 @@ class KolRegistration extends Model
         'registration_number',
         'full_name',
         'email',
+        'password',
         'phone',
         'city',
         'niches',
@@ -75,6 +76,6 @@ class KolRegistration extends Model
             $sequence = '0001';
         }
 
-        return $prefix . $sequence;
+        return $prefix.$sequence;
     }
 }

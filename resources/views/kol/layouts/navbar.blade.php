@@ -1,6 +1,6 @@
 <header class="sticky top-0 z-20 flex h-20 items-center justify-between border-b border-[#421b13]/8 bg-[#fff9f4]/90 px-4 backdrop-blur-md transition sm:px-6 lg:px-8">
     <div class="flex items-center gap-3">
-        <button id="kol-sidebar-toggle" type="button" class="rounded-xl p-2 text-[#765f58] hover:bg-[#f7eee8] hover:text-[#421b13] transition lg:hidden" aria-label="Buka menu">
+        <button id="kol-sidebar-toggle" type="button" class="rounded-xl p-2 text-[#765f58] hover:bg-[#f7eee8] hover:text-[#421b13] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] lg:hidden" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="kol-dashboard-sidebar">
             <i class="bi bi-list text-2xl"></i>
         </button>
         <div>
@@ -24,13 +24,6 @@
             <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#d57028] to-[#d5282d] text-sm font-bold text-white shadow-sm shadow-[#d57028]/25 font-heading">
                 {{ strtoupper(substr(auth()->user()->name ?? 'K', 0, 2)) }}
             </div>
-            <form method="POST" action="{{ route('logout') }}" class="inline ml-1">
-                @csrf
-                <button type="submit" class="inline-flex items-center gap-1 rounded-xl border border-[#421b13]/15 bg-white px-2.5 py-1.5 text-xs font-semibold text-[#d5282d] hover:bg-rose-50 transition" title="Logout">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span class="hidden sm:inline">Keluar</span>
-                </button>
-            </form>
         </div>
     </div>
 </header>

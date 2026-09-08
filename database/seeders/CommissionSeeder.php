@@ -20,7 +20,7 @@ class CommissionSeeder extends Seeder
         $admin = User::first();
         $kolProfile = KolProfile::first();
 
-        if (!$kolProfile) {
+        if (! $kolProfile) {
             $user = User::factory()->create(['name' => 'Dimas Influencer', 'email' => 'dimas@example.com']);
             $kolProfile = KolProfile::create([
                 'user_id' => $user->id,

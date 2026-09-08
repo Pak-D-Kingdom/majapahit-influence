@@ -1,4 +1,112 @@
 @extends('superadmin.layouts.app')
-@section('title', 'Campaign')
+
+@section('title', 'Daftar Campaign | Superadmin')
 @section('page-title', 'Campaign')
-@section('content')<div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><p class="text-sm text-slate-500">Kelola campaign dan assignment kreator.</p><h2 class="mt-1 text-2xl font-bold text-slate-950">Campaign</h2></div><a href="{{ route('superadmin.campaigns.create') }}" class="rounded-xl bg-slate-950 px-4 py-2.5 text-sm font-semibold text-white">Tambah campaign</a></div><form class="mb-5 flex gap-2 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><select name="status" class="rounded-xl border-slate-200 text-sm"><option value="">Semua status</option>@foreach(['draft'=>'Draft','aktif'=>'Aktif','selesai'=>'Selesai'] as $v=>$l)<option value="{{ $v }}" @selected(request('status')===$v)>{{ $l }}</option>@endforeach</select><button class="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white">Filter</button></form><div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"><div class="overflow-x-auto"><table class="w-full min-w-[700px] text-left text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-400"><tr><th class="px-5 py-3">Campaign</th><th class="px-5 py-3">Brand</th><th class="px-5 py-3">Periode</th><th class="px-5 py-3">Endorsement</th><th class="px-5 py-3">Status</th></tr></thead><tbody class="divide-y divide-slate-100">@forelse($campaigns as $campaign)<tr class="hover:bg-slate-50"><td class="px-5 py-4"><a href="{{ route('superadmin.campaigns.show',$campaign) }}" class="font-semibold text-slate-800 hover:text-indigo-600">{{ $campaign->name }}</a><p class="text-xs text-slate-400">Rp{{ number_format($campaign->budget,0,',','.') }}</p></td><td class="px-5 py-4 text-slate-500">{{ $campaign->brand->name }}</td><td class="px-5 py-4 text-slate-500">{{ $campaign->start_date?->format('d M Y') ?: '-' }} — {{ $campaign->end_date?->format('d M Y') ?: '-' }}</td><td class="px-5 py-4 text-slate-500">{{ $campaign->endorsements_count }}</td><td class="px-5 py-4"><x-dashboard.status-badge :status="$campaign->status"/></td></tr>@empty<tr><td colspan="5" class="px-5 py-16 text-center text-slate-400">Belum ada campaign.</td></tr>@endforelse</tbody></table></div><div class="border-t border-slate-100 px-5 py-4">{{ $campaigns->links() }}</div></div>@endsection
+
+@section('content')
+<div class="space-y-6">
+    {{-- Header --}}
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+            <p class="text-xs font-bold uppercase tracking-wider text-[#d57028] font-heading">Operasional Agensi</p>
+            <h2 class="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-[#421b13] font-heading">Daftar Campaign</h2>
+            <p class="mt-1 text-xs text-[#765f58]">Pantau seluruh program promosi brand dan penugasan kreator.</p>
+        </div>
+        <a href="{{ route('superadmin.campaigns.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#d57028] to-[#b86021] px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-[#b86021] hover:to-[#934510] font-heading">
+            <i class="bi bi-plus-lg"></i>
+            <span>Tambah Campaign</span>
+        </a>
+    </div>
+
+    {{-- Filter Bar --}}
+    <form method="GET" class="flex flex-wrap items-center gap-3 rounded-2xl border border-[#421b13]/8 bg-white p-4 shadow-xs">
+        <div class="w-56">
+            <select name="status" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                <option value="">Semua Status Campaign</option>
+                @foreach (['draft' => 'Draft', 'aktif' => 'Aktif', 'selesai' => 'Selesai'] as $key => $label)
+                    <option value="{{ $key }}" @selected(request('status') === $key)>{{ $label }}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" class="rounded-xl bg-[#421b13] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#190906] font-heading">
+            Filter
+        </button>
+        <a href="{{ route('superadmin.campaigns.index') }}" class="rounded-xl border border-[#421b13]/15 px-4 py-2 text-xs font-bold text-[#765f58] transition hover:bg-[#f7eee8] font-heading">
+            Reset
+        </a>
+    </form>
+
+    {{-- Campaigns Table Card --}}
+    <div class="overflow-hidden rounded-2xl border border-[#421b13]/8 bg-white shadow-xs">
+        <div class="overflow-x-auto">
+            <table class="w-full min-w-[750px] text-left text-sm">
+                <thead class="border-y border-[#421b13]/10 bg-[#fbf7f4] text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">
+                    <tr>
+                        <th class="px-5 py-3.5">Campaign & Budget</th>
+                        <th class="px-5 py-3.5">Brand Partner</th>
+                        <th class="px-5 py-3.5">Periode</th>
+                        <th class="px-5 py-3.5">Assignment</th>
+                        <th class="px-5 py-3.5">Status</th>
+                        <th class="px-5 py-3.5 text-right">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#421b13]/5">
+                    @forelse ($campaigns as $campaign)
+                        <tr class="transition hover:bg-[#f7eee8]/40">
+                            <td class="px-5 py-4">
+                                <a href="{{ route('superadmin.campaigns.show', $campaign) }}" class="font-extrabold text-[#421b13] hover:text-[#d57028] font-heading">
+                                    {{ $campaign->name }}
+                                </a>
+                                <p class="mt-0.5 text-xs font-semibold text-[#d57028]">
+                                    Rp{{ number_format($campaign->budget, 0, ',', '.') }}
+                                </p>
+                            </td>
+                            <td class="px-5 py-4 text-xs font-semibold text-[#421b13]">
+                                {{ $campaign->brand->name }}
+                            </td>
+                            <td class="px-5 py-4 text-xs text-[#765f58]">
+                                {{ $campaign->start_date ? $campaign->start_date->format('d M Y') : '-' }} s/d {{ $campaign->end_date ? $campaign->end_date->format('d M Y') : '-' }}
+                            </td>
+                            <td class="px-5 py-4">
+                                <span class="inline-flex items-center gap-1 text-xs font-bold text-[#421b13] font-heading">
+                                    <i class="bi bi-people text-[#d57028]"></i>
+                                    {{ $campaign->endorsements_count }} KOL
+                                </span>
+                            </td>
+                            <td class="px-5 py-4">
+                                <x-dashboard.status-badge :status="$campaign->status" />
+                            </td>
+                            <td class="px-5 py-4 text-right">
+                                <a href="{{ route('superadmin.campaigns.show', $campaign) }}" class="inline-flex items-center gap-1 text-xs font-bold text-[#d57028] hover:text-[#b86021] font-heading">
+                                    <span>Kelola</span>
+                                    <i class="bi bi-arrow-right text-[10px]"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-5 py-16 text-center">
+                                <i class="bi bi-megaphone mb-3 block text-3xl text-[#765f58]/30"></i>
+                                <p class="text-sm font-bold text-[#421b13] font-heading">Belum Ada Campaign</p>
+                                <p class="mt-1 text-xs text-[#765f58]">Mulai buat campaign baru dan tugaskan kreator pilihan Anda.</p>
+                                <div class="mt-4">
+                                    <a href="{{ route('superadmin.campaigns.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-[#d57028] px-4 py-2 text-xs font-bold text-white shadow-xs hover:bg-[#b86021] font-heading">
+                                        <i class="bi bi-plus-lg"></i>
+                                        <span>Buat Campaign Pertama</span>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        @if ($campaigns->hasPages())
+            <div class="border-t border-[#421b13]/5 p-4">
+                {{ $campaigns->links() }}
+            </div>
+        @endif
+    </div>
+</div>
+@endsection

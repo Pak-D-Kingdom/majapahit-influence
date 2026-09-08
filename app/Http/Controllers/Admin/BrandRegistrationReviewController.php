@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\BrandRegistration;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -63,17 +66,44 @@ class BrandRegistrationReviewController extends Controller
      */
     public function approve(Request $request, BrandRegistration $brandRegistration): Response|RedirectResponse
     {
+        $user = $request->user();
+        abort_unless($user && $user->isSuperadmin(), 403, 'Unauthorized.');
+
         $brandRegistration->update([
             'status' => 'approved',
-            'reviewed_by' => auth()->id(),
+            'reviewed_by' => $user->id,
             'reviewed_at' => now(),
             'admin_notes' => $request->input('admin_notes', 'Disetujui untuk kemitraan.'),
         ]);
+
+        // Create a User account for the Brand
+        $brandUser = User::where('email', $brandRegistration->pic_email)->first();
+        if (! $brandUser) {
+            $brandUser = User::create([
+                'email' => $brandRegistration->pic_email,
+                'name' => $brandRegistration->pic_name,
+                'is_active' => true,
+                'password' => Str::random(16),
+            ]);
+
+            // Copy the exact hash to avoid double hashing by the User model's `hashed` cast
+            $rawHash = $brandRegistration->getRawOriginal('password');
+            if ($rawHash) {
+                DB::table('users')
+                    ->where('id', $brandUser->id)
+                    ->update(['password' => $rawHash]);
+            }
+        }
+
+        if (! $brandUser->hasRole('brand')) {
+            $brandUser->assignRole('brand');
+        }
 
         // Automatically create official Brand record if not already exists
         $brand = Brand::firstOrCreate(
             ['name' => $brandRegistration->brand_name],
             [
+                'user_id' => $brandUser->id,
                 'industry' => $brandRegistration->industry_category,
                 'pic_name' => $brandRegistration->pic_name,
                 'pic_title' => $brandRegistration->pic_title,
@@ -83,6 +113,11 @@ class BrandRegistrationReviewController extends Controller
                 'is_active' => true,
             ]
         );
+
+        // Ensure user_id is updated if brand already existed but had no user_id
+        if (! $brand->user_id) {
+            $brand->update(['user_id' => $brandUser->id]);
+        }
 
         if ($request->wantsJson()) {
             return response()->json([
@@ -102,13 +137,16 @@ class BrandRegistrationReviewController extends Controller
      */
     public function reject(Request $request, BrandRegistration $brandRegistration): Response|RedirectResponse
     {
+        $user = $request->user();
+        abort_unless($user && $user->isSuperadmin(), 403, 'Unauthorized.');
+
         $request->validate([
             'admin_notes' => ['required', 'string', 'max:1000'],
         ]);
 
         $brandRegistration->update([
             'status' => 'rejected',
-            'reviewed_by' => auth()->id(),
+            'reviewed_by' => $user->id,
             'reviewed_at' => now(),
             'admin_notes' => $request->input('admin_notes'),
         ]);

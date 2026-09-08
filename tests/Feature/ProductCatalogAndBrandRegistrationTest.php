@@ -44,6 +44,8 @@ class ProductCatalogAndBrandRegistrationTest extends TestCase
             'pic_title' => 'CEO',
             'pic_email' => 'pic@brandtest.com',
             'pic_phone' => '081234567899',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
             'service_need' => 'both',
             'notes' => 'Catatan test kebutuhan maklon',
         ]);

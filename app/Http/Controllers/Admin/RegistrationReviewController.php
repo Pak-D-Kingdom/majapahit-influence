@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\ApproveRegistrationRequest;
 use App\Http\Requests\Admin\RejectRegistrationRequest;
 use App\Models\KolRegistration;
 use App\Models\Tier;
-use App\Models\User;
 use App\Services\KolRegistrationService;
 use Illuminate\Http\Request;
 
@@ -107,7 +106,9 @@ class RegistrationReviewController extends Controller
         }
 
         try {
-            $superadmin = auth()->user() ?? User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $superadmin = $request->user();
+            abort_unless($superadmin, 401, 'Unauthenticated.');
+            abort_unless($superadmin->isSuperadmin(), 403, 'Unauthorized.');
             $user = $this->service->approve($registration, $superadmin, $data);
 
             if ($request->wantsJson()) {
@@ -135,7 +136,9 @@ class RegistrationReviewController extends Controller
         }
 
         try {
-            $superadmin = auth()->user() ?? User::firstOrCreate(['email' => 'superadmin@majapahit.com'], ['name' => 'Superadmin', 'password' => bcrypt('password')]);
+            $superadmin = $request->user();
+            abort_unless($superadmin, 401, 'Unauthenticated.');
+            abort_unless($superadmin->isSuperadmin(), 403, 'Unauthorized.');
             $this->service->reject($registration, $superadmin, $reason);
 
             if ($request->wantsJson()) {

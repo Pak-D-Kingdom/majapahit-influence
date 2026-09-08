@@ -8,9 +8,7 @@ use App\Models\Commission;
 use App\Models\ContentProof;
 use App\Models\ContentProofFile;
 use App\Models\Endorsement;
-use App\Models\KolProfile;
 use App\Models\Notification;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +28,8 @@ class EndorsementService
     /**
      * Submit content proof (by KOL).
      *
-     * @param array<string, mixed> $data
-     * @param array<UploadedFile> $files
+     * @param  array<string, mixed>  $data
+     * @param  array<UploadedFile>  $files
      */
     public function submitProof(Endorsement $endorsement, array $data, array $files = []): ContentProof
     {
@@ -70,19 +68,13 @@ class EndorsementService
                 newValues: ['endorsement_status' => 'content_submitted', 'proof_id' => $proof->id]
             );
 
-            // Notify Admins
-            $adminRole = Role::where('name', 'admin')->first();
-            if ($adminRole) {
-                foreach ($adminRole->users as $admin) {
-                    Notification::create([
-                        'user_id' => $admin->id,
-                        'type' => 'content_submitted',
-                        'title' => 'Bukti Konten Baru Diserahkan',
-                        'body' => "KOL {$endorsement->kolProfile?->nickname} telah mengunggah bukti konten untuk campaign '{$endorsement->campaign?->name}'.",
-                        'target_url' => "/superadmin/endorsements/{$endorsement->id}",
-                    ]);
-                }
-            }
+            // Notify Admins & Superadmins
+            app(NotificationService::class)->notifySuperadmins(
+                'content_submitted',
+                'Bukti Konten Baru Diserahkan',
+                "KOL {$endorsement->kolProfile?->nickname} telah mengunggah bukti konten untuk campaign '{$endorsement->campaign?->name}'.",
+                route('superadmin.endorsements.show', $endorsement)
+            );
 
             return $proof;
         });
@@ -95,7 +87,7 @@ class EndorsementService
     {
         $proof = $target instanceof ContentProof ? $target : $target->latestContentProof;
 
-        if (!$proof) {
+        if (! $proof) {
             throw ValidationException::withMessages([
                 'proof' => ['Bukti konten tidak ditemukan pada endorsement ini.'],
             ]);
@@ -120,14 +112,14 @@ class EndorsementService
                 ]);
 
                 // In-app Notification for KOL
-                if ($endorsement->kolProfile?->user_id) {
-                    Notification::create([
-                        'user_id' => $endorsement->kolProfile->user_id,
-                        'type' => 'content_approved',
-                        'title' => 'Bukti Konten Disetujui',
-                        'body' => "Bukti konten untuk campaign '{$endorsement->campaign?->name}' telah disetujui oleh Admin.",
-                        'target_url' => "/kol/endorsements/{$endorsement->id}",
-                    ]);
+                if ($endorsement->kolProfile?->user) {
+                    app(NotificationService::class)->send(
+                        $endorsement->kolProfile->user,
+                        'content_approved',
+                        'Bukti Konten Disetujui',
+                        "Bukti konten untuk campaign '{$endorsement->campaign?->name}' telah disetujui oleh Admin.",
+                        route('kol.endorsements.show', $endorsement)
+                    );
                 }
 
                 AuditLog::log(
@@ -150,14 +142,14 @@ class EndorsementService
                 ]);
 
                 // In-app Notification for KOL
-                if ($endorsement->kolProfile?->user_id) {
-                    Notification::create([
-                        'user_id' => $endorsement->kolProfile->user_id,
-                        'type' => 'content_rejected',
-                        'title' => 'Revisi Bukti Konten Diperlukan',
-                        'body' => "Bukti konten untuk campaign '{$endorsement->campaign?->name}' memerlukan revisi: {$notes}",
-                        'target_url' => "/kol/endorsements/{$endorsement->id}",
-                    ]);
+                if ($endorsement->kolProfile?->user) {
+                    app(NotificationService::class)->send(
+                        $endorsement->kolProfile->user,
+                        'content_rejected',
+                        'Revisi Bukti Konten Diperlukan',
+                        "Bukti konten untuk campaign '{$endorsement->campaign?->name}' memerlukan revisi: {$notes}",
+                        route('kol.endorsements.show', $endorsement)
+                    );
                 }
 
                 AuditLog::log(
@@ -187,20 +179,19 @@ class EndorsementService
             ]);
 
             // Auto-calculate Commission (BR1) if not existing
-            if (!$endorsement->commission) {
-                $commission = Commission::calculateCommission($endorsement);
-                $commission->save();
+            if (! $endorsement->commission) {
+                app(CommissionService::class)->calculateAndCreate($endorsement);
             }
 
             // In-app Notification for KOL
-            if ($endorsement->kolProfile?->user_id) {
-                Notification::create([
-                    'user_id' => $endorsement->kolProfile->user_id,
-                    'type' => 'endorsement_completed',
-                    'title' => 'Endorsement Selesai',
-                    'body' => "Endorsement untuk campaign '{$endorsement->campaign?->name}' telah selesai. Komisi telah dicatat.",
-                    'target_url' => "/kol/endorsements/{$endorsement->id}",
-                ]);
+            if ($endorsement->kolProfile?->user) {
+                app(NotificationService::class)->send(
+                    $endorsement->kolProfile->user,
+                    'endorsement_completed',
+                    'Endorsement Selesai',
+                    "Endorsement untuk campaign '{$endorsement->campaign?->name}' telah selesai. Komisi telah dicatat.",
+                    route('kol.endorsements.show', $endorsement)
+                );
             }
 
             AuditLog::log(
@@ -224,7 +215,7 @@ class EndorsementService
             $oldStatus = $endorsement->status;
             $endorsement->update([
                 'status' => 'draft',
-                'notes' => $reason ? ($endorsement->notes . "\n[Dibatalkan]: " . $reason) : $endorsement->notes,
+                'notes' => $reason ? ($endorsement->notes."\n[Dibatalkan]: ".$reason) : $endorsement->notes,
             ]);
 
             AuditLog::log(

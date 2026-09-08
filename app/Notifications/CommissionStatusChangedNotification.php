@@ -13,8 +13,7 @@ class CommissionStatusChangedNotification extends Notification
         public string $endorsementTitle,
         public string $status,
         public ?string $note = null,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {

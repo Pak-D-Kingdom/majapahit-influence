@@ -131,12 +131,31 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user is Brand.
+     */
+    public function isBrand(): bool
+    {
+        return $this->hasRole('brand');
+    }
+
+    /**
+     * The Brand profile associated with the user.
+     */
+    public function brand(): HasOne
+    {
+        return $this->hasOne(Brand::class);
+    }
+
+    /**
      * Assign role to user.
      */
     public function assignRole(string|Role $role): void
     {
         if (is_string($role)) {
-            $roleModel = Role::where('name', $role)->firstOrFail();
+            $roleModel = Role::firstOrCreate(
+                ['name' => $role],
+                ['display_name' => ucfirst($role)]
+            );
             $this->roles()->syncWithoutDetaching([$roleModel->id]);
         } else {
             $this->roles()->syncWithoutDetaching([$role->id]);

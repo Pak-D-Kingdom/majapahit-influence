@@ -12,8 +12,7 @@ class ProofSubmittedNotification extends Notification
     public function __construct(
         public string $kolName,
         public string $endorsementTitle,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {

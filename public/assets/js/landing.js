@@ -36,20 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         menuToggle.addEventListener('click', () => {
 
-            mobileNav.classList.toggle('open');
+            const isCurrentlyOpen = mobileNav.classList.contains('open');
 
-            const icon = menuToggle.querySelector('i');
+            if (isCurrentlyOpen) {
+                mobileNav.classList.remove('open');
+                mobileNav.classList.add('hidden');
+                menuToggle.setAttribute('aria-expanded', 'false');
 
-            if (mobileNav.classList.contains('open')) {
-
-                icon.classList.remove('bi-list');
-                icon.classList.add('bi-x');
-
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('bi-x-lg', 'bi-x');
+                    icon.classList.add('bi-list');
+                }
             } else {
+                mobileNav.classList.add('open');
+                mobileNav.classList.remove('hidden');
+                menuToggle.setAttribute('aria-expanded', 'true');
 
-                icon.classList.remove('bi-x');
-                icon.classList.add('bi-list');
-
+                const icon = menuToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('bi-list');
+                    icon.classList.add('bi-x-lg');
+                }
             }
 
         });
@@ -64,11 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
 
                 mobileNav.classList.remove('open');
+                mobileNav.classList.add('hidden');
+                menuToggle.setAttribute('aria-expanded', 'false');
 
                 const icon = menuToggle.querySelector('i');
-
-                icon.classList.remove('bi-x');
-                icon.classList.add('bi-list');
+                if (icon) {
+                    icon.classList.remove('bi-x-lg', 'bi-x');
+                    icon.classList.add('bi-list');
+                }
 
             });
 
