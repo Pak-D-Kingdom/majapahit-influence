@@ -201,43 +201,14 @@ class ProductCatalogSeeder extends Seeder
         foreach ($products as $pData) {
             $prod = Product::updateOrCreate(['slug' => $pData['slug']], $pData);
 
-            // 4. Seed Content Bank for each product
+            // 4. Seed Content Bank (Google Drive Master Folder) for each product
             ContentBank::firstOrCreate(
-                ['product_id' => $prod->id, 'title' => 'Foto Produk HD Studio & Lifestyle'],
-                [
-                    'brand_id' => $prod->brand_id,
-                    'asset_type' => 'image',
-                    'external_url' => $prod->image_path,
-                    'content_text' => 'Koleksi 10 foto resolusi 4K untuk feed Instagram dan katalog TikTok Shop.',
-                ]
-            );
-
-            ContentBank::firstOrCreate(
-                ['product_id' => $prod->id, 'title' => 'Video B-Roll & Footage Unboxing'],
-                [
-                    'brand_id' => $prod->brand_id,
-                    'asset_type' => 'video',
-                    'external_url' => 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
-                    'content_text' => 'Video potongan b-roll tekstur produk dan unboxing durasi 15-30 detik resolusi 1080x1920 (Vertical 9:16).',
-                ]
-            );
-
-            ContentBank::firstOrCreate(
-                ['product_id' => $prod->id, 'title' => 'Script Copywriting & Talking Points'],
-                [
-                    'brand_id' => $prod->brand_id,
-                    'asset_type' => 'copywriting',
-                    'content_text' => "🔥 HOOK:\n\"Jangan lewatkan rahasia kulit glowing / camilan favorit ini!\"\n\n💡 USP PRODUK:\n- 100% Original & Bersertifikasi\n- Hasil nyata dalam 14 hari / rasa gurih nagih\n- Garansi uang kembali jika barang cacat\n\n📌 CALL TO ACTION (CTA):\n\"Klik keranjang kuning / link di bio untuk checkout mumpung promo diskon hari ini!\"",
-                ]
-            );
-
-            ContentBank::firstOrCreate(
-                ['product_id' => $prod->id, 'title' => 'Folder Google Drive Aset Lengkap'],
+                ['product_id' => $prod->id, 'title' => 'Folder Master Google Drive - '.$prod->name],
                 [
                     'brand_id' => $prod->brand_id,
                     'asset_type' => 'drive_link',
-                    'external_url' => 'https://drive.google.com/drive/folders/sample-brand-assets',
-                    'content_text' => 'Berisi master file PSD banner, audio jingle, logo transparent PNG, dan video testimoni konsumen.',
+                    'external_url' => 'https://drive.google.com/drive/folders/sample-'.$prod->slug,
+                    'content_text' => "1. Video mentah B-Roll & unboxing 4K (Vertical 9:16)\n2. Foto produk HD Studio & PNG transparan\n3. Naskah script copywriting & talking points FYP TikTok\n4. Dokumen klaim manfaat resmi & sertifikasi BPOM/Halal",
                 ]
             );
         }

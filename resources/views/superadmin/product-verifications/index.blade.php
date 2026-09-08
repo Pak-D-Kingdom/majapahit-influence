@@ -30,13 +30,7 @@
                 <tr class="hover:bg-slate-50/50 transition">
                     <td class="px-6 py-4">
                         <div class="flex items-center gap-3">
-                            @if($product->image_path)
-                            <img src="{{ Storage::url($product->image_path) }}" alt="{{ $product->name }}" class="w-12 h-12 rounded-lg object-cover bg-slate-100 border border-slate-200">
-                            @else
-                            <div class="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center text-slate-400 border border-slate-200">
-                                <i class="bi bi-image"></i>
-                            </div>
-                            @endif
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-12 h-12 rounded-lg object-cover bg-slate-100 border border-slate-200">
                             <div>
                                 <p class="text-sm font-bold text-slate-900">{{ $product->name }}</p>
                                 <p class="text-xs text-slate-500">{{ Str::limit($product->description, 50) }}</p>
@@ -54,7 +48,7 @@
                         <form action="{{ route('superadmin.product-verifications.verify', $product) }}" method="POST" class="inline-flex gap-2 justify-end items-center w-full">
                             @csrf
                             <input type="hidden" name="status" value="approved">
-                            <button type="submit" class="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-medium hover:bg-emerald-700 transition" onclick="return confirm('Setujui produk ini? Produk akan tampil di katalog KOL.');">
+                            <button type="submit" class="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-medium hover:bg-emerald-700 transition" onclick="return confirm('Setujui verifikasi produk ini? Produk akan masuk ke Katalog Produk dan siap dipublikasikan ke E-Commerce setelah dilengkapi Bank Konten Google Drive.');">
                                 <i class="bi bi-check-lg"></i> Setujui
                             </button>
                         </form>

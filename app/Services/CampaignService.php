@@ -43,7 +43,7 @@ class CampaignService
             $campaign = Campaign::create($campaignData);
 
             if ($campaign->brand?->user && $campaign->brand->user->id !== $creatorId) {
-                app(\App\Services\NotificationService::class)->send(
+                app(NotificationService::class)->send(
                     $campaign->brand->user,
                     'campaign_created',
                     'Campaign Baru',
@@ -164,7 +164,7 @@ class CampaignService
 
             // In-app notification for Brand
             if ($campaign->brand?->user) {
-                app(\App\Services\NotificationService::class)->send(
+                app(NotificationService::class)->send(
                     $campaign->brand->user,
                     'new_endorsement',
                     'KOL Ditugaskan',

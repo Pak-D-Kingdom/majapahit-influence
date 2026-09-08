@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\BrandRegistrationReviewController;
 use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\CommissionController;
+use App\Http\Controllers\Admin\ContentBankController;
 use App\Http\Controllers\Admin\EndorsementController;
 use App\Http\Controllers\Admin\KolManagementController;
 use App\Http\Controllers\Admin\ProductManagementController;
@@ -43,6 +44,10 @@ Route::patch('/kol/{kol}/status', [KolManagementController::class, 'updateStatus
 
 // Superadmin Product Catalog & Content Bank Management
 Route::resource('products', ProductManagementController::class);
+Route::post('products/{product}/toggle-publish', [ProductManagementController::class, 'togglePublish'])->name('products.toggle-publish');
+Route::post('products/{product}/content-banks', [ContentBankController::class, 'store'])->name('products.content-banks.store');
+Route::put('content-banks/{contentBank}', [ContentBankController::class, 'update'])->name('content-banks.update');
+Route::delete('content-banks/{contentBank}', [ContentBankController::class, 'destroy'])->name('content-banks.destroy');
 
 // Dev 6: Product Verification
 Route::get('product-verifications', [ProductVerificationController::class, 'index'])->name('product-verifications.index');

@@ -32,13 +32,7 @@
                 <tr class="group hover:bg-[#fff9f4]/60 transition">
                     <td class="px-5 py-4 sm:px-6">
                         <div class="flex items-center gap-3.5">
-                            @if($product->image_path)
-                                <img src="{{ Storage::url($product->image_path) }}" alt="{{ $product->name }}" class="size-11 rounded-xl object-cover border border-[#421b13]/10 bg-[#f7eee8]">
-                            @else
-                                <div class="flex size-11 items-center justify-center rounded-xl bg-[#fff9f4] border border-[#421b13]/10 text-[#d57028]">
-                                    <i class="bi bi-box-seam text-lg"></i>
-                                </div>
-                            @endif
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="size-11 rounded-xl object-cover border border-[#421b13]/10 bg-[#f7eee8]">
                             <div>
                                 <span class="font-bold text-[#421b13] group-hover:text-[#d57028] transition font-heading block">
                                     {{ $product->name }}

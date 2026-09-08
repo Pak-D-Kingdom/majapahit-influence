@@ -58,7 +58,7 @@ class ProductService
         $product->verification_status = $status;
 
         if ($status === 'approved') {
-            $product->is_active = true;
+            $product->is_active = false;
             $product->rejection_reason = null;
         } elseif ($status === 'rejected') {
             $product->is_active = false;
@@ -69,11 +69,11 @@ class ProductService
 
         if ($product->brand?->user) {
             $title = $status === 'approved' ? 'Produk Disetujui' : 'Produk Ditolak';
-            $body = $status === 'approved' 
-                ? "Produk '{$product->name}' Anda telah disetujui dan sekarang aktif."
+            $body = $status === 'approved'
+                ? "Produk '{$product->name}' Anda telah disetujui dan masuk ke antrean katalog produk."
                 : "Produk '{$product->name}' Anda ditolak. Alasan: {$reason}";
-                
-            app(\App\Services\NotificationService::class)->send(
+
+            app(NotificationService::class)->send(
                 $product->brand->user,
                 'product_verification',
                 $title,

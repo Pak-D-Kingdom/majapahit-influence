@@ -29,7 +29,7 @@
             {{-- Left Column: Product Image & Highlights --}}
             <div class="lg:col-span-5 space-y-6">
                 <div class="bg-white rounded-3xl p-4 border border-gray-100 shadow-sm overflow-hidden">
-                    <img src="{{ $product->image_path ?: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&auto=format&fit=crop&q=80' }}" alt="{{ $product->name }}" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
+                    <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-80 sm:h-96 object-cover rounded-2xl">
                 </div>
 
                 {{-- Promotion Pathway Badge Box --}}

@@ -89,7 +89,7 @@
                     </label>
                     @if($product->image_path)
                         <div class="mt-2 mb-3 flex items-center gap-3">
-                            <img src="{{ Storage::url($product->image_path) }}" alt="{{ $product->name }}" class="size-16 rounded-xl object-cover border border-[#421b13]/10">
+                            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="size-16 rounded-xl object-cover border border-[#421b13]/10">
                             <span class="text-xs text-[#765f58]">Foto produk saat ini</span>
                         </div>
                     @endif

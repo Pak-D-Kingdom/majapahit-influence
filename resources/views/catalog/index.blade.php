@@ -129,7 +129,7 @@
                     
                     {{-- Product Image & Floating Badges --}}
                     <div class="relative h-52 bg-gray-100 overflow-hidden">
-                        <img src="{{ $product->image_path ?: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&auto=format&fit=crop&q=80' }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                         
                         <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-white/95 backdrop-blur-sm text-[11px] font-extrabold text-gray-800 shadow-sm">
                             {{ $product->category->name ?? 'Kategori Umum' }}
