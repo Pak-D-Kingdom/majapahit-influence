@@ -42,6 +42,16 @@ class CampaignService
 
             $campaign = Campaign::create($campaignData);
 
+            if ($campaign->brand?->user && $campaign->brand->user->id !== $creatorId) {
+                app(\App\Services\NotificationService::class)->send(
+                    $campaign->brand->user,
+                    'campaign_created',
+                    'Campaign Baru',
+                    "Campaign '{$campaign->name}' telah ditambahkan ke portal Anda.",
+                    route('brand.campaigns.index')
+                );
+            }
+
             foreach ($files as $file) {
                 if ($file instanceof UploadedFile) {
                     $path = $file->store('campaign_briefs', 'public');
@@ -150,6 +160,17 @@ class CampaignService
                     'body' => "Anda telah ditugaskan untuk campaign '{$campaign->name}' ({$endorsement->content_type}). Deadline: ".date('d/m/Y', strtotime($endorsement->deadline)),
                     'target_url' => "/kol/endorsements/{$endorsement->id}",
                 ]);
+            }
+
+            // In-app notification for Brand
+            if ($campaign->brand?->user) {
+                app(\App\Services\NotificationService::class)->send(
+                    $campaign->brand->user,
+                    'new_endorsement',
+                    'KOL Ditugaskan',
+                    "KOL {$kol->nickname} telah ditugaskan untuk campaign '{$campaign->name}'.",
+                    route('brand.endorsements.index')
+                );
             }
 
             return $endorsement;

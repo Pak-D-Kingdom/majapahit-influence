@@ -67,6 +67,21 @@ class ProductService
 
         $product->save();
 
+        if ($product->brand?->user) {
+            $title = $status === 'approved' ? 'Produk Disetujui' : 'Produk Ditolak';
+            $body = $status === 'approved' 
+                ? "Produk '{$product->name}' Anda telah disetujui dan sekarang aktif."
+                : "Produk '{$product->name}' Anda ditolak. Alasan: {$reason}";
+                
+            app(\App\Services\NotificationService::class)->send(
+                $product->brand->user,
+                'product_verification',
+                $title,
+                $body,
+                route('brand.products.index')
+            );
+        }
+
         $newValues = [
             'verification_status' => $product->verification_status,
             'is_active' => $product->is_active,

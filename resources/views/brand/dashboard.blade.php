@@ -17,7 +17,7 @@
                     PORTAL BRAND PAK DE GROUP
                 </div>
                 <h2 class="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl font-heading">
-                    Halo, <span class="bg-gradient-to-r from-[#fec200] to-[#d57028] bg-clip-text text-transparent">{{ $brand->name }}</span>!
+                    Halo, <span class="text-[#fec200]">{{ $brand->name }}</span>!
                 </h2>
                 <p class="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">
                     Pantau seluruh aktivitas campaign, kelola produk, dan lihat perkembangan endorsement secara real-time di sini.
@@ -190,6 +190,10 @@
                 <h3 class="text-base font-extrabold text-[#421b13] font-heading">Notifikasi Terbaru</h3>
                 <p class="text-xs text-[#765f58]">Pembaruan status dari aktivitas Anda</p>
             </div>
+            <a href="{{ route('brand.notifications.index') }}" class="inline-flex items-center gap-1 text-xs font-bold text-[#d57028] hover:text-[#d5282d] transition font-heading">
+                <span>Lihat semua</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
         </div>
 
         @if ($notifications->isEmpty())
