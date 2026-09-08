@@ -6,6 +6,16 @@
 <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-gray-100 p-8 text-center space-y-6">
         
+        <a href="{{ url('/') }}" class="inline-flex items-center gap-2.5 mx-auto group">
+            <div class="size-10 rounded-xl bg-white p-0.5 shadow-md border border-[#d57028]/20 group-hover:scale-105 transition-transform overflow-hidden">
+                <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
+            </div>
+            <div class="text-left leading-tight">
+                <span class="block text-[10px] font-bold tracking-widest text-amber-700">MAJAPAHIT</span>
+                <strong class="block text-sm font-extrabold text-gray-900 tracking-tight">INFLUENCE</strong>
+            </div>
+        </a>
+
         <div class="w-20 h-20 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-4xl mx-auto shadow-inner">
             <i class="bi bi-check-circle-fill"></i>
         </div>

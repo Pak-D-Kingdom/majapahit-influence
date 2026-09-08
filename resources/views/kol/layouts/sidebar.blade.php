@@ -2,8 +2,8 @@
     {{-- Brand Header --}}
     <div class="flex h-20 items-center gap-3 border-b border-white/10 px-6">
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-            <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#d57028] to-[#d5282d] text-sm font-extrabold text-white font-heading shadow-md shadow-[#d57028]/30 group-hover:scale-105 transition">
-                MI
+            <div class="flex size-10 items-center justify-center rounded-xl bg-white p-0.5 shadow-md shadow-[#d57028]/30 group-hover:scale-105 transition overflow-hidden">
+                <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
             </div>
             <div class="flex flex-col leading-tight">
                 <span class="font-heading text-[10px] font-bold tracking-[2px] text-[#fec200]">MAJAPAHIT</span>

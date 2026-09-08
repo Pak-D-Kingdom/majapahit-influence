@@ -6,6 +6,7 @@
     <title>@yield('title', 'Masuk') — Majapahit Influence</title>
 
     <meta name="description" content="Portal Akses Majapahit Influence Management Platform">
+    <link rel="icon" type="image/png" href="{{ asset('assets/Logo/majapahit.png') }}">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -98,13 +99,19 @@
             width: 44px;
             height: 44px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--orange), var(--red));
+            background: #ffffff;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            color: var(--white);
+            overflow: hidden;
+            padding: 2px;
             box-shadow: 0 4px 16px rgba(213, 112, 40, 0.4);
+        }
+
+        .brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .brand-text h1 {
@@ -363,7 +370,7 @@
         <div class="auth-brand">
             <a href="{{ url('/') }}">
                 <div class="brand-icon">
-                    <i class="bi bi-shield-shaded"></i>
+                    <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence">
                 </div>
                 <div class="brand-text">
                     <h1>MAJAPAHIT</h1>

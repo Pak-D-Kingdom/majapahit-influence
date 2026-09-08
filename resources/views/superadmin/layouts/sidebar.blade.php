@@ -1,12 +1,14 @@
 <aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-72 -translate-x-full flex-col border-r border-[#421b13]/40 bg-[#190906] text-[#f7eee8]/80 transition-transform lg:static lg:translate-x-0">
     <div class="flex h-20 items-center gap-3 border-b border-white/8 px-6">
-        <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#d57028] via-[#d5282d] to-[#fec200] font-heading font-extrabold text-white shadow-md shadow-[#d57028]/20">
-            MI
-        </div>
-        <div class="leading-tight">
-            <p class="font-heading text-sm font-extrabold tracking-[0.18em] text-[#fec200]">MAJAPAHIT</p>
-            <p class="text-[10px] font-semibold tracking-[0.25em] text-white/80">INFLUENCE</p>
-        </div>
+        <a href="{{ route('superadmin.dashboard') }}" class="flex items-center gap-3 group">
+            <div class="flex size-10 items-center justify-center rounded-xl bg-white p-0.5 shadow-md shadow-[#d57028]/20 group-hover:scale-105 transition overflow-hidden">
+                <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
+            </div>
+            <div class="leading-tight">
+                <p class="font-heading text-sm font-extrabold tracking-[0.18em] text-[#fec200]">MAJAPAHIT</p>
+                <p class="text-[10px] font-semibold tracking-[0.25em] text-white/80">INFLUENCE</p>
+            </div>
+        </a>
     </div>
 
     <div class="flex-1 overflow-y-auto px-4 py-6">

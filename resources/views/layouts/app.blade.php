@@ -13,6 +13,8 @@
         content="Majapahit Influence: Connect, Create, and Grow with Brands."
     >
 
+    <link rel="icon" type="image/png" href="{{ asset('assets/Logo/majapahit.png') }}">
+
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -9,8 +9,8 @@
         {{-- Header Navigation & Brand Mark --}}
         <div class="text-center mb-8">
             <a href="{{ url('/') }}" class="inline-flex items-center gap-2.5 mb-4 group">
-                <div class="w-10 h-10 rounded-xl bg-amber-600 flex items-center justify-center text-white font-black text-lg shadow-md group-hover:scale-105 transition-transform">
-                    MI
+                <div class="w-10 h-10 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-md border border-[#d57028]/20 group-hover:scale-105 transition-transform overflow-hidden">
+                    <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
                 </div>
                 <div class="text-left leading-tight">
                     <span class="block text-[11px] font-bold tracking-widest text-amber-700">MAJAPAHIT</span>

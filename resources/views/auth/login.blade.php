@@ -5,9 +5,11 @@
 @section('content')
     <main class="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10">
         <div class="w-full max-w-md">
-            <a href="{{ url('/') }}" class="mb-8 flex items-center justify-center gap-3">
-                <span class="flex size-11 items-center justify-center rounded-xl bg-slate-950 font-extrabold text-amber-400">MI</span>
-                <span class="text-sm font-bold tracking-[0.18em] text-slate-950">MAJAPAHIT <span class="text-amber-500">INFLUENCE</span></span>
+            <a href="{{ url('/') }}" class="mb-8 flex items-center justify-center gap-3 group">
+                <div class="flex size-11 items-center justify-center rounded-xl bg-white p-1 shadow-md border border-[#d57028]/20 group-hover:scale-105 transition overflow-hidden">
+                    <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
+                </div>
+                <span class="text-sm font-bold tracking-[0.18em] text-slate-950 font-heading">MAJAPAHIT <span class="text-amber-600">INFLUENCE</span></span>
             </a>
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
                 <h1 class="text-2xl font-bold tracking-tight text-slate-950">Selamat datang kembali</h1>

@@ -11,7 +11,8 @@
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div class="space-y-2 max-w-2xl">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">
-                        <i class="bi bi-shop"></i> EVERMOS-STYLE PRODUCT HUB
+                        <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Logo" class="size-4 rounded-full object-contain bg-white p-0.5">
+                        <span>EVERMOS-STYLE PRODUCT HUB</span>
                     </div>
                     <h1 class="text-2xl sm:text-4xl font-black tracking-tight">Katalog Produk & Komisi Kreator</h1>
                     <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
@@ -20,8 +21,9 @@
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <a href="{{ url('/') }}" class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold transition-colors">
-                        <i class="bi bi-house mr-1"></i> Beranda
+                    <a href="{{ url('/') }}" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold transition-colors">
+                        <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit" class="size-4 rounded object-contain bg-white">
+                        <span>Beranda</span>
                     </a>
                     <a href="{{ route('brand.register') }}" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-amber-950 text-xs font-black transition-all shadow-md">
                         <i class="bi bi-plus-circle mr-1"></i> Daftarkan Produk Brand
