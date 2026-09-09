@@ -644,7 +644,7 @@
 
                     <div class="section-label">
                         <span></span>
-                        PRODUK & BRAND
+                        PRODUK, BRAND, & INFLUENCER
                     </div>
 
                     <div class="partners-heading">
@@ -675,12 +675,24 @@
 
                     <div class="category-list">
 
-                        <span>F&B</span>
-                        <span>Beauty</span>
-                        <span>Fashion</span>
-                        <span>Lifestyle</span>
-                        <span>Home & Living</span>
-                        <span>More</span>
+                        <span><a href="{{ url('/explore/food-beverage') }}">
+                                F&B
+                            </a></span>
+                        <span> <a href="{{ url('/explore/beauty') }}">
+                                Beauty
+                            </a></span>
+                        <span> <a href="{{ url('/explore/fashion') }}">
+                                Fashion
+                            </a></span>
+                        <span><a href="{{ url('/explore/lifestyle') }}">
+                                Lifestyle
+                            </a></span>
+                        <span> <a href="{{ url('/explore/home-living') }}">
+                                Home & Living
+                            </a></span>
+                        <span><a href="{{ url('/explore') }}">
+                                More
+                            </a></span>
 
                     </div>
 
@@ -717,8 +729,8 @@
                                 content dan kolaborasi para creator.
                             </p>
 
-                            <a href="#" class="partners-card-link">
-                                Lihat Produk
+                            <a href="{{ url('/explore/products') }}" class="partners-card-link">
+                                Lihat Produk Kami
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
 
@@ -754,8 +766,44 @@
                                 kolaborasi dengan creator yang relevan.
                             </p>
 
-                            <a href="#" class="partners-card-link">
-                                Gabung sebagai Brand
+                            <a href="{{ url('/explore/brands') }}" class="partners-card-link">
+                                Lihat Brand Partner Kami
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    {{-- Influencer Partner --}}
+                    <div class="partners-network-card">
+
+                        <div class="partners-card-number">
+                            03
+                        </div>
+
+                        <div class="partners-card-icon">
+                            <i class="bi bi-buildings"></i>
+                        </div>
+
+                        <div class="partners-card-content">
+
+                            <small>
+                                OPEN FOR INFLUENCER
+                            </small>
+
+                            <h3>
+                                Influencer Partner
+                            </h3>
+
+                            <p>
+                                Punya bakat dan keinginan untuk bisa dikenal lebih luas?
+                                Bergabung bersama KERAJAAN dan buka peluang
+                                kolaborasi dengan brand dan produk yang relevan.
+                            </p>
+
+                            <a href="{{ url('/explore/creators') }}" class="partners-card-link">
+                                Lihat Creator Kami
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
 
@@ -1052,6 +1100,156 @@
                         Temukan peluang. Bangun kolaborasi.
                         Tumbuh bersama KERAJAAN.
                     </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        {{-- ================================
+    FAQ
+================================ --}}
+        <section class="faq-section" id="faq">
+
+            <div class="container">
+
+                <div class="faq-header">
+
+                    <div class="section-label">
+                        <span></span>
+                        FAQ
+                    </div>
+
+                    <div class="faq-heading">
+
+                        <h2>
+                            Pertanyaan yang
+                            <span>sering ditanyakan.</span>
+                        </h2>
+
+                        <p>
+                            Temukan jawaban seputar KERAJAAN,
+                            Creator, Brand, produk, dan peluang kolaborasi
+                            dalam satu ekosistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="faq-list">
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Apa itu KERAJAAN?
+                            <i class="bi bi-plus"></i>
+                        </summary>
+
+                        <div class="faq-answer">
+                            <p>
+                                KERAJAAN adalah ekosistem Creator-Powered Commerce
+                                yang mempertemukan creator, brand, produk, dan
+                                peluang kolaborasi dalam satu ekosistem.
+                            </p>
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Siapa saja yang bisa bergabung?
+                            <i class="bi bi-plus"></i>
+                        </summary>
+
+                        <div class="faq-answer">
+                            <p>
+                                KERAJAAN terbuka bagi creator yang ingin menemukan
+                                peluang kolaborasi serta brand yang ingin
+                                memperkenalkan produk dan terhubung dengan creator
+                                yang relevan.
+                            </p>
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Apa keuntungan Brand bergabung dengan KERAJAAN?
+                            <i class="bi bi-plus"></i>
+                        </summary>
+
+                        <div class="faq-answer">
+                            <p>
+                                Brand dapat memperkenalkan produk kepada audience
+                                melalui creator, menemukan creator yang relevan,
+                                serta membuka peluang kolaborasi dan campaign.
+                            </p>
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Bagaimana Creator menemukan produk untuk dipromosikan?
+                            <i class="bi bi-plus"></i>
+                        </summary>
+
+                        <div class="faq-answer">
+                            <p>
+                                Creator dapat menemukan berbagai produk dan brand
+                                yang tersedia dalam ekosistem KERAJAAN sesuai
+                                kategori dan peluang yang relevan dengan audience
+                                mereka.
+                            </p>
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Apakah Brand bisa mendaftarkan produknya?
+                            <i class="bi bi-plus"></i>
+                        </summary>
+
+                        <div class="faq-answer">
+                            <p>
+                                Ya. Brand dapat mendaftarkan brand dan produknya
+                                untuk menjadi bagian dari ekosistem KERAJAAN
+                                dan membuka peluang kolaborasi dengan creator.
+                            </p>
+                        </div>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Apakah KERAJAAN memiliki E-Commerce?
+                            <i class="bi bi-plus"></i>
+                        </summary>
+
+                        <div class="faq-answer">
+                            <p>
+                                Ya. KERAJAAN menyediakan akses menuju platform
+                                E-Commerce yang dikelola melalui website
+                                E-Commerce terpisah.
+                            </p>
+                        </div>
+
+                    </details>
 
                 </div>
 

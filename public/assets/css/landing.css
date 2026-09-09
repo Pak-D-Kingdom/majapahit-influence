@@ -4873,7 +4873,7 @@ button {
         flex-direction: column;
     }
 
-    .mobile-nav > a {
+    .mobile-nav>a {
         display: block;
         padding: 13px 0;
 
@@ -4886,7 +4886,7 @@ button {
         border-bottom: 1px solid rgba(12, 54, 133, 0.07);
     }
 
-    .mobile-nav > a:hover {
+    .mobile-nav>a:hover {
         color: #0b64d4;
     }
 
@@ -4940,4 +4940,995 @@ button {
 
 .hero-discover-link:hover i {
     transform: translateY(3px);
+}
+
+
+/* =========================================
+   FAQ
+========================================= */
+
+.faq-section {
+    padding: 110px 0;
+    background: #fefefe;
+}
+
+.faq-header {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 60px;
+    margin-bottom: 55px;
+}
+
+.faq-heading h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 4vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    color: var(--dark);
+}
+
+.faq-heading h2 span {
+    display: block;
+    color: var(--orange);
+}
+
+.faq-heading p {
+    max-width: 620px;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-top: 1px solid rgba(12, 54, 133, 0.12);
+}
+
+.faq-item:last-child {
+    border-bottom: 1px solid rgba(12, 54, 133, 0.12);
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 25px 0;
+
+    cursor: pointer;
+    list-style: none;
+
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary i {
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: rgba(11, 100, 212, 0.08);
+    color: var(--orange);
+
+    font-size: 18px;
+
+    transition: transform 0.25s ease;
+}
+
+.faq-item[open] summary i {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 55px 25px 0;
+}
+
+.faq-answer p {
+    max-width: 760px;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+}
+
+
+/* FAQ MOBILE */
+
+@media (max-width: 991px) {
+
+    .faq-header {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .faq-section {
+        padding: 80px 0;
+    }
+
+    .faq-heading h2 {
+        font-size: 36px;
+    }
+
+    .faq-item summary {
+        padding: 21px 0;
+        font-size: 14px;
+    }
+
+    .faq-answer {
+        padding-right: 35px;
+    }
+
+    .faq-answer p {
+        font-size: 13px;
+    }
+
+}
+
+/* =========================================
+   CREATOR BANK
+========================================= */
+
+.creator-bank-page {
+    background: #fefefe;
+}
+
+
+/* HERO */
+
+.creator-bank-hero {
+    padding: 150px 0 100px;
+    background: #0c3685;
+    color: #fefefe;
+}
+
+.creator-bank-hero-content {
+    max-width: 850px;
+}
+
+.creator-bank-hero .section-label {
+    color: #78a5d6;
+}
+
+.creator-bank-hero h1 {
+    margin: 20px 0;
+    font-family: var(--font-heading);
+    font-size: clamp(48px, 6vw, 82px);
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.creator-bank-hero h1 span {
+    display: block;
+    color: #1698f6;
+}
+
+.creator-bank-hero p {
+    max-width: 680px;
+    margin-bottom: 35px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(254, 254, 254, 0.82);
+}
+
+.creator-bank-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+/* SECTION */
+
+.creator-bank-section {
+    padding: 110px 0;
+    background: #fefefe;
+}
+
+.creator-bank-heading {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    align-items: end;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.creator-bank-heading h2 {
+    margin: 18px 0 0;
+    font-family: var(--font-heading);
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #0c3685;
+}
+
+.creator-bank-heading h2 span {
+    color: #0b64d4;
+}
+
+.creator-bank-heading>p {
+    max-width: 500px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #78a5d6;
+}
+
+
+/* FILTER */
+
+.creator-filter {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.creator-search {
+    position: relative;
+    flex: 1;
+}
+
+.creator-search i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #78a5d6;
+}
+
+.creator-search input,
+.creator-filter select {
+    width: 100%;
+    height: 52px;
+    border: 1px solid rgba(12, 54, 133, 0.15);
+    border-radius: 10px;
+    background: #fefefe;
+    color: #0c3685;
+    font-size: 14px;
+    outline: none;
+}
+
+.creator-search input {
+    padding: 0 20px 0 48px;
+}
+
+.creator-filter select {
+    max-width: 220px;
+    padding: 0 18px;
+    cursor: pointer;
+}
+
+.creator-search input:focus,
+.creator-filter select:focus {
+    border-color: #1698f6;
+}
+
+
+/* CREATOR GRID */
+
+.creator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+
+/* CARD */
+
+.creator-card {
+    overflow: hidden;
+    border: 1px solid rgba(12, 54, 133, 0.10);
+    border-radius: 16px;
+    background: #fefefe;
+    box-shadow: 0 15px 40px rgba(12, 54, 133, 0.06);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.creator-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 50px rgba(12, 54, 133, 0.12);
+}
+
+
+/* IMAGE */
+
+.creator-card-image {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+    background: #78a5d6;
+}
+
+.creator-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.creator-rank {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 44px;
+    height: 32px;
+    padding: 0 10px;
+
+    border-radius: 999px;
+
+    background: #0c3685;
+    color: #fefefe;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* BODY */
+
+.creator-card-body {
+    padding: 22px;
+}
+
+.creator-category {
+    display: inline-block;
+    margin-bottom: 10px;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #0b64d4;
+}
+
+.creator-card-body h3 {
+    margin: 0 0 6px;
+
+    font-size: 20px;
+    color: #0c3685;
+}
+
+.creator-card-body>p {
+    margin: 0 0 20px;
+
+    font-size: 13px;
+    color: #78a5d6;
+}
+
+
+/* META */
+
+.creator-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    margin-bottom: 22px;
+
+    font-size: 12px;
+    color: #0c3685;
+}
+
+.creator-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.creator-meta i {
+    color: #1698f6;
+}
+
+
+/* LINK */
+
+.creator-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 17px;
+    border-top: 1px solid rgba(12, 54, 133, 0.10);
+
+    color: #0b64d4;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.creator-card-link i {
+    transition: transform 0.25s ease;
+}
+
+.creator-card:hover .creator-card-link i {
+    transform: translate(3px, -3px);
+}
+
+
+/* CTA */
+
+.creator-bank-cta {
+    padding: 90px 0;
+    background: #0c3685;
+    color: #fefefe;
+}
+
+.creator-bank-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.creator-bank-cta h2 {
+    margin: 18px 0;
+
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 4vw, 58px);
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.creator-bank-cta h2 span {
+    color: #1698f6;
+}
+
+.creator-bank-cta p {
+    max-width: 600px;
+    margin: 0;
+
+    color: rgba(254, 254, 254, 0.75);
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   CREATOR BANK RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .creator-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    .creator-bank-hero {
+        padding: 120px 0 80px;
+    }
+
+    .creator-bank-heading {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .creator-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .creator-bank-cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .creator-bank-hero {
+        padding: 110px 0 70px;
+    }
+
+    .creator-bank-hero h1 {
+        font-size: 46px;
+        letter-spacing: -2px;
+    }
+
+    .creator-bank-hero p {
+        font-size: 15px;
+    }
+
+    .creator-bank-section {
+        padding: 80px 0;
+    }
+
+    .creator-bank-heading h2 {
+        font-size: 42px;
+    }
+
+    .creator-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .creator-filter select {
+        max-width: none;
+    }
+
+    .creator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .creator-card-image {
+        height: 330px;
+    }
+
+    .creator-bank-cta {
+        padding: 75px 0;
+    }
+
+}
+
+/* =========================================
+   BRAND BANK
+========================================= */
+
+.brand-bank-page {
+    background: #fefefe;
+}
+
+
+/* HERO */
+
+.brand-bank-hero {
+    padding: 150px 0 100px;
+    background: #0c3685;
+    color: #fefefe;
+}
+
+.brand-bank-hero-content {
+    max-width: 850px;
+}
+
+.brand-bank-hero .section-label {
+    color: #78a5d6;
+}
+
+.brand-bank-hero h1 {
+    margin: 20px 0;
+    font-family: var(--font-heading);
+    font-size: clamp(48px, 6vw, 82px);
+    line-height: 1;
+    letter-spacing: -3px;
+}
+
+.brand-bank-hero h1 span {
+    display: block;
+    color: #1698f6;
+}
+
+.brand-bank-hero p {
+    max-width: 680px;
+    margin-bottom: 35px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(254, 254, 254, 0.82);
+}
+
+.brand-bank-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+/* SECTION */
+
+.brand-bank-section {
+    padding: 110px 0;
+    background: #fefefe;
+}
+
+.brand-bank-heading {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    align-items: end;
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.brand-bank-heading h2 {
+    margin: 18px 0 0;
+    font-family: var(--font-heading);
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #0c3685;
+}
+
+.brand-bank-heading h2 span {
+    color: #0b64d4;
+}
+
+.brand-bank-heading > p {
+    max-width: 500px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #78a5d6;
+}
+
+
+/* FILTER */
+
+.brand-filter {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 45px;
+}
+
+.brand-search {
+    position: relative;
+    flex: 1;
+}
+
+.brand-search i {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #78a5d6;
+}
+
+.brand-search input,
+.brand-filter select {
+    width: 100%;
+    height: 52px;
+
+    border: 1px solid rgba(12, 54, 133, 0.15);
+    border-radius: 10px;
+
+    background: #fefefe;
+    color: #0c3685;
+
+    font-size: 14px;
+    outline: none;
+}
+
+.brand-search input {
+    padding: 0 20px 0 48px;
+}
+
+.brand-filter select {
+    max-width: 220px;
+    padding: 0 18px;
+    cursor: pointer;
+}
+
+.brand-search input:focus,
+.brand-filter select:focus {
+    border-color: #1698f6;
+}
+
+
+/* GRID */
+
+.brand-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+
+/* CARD */
+
+.brand-card {
+    overflow: hidden;
+
+    border: 1px solid rgba(12, 54, 133, 0.10);
+    border-radius: 16px;
+
+    background: #fefefe;
+
+    box-shadow:
+        0 15px 40px rgba(12, 54, 133, 0.06);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.brand-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 20px 50px rgba(12, 54, 133, 0.12);
+}
+
+
+/* IMAGE */
+
+.brand-card-image {
+    position: relative;
+
+    height: 280px;
+
+    overflow: hidden;
+
+    background: #78a5d6;
+}
+
+.brand-card-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+.brand-rank {
+    position: absolute;
+
+    top: 15px;
+    left: 15px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 44px;
+    height: 32px;
+
+    padding: 0 10px;
+
+    border-radius: 999px;
+
+    background: #0c3685;
+    color: #fefefe;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* BODY */
+
+.brand-card-body {
+    padding: 22px;
+}
+
+.brand-category {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    color: #0b64d4;
+}
+
+.brand-card-body h3 {
+    margin: 0 0 6px;
+
+    font-size: 20px;
+
+    color: #0c3685;
+}
+
+.brand-card-body > p {
+    margin: 0 0 20px;
+
+    font-size: 13px;
+
+    color: #78a5d6;
+}
+
+
+/* META */
+
+.brand-meta {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-bottom: 22px;
+
+    font-size: 12px;
+
+    color: #0c3685;
+}
+
+.brand-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-meta i {
+    color: #1698f6;
+}
+
+
+/* LINK */
+
+.brand-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid rgba(12, 54, 133, 0.10);
+
+    color: #0b64d4;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.brand-card-link i {
+    transition: transform 0.25s ease;
+}
+
+.brand-card:hover .brand-card-link i {
+    transform: translate(3px, -3px);
+}
+
+
+/* CTA */
+
+.brand-bank-cta {
+    padding: 90px 0;
+
+    background: #0c3685;
+
+    color: #fefefe;
+}
+
+.brand-bank-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+.brand-bank-cta h2 {
+    margin: 18px 0;
+
+    font-family: var(--font-heading);
+
+    font-size: clamp(36px, 4vw, 58px);
+
+    line-height: 1;
+    letter-spacing: -2px;
+}
+
+.brand-bank-cta h2 span {
+    color: #1698f6;
+}
+
+.brand-bank-cta p {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: rgba(254, 254, 254, 0.75);
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   BRAND BANK RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .brand-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 991px) {
+
+    .brand-bank-hero {
+        padding: 120px 0 80px;
+    }
+
+    .brand-bank-heading {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .brand-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brand-bank-cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .brand-bank-hero {
+        padding: 110px 0 70px;
+    }
+
+    .brand-bank-hero h1 {
+        font-size: 46px;
+        letter-spacing: -2px;
+    }
+
+    .brand-bank-hero p {
+        font-size: 15px;
+    }
+
+    .brand-bank-section {
+        padding: 80px 0;
+    }
+
+    .brand-bank-heading h2 {
+        font-size: 42px;
+    }
+
+    .brand-filter {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .brand-filter select {
+        max-width: none;
+    }
+
+    .brand-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-card-image {
+        height: 330px;
+    }
+
+    .brand-bank-cta {
+        padding: 75px 0;
+    }
+
 }
