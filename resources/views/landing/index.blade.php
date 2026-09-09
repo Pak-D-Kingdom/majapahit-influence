@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Majapahit Agency — Kembangkan Pengaruhmu, Buka Peluangmu')
+@section('title', 'Kerajaan — Connect, Create, Grow')
 @section('content')
 
     {{-- ================================
@@ -12,14 +12,7 @@
 
             {{-- Logo --}}
             <a href="{{ url('/') }}" class="brand">
-                <div class="brand-mark">
-                    MA
-                </div>
-
-                <div class="brand-text">
-                    <span>MAJAPAHIT</span>
-                    <strong>AGENCY</strong>
-                </div>
+                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="brand-logo">
             </a>
 
 
@@ -34,12 +27,15 @@
                     Tentang Kami
                 </a>
 
-                <a href="#program" class="nav-link">
-                    Program
+                <a href="#roles" class="nav-link">
+                    Ekosistem
                 </a>
 
                 <a href="#mitra" class="nav-link">
-                    Mitra
+                    Produk & Brand
+                </a>
+                <a href="#" class="nav-link nav-ecommerce">
+                    E-Commerce
                 </a>
 
             </nav>
@@ -51,8 +47,13 @@
                     Masuk
                 </a>
 
-                <a href="#" class="btn-primary btn-small">
-                    Gabung sebagai KOL
+                <a href="#cara-bergabung" class="nav-join-creator">
+                    Gabung sebagai Creator
+                    <i class="bi bi-arrow-up-right"></i>
+                </a>
+
+                <a href="#cara-bergabung" class="nav-join-brand">
+                    Gabung sebagai Brand
                     <i class="bi bi-arrow-up-right"></i>
                 </a>
 
@@ -74,9 +75,12 @@
 
             <a href="#tentang">Tentang Kami</a>
 
-            <a href="#program">Program</a>
+            <a href="#program">Ekosistem</a>
 
-            <a href="#mitra">Mitra</a>
+            <a href="#mitra">Produk & Brand</a>
+            <a href="#" class="nav-ecommerce">
+                E-Commerce
+            </a>
 
             <div class="mobile-nav-actions">
 
@@ -84,8 +88,12 @@
                     Masuk
                 </a>
 
-                <a href="#" class="btn-primary">
-                    Gabung sebagai KOL
+                <a href="#cara-bergabung" class="btn-primary">
+                    Gabung sebagai Creator
+                </a>
+
+                <a href="#cara-bergabung" class="mobile-brand-link">
+                    Gabung sebagai Brand
                 </a>
 
             </div>
@@ -114,47 +122,42 @@
 
                         <span class="eyebrow-dot"></span>
 
-                        PROGRAM KOL PAK DE GROUP
+                        CREATOR-POWERED COMMERCE
 
                     </div>
 
 
                     <h1>
-                        Kembangkan
-                        <span>Pengaruhmu.</span>
-                        Buka Peluangmu.
+                        Connect.
+                        <span>Create.</span>
+                        Grow.
                     </h1>
 
 
                     <p class="hero-description">
-                        Majapahit Agency adalah program KOL dari Pak De Group
-                        yang membuka kesempatan bagi para kreator untuk
-                        berkolaborasi dengan produk-produk kami dan berbagai
-                        brand menarik yang bergabung bersama kami.
+                        Kerajaan adalah ekosistem Creator-Powered Commerce
+                        yang menghubungkan creator, brand, produk, content,
+                        dan peluang kolaborasi untuk tumbuh bersama.
                     </p>
-
 
                     <div class="hero-actions">
 
-                        <a href="#" class="btn-primary btn-large">
-
-                            Gabung sebagai KOL
-
+                        <a href="#cara-bergabung" class="btn-primary btn-large">
+                            Gabung sebagai Creator
                             <i class="bi bi-arrow-up-right"></i>
-
                         </a>
 
-
-                        <a href="#tentang" class="btn-secondary btn-large">
-
-                            Kenali Kami
-
-                            <i class="bi bi-arrow-down"></i>
-
+                        <a href="#cara-bergabung" class="btn-secondary btn-large">
+                            Gabung sebagai Brand
+                            <i class="bi bi-arrow-up-right"></i>
                         </a>
 
                     </div>
 
+                    <a href="#tentang" class="hero-discover-link">
+                        Kenali KERAJAAN
+                        <i class="bi bi-arrow-down"></i>
+                    </a>
 
                     <div class="hero-trust">
 
@@ -169,11 +172,11 @@
                         <div>
 
                             <strong>
-                                Tumbuh bersama Pak De Group
+                                Satu ekosistem, banyak peluang
                             </strong>
 
                             <small>
-                                dan berbagai brand partner
+                                Creator, produk, content, dan commerce
                             </small>
 
                         </div>
@@ -216,16 +219,16 @@
                         <div class="creator-stat">
 
                             <small>
-                                Kolaborasi Kreator
+                                Creator Commerce
                             </small>
 
                             <strong>
-                                KOL × BRAND
+                                CREATOR × PRODUCT
                             </strong>
 
                             <span>
                                 <i class="bi bi-stars"></i>
-                                Peluang Baru
+                                Create • Grow
                             </span>
 
                         </div>
@@ -262,7 +265,7 @@
                         <div>
 
                             <small>Peluang Kolaborasi</small>
-                            <strong>Produk Pak De Group</strong>
+                            <strong>Produk & Brand</strong>
 
                         </div>
 
@@ -279,8 +282,8 @@
                         <i class="bi bi-camera-fill"></i>
 
                         <div>
-                            <strong>KOL</strong>
-                            <small>Gabung bersama kami</small>
+                            <strong>Creator</strong>
+                            <small>Grow bersama kami</small>
                         </div>
 
                     </div>
@@ -299,7 +302,7 @@
 
 
         {{-- ================================
-    TENTANG KAMA
+    TENTANG KERAJAAN
 ================================= --}}
         <section class="about-section company-section" id="tentang">
 
@@ -309,14 +312,14 @@
 
                     <div class="section-label">
                         <span></span>
-                        TENTANG KAMA
+                        TENTANG KERAJAAN
                     </div>
 
                     <div>
 
                         <h2>
-                            Di balik setiap
-                            <span>peluang kolaborasi.</span>
+                            Membangun ekosistem
+                            <span>untuk tumbuh bersama.</span>
                         </h2>
 
                     </div>
@@ -332,19 +335,17 @@
                         <div class="company-logo-card">
 
                             <div class="company-logo-mark">
-                                PD
+                                MA
                             </div>
 
                             <div>
-
                                 <small>
-                                    PERUSAHAAN DI BALIK
+                                    CREATOR COMMERCE
                                 </small>
 
                                 <strong>
-                                    PAK DE GROUP
+                                    KERAJAAN
                                 </strong>
-
                             </div>
 
                         </div>
@@ -353,8 +354,8 @@
                         <div class="company-number">
                             <span>01</span>
                             <p>
-                                Membangun koneksi,
-                                membuka peluang.
+                                Connect, create,
+                                grow together.
                             </p>
                         </div>
 
@@ -365,32 +366,30 @@
                     <div class="company-content">
 
                         <p class="company-lead">
-
-                            Pak De Group menjadi bagian di balik
-                            hadirnya Majapahit Agency sebagai wadah
-                            untuk membangun kolaborasi bersama para
-                            kreator dan influencer.
-
+                            KERAJAAN adalah ekosistem
+                            Creator-Powered Commerce yang mempertemukan
+                            creator, produk, brand, dan audiens dalam
+                            satu ruang kolaborasi.
                         </p>
 
 
+
                         <p>
-
-                            Melalui berbagai produk yang kami kembangkan
-                            dan jaringan brand yang terus bertumbuh,
-                            kami membuka kesempatan bagi para kreator
-                            untuk menjadi bagian dari perjalanan tersebut.
-
+                            Kami mempertemukan creator dengan berbagai
+                            produk dan brand yang memiliki potensi untuk
+                            tumbuh bersama. Di sisi lain, kami membantu
+                            brand menemukan ruang kolaborasi yang tepat
+                            untuk memperkenalkan produknya melalui creator.
                         </p>
 
 
+
                         <p>
-
-                            Majapahit Agency hadir untuk mempertemukan
-                            kreativitas, audiens, produk, dan peluang
-                            kolaborasi dalam satu ekosistem yang terus
-                            berkembang.
-
+                            Berawal dari produk-produk Pak De Group, KERAJAAN
+                            terus membuka ruang bagi berbagai brand dan mitra
+                            produk untuk memperkenalkan produknya kepada
+                            audience melalui kolaborasi yang lebih relevan,
+                            kreatif, dan bernilai.
                         </p>
 
 
@@ -401,16 +400,14 @@
                             </div>
 
                             <div>
-
                                 <strong>
-                                    Dari Pak De Group untuk Para Kreator
+                                    Connect. Create. Grow.
                                 </strong>
 
                                 <span>
-                                    Mulai bersama kami, berkembang bersama
-                                    berbagai peluang yang ada.
+                                    Creator membawa kreativitas. Brand membawa produk.
+                                    KERAJAAN mempertemukan keduanya.
                                 </span>
-
                             </div>
 
                         </div>
@@ -423,100 +420,14 @@
                 {{-- DIVIDER --}}
                 <div class="company-divider"></div>
 
-
-                {{-- MAJAPAHIT AGENCY --}}
-                <div class="program-intro" id="program">
-
-                    <div class="program-label">
-
-                        <span>02</span>
-
-                        <small>
-                            MAJAPAHIT AGENCY
-                        </small>
-
-                    </div>
-
-
-                    <div class="program-content">
-
-                        <h3>
-                            Bukan sekadar menjadi
-                            <span>influencer.</span>
-                        </h3>
-
-                        <p>
-                            Jadilah bagian dari jaringan kreator yang
-                            memiliki kesempatan untuk mengenal,
-                            mempromosikan, dan berkolaborasi bersama
-                            produk-produk Pak De Group serta brand-brand
-                            menarik yang nantinya bergabung bersama kami.
-                        </p>
-
-
-                        <div class="program-points">
-
-                            <div>
-
-                                <span>01</span>
-
-                                <strong>
-                                    Kenali Produk
-                                </strong>
-
-                                <p>
-                                    Berkenalan dengan berbagai produk
-                                    yang hadir dari Pak De Group.
-                                </p>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>02</span>
-
-                                <strong>
-                                    Bangun Kolaborasi
-                                </strong>
-
-                                <p>
-                                    Dapatkan kesempatan untuk terlibat
-                                    dalam berbagai aktivitas kolaborasi.
-                                </p>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>03</span>
-
-                                <strong>
-                                    Buka Peluang
-                                </strong>
-
-                                <p>
-                                    Berkesempatan terhubung dengan
-                                    brand-brand menarik dalam jaringan.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
 
         </section>
 
         {{-- ================================
-    KENAPA GABUNG?
+    CREATOR × BRAND
 ================================= --}}
-        <section class="benefits-section" id="benefits">
+        <section class="benefits-section ecosystem-roles-section" id="roles">
 
             <div class="container">
 
@@ -525,20 +436,21 @@
 
                     <div class="section-label">
                         <span></span>
-                        KENAPA GABUNG?
+                        CREATOR × BRAND
                     </div>
 
                     <div class="benefits-heading">
 
                         <h2>
-                            Lebih dari sekadar
-                            <span>promosi produk.</span>
+                            Satu ekosistem,
+                            <span>dua sisi kolaborasi.</span>
                         </h2>
 
                         <p>
-                            Majapahit Agency hadir untuk memberikan ruang bagi
-                            kreator untuk berkembang, membangun koneksi, dan membuka
-                            lebih banyak peluang kolaborasi.
+                            Creator membawa kreativitas dan pengaruh.
+                            Brand membawa produk dan peluang.
+                            KERAJAAN mempertemukan keduanya dalam satu
+                            ruang kolaborasi untuk tumbuh bersama.
                         </p>
 
                     </div>
@@ -546,134 +458,171 @@
                 </div>
 
 
-                {{-- Benefits Grid --}}
-                <div class="benefits-grid">
+                {{-- Creator & Brand Cards --}}
+                <div class="role-cards-grid">
 
-                    {{-- Benefit 01 --}}
-                    <div class="benefit-card">
+                    {{-- ================================
+                CREATOR
+            ================================= --}}
+                    <div class="role-card role-card-creator">
 
-                        <div class="benefit-number">
-                            01
+                        <div class="role-card-top">
+
+                            <div class="role-number">
+                                01
+                            </div>
+
+                            <div class="role-icon">
+                                <i class="bi bi-person-video3"></i>
+                            </div>
+
                         </div>
 
-                        <div class="benefit-icon">
-                            <i class="bi bi-megaphone"></i>
-                        </div>
 
-                        <div class="benefit-content">
+                        <div class="role-card-content">
+
+                            <small>
+                                UNTUK CREATOR
+                            </small>
 
                             <h3>
-                                Kesempatan Berkolaborasi
+                                Temukan produk.
+                                <span>Ciptakan peluang.</span>
                             </h3>
 
                             <p>
-                                Dapatkan kesempatan untuk berkolaborasi
-                                dalam berbagai aktivitas bersama produk
-                                dan brand yang tergabung dalam jaringan kami.
+                                Temukan berbagai produk dan brand yang relevan
+                                dengan karakter serta audiensmu. Pilih peluang
+                                yang sesuai, ciptakan content dengan caramu,
+                                dan berkembang bersama ekosistem KERAJAAN.
                             </p>
 
                         </div>
 
-                        <div class="benefit-arrow">
-                            <i class="bi bi-arrow-up-right"></i>
+
+                        <div class="role-benefits">
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Temukan produk & brand</span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Pilih peluang yang relevan</span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Ciptakan content dengan caramu</span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Buka peluang penghasilan</span>
+                            </div>
+
                         </div>
+
+
+                        <a href="#" class="role-card-link">
+                            Gabung sebagai Creator
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
 
                     </div>
 
 
-                    {{-- Benefit 02 --}}
-                    <div class="benefit-card">
+                    {{-- ================================
+                BRAND
+            ================================= --}}
+                    <div class="role-card role-card-brand">
 
-                        <div class="benefit-number">
-                            02
+                        <div class="role-card-top">
+
+                            <div class="role-number">
+                                02
+                            </div>
+
+                            <div class="role-icon">
+                                <i class="bi bi-building"></i>
+                            </div>
+
                         </div>
 
-                        <div class="benefit-icon">
-                            <i class="bi bi-box-seam"></i>
-                        </div>
 
-                        <div class="benefit-content">
+                        <div class="role-card-content">
+
+                            <small>
+                                UNTUK BRAND
+                            </small>
 
                             <h3>
-                                Kenal Produk Lebih Dekat
+                                Punya produk.
+                                <span>Temukan creator.</span>
                             </h3>
 
                             <p>
-                                Kenali berbagai produk dari Pak De Group
-                                dan brand partner yang memiliki potensi
-                                untuk kamu ceritakan kepada audiensmu.
+                                Bawa produkmu lebih dekat kepada audience
+                                melalui creator yang tepat. Bangun kolaborasi,
+                                ciptakan content yang relevan, dan buka peluang
+                                pertumbuhan bersama KERAJAAN.
                             </p>
 
                         </div>
 
-                        <div class="benefit-arrow">
-                            <i class="bi bi-arrow-up-right"></i>
+
+                        <div class="role-benefits">
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Daftarkan brand & produk</span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Temukan creator yang relevan</span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Bangun content & campaign</span>
+                            </div>
+
+                            <div>
+                                <i class="bi bi-check2"></i>
+                                <span>Perluas jangkauan produk</span>
+                            </div>
+
                         </div>
+
+
+                        <a href="#" class="role-card-link">
+                            Gabung sebagai Brand
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
 
                     </div>
 
+                </div>
 
-                    {{-- Benefit 03 --}}
-                    <div class="benefit-card">
 
-                        <div class="benefit-number">
-                            03
-                        </div>
+                {{-- Bottom Statement --}}
+                <div class="roles-statement">
 
-                        <div class="benefit-icon">
-                            <i class="bi bi-people"></i>
-                        </div>
-
-                        <div class="benefit-content">
-
-                            <h3>
-                                Bangun Networking
-                            </h3>
-
-                            <p>
-                                Terhubung dengan ekosistem kreator dan
-                                peluang kolaborasi yang terus berkembang
-                                bersama Majapahit Agency.
-                            </p>
-
-                        </div>
-
-                        <div class="benefit-arrow">
-                            <i class="bi bi-arrow-up-right"></i>
-                        </div>
-
+                    <div class="roles-statement-icon">
+                        <i class="bi bi-stars"></i>
                     </div>
 
+                    <div>
+                        <strong>
+                            Satu produk. Satu creator. Satu peluang baru.
+                        </strong>
 
-                    {{-- Benefit 04 --}}
-                    <div class="benefit-card">
-
-                        <div class="benefit-number">
-                            04
-                        </div>
-
-                        <div class="benefit-icon">
-                            <i class="bi bi-stars"></i>
-                        </div>
-
-                        <div class="benefit-content">
-
-                            <h3>
-                                Buka Peluang Baru
-                            </h3>
-
-                            <p>
-                                Jadikan kreativitas dan pengaruhmu sebagai
-                                jalan untuk menemukan berbagai peluang
-                                baru bersama brand yang tepat.
-                            </p>
-
-                        </div>
-
-                        <div class="benefit-arrow">
-                            <i class="bi bi-arrow-up-right"></i>
-                        </div>
-
+                        <span>
+                            Ketika produk yang tepat bertemu creator yang tepat,
+                            kolaborasi dapat menjadi sesuatu yang lebih berarti.
+                        </span>
                     </div>
 
                 </div>
@@ -684,12 +633,13 @@
 
 
         {{-- ================================
-            PRODUK & BRAND / MATRA
-        ================================= --}}
+    PRODUK & BRAND
+================================= --}}
         <section class="partners-section" id="mitra">
 
             <div class="container">
 
+                {{-- Section Header --}}
                 <div class="partners-header">
 
                     <div class="section-label">
@@ -698,72 +648,144 @@
                     </div>
 
                     <div class="partners-heading">
+
                         <h2>
-                            Kolaborasi dimulai dari
-                            <span>produk yang tepat.</span>
+                            Temukan produk yang
+                            <span>siap bertumbuh.</span>
                         </h2>
 
                         <p>
-                            Majapahit Agency membuka ruang kolaborasi bersama
-                            produk-produk Pak De Group dan brand yang bergabung
-                            dalam jaringan kami.
+                            Dari produk Pak De Group hingga berbagai brand
+                            yang bergabung bersama KERAJAAN.
+                            Setiap produk membuka ruang untuk cerita,
+                            content, dan peluang kolaborasi baru.
                         </p>
+
                     </div>
 
                 </div>
 
+
+                {{-- Category Preview --}}
+                <div class="product-category-preview">
+
+                    <span class="category-label">
+                        EXPLORE BY CATEGORY
+                    </span>
+
+                    <div class="category-list">
+
+                        <span>F&B</span>
+                        <span>Beauty</span>
+                        <span>Fashion</span>
+                        <span>Lifestyle</span>
+                        <span>Home & Living</span>
+                        <span>More</span>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Product / Brand Cards --}}
                 <div class="partners-intro">
 
+                    {{-- Produk Pak De Group --}}
                     <div class="partners-main-card">
-                        <div class="partners-card-number">01</div>
+
+                        <div class="partners-card-number">
+                            01
+                        </div>
 
                         <div class="partners-card-icon">
                             <i class="bi bi-box-seam"></i>
                         </div>
 
-                        <div>
-                            <small>PRODUK UTAMA</small>
-                            <h3>Produk Pak De Group</h3>
+                        <div class="partners-card-content">
+
+                            <small>
+                                PRODUK DALAM EKOSISTEM
+                            </small>
+
+                            <h3>
+                                Produk Pak De Group
+                            </h3>
+
                             <p>
-                                Kenali berbagai produk yang hadir dari Pak De Group
-                                dan temukan peluang untuk menceritakannya kepada
-                                audiensmu.
+                                Kenali berbagai produk dari Pak De Group
+                                yang dapat menjadi bagian dari perjalanan
+                                content dan kolaborasi para creator.
                             </p>
+
+                            <a href="#" class="partners-card-link">
+                                Lihat Produk
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
                         </div>
+
                     </div>
 
+
+                    {{-- Brand Partner --}}
                     <div class="partners-network-card">
-                        <div class="partners-card-number">02</div>
+
+                        <div class="partners-card-number">
+                            02
+                        </div>
 
                         <div class="partners-card-icon">
                             <i class="bi bi-buildings"></i>
                         </div>
 
-                        <div>
-                            <small>JARINGAN KOLABORASI</small>
-                            <h3>Brand Partner</h3>
+                        <div class="partners-card-content">
+
+                            <small>
+                                OPEN FOR BRAND
+                            </small>
+
+                            <h3>
+                                Brand Partner
+                            </h3>
+
                             <p>
-                                Seiring berkembangnya jaringan, berbagai brand
-                                partner dapat membuka peluang campaign dan
-                                kolaborasi baru bagi para kreator.
+                                Punya produk yang ingin dikenal lebih luas?
+                                Bergabung bersama KERAJAAN dan buka peluang
+                                kolaborasi dengan creator yang relevan.
                             </p>
+
+                            <a href="#" class="partners-card-link">
+                                Gabung sebagai Brand
+                                <i class="bi bi-arrow-up-right"></i>
+                            </a>
+
                         </div>
+
                     </div>
 
                 </div>
 
+
+                {{-- Bottom Statement --}}
                 <div class="partners-note">
+
                     <div class="partners-note-icon">
                         <i class="bi bi-stars"></i>
                     </div>
 
                     <div>
-                        <strong>Terus berkembang bersama kami.</strong>
+
+                        <strong>
+                            Produk yang tepat bertemu creator yang tepat.
+                        </strong>
+
                         <span>
-                            Daftar brand dan produk akan terus bertambah seiring
-                            berkembangnya ekosistem Majapahit Agency.
+                            Kami terus membuka ruang bagi produk dan brand
+                            baru untuk menjadi bagian dari ekosistem KERAJAAN.
                         </span>
+
                     </div>
+
                 </div>
 
             </div>
@@ -771,13 +793,13 @@
         </section>
 
         {{-- ================================
-            CARA BERGABUNG
-        ================================= --}}
+    CARA BERGABUNG
+================================= --}}
         <section class="join-section" id="cara-bergabung">
 
             <div class="container">
 
-                {{-- Section Header --}}
+                {{-- Header --}}
                 <div class="join-header">
 
                     <div class="section-label">
@@ -788,15 +810,14 @@
                     <div class="join-heading">
 
                         <h2>
-                            Mulai perjalananmu
-                            <span>bersama kami.</span>
+                            Pilih peranmu.
+                            <span>Mulai dari sini.</span>
                         </h2>
 
                         <p>
-                            Bergabung dengan Majapahit Agency cukup dengan
-                            beberapa langkah sederhana. Daftarkan dirimu,
-                            tunggu proses review, dan buka peluang kolaborasi
-                            bersama berbagai brand.
+                            Setiap bagian dari ekosistem KERAJAAN memiliki
+                            perannya sendiri. Pilih bagaimana kamu ingin
+                            tumbuh bersama kami.
                         </p>
 
                     </div>
@@ -804,109 +825,150 @@
                 </div>
 
 
-                {{-- Steps --}}
-                <div class="join-steps">
+                {{-- Role Selection --}}
+                <div class="join-role-grid">
 
-                    {{-- Step 01 --}}
-                    <div class="join-step">
+                    {{-- ================================
+                CREATOR
+            ================================= --}}
+                    <div class="join-role-card join-role-creator">
 
-                        <div class="join-step-top">
-                            <span class="join-step-number">01</span>
+                        <div class="join-role-top">
 
-                            <div class="join-step-icon">
-                                <i class="bi bi-person-plus"></i>
+                            <div class="join-role-number">
+                                01
                             </div>
+
+                            <div class="join-role-icon">
+                                <i class="bi bi-person-video3"></i>
+                            </div>
+
                         </div>
 
-                        <div class="join-step-content">
 
-                            <h3>Daftar sebagai KOL</h3>
+                        <div class="join-role-content">
+
+                            <small>
+                                SAYA SEORANG CREATOR
+                            </small>
+
+                            <h3>
+                                Jadikan kreativitasmu
+                                <span>sebuah peluang.</span>
+                            </h3>
 
                             <p>
-                                Lengkapi data diri, platform sosial media,
-                                niche, followers, rate card, dan informasi
-                                lainnya melalui formulir pendaftaran.
+                                Bergabung dengan ekosistem KERAJAAN,
+                                temukan produk dan brand yang relevan,
+                                lalu ciptakan content dengan caramu sendiri.
                             </p>
 
                         </div>
+
+
+                        <div class="join-role-steps">
+
+                            <div class="join-role-step">
+                                <span>01</span>
+                                <p>
+                                    Daftarkan profil creator
+                                </p>
+                            </div>
+
+                            <div class="join-role-step">
+                                <span>02</span>
+                                <p>
+                                    Temukan peluang yang sesuai
+                                </p>
+                            </div>
+
+                            <div class="join-role-step">
+                                <span>03</span>
+                                <p>
+                                    Mulai berkolaborasi
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <a href="#" class="join-role-link">
+                            Gabung sebagai Creator
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
 
                     </div>
 
 
-                    {{-- Step 02 --}}
-                    <div class="join-step">
+                    {{-- ================================
+                BRAND
+            ================================= --}}
+                    <div class="join-role-card join-role-brand">
 
-                        <div class="join-step-top">
-                            <span class="join-step-number">02</span>
+                        <div class="join-role-top">
 
-                            <div class="join-step-icon">
-                                <i class="bi bi-search"></i>
+                            <div class="join-role-number">
+                                02
                             </div>
+
+                            <div class="join-role-icon">
+                                <i class="bi bi-building"></i>
+                            </div>
+
                         </div>
 
-                        <div class="join-step-content">
 
-                            <h3>Proses Review</h3>
+                        <div class="join-role-content">
+
+                            <small>
+                                SAYA SEORANG BRAND
+                            </small>
+
+                            <h3>
+                                Bawa produkmu.
+                                <span>Temukan creator.</span>
+                            </h3>
 
                             <p>
-                                Tim Majapahit Agency akan meninjau profil
-                                dan informasi yang kamu kirimkan sebelum
-                                menentukan status pendaftaranmu.
+                                Daftarkan brand dan produkmu ke dalam
+                                ekosistem KERAJAAN. Buka peluang untuk
+                                terhubung dengan creator yang relevan
+                                dengan target audience-mu.
                             </p>
 
                         </div>
 
-                    </div>
 
+                        <div class="join-role-steps">
 
-                    {{-- Step 03 --}}
-                    <div class="join-step">
-
-                        <div class="join-step-top">
-                            <span class="join-step-number">03</span>
-
-                            <div class="join-step-icon">
-                                <i class="bi bi-patch-check"></i>
+                            <div class="join-role-step">
+                                <span>01</span>
+                                <p>
+                                    Daftarkan brand & produk
+                                </p>
                             </div>
-                        </div>
 
-                        <div class="join-step-content">
-
-                            <h3>Diterima sebagai KOL</h3>
-
-                            <p>
-                                Setelah pendaftaran disetujui, kamu akan
-                                mendapatkan akses sebagai KOL dan dapat
-                                mulai mengikuti ekosistem Majapahit Agency.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    {{-- Step 04 --}}
-                    <div class="join-step">
-
-                        <div class="join-step-top">
-                            <span class="join-step-number">04</span>
-
-                            <div class="join-step-icon">
-                                <i class="bi bi-stars"></i>
+                            <div class="join-role-step">
+                                <span>02</span>
+                                <p>
+                                    Tentukan peluang kolaborasi
+                                </p>
                             </div>
-                        </div>
 
-                        <div class="join-step-content">
-
-                            <h3>Mulai Berkolaborasi</h3>
-
-                            <p>
-                                Dapatkan kesempatan mengikuti campaign,
-                                endorsement, dan berbagai peluang kolaborasi
-                                yang sesuai dengan profilmu.
-                            </p>
+                            <div class="join-role-step">
+                                <span>03</span>
+                                <p>
+                                    Terhubung dengan creator
+                                </p>
+                            </div>
 
                         </div>
+
+
+                        <a href="#" class="join-role-link">
+                            Gabung sebagai Brand
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
 
                     </div>
 
@@ -917,18 +979,20 @@
                 <div class="join-note">
 
                     <div class="join-note-icon">
-                        <i class="bi bi-info-circle"></i>
+                        <i class="bi bi-stars"></i>
                     </div>
 
                     <div>
+
                         <strong>
-                            Pendaftaran bukan berarti langsung mendapatkan campaign.
+                            Tidak perlu memilih antara kreativitas dan produk.
                         </strong>
 
                         <span>
-                            Setiap peluang kolaborasi akan disesuaikan dengan
-                            kebutuhan campaign dan profil KOL.
+                            Di KERAJAAN, keduanya bertemu untuk menciptakan
+                            kolaborasi yang memiliki nilai.
                         </span>
+
                     </div>
 
                 </div>
@@ -938,8 +1002,8 @@
         </section>
 
         {{-- ================================
-            CTA GABUNG SEBAGAI KOL
-        ================================= --}}
+    CTA AKHIR
+================================= --}}
         <section class="cta-section" id="gabung">
 
             <div class="cta-decoration cta-decoration-one"></div>
@@ -951,36 +1015,42 @@
 
                     <div class="section-label cta-label">
                         <span></span>
-                        SIAP BERGABUNG?
+                        JADI BAGIAN DARI EKOSISTEM
                     </div>
 
+
                     <h2>
-                        Siap membuka
-                        <span>peluangmu?</span>
+                        Satu ekosistem.
+                        <span>Banyak peluang.</span>
                     </h2>
 
+
                     <p>
-                        Jadilah bagian dari Majapahit Agency dan buka kesempatan
-                        untuk berkembang bersama berbagai peluang kolaborasi.
+                        Creator membawa kreativitas.
+                        Brand membawa produk.
+                        KERAJAAN mempertemukan keduanya untuk
+                        menciptakan kolaborasi yang berarti.
                     </p>
+
 
                     <div class="cta-actions">
 
                         <a href="#cara-bergabung" class="btn-primary btn-large">
-                            Gabung sebagai KOL
+                            Gabung sebagai Creator
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
 
-                        <a href="#home" class="btn-secondary btn-large">
-                            Kembali ke Atas
-                            <i class="bi bi-arrow-up"></i>
+                        <a href="#cara-bergabung" class="btn-secondary btn-large">
+                            Gabung sebagai Brand
+                            <i class="bi bi-arrow-up-right"></i>
                         </a>
 
                     </div>
 
+
                     <small class="cta-note">
-                        Pendaftaran terbuka untuk kreator dan influencer yang
-                        ingin berkembang bersama ekosistem kami.
+                        Temukan peluang. Bangun kolaborasi.
+                        Tumbuh bersama KERAJAAN.
                     </small>
 
                 </div>
@@ -988,6 +1058,142 @@
             </div>
 
         </section>
+
+        {{-- ================================
+    FOOTER
+================================= --}}
+        <footer class="site-footer">
+
+            <div class="container">
+
+                {{-- Footer Main --}}
+                <div class="footer-main">
+
+                    {{-- Brand --}}
+                    <div class="footer-brand">
+
+                        <a href="{{ url('/') }}" class="footer-logo">
+                            <img src="{{ asset('assets/landing/images/logo/logokerajaannew.png') }}" alt="KERAJAAN">
+                        </a>
+
+                        <p>
+                            Creator-powered commerce ecosystem yang
+                            mempertemukan creator, brand, produk,
+                            dan peluang kolaborasi.
+                        </p>
+
+                        <div class="footer-tagline">
+                            Connect. Create. Grow.
+                        </div>
+
+                    </div>
+
+
+                    {{-- Navigation --}}
+                    <div class="footer-column">
+
+                        <h4>
+                            NAVIGASI
+                        </h4>
+
+                        <a href="#home">
+                            Beranda
+                        </a>
+
+                        <a href="#tentang">
+                            Tentang Kami
+                        </a>
+
+                        <a href="#roles">
+                            Ekosistem
+                        </a>
+
+                        <a href="#mitra">
+                            Produk & Brand
+                        </a>
+
+                        <a href="#cara-bergabung">
+                            Cara Bergabung
+                        </a>
+                        <a href="#" class="footer-ecommerce">
+                            E-Commerce
+                        </a>
+
+                    </div>
+
+
+                    {{-- Join --}}
+                    <div class="footer-column">
+
+                        <h4>
+                            BERGABUNG
+                        </h4>
+
+                        <a href="#cara-bergabung">
+                            Gabung sebagai Creator
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
+
+                        <a href="#cara-bergabung">
+                            Gabung sebagai Brand
+                            <i class="bi bi-arrow-up-right"></i>
+                        </a>
+
+                    </div>
+
+
+                    {{-- Contact / Social --}}
+                    <div class="footer-column">
+
+                        <h4>
+                            TERHUBUNG
+                        </h4>
+
+                        <a href="#" class="footer-social">
+                            <i class="bi bi-instagram"></i>
+                            Instagram
+                        </a>
+
+                        <a href="#" class="footer-social">
+                            <i class="bi bi-tiktok"></i>
+                            TikTok
+                        </a>
+
+                        <a href="#" class="footer-social">
+                            <i class="bi bi-envelope"></i>
+                            Email
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Footer Bottom --}}
+                <div class="footer-bottom">
+
+                    <span>
+                        © {{ date('Y') }} KERAJAAN.
+                        All rights reserved.
+                    </span>
+
+                    <div class="footer-bottom-links">
+
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+
+                        <a href="#">
+                            Terms & Conditions
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
 
     </main>
 
