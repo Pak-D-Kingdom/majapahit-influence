@@ -2,6 +2,58 @@
 
 @section('title', 'Majapahit Influence | Platform Kolaborasi Brand & Influencer Terdepan')
 
+@push('styles')
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .landing-demo-frame {
+            background: #080302;
+            box-shadow: 0 32px 80px rgba(25, 9, 6, 0.34);
+        }
+
+        .landing-demo-frame::after {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            content: '';
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 15%, transparent 84%, rgba(0, 0, 0, 0.24));
+        }
+
+        .landing-feature-preview::after {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            content: '';
+            background: linear-gradient(180deg, transparent 62%, rgba(25, 9, 6, 0.18));
+        }
+
+        .landing-feature-preview iframe {
+            width: 357.15%;
+            height: 357.15%;
+            pointer-events: none;
+            transform: scale(0.28);
+            transform-origin: top left;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+@endpush
+
 @section('content')
 
     {{-- ================================
@@ -12,8 +64,8 @@
 
             {{-- Logo --}}
             <a href="{{ url('/') }}" class="flex items-center gap-2.5 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#d57028] via-[#d5282d] to-[#fec200] flex items-center justify-center text-white font-black text-lg shadow-md shadow-[#d57028]/20 group-hover:scale-105 transition-transform font-heading">
-                    MI
+                <div class="w-10 h-10 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-md shadow-[#d57028]/20 group-hover:scale-105 transition-transform overflow-hidden border border-[#d57028]/20">
+                    <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
                 </div>
                 <div class="leading-tight">
                     <span class="block text-[11px] font-bold tracking-widest text-[#d57028] font-heading">MAJAPAHIT</span>
@@ -22,8 +74,8 @@
             </a>
 
             {{-- Desktop Navigation --}}
-            <nav class="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#765f58]">
-                <a href="#home" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Beranda</a>
+            <nav class="hidden 2xl:flex items-center gap-7 text-sm font-semibold text-[#765f58]">
+                <a href="#demo-produk" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Demo Produk</a>
                 <a href="#solusi-brand" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Solusi Brand</a>
                 <a href="#maklon" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Layanan Maklon</a>
                 <a href="#kreator" class="hover:text-[#d57028] transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none rounded-lg px-1">Untuk Kreator</a>
@@ -33,11 +85,15 @@
             </nav>
 
             {{-- Navbar Actions --}}
-            <div class="hidden lg:flex items-center gap-3">
+            <div class="hidden 2xl:flex items-center gap-3">
                 @auth
                     @if (auth()->user()->isSuperadmin() || auth()->user()->isAdmin())
                         <a href="{{ route('superadmin.dashboard') }}" class="px-4 py-2 rounded-xl bg-[#d57028] hover:bg-[#b86021] text-white font-bold text-sm shadow-xs transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
                             <i class="bi bi-speedometer2 mr-1"></i> Dashboard Admin
+                        </a>
+                    @elseif (auth()->user()->isBrand())
+                        <a href="{{ route('brand.dashboard') }}" class="px-4 py-2 rounded-xl bg-[#d57028] hover:bg-[#b86021] text-white font-bold text-sm shadow-xs transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
+                            <i class="bi bi-speedometer2 mr-1"></i> Dashboard Brand
                         </a>
                     @elseif (auth()->user()->isKol())
                         <a href="{{ route('kol.dashboard') }}" class="px-4 py-2 rounded-xl bg-[#d57028] hover:bg-[#b86021] text-white font-bold text-sm shadow-xs transition-all font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
@@ -68,18 +124,19 @@
             </div>
 
             {{-- Mobile Menu Button (Accessible 44x44px target) --}}
-            <button class="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-[#421b13] hover:text-[#d57028] hover:bg-[#f7eee8] text-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none" id="mobileMenuToggle" type="button" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileNav">
+            <button class="2xl:hidden min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-[#421b13] hover:text-[#d57028] hover:bg-[#f7eee8] text-2xl transition-colors focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none" id="mobileMenuToggle" type="button" aria-label="Buka Menu Navigasi" aria-expanded="false" aria-controls="mobileNav">
                 <i class="bi bi-list"></i>
             </button>
         </div>
 
         {{-- Mobile Nav Drawer --}}
-        <div class="hidden lg:hidden px-4 pt-2 pb-6 bg-white border-b border-gray-200" id="mobileNav">
+        <div class="hidden 2xl:hidden px-4 pt-2 pb-6 bg-white border-b border-gray-200" id="mobileNav">
             <div class="flex flex-col gap-3 text-sm font-semibold text-gray-700">
-                <a href="#home" class="py-2 border-b border-gray-100">Beranda</a>
+                <a href="#demo-produk" class="py-2 border-b border-gray-100">Demo Produk</a>
                 <a href="#solusi-brand" class="py-2 border-b border-gray-100">Solusi Brand</a>
                 <a href="#maklon" class="py-2 border-b border-gray-100">Layanan Maklon</a>
                 <a href="#kreator" class="py-2 border-b border-gray-100">Untuk Kreator</a>
+                <a href="#faq" class="py-2 border-b border-gray-100">FAQ</a>
                 <a href="{{ route('catalog.index') }}" class="py-2 text-amber-700 font-bold flex items-center gap-2">
                     <i class="bi bi-shop"></i> Katalog E-Commerce
                 </a>
@@ -87,6 +144,8 @@
                     @auth
                         @if (auth()->user()->isSuperadmin() || auth()->user()->isAdmin())
                             <a href="{{ route('superadmin.dashboard') }}" class="w-full py-2.5 text-center bg-amber-600 text-white font-bold rounded-xl">Dashboard Admin</a>
+                        @elseif (auth()->user()->isBrand())
+                            <a href="{{ route('brand.dashboard') }}" class="w-full py-2.5 text-center bg-amber-600 text-white font-bold rounded-xl">Dashboard Brand</a>
                         @else
                             <a href="{{ route('kol.dashboard') }}" class="w-full py-2.5 text-center bg-amber-600 text-white font-bold rounded-xl">Dashboard KOL</a>
                         @endif
@@ -142,6 +201,11 @@
                                 <a href="{{ route('registration.create') }}" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#d57028] to-[#b86021] hover:from-[#b86021] hover:to-[#934510] text-white font-extrabold text-sm shadow-md shadow-[#d57028]/20 flex items-center gap-2 transition-all hover:scale-105 font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
                                     <i class="bi bi-camera-reels-fill text-lg"></i>
                                     <span>Saya Kreator: Join KOL</span>
+                                </a>
+
+                                <a href="#demo-produk" class="px-5 py-3.5 rounded-2xl bg-white hover:bg-[#f7eee8] text-[#421b13] font-extrabold text-sm border border-[#421b13]/15 flex items-center gap-2 transition-all hover:-translate-y-0.5 font-heading focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:outline-none">
+                                    <i class="bi bi-play-circle-fill text-[#d57028] text-lg"></i>
+                                    <span>Tonton Demo</span>
                                 </a>
                             </div>
 
@@ -228,6 +292,55 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        {{-- ================================
+            DEMO PRODUK (Cinematic Product Tour)
+        ================================= --}}
+        <section class="relative overflow-hidden bg-[#190906] py-20 text-white lg:py-28" id="demo-produk">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(213,112,40,0.3),transparent_28%),radial-gradient(circle_at_90%_80%,rgba(213,40,45,0.18),transparent_30%)]"></div>
+            <div class="container relative mx-auto px-4 lg:px-8">
+                <div class="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div class="lg:col-span-4">
+                        <h2 class="max-w-md font-heading text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+                            Lihat bagaimana satu produk bergerak dari ide hingga jadi peluang.
+                        </h2>
+                        <p class="mt-5 max-w-md text-base leading-relaxed text-[#ddc5ba]">
+                            Tur visual ini memperlihatkan alur Majapahit Influence: dari pengembangan brand, persiapan aset promosi, sampai katalog yang siap dipilih kreator.
+                        </p>
+                        <div class="mt-8 space-y-4 border-t border-white/15 pt-6 text-sm">
+                            <div class="flex gap-3">
+                                <i class="bi bi-building-check text-lg text-[#fec200]"></i>
+                                <span class="text-[#f5e6df]">Brand dan kebutuhan promosi terhubung dalam satu alur.</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="bi bi-folder2-open text-lg text-[#fec200]"></i>
+                                <span class="text-[#f5e6df]">Aset siap pakai membuat kreator bisa bergerak lebih cepat.</span>
+                            </div>
+                            <div class="flex gap-3">
+                                <i class="bi bi-graph-up-arrow text-lg text-[#fec200]"></i>
+                                <span class="text-[#f5e6df]">Katalog dan komisi memberi jalur yang jelas untuk berjualan.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8">
+                        <div class="landing-demo-frame relative aspect-video overflow-hidden rounded-2xl">
+                            <iframe
+                                class="size-full"
+                                src="{{ asset('motion-ui/index.html') }}"
+                                title="Demo visual Majapahit Influence"
+                                loading="lazy"
+                                allow="autoplay"
+                            ></iframe>
+                        </div>
+                        <p class="mt-4 flex items-center gap-2 text-xs font-semibold text-[#c69d8d]">
+                            <i class="bi bi-play-fill text-[#fec200]"></i>
+                            Demo visual interaktif Majapahit Influence
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -490,6 +603,63 @@
         </section>
 
         {{-- ================================
+            FEATURE SCREENSHOTS (Live Product Views)
+        ================================= --}}
+        <section class="bg-[#fff9f4] py-20 lg:py-28" id="fitur">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="font-heading text-3xl font-black tracking-tight text-[#421b13] sm:text-4xl">
+                        Kenali fitur utamanya sebelum Anda mulai.
+                    </h2>
+                    <p class="mt-4 text-base leading-relaxed text-[#765f58]">
+                        Tiga pratinjau langsung dari halaman Majapahit Influence, agar alurnya bisa dipahami dalam sekali lihat.
+                    </p>
+                </div>
+
+                <div class="mt-12 grid gap-6 md:grid-cols-3">
+                    <a href="{{ route('catalog.index') }}" class="group block rounded-2xl bg-white p-3 shadow-[0_18px_45px_rgba(66,27,19,0.11)] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                        <div class="landing-feature-preview relative aspect-video overflow-hidden rounded-xl bg-[#f7eee8]">
+                            <iframe src="{{ route('catalog.index') }}" title="Pratinjau fitur katalog produk" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        </div>
+                        <div class="px-2 pb-2 pt-5">
+                            <div class="flex items-start justify-between gap-3">
+                                <h3 class="font-heading text-lg font-extrabold text-[#421b13]">Katalog siap jual</h3>
+                                <i class="bi bi-arrow-up-right text-lg text-[#d57028] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"></i>
+                            </div>
+                            <p class="mt-2 text-sm leading-relaxed text-[#765f58]">Temukan produk, harga, dan informasi komisi dalam satu halaman yang ringkas.</p>
+                        </div>
+                    </a>
+
+                    <a href="{{ route('brand.register') }}" class="group block rounded-2xl bg-white p-3 shadow-[0_18px_45px_rgba(66,27,19,0.11)] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                        <div class="landing-feature-preview relative aspect-video overflow-hidden rounded-xl bg-[#f7eee8]">
+                            <iframe src="{{ route('brand.register') }}" title="Pratinjau pendaftaran brand" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        </div>
+                        <div class="px-2 pb-2 pt-5">
+                            <div class="flex items-start justify-between gap-3">
+                                <h3 class="font-heading text-lg font-extrabold text-[#421b13]">Onboarding brand</h3>
+                                <i class="bi bi-arrow-up-right text-lg text-[#d57028] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"></i>
+                            </div>
+                            <p class="mt-2 text-sm leading-relaxed text-[#765f58]">Mulai kemitraan dan arahkan kebutuhan promosi lewat formulir yang terstruktur.</p>
+                        </div>
+                    </a>
+
+                    <a href="{{ route('registration.create') }}" class="group block rounded-2xl bg-white p-3 shadow-[0_18px_45px_rgba(66,27,19,0.11)] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                        <div class="landing-feature-preview relative aspect-video overflow-hidden rounded-xl bg-[#f7eee8]">
+                            <iframe src="{{ route('registration.create') }}" title="Pratinjau pendaftaran kreator" loading="lazy" tabindex="-1" aria-hidden="true"></iframe>
+                        </div>
+                        <div class="px-2 pb-2 pt-5">
+                            <div class="flex items-start justify-between gap-3">
+                                <h3 class="font-heading text-lg font-extrabold text-[#421b13]">Pendaftaran kreator</h3>
+                                <i class="bi bi-arrow-up-right text-lg text-[#d57028] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"></i>
+                            </div>
+                            <p class="mt-2 text-sm leading-relaxed text-[#765f58]">Perkenalkan profil Anda dan ambil langkah pertama untuk masuk ke ekosistem KOL.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        {{-- ================================
             SECTION UNTUK KREATOR / KOL
         ================================= --}}
         <section class="py-20 bg-white" id="kreator">
@@ -549,6 +719,69 @@
         </section>
 
         {{-- ================================
+            FAQ
+        ================================= --}}
+        <section class="bg-white py-20 lg:py-28" id="faq">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="grid gap-10 lg:grid-cols-12 lg:gap-16">
+                    <div class="lg:col-span-4">
+                        <h2 class="font-heading text-3xl font-black tracking-tight text-[#421b13] sm:text-4xl">
+                            Pertanyaan yang biasanya muncul sebelum memulai.
+                        </h2>
+                        <p class="mt-4 max-w-md text-base leading-relaxed text-[#765f58]">
+                            Kami merangkum hal yang paling sering ditanyakan Brand dan Kreator tentang cara kerja ekosistem Majapahit Influence.
+                        </p>
+                        <a href="{{ route('brand.register') }}" class="mt-7 inline-flex items-center gap-2 font-heading text-sm font-extrabold text-[#b86021] underline decoration-[#d57028]/35 underline-offset-4 transition-colors hover:text-[#934510] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                            Mulai sebagai Brand <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="divide-y divide-[#421b13]/10 lg:col-span-8">
+                        <details class="group py-5" open>
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg font-extrabold text-[#421b13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                                Bagaimana Brand memulai kolaborasi?
+                                <i class="bi bi-plus-lg shrink-0 text-[#d57028] transition-transform duration-200 group-open:rotate-45"></i>
+                            </summary>
+                            <p class="max-w-2xl pt-3 text-sm leading-relaxed text-[#765f58]">Brand dapat memulai dari halaman pendaftaran. Setelah itu, informasi kebutuhan promosi dan pilihan layanan menjadi dasar untuk menentukan langkah berikutnya.</p>
+                        </details>
+
+                        <details class="group py-5">
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg font-extrabold text-[#421b13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                                Apa perbedaan jalur Direct Selection dan Marketplace?
+                                <i class="bi bi-plus-lg shrink-0 text-[#d57028] transition-transform duration-200 group-open:rotate-45"></i>
+                            </summary>
+                            <p class="max-w-2xl pt-3 text-sm leading-relaxed text-[#765f58]">Direct Selection cocok ketika Brand ingin memilih kreator tertentu. Jalur Marketplace menempatkan produk di katalog agar kreator dan affiliate dapat memilih produk yang ingin mereka promosikan.</p>
+                        </details>
+
+                        <details class="group py-5">
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg font-extrabold text-[#421b13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                                Untuk apa Bank Konten digunakan?
+                                <i class="bi bi-plus-lg shrink-0 text-[#d57028] transition-transform duration-200 group-open:rotate-45"></i>
+                            </summary>
+                            <p class="max-w-2xl pt-3 text-sm leading-relaxed text-[#765f58]">Bank Konten menyimpan bahan promosi seperti foto, video B-roll, dan copywriting. Kreator dapat menggunakan aset yang disediakan Brand agar materi promosi tetap konsisten.</p>
+                        </details>
+
+                        <details class="group py-5">
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg font-extrabold text-[#421b13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                                Bisakah saya membuat produk melalui layanan maklon?
+                                <i class="bi bi-plus-lg shrink-0 text-[#d57028] transition-transform duration-200 group-open:rotate-45"></i>
+                            </summary>
+                            <p class="max-w-2xl pt-3 text-sm leading-relaxed text-[#765f58]">Bisa. Layanan maklon membantu proses dari formulasi dan legalitas hingga produksi. Setelah siap, produk dapat masuk ke ekosistem promosi Majapahit Influence.</p>
+                        </details>
+
+                        <details class="group py-5">
+                            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg font-extrabold text-[#421b13] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d57028] focus-visible:ring-offset-4">
+                                Bagaimana Kreator menemukan produk untuk dipromosikan?
+                                <i class="bi bi-plus-lg shrink-0 text-[#d57028] transition-transform duration-200 group-open:rotate-45"></i>
+                            </summary>
+                            <p class="max-w-2xl pt-3 text-sm leading-relaxed text-[#765f58]">Kreator dapat menjelajahi katalog untuk melihat produk yang tersedia, informasi komisi, serta akses ke bahan promosi yang berkaitan dengan produk tersebut.</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {{-- ================================
             FOOTER
         ================================= --}}
         <footer class="bg-gray-950 text-white pt-16 pb-12 border-t border-gray-800">
@@ -558,8 +791,8 @@
                     {{-- Col 1: Brand & About --}}
                     <div class="space-y-4 md:col-span-1">
                         <div class="flex items-center gap-2.5">
-                            <div class="w-9 h-9 rounded-xl bg-amber-600 flex items-center justify-center text-white font-black text-base">
-                                MI
+                            <div class="w-9 h-9 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-sm overflow-hidden">
+                                <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
                             </div>
                             <span class="text-lg font-black tracking-tight text-white">MAJAPAHIT INFLUENCE</span>
                         </div>
@@ -575,6 +808,7 @@
                             <li><a href="{{ route('brand.register') }}" class="hover:text-white transition-colors">Daftar Kemitraan Brand</a></li>
                             <li><a href="#maklon" class="hover:text-white transition-colors">Layanan Maklon Produk</a></li>
                             <li><a href="#solusi-brand" class="hover:text-white transition-colors">2 Jalur Promosi</a></li>
+                            <li><a href="#faq" class="hover:text-white transition-colors">Pertanyaan Umum</a></li>
                             <li><a href="{{ route('login') }}" class="hover:text-white transition-colors">Login Portal</a></li>
                         </ul>
                     </div>
@@ -606,6 +840,7 @@
                     <div class="flex gap-6">
                         <a href="{{ url('/') }}#solusi-brand" class="hover:text-white transition-colors">Kebijakan Brand</a>
                         <a href="{{ url('/') }}#kreator" class="hover:text-white transition-colors">Ketentuan Kreator</a>
+                        <a href="{{ url('/') }}#faq" class="hover:text-white transition-colors">FAQ</a>
                     </div>
                 </div>
             </div>
