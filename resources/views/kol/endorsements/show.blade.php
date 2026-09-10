@@ -32,14 +32,6 @@
         </div>
     </div>
 
-    {{-- Success Alert --}}
-    @if (session('success'))
-        <div class="mb-6 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 text-sm font-medium text-emerald-800 shadow-xs">
-            <i class="bi bi-check-circle-fill text-lg text-emerald-600"></i>
-            <span>{{ session('success') }}</span>
-        </div>
-    @endif
-
     {{-- Action CTA Banner if proof upload is available --}}
     @if (in_array($endorsement->status, ['assigned', 'in_progress', 'content_rejected']))
         <div class="mb-6 overflow-hidden rounded-2xl border border-[#0b64d4]/30 bg-gradient-to-r from-[#0b64d4]/10 via-[#1698f6]/5 to-white p-5 shadow-xs sm:p-6">

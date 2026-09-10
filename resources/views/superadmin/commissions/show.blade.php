@@ -23,13 +23,6 @@
         </div>
     </div>
 
-    @if (session('success'))
-        <div class="mb-6 flex items-center gap-2 rounded-xl bg-emerald-50 p-4 text-sm text-emerald-800 border border-emerald-200">
-            <i class="bi bi-check-circle-fill text-emerald-600"></i>
-            <span>{{ session('success') }}</span>
-        </div>
-    @endif
-
     <div class="grid gap-6 lg:grid-cols-3">
         {{-- Rincian Finansial --}}
         <div class="lg:col-span-2 space-y-6">

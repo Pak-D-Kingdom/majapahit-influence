@@ -22,13 +22,10 @@
             <x-dashboard.status-badge :status="$endorsement->status" />
             
             @if ($endorsement->status !== 'selesai')
-                <form action="{{ route('superadmin.endorsements.complete', $endorsement->id) }}" method="POST" onsubmit="return confirm('Tandai endorsement ini sebagai selesai? Komisi akan dicatat ke saldo KOL.');">
-                    @csrf
-                    <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-700 font-heading">
-                        <i class="bi bi-check2-all"></i>
-                        <span>Selesaikan Endorsement</span>
-                    </button>
-                </form>
+                <button type="button" onclick="openCompleteEndorsementModal()" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-700 font-heading">
+                    <i class="bi bi-check2-all"></i>
+                    <span>Selesaikan Endorsement</span>
+                </button>
             @endif
 
             <a href="{{ route('superadmin.endorsements.edit', $endorsement) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#190906] font-heading">
@@ -37,14 +34,6 @@
             </a>
         </div>
     </div>
-
-    {{-- Alerts --}}
-    @if (session('success'))
-        <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-xs font-bold text-emerald-800 flex items-center gap-2">
-            <i class="bi bi-check-circle-fill text-base text-emerald-600"></i>
-            <span>{{ session('success') }}</span>
-        </div>
-    @endif
 
     @if ($errors->any())
         <div class="rounded-xl bg-red-50 border border-red-200 p-4 text-xs font-bold text-red-700">
@@ -202,4 +191,74 @@
         </section>
     </div>
 </div>
+
+@if ($endorsement->status !== 'selesai')
+    {{-- MODAL SELESAIKAN ENDORSEMENT --}}
+    <div id="modal-complete-endorsement" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs transition-opacity duration-200" role="dialog" aria-modal="true">
+        <div class="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-emerald-100">
+            <button type="button" onclick="closeCompleteEndorsementModal()" class="absolute right-5 top-5 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition">
+                <i class="bi bi-x-lg text-sm"></i>
+            </button>
+
+            <div class="flex items-center gap-3.5 mb-4">
+                <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200">
+                    <i class="bi bi-check2-all text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Selesaikan Endorsement</h3>
+                    <p class="text-xs text-[#765f58]">Tandai penugasan ini telah tuntas.</p>
+                </div>
+            </div>
+
+            <div class="mb-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 p-3.5 text-xs text-emerald-900">
+                <span class="text-emerald-700 block text-[11px] font-medium">Campaign:</span>
+                <strong class="text-emerald-950 font-bold text-sm block mt-0.5">{{ $endorsement->campaign->name }}</strong>
+                <p class="mt-2 text-xs text-emerald-800 leading-relaxed">Menyelesaikan endorsement ini akan mengunci status dan secara otomatis mencatatkan komisi ke saldo akun KOL terkait.</p>
+            </div>
+
+            <form action="{{ route('superadmin.endorsements.complete', $endorsement->id) }}" method="POST" class="space-y-4">
+                @csrf
+
+                <div class="flex items-center justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeCompleteEndorsementModal()" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition font-heading">
+                        Batal
+                    </button>
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700 transition font-heading">
+                        <i class="bi bi-check2-circle"></i>
+                        <span>Ya, Selesaikan Sekarang</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+@endif
 @endsection
+
+@push('scripts')
+<script>
+    function openCompleteEndorsementModal() {
+        const modal = document.getElementById('modal-complete-endorsement');
+        modal?.classList.remove('hidden');
+        modal?.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeCompleteEndorsementModal() {
+        const modal = document.getElementById('modal-complete-endorsement');
+        modal?.classList.add('hidden');
+        modal?.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('modal-complete-endorsement');
+        modal?.addEventListener('click', function(e) {
+            if (e.target === modal) closeCompleteEndorsementModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeCompleteEndorsementModal();
+        });
+    });
+</script>
+@endpush

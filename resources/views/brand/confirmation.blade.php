@@ -9,7 +9,7 @@
         {{-- Brand Logo Header --}}
         <div class="text-center mb-8">
             <a href="{{ url('/') }}" class="inline-flex flex-col items-center gap-2 group transition-transform hover:scale-105">
-                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-12 w-auto object-contain">
+                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}" alt="KERAJAAN" class="h-12 w-auto object-contain">
                 <span class="text-[11px] font-bold tracking-[0.22em] text-[#0c3685] uppercase">
                     KERAJAAN &bull; kerajaan INFLUENCE
                 </span>

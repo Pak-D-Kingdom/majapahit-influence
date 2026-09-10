@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use App\Models\Brand;
 
 class ChatbotController extends Controller
 {
@@ -12,7 +12,7 @@ class ChatbotController extends Controller
     {
         $request->validate([
             'message' => 'required|string|max:1000',
-            'role' => 'required|in:kol,brand'
+            'role' => 'required|in:kol,brand',
         ]);
 
         $user = $request->user();
@@ -21,7 +21,7 @@ class ChatbotController extends Controller
         $history = $request->input('history', []);
 
         // Gather context
-        $context = "";
+        $context = '';
         $userName = $user->name;
 
         if ($userRole === 'kol') {
@@ -30,7 +30,7 @@ class ChatbotController extends Controller
                 $userName = $profile->nickname ?: $user->name;
                 $endorsements = $profile->endorsements();
                 $activeStatuses = ['assigned', 'in_progress', 'content_submitted', 'content_approved'];
-                
+
                 $activeCount = (clone $endorsements)->whereIn('status', $activeStatuses)->count();
                 $pendingCount = (clone $endorsements)->whereIn('status', ['assigned', 'in_progress', 'content_rejected'])->count();
                 $monthCommission = $profile->commissions()->whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->sum('commission_amount');
@@ -41,7 +41,7 @@ class ChatbotController extends Controller
                 $context .= "Statistik Anda:\n";
                 $context .= "- Endorsement Aktif: $activeCount\n";
                 $context .= "- Tugas Pending: $pendingCount\n";
-                $context .= "- Komisi Bulan Ini: Rp " . number_format($monthCommission, 0, ',', '.') . "\n";
+                $context .= '- Komisi Bulan Ini: Rp '.number_format($monthCommission, 0, ',', '.')."\n";
                 $context .= "- Notifikasi Belum Dibaca: $unreadNotifs\n";
             }
         } else {
@@ -74,7 +74,7 @@ class ChatbotController extends Controller
 
         // Prepare messages for Groq API
         $messages = [
-            ['role' => 'system', 'content' => $systemPrompt]
+            ['role' => 'system', 'content' => $systemPrompt],
         ];
 
         // Append history (limit to last 10 interactions to save tokens)
@@ -104,23 +104,25 @@ class ChatbotController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 $reply = $data['choices'][0]['message']['content'] ?? 'Maaf, saya tidak dapat memproses jawaban saat ini.';
-                
+
                 return response()->json([
                     'success' => true,
-                    'reply' => $reply
+                    'reply' => $reply,
                 ]);
             } else {
                 \Log::error('Groq API Error', ['status' => $response->status(), 'body' => $response->body()]);
+
                 return response()->json([
                     'success' => false,
-                    'reply' => 'Maaf, layanan chatbot sedang mengalami gangguan komunikasi dengan server AI.'
+                    'reply' => 'Maaf, layanan chatbot sedang mengalami gangguan komunikasi dengan server AI.',
                 ], 500);
             }
         } catch (\Exception $e) {
             \Log::error('Chatbot Exception', ['message' => $e->getMessage()]);
+
             return response()->json([
                 'success' => false,
-                'reply' => 'Terjadi kesalahan sistem saat menghubungi chatbot.'
+                'reply' => 'Terjadi kesalahan sistem saat menghubungi chatbot.',
             ], 500);
         }
     }

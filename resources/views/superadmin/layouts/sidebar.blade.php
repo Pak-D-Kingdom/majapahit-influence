@@ -1,7 +1,7 @@
 <aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#071d49]/30 bg-[#071d49] text-slate-200 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-72 lg:shrink-0 lg:translate-x-0">
     <div class="flex h-20 items-center gap-3 border-b border-white/10 px-6">
         <a href="{{ url('/') }}" class="flex items-center gap-3 group transition-transform hover:scale-102">
-            <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-9 w-auto object-contain">
+            <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}" alt="KERAJAAN" class="h-9 w-auto object-contain">
             <div class="flex flex-col leading-tight">
                 <span class="font-heading text-[10px] font-bold tracking-[2px] text-[#78a5d6]">KERAJAAN</span>
                 <strong class="font-heading text-[12px] font-extrabold tracking-[1px] text-white">WORKSPACE</strong>

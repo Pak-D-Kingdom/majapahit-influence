@@ -2,7 +2,7 @@
     {{-- Brand Header --}}
     <div class="flex h-20 items-center gap-3 border-b border-white/10 px-6">
         <a href="{{ url('/') }}" class="flex items-center gap-3 group transition-transform hover:scale-102">
-            <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-9 w-auto object-contain">
+            <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}" alt="KERAJAAN" class="h-9 w-auto object-contain">
             <div class="flex flex-col leading-tight">
                 <span class="font-heading text-[10px] font-bold tracking-[2px] text-[#78a5d6]">KERAJAAN</span>
                 <strong class="font-heading text-[12px] font-extrabold tracking-[1px] text-white">KOL PORTAL</strong>
@@ -33,15 +33,26 @@
                 @php
                     $isActive = request()->routeIs($item['route'].'*');
                     $url = Route::has($item['route']) ? route($item['route']) : '#';
+                    $hasUnread = $item['route'] === 'kol.notifications.index' && auth()->check() && auth()->user()->unreadNotifications()->exists();
                 @endphp
                 <a href="{{ $url }}"
                    class="group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1698f6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#071d49] {{ $isActive ? 'bg-gradient-to-r from-[#0b64d4] to-[#1698f6] text-white font-semibold shadow-md shadow-blue-900/30' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
                     <div class="flex items-center gap-3">
-                        <i class="bi {{ $item['icon'] }} text-base {{ $isActive ? 'text-white' : 'text-[#78a5d6] group-hover:text-white' }}" aria-hidden="true"></i>
+                        <div class="relative">
+                            <i class="bi {{ $item['icon'] }} text-base {{ $isActive ? 'text-white' : 'text-[#78a5d6] group-hover:text-white' }}" aria-hidden="true"></i>
+                            @if ($hasUnread)
+                                <span class="absolute -top-1 -right-1 flex size-2">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75"></span>
+                                    <span class="relative inline-flex size-2 rounded-full bg-rose-500"></span>
+                                </span>
+                            @endif
+                        </div>
                         <span class="font-body">{{ $item['label'] }}</span>
                     </div>
                     @if ($isActive)
                         <i class="bi bi-chevron-right text-xs text-white/80" aria-hidden="true"></i>
+                    @elseif ($hasUnread)
+                        <span class="flex size-2 rounded-full bg-rose-500 ring-4 ring-rose-500/20"></span>
                     @endif
                 </a>
             @endforeach

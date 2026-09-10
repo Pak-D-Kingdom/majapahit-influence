@@ -35,16 +35,6 @@
 </div>
 
 <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-    @if(session('success'))
-        <div class="p-4 bg-emerald-50 border-b border-emerald-100 text-emerald-700 text-sm font-medium flex items-center gap-2">
-            <i class="bi bi-check-circle-fill"></i> {{ session('success') }}
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="p-4 bg-rose-50 border-b border-rose-100 text-rose-700 text-sm font-medium flex items-center gap-2">
-            <i class="bi bi-exclamation-triangle-fill"></i> {{ session('error') }}
-        </div>
-    @endif
 
     <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
@@ -156,37 +146,21 @@
                     {{-- Aksi Verifikasi --}}
                     <td class="px-6 py-4 text-right whitespace-nowrap">
                         <div class="flex items-center justify-end gap-2">
-                            {{-- Form Setujui --}}
-                            <form action="{{ route('superadmin.product-verifications.verify', $product) }}" method="POST" class="inline">
-                                @csrf
-                                <input type="hidden" name="status" value="approved">
-                                <input type="hidden" name="filter_type" value="{{ $type }}">
-                                <button type="submit" class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition shadow-xs flex items-center gap-1"
-                                    onclick="return confirm('{{ $product->verification_status === 'pending_delete' ? 'Setujui penghapusan produk ini? Produk akan dihapus dari katalog.' : ($product->verification_status === 'pending_update' ? 'Setujui perubahan data produk ini?' : 'Setujui pendaftaran produk baru ini?') }}');">
-                                    <i class="bi bi-check-lg"></i>
-                                    <span>Setujui</span>
-                                </button>
-                            </form>
+                            {{-- Button Setujui Modal --}}
+                            <button type="button" 
+                                onclick="openApproveModal('{{ $product->id }}', '{{ addslashes($product->name) }}', '{{ $product->verification_status }}')"
+                                class="px-3.5 py-1.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition shadow-xs flex items-center gap-1.5 font-heading">
+                                <i class="bi bi-check-lg"></i>
+                                <span>Setujui</span>
+                            </button>
                             
-                            {{-- Form Tolak --}}
-                            <form action="{{ route('superadmin.product-verifications.verify', $product) }}" method="POST" class="inline" onsubmit="
-                                const reason = prompt('Masukkan alasan penolakan untuk Brand:');
-                                if(reason === null || reason.trim() === '') {
-                                    alert('Alasan penolakan wajib diisi.');
-                                    return false;
-                                }
-                                this.querySelector('[name=rejection_reason]').value = reason;
-                                return true;
-                            ">
-                                @csrf
-                                <input type="hidden" name="status" value="rejected">
-                                <input type="hidden" name="filter_type" value="{{ $type }}">
-                                <input type="hidden" name="rejection_reason" value="">
-                                <button type="submit" class="px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-bold hover:bg-rose-100 transition flex items-center gap-1">
-                                    <i class="bi bi-x-lg"></i>
-                                    <span>Tolak</span>
-                                </button>
-                            </form>
+                            {{-- Button Tolak Modal --}}
+                            <button type="button" 
+                                onclick="openRejectModal('{{ $product->id }}', '{{ addslashes($product->name) }}', '{{ $product->verification_status }}')"
+                                class="px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-bold hover:bg-rose-100 transition flex items-center gap-1.5 font-heading">
+                                <i class="bi bi-x-lg"></i>
+                                <span>Tolak</span>
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -213,4 +187,178 @@
     </div>
     @endif
 </div>
+
+{{-- MODAL TOLAK VERIFIKASI PRODUK --}}
+<div id="modal-reject-verification" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs transition-opacity duration-200" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-rose-100">
+        {{-- Close button --}}
+        <button type="button" onclick="closeRejectModal()" class="absolute right-5 top-5 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition">
+            <i class="bi bi-x-lg text-sm"></i>
+        </button>
+
+        <div class="flex items-center gap-3.5 mb-4">
+            <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 border border-rose-200">
+                <i class="bi bi-x-circle text-2xl"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Tolak Verifikasi Produk</h3>
+                <p class="text-xs text-[#765f58]">Berikan alasan penolakan secara jelas untuk diteruskan ke Brand.</p>
+            </div>
+        </div>
+
+        <div class="mb-4 rounded-2xl bg-slate-50 border border-slate-200/80 p-3.5 text-xs text-slate-700">
+            <span class="text-slate-500 block text-[11px] font-medium">Produk Terkait:</span>
+            <strong id="reject-modal-product-name" class="text-slate-900 font-bold text-sm block mt-0.5">-</strong>
+        </div>
+
+        <form id="reject-verification-form" method="POST" action="" class="space-y-4">
+            @csrf
+            <input type="hidden" name="status" value="rejected">
+            <input type="hidden" name="filter_type" value="{{ $type }}">
+
+            <div>
+                <label for="reject-modal-reason" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
+                    Alasan Penolakan <span class="text-rose-500">*</span>
+                </label>
+                <textarea 
+                    name="rejection_reason" 
+                    id="reject-modal-reason" 
+                    rows="4" 
+                    required 
+                    placeholder="Tuliskan alasan penolakan (contoh: Foto produk buram, deskripsi kurang lengkap, atau rincian komisi tidak sesuai)..."
+                    class="w-full rounded-2xl border border-slate-300 p-3.5 text-xs text-slate-800 placeholder-slate-400 focus:border-rose-500 focus:ring-2 focus:ring-rose-500/20 focus:outline-hidden transition"></textarea>
+                <p class="mt-1 text-[11px] text-slate-400">Brand akan menerima notifikasi beserta catatan ini untuk perbaikan data.</p>
+            </div>
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button type="button" onclick="closeRejectModal()" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition font-heading">
+                    Batal
+                </button>
+                <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-rose-700 transition font-heading">
+                    <i class="bi bi-x-circle-fill"></i>
+                    <span>Kirim Penolakan</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- MODAL SETUJUI VERIFIKASI PRODUK --}}
+<div id="modal-approve-verification" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs transition-opacity duration-200" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-emerald-100">
+        {{-- Close button --}}
+        <button type="button" onclick="closeApproveModal()" class="absolute right-5 top-5 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition">
+            <i class="bi bi-x-lg text-sm"></i>
+        </button>
+
+        <div class="flex items-center gap-3.5 mb-4">
+            <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200">
+                <i class="bi bi-check-circle text-2xl"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Setujui Verifikasi</h3>
+                <p class="text-xs text-[#765f58]">Konfirmasi persetujuan produk.</p>
+            </div>
+        </div>
+
+        <div class="mb-4 rounded-2xl bg-emerald-50/60 border border-emerald-200/80 p-3.5 text-xs text-emerald-900">
+            <span class="text-emerald-700 block text-[11px] font-medium">Produk Terkait:</span>
+            <strong id="approve-modal-product-name" class="text-emerald-950 font-bold text-sm block mt-0.5">-</strong>
+            <p id="approve-modal-description" class="mt-2 text-xs text-emerald-800 leading-relaxed">-</p>
+        </div>
+
+        <form id="approve-verification-form" method="POST" action="" class="space-y-4">
+            @csrf
+            <input type="hidden" name="status" value="approved">
+            <input type="hidden" name="filter_type" value="{{ $type }}">
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button type="button" onclick="closeApproveModal()" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition font-heading">
+                    Batal
+                </button>
+                <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-emerald-700 transition font-heading">
+                    <i class="bi bi-check-circle-fill"></i>
+                    <span>Ya, Setujui Sekarang</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 @endsection
+
+@push('scripts')
+<script>
+    const baseVerifyRoute = "{{ url('superadmin/product-verifications') }}";
+
+    function openRejectModal(productId, productName, status) {
+        const modal = document.getElementById('modal-reject-verification');
+        const form = document.getElementById('reject-verification-form');
+        const nameEl = document.getElementById('reject-modal-product-name');
+        const reasonEl = document.getElementById('reject-modal-reason');
+
+        form.action = `${baseVerifyRoute}/${productId}/verify`;
+        nameEl.textContent = productName;
+        reasonEl.value = '';
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+        setTimeout(() => reasonEl.focus(), 50);
+    }
+
+    function closeRejectModal() {
+        const modal = document.getElementById('modal-reject-verification');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    function openApproveModal(productId, productName, status) {
+        const modal = document.getElementById('modal-approve-verification');
+        const form = document.getElementById('approve-verification-form');
+        const nameEl = document.getElementById('approve-modal-product-name');
+        const descEl = document.getElementById('approve-modal-description');
+
+        form.action = `${baseVerifyRoute}/${productId}/verify`;
+        nameEl.textContent = productName;
+
+        if (status === 'pending_delete') {
+            descEl.textContent = 'Menyetujui permintaan penghapusan akan menghapus produk ini dari katalog publik.';
+        } else if (status === 'pending_update') {
+            descEl.textContent = 'Menyetujui permintaan pembaruan akan langsung menerapkan seluruh perubahan ke katalog.';
+        } else {
+            descEl.textContent = 'Menyetujui pendaftaran produk baru akan membuat produk aktif dan siap dipublikasikan.';
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeApproveModal() {
+        const modal = document.getElementById('modal-approve-verification');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        ['modal-reject-verification', 'modal-approve-verification'].forEach(id => {
+            const modal = document.getElementById(id);
+            modal?.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    if (id === 'modal-reject-verification') closeRejectModal();
+                    if (id === 'modal-approve-verification') closeApproveModal();
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeRejectModal();
+                closeApproveModal();
+            }
+        });
+    });
+</script>
+@endpush

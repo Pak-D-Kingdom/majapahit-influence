@@ -27,17 +27,6 @@
         </div>
     </div>
 
-    {{-- SUCCESS ALERT BANNER --}}
-    @if (session('success'))
-        <div class="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 text-xs font-bold text-emerald-800 flex items-center gap-2 shadow-xs">
-            <i class="bi bi-check-circle-fill text-base text-emerald-600"></i>
-            <div>
-                <strong class="block text-sm">Berhasil!</strong>
-                <span>{{ session('success') }}</span>
-            </div>
-        </div>
-    @endif
-
     {{-- ERROR ALERT BANNER --}}
     @if ($errors->any())
         <div class="rounded-2xl border border-kerajaan-red/20 bg-kerajaan-red/10 p-4 text-xs text-kerajaan-red space-y-1 shadow-xs">

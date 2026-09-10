@@ -101,6 +101,47 @@ class NotificationTest extends TestCase
         $response->assertForbidden();
     }
 
+    public function test_brand_user_can_view_notifications_list(): void
+    {
+        $user = $this->createUserWithRole('brand');
+
+        Notification::create([
+            'user_id' => $user->id,
+            'type' => 'product_verification',
+            'title' => 'Produk Disetujui',
+            'body' => 'Produk Serum Anda telah disetujui.',
+            'is_read' => false,
+        ]);
+
+        $response = $this->actingAs($user)->get(route('brand.notifications.index'));
+
+        $response->assertOk();
+        $response->assertSee('Produk Disetujui');
+        $response->assertSee('Produk Serum Anda telah disetujui.');
+    }
+
+    public function test_brand_user_can_mark_notification_as_read_via_get(): void
+    {
+        $user = $this->createUserWithRole('brand');
+
+        $notification = Notification::create([
+            'user_id' => $user->id,
+            'type' => 'product_verification',
+            'title' => 'Produk Disetujui',
+            'body' => 'Produk Serum Anda telah disetujui.',
+            'target_url' => route('brand.products.index'),
+            'is_read' => false,
+        ]);
+
+        $response = $this->actingAs($user)->get(route('brand.notifications.read', $notification));
+
+        $response->assertRedirect(route('brand.products.index'));
+        $this->assertDatabaseHas('notifications', [
+            'id' => $notification->id,
+            'is_read' => true,
+        ]);
+    }
+
     private function createUserWithRole(string $role): User
     {
         $user = User::factory()->create();

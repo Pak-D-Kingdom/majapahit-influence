@@ -702,9 +702,7 @@
             return;
         }
 
-        if (confirm('Apakah Anda yakin ingin menyimpan perubahan profil dan rate card ini?')) {
-            document.getElementById('editProfileForm').submit();
-        }
+        document.getElementById('editProfileForm').submit();
     }
 
     document.addEventListener('DOMContentLoaded', function() {

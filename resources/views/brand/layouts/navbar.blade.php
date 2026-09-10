@@ -14,7 +14,9 @@
     </div>
 
     <div class="flex items-center gap-3 sm:gap-4">
-        <div class="flex items-center gap-3 pl-2">
+        <x-dashboard.notification-link route="brand.notifications.index" />
+
+        <div class="flex items-center gap-3 pl-2 border-l border-slate-200">
             <div class="hidden sm:block text-right">
                 <p class="text-xs font-bold text-[#071d49] font-heading leading-tight">{{ auth()->user()->brand->name ?? auth()->user()->name ?? 'Brand Partner' }}</p>
                 <p class="text-[11px] text-slate-500 leading-tight">Official Brand Partner</p>

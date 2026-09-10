@@ -57,12 +57,9 @@
 
         <div class="shrink-0 flex items-center gap-2 self-end sm:self-center">
             @if($product->is_active)
-                <form action="{{ route('superadmin.products.toggle-publish', $product->id) }}" method="POST" onsubmit="return confirm('Tarik produk ini dari katalog E-Commerce publik?');">
-                    @csrf
-                    <button type="submit" class="px-4 py-2 rounded-xl bg-white border border-kerajaan-dark/15 hover:bg-rose-50 text-rose-700 font-bold text-xs transition shadow-2xs inline-flex items-center gap-1.5 font-heading">
-                        <i class="bi bi-arrow-down-circle"></i> Tarik dari E-Commerce
-                    </button>
-                </form>
+                <button type="button" onclick="openUnpublishEditProductModal()" class="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:bg-rose-50 text-rose-700 font-bold text-xs transition shadow-2xs inline-flex items-center gap-1.5 font-heading">
+                    <i class="bi bi-arrow-down-circle"></i> Tarik dari E-Commerce
+                </button>
             @else
                 @if($hasDrive)
                     <form action="{{ route('superadmin.products.toggle-publish', $product->id) }}" method="POST">
@@ -273,20 +270,16 @@
                                     <i class="bi bi-google"></i>
                                     <span>Buka di Google Drive</span>
                                 </a>
-                                <button type="button" onclick="navigator.clipboard.writeText('{{ $asset->external_url }}'); alert('Link Google Drive berhasil disalin ke clipboard!');" class="p-1.5 rounded-lg bg-white border border-kerajaan-dark/15 hover:bg-kerajaan-sand text-kerajaan-dark text-xs transition" title="Salin Link">
+                                <button type="button" onclick="navigator.clipboard.writeText('{{ $asset->external_url }}');" class="p-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs transition" title="Salin Link">
                                     <i class="bi bi-clipboard"></i>
                                 </button>
                             @endif
-                            <button type="button" onclick="openEditModal({{ json_encode($asset) }})" class="p-1.5 rounded-lg bg-kerajaan-orange/10 hover:bg-kerajaan-orange/20 text-kerajaan-orange text-xs transition" title="Edit Link & Keterangan">
+                            <button type="button" onclick="openEditModal({{ json_encode($asset) }})" class="p-1.5 rounded-lg bg-[#0b64d4]/10 hover:bg-[#0b64d4]/20 text-[#0b64d4] text-xs transition" title="Edit Link & Keterangan">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
-                            <form action="{{ route('superadmin.content-banks.destroy', $asset->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus materi Bank Konten Google Drive ini?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="p-1.5 rounded-lg bg-kerajaan-red/10 hover:bg-kerajaan-red/20 text-kerajaan-red text-xs transition" title="Hapus Aset">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </form>
+                            <button type="button" onclick="openDeleteAssetModal('{{ $asset->id }}')" class="p-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs transition" title="Hapus Aset">
+                                <i class="bi bi-trash"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -417,6 +410,83 @@
     </div>
 </div>
 
+{{-- MODAL UNPUBLISH EDIT PRODUK --}}
+<div id="modal-unpublish-edit-product" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs transition-opacity duration-200" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-amber-100">
+        <button type="button" onclick="closeUnpublishEditProductModal()" class="absolute right-5 top-5 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition">
+            <i class="bi bi-x-lg text-sm"></i>
+        </button>
+
+        <div class="flex items-center gap-3.5 mb-4">
+            <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-amber-600 border border-amber-200">
+                <i class="bi bi-eye-slash text-2xl"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Tarik dari E-Commerce</h3>
+                <p class="text-xs text-[#765f58]">Sembunyikan produk dari katalog publik.</p>
+            </div>
+        </div>
+
+        <div class="mb-4 rounded-2xl bg-amber-50/60 border border-amber-200/80 p-3.5 text-xs text-amber-900">
+            <span class="text-amber-700 block text-[11px] font-medium">Produk:</span>
+            <strong class="text-amber-950 font-bold text-sm block mt-0.5">{{ $product->name }}</strong>
+            <p class="mt-1 text-xs text-amber-800">Produk ini akan berstatus draft dan tidak dapat dilihat pengunjung di katalog publik.</p>
+        </div>
+
+        <form action="{{ route('superadmin.products.toggle-publish', $product->id) }}" method="POST" class="space-y-4">
+            @csrf
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button type="button" onclick="closeUnpublishEditProductModal()" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition font-heading">
+                    Batal
+                </button>
+                <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-amber-600 px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-amber-700 transition font-heading">
+                    <i class="bi bi-eye-slash-fill"></i>
+                    <span>Ya, Tarik Produk</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{{-- MODAL HAPUS ASET BANK KONTEN --}}
+<div id="modal-delete-asset" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 p-4 backdrop-blur-xs transition-opacity duration-200" role="dialog" aria-modal="true">
+    <div class="relative w-full max-w-md overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-rose-100">
+        <button type="button" onclick="closeDeleteAssetModal()" class="absolute right-5 top-5 inline-flex size-8 items-center justify-center rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 transition">
+            <i class="bi bi-x-lg text-sm"></i>
+        </button>
+
+        <div class="flex items-center gap-3.5 mb-4">
+            <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-rose-50 text-rose-600 border border-rose-200">
+                <i class="bi bi-trash3 text-2xl"></i>
+            </div>
+            <div>
+                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Hapus Bank Konten</h3>
+                <p class="text-xs text-[#765f58]">Tindakan ini tidak dapat dibatalkan.</p>
+            </div>
+        </div>
+
+        <div class="mb-4 rounded-2xl bg-rose-50/60 border border-rose-200/80 p-3.5 text-xs text-rose-900">
+            <p class="text-xs text-rose-800">Apakah Anda yakin ingin menghapus materi Bank Konten Google Drive ini dari produk?</p>
+        </div>
+
+        <form id="delete-asset-form" method="POST" action="" class="space-y-4">
+            @csrf
+            @method('DELETE')
+
+            <div class="flex items-center justify-end gap-3 pt-2">
+                <button type="button" onclick="closeDeleteAssetModal()" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition font-heading">
+                    Batal
+                </button>
+                <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-5 py-2.5 text-xs font-bold text-white shadow-xs hover:bg-rose-700 transition font-heading">
+                    <i class="bi bi-trash-fill"></i>
+                    <span>Ya, Hapus Aset</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
 @push('scripts')
 <script>
     function openEditModal(asset) {
@@ -430,6 +500,55 @@
         
         modal.classList.remove('hidden');
     }
+
+    function openUnpublishEditProductModal() {
+        const modal = document.getElementById('modal-unpublish-edit-product');
+        modal?.classList.remove('hidden');
+        modal?.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeUnpublishEditProductModal() {
+        const modal = document.getElementById('modal-unpublish-edit-product');
+        modal?.classList.add('hidden');
+        modal?.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    function openDeleteAssetModal(assetId) {
+        const modal = document.getElementById('modal-delete-asset');
+        const form = document.getElementById('delete-asset-form');
+        form.action = `/superadmin/content-banks/${assetId}`;
+        modal?.classList.remove('hidden');
+        modal?.classList.add('flex');
+        document.body.classList.add('overflow-hidden');
+    }
+
+    function closeDeleteAssetModal() {
+        const modal = document.getElementById('modal-delete-asset');
+        modal?.classList.add('hidden');
+        modal?.classList.remove('flex');
+        document.body.classList.remove('overflow-hidden');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        ['modal-unpublish-edit-product', 'modal-delete-asset'].forEach(id => {
+            const modal = document.getElementById(id);
+            modal?.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    if (id === 'modal-unpublish-edit-product') closeUnpublishEditProductModal();
+                    if (id === 'modal-delete-asset') closeDeleteAssetModal();
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeUnpublishEditProductModal();
+                closeDeleteAssetModal();
+            }
+        });
+    });
 </script>
 @endpush
 @endsection

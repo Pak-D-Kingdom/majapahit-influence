@@ -120,6 +120,11 @@ class BrandProductApprovalWorkflowTest extends TestCase
         $this->assertEquals(30, (float) $product->locked_commission_percent);
         $this->assertEquals(27000, (float) $product->locked_commission_amount);
         $this->assertNull($product->pending_changes);
+
+        $this->assertDatabaseHas('notifications', [
+            'user_id' => $this->brandUser->id,
+            'title' => 'Perubahan Produk Disetujui',
+        ]);
     }
 
     public function test_superadmin_can_reject_product_update_request_and_keep_original_values(): void
@@ -157,6 +162,11 @@ class BrandProductApprovalWorkflowTest extends TestCase
         $this->assertEquals(45000, (float) $product->price);
         $this->assertNull($product->pending_changes);
         $this->assertSame('Harga tidak wajar untuk kategori ini.', $product->rejection_reason);
+
+        $this->assertDatabaseHas('notifications', [
+            'user_id' => $this->brandUser->id,
+            'title' => 'Perubahan Produk Ditolak',
+        ]);
     }
 
     public function test_brand_user_can_request_product_deletion_and_it_becomes_pending_delete(): void
@@ -205,6 +215,11 @@ class BrandProductApprovalWorkflowTest extends TestCase
 
         $response->assertRedirect();
         $this->assertSoftDeleted('products', ['id' => $product->id]);
+
+        $this->assertDatabaseHas('notifications', [
+            'user_id' => $this->brandUser->id,
+            'title' => 'Penghapusan Produk Disetujui',
+        ]);
     }
 
     public function test_superadmin_can_reject_product_deletion_request(): void
@@ -234,6 +249,11 @@ class BrandProductApprovalWorkflowTest extends TestCase
         $this->assertNull($product->deletion_reason);
         $this->assertSame('Produk masih memiliki campaign aktif dengan KOL.', $product->rejection_reason);
         $this->assertNull($product->deleted_at);
+
+        $this->assertDatabaseHas('notifications', [
+            'user_id' => $this->brandUser->id,
+            'title' => 'Penghapusan Produk Ditolak',
+        ]);
     }
 
     public function test_superadmin_verifications_page_renders_tabs_and_counts(): void

@@ -115,16 +115,28 @@
 
             <main class="flex-1 p-4 sm:p-6 lg:p-8">
                 <div class="mx-auto max-w-[1400px]">
+                    {{-- Flash Alerts --}}
+                    @if (session('success'))
+                        <div class="mb-6 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 shadow-xs" role="alert">
+                            <i class="bi bi-check-circle-fill text-base text-emerald-600"></i>
+                            <span>{{ session('success') }}</span>
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="mb-6 flex items-center gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs text-rose-800 shadow-xs" role="alert">
+                            <i class="bi bi-exclamation-octagon-fill text-base text-rose-600"></i>
+                            <span>{{ session('error') }}</span>
+                        </div>
+                    @endif
+
                     @yield('content')
                 </div>
             </main>
         </div>
     </div>
 
-<<<<<<< HEAD
     <x-chatbot-widget role="kol" />
 
-=======
     {{-- Mobile Sidebar Toggle Script --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -157,7 +169,6 @@
             overlay?.addEventListener('click', closeSidebar);
         });
     </script>
->>>>>>> origin/kosong
     @stack('scripts')
 </body>
 </html>
