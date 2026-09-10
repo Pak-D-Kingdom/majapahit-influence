@@ -16,8 +16,7 @@ class KolRegistrationConfirmedMail extends Mailable implements ShouldQueue
     public function __construct(
         public string $kolName,
         public ?string $registrationNumber = null,
-    ) {
-    }
+    ) {}
 
     public function envelope(): Envelope
     {

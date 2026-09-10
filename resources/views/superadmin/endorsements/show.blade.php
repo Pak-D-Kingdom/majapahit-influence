@@ -14,18 +14,47 @@
             </a>
             <h2 class="mt-3 text-2xl font-black tracking-tight text-[#421b13] font-heading">{{ $endorsement->campaign->name }}</h2>
             <p class="mt-1 text-xs text-[#765f58]">
-                Brand: <strong class="text-[#421b13]">{{ $endorsement->campaign->brand->name }}</strong> &bull;
-                Kreator: <strong class="text-[#421b13]">{{ $endorsement->kolProfile->user->name }}</strong>
+                Brand: <strong class="text-[#421b13]">{{ $endorsement->campaign->brand->name ?? 'Partner' }}</strong> &bull;
+                Kreator: <strong class="text-[#421b13]">{{ $endorsement->kolProfile->user->name ?? 'KOL' }}</strong>
             </p>
         </div>
-        <div class="flex items-center gap-3">
+        <div class="flex flex-wrap items-center gap-3">
             <x-dashboard.status-badge :status="$endorsement->status" />
+            
+            @if ($endorsement->status !== 'selesai')
+                <form action="{{ route('superadmin.endorsements.complete', $endorsement->id) }}" method="POST" onsubmit="return confirm('Tandai endorsement ini sebagai selesai? Komisi akan dicatat ke saldo KOL.');">
+                    @csrf
+                    <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-emerald-700 font-heading">
+                        <i class="bi bi-check2-all"></i>
+                        <span>Selesaikan Endorsement</span>
+                    </button>
+                </form>
+            @endif
+
             <a href="{{ route('superadmin.endorsements.edit', $endorsement) }}" class="inline-flex items-center gap-2 rounded-xl bg-[#421b13] px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#190906] font-heading">
                 <i class="bi bi-pencil"></i>
                 <span>Edit Endorsement</span>
             </a>
         </div>
     </div>
+
+    {{-- Alerts --}}
+    @if (session('success'))
+        <div class="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-xs font-bold text-emerald-800 flex items-center gap-2">
+            <i class="bi bi-check-circle-fill text-base text-emerald-600"></i>
+            <span>{{ session('success') }}</span>
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="rounded-xl bg-red-50 border border-red-200 p-4 text-xs font-bold text-red-700">
+            <ul class="list-disc list-inside space-y-1">
+                @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     {{-- Content Layout --}}
     <div class="grid gap-6 lg:grid-cols-3">
@@ -39,7 +68,7 @@
             <dl class="mt-5 grid gap-5 sm:grid-cols-2">
                 <div>
                     <dt class="text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">Kreator (KOL)</dt>
-                    <dd class="mt-1 text-sm font-bold text-[#421b13] font-heading">{{ $endorsement->kolProfile->user->name }}</dd>
+                    <dd class="mt-1 text-sm font-bold text-[#421b13] font-heading">{{ $endorsement->kolProfile->user->name ?? '-' }}</dd>
                 </div>
                 <div>
                     <dt class="text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">Format Konten</dt>
@@ -55,8 +84,8 @@
                 </div>
                 <div>
                     <dt class="text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">Batas Deadline</dt>
-                    <dd class="mt-1 text-sm font-semibold text-[#421b13]">
-                        {{ $endorsement->deadline->format('d M Y') }}
+                    <dd class="mt-1 text-sm font-semibold {{ $endorsement->deadline && $endorsement->deadline->isPast() && $endorsement->status !== 'selesai' ? 'text-red-600' : 'text-[#421b13]' }}">
+                        {{ $endorsement->deadline ? $endorsement->deadline->format('d M Y') : '-' }}
                     </dd>
                 </div>
                 @if ($endorsement->notes)
@@ -70,7 +99,7 @@
                 <div class="sm:col-span-2">
                     <dt class="text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">Brief & Persyaratan Campaign</dt>
                     <dd class="mt-1 whitespace-pre-line text-xs leading-relaxed text-[#421b13] bg-[#fbf7f4] p-4 rounded-xl border border-[#421b13]/5">
-                        {{ $endorsement->campaign->content_requirements ?: 'Tidak ada instruksi khusus.' }}
+                        {{ $endorsement->campaign->content_requirements ?: ($endorsement->campaign->description ?: 'Tidak ada brief khusus.') }}
                     </dd>
                 </div>
             </dl>
@@ -88,15 +117,54 @@
                     <div class="rounded-xl border border-[#421b13]/10 bg-[#fbf7f4] p-4">
                         <div class="flex items-center justify-between">
                             <x-dashboard.status-badge :status="$proof->review_status" />
-                            <span class="text-[11px] text-[#765f58]">{{ $proof->created_at->format('d M Y H:i') }}</span>
+                            <span class="text-[11px] text-[#765f58]">{{ $proof->created_at ? $proof->created_at->format('d M Y H:i') : '-' }}</span>
                         </div>
 
                         @if ($proof->post_url)
                             <div class="mt-3">
-                                <a href="{{ $proof->post_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#d57028] hover:underline font-heading break-all">
-                                    <i class="bi bi-box-arrow-up-right text-[10px]"></i>
-                                    <span>{{ $proof->post_url }}</span>
+                                <a href="{{ $proof->post_url }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#d57028] to-[#d5282d] px-3.5 py-2.5 text-xs font-bold text-white shadow-xs hover:brightness-105 transition font-heading w-full justify-center">
+                                    <i class="bi bi-box-arrow-up-right text-xs"></i>
+                                    <span>Buka Postingan Konten (Live URL)</span>
                                 </a>
+                                <p class="mt-1.5 text-[11px] text-[#765f58] truncate break-all px-1">
+                                    <i class="bi bi-link-45deg"></i> {{ $proof->post_url }}
+                                </p>
+                            </div>
+                        @endif
+
+                        {{-- Screenshot / File Bukti --}}
+                        @if ($proof->files && $proof->files->isNotEmpty())
+                            <div class="mt-3 space-y-2">
+                                <span class="text-[11px] font-bold text-[#421b13] uppercase tracking-wider block font-heading">
+                                    <i class="bi bi-images mr-1 text-[#d57028]"></i> File Bukti & Screenshot ({{ $proof->files->count() }})
+                                </span>
+                                <div class="grid grid-cols-2 gap-2">
+                                    @foreach ($proof->files as $file)
+                                        @php
+                                            $isImage = in_array(strtolower(pathinfo($file->file_name ?? $file->file_path, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp', 'gif']);
+                                            $fileUrl = asset('storage/' . $file->file_path);
+                                        @endphp
+                                        @if ($isImage)
+                                            <a href="{{ $fileUrl }}" target="_blank" class="group relative block overflow-hidden rounded-xl border border-[#421b13]/10 bg-white shadow-xs hover:border-[#d57028] transition">
+                                                <img src="{{ $fileUrl }}" alt="{{ $file->file_name ?? 'Bukti Konten' }}" class="h-28 w-full object-cover group-hover:scale-105 transition duration-200">
+                                                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-xs font-bold gap-1">
+                                                    <i class="bi bi-arrows-fullscreen"></i> Lihat Foto
+                                                </div>
+                                            </a>
+                                        @else
+                                            <a href="{{ $fileUrl }}" target="_blank" class="flex items-center gap-2 rounded-xl border border-[#421b13]/10 bg-white p-2.5 text-xs text-[#421b13] hover:border-[#d57028] hover:text-[#d57028] transition">
+                                                <i class="bi bi-file-earmark-pdf text-xl text-rose-500"></i>
+                                                <span class="truncate font-semibold">{{ $file->file_name ?? 'Dokumen Bukti' }}</span>
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($proof->notes)
+                            <div class="mt-2 rounded-lg bg-white p-2.5 text-xs text-[#765f58] border border-[#421b13]/5">
+                                <strong class="text-[#421b13]">Catatan KOL:</strong> {{ $proof->notes }}
                             </div>
                         @endif
 

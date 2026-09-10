@@ -21,6 +21,7 @@ class BrandRegistrationRequest extends FormRequest
             'pic_title' => ['nullable', 'string', 'max:100'],
             'pic_email' => ['required', 'email', 'max:255'],
             'pic_phone' => ['required', 'string', 'max:30'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'social_media' => ['nullable', 'string', 'max:255'],
             'website' => ['nullable', 'string', 'max:255'],
             'service_need' => ['required', 'in:endorsement,maklon,both'],

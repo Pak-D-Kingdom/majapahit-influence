@@ -21,8 +21,11 @@ class Dev3EndorsementTest extends TestCase
     use RefreshDatabase;
 
     protected User $adminUser;
+
     protected User $kolUser;
+
     protected KolProfile $kolProfile;
+
     protected Tier $tier;
 
     protected function setUp(): void

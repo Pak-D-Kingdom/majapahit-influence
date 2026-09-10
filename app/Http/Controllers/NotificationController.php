@@ -20,8 +20,12 @@ class NotificationController extends Controller
             ? $user->notifications()->latest()->paginate(20)
             : Notification::latest()->paginate(20);
 
-        $role = $user?->hasRole('superadmin') ? 'superadmin' : 'kol';
-
+        $role = 'kol';
+        if ($user?->hasRole('superadmin')) {
+            $role = 'superadmin';
+        } elseif ($user?->hasRole('brand')) {
+            $role = 'brand';
+        }
         if ($request->wantsJson()) {
             return response()->json($notifications);
         }

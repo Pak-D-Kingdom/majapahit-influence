@@ -26,6 +26,9 @@ class AuthController extends Controller
             if ($user->isKol()) {
                 return redirect()->route('kol.dashboard');
             }
+            if ($user->isBrand()) {
+                return redirect()->route('brand.dashboard');
+            }
 
             return redirect('/');
         }
@@ -108,6 +111,10 @@ class AuthController extends Controller
 
         if ($user->isKol()) {
             return redirect()->route('kol.dashboard');
+        }
+
+        if ($user->isBrand()) {
+            return redirect()->route('brand.dashboard');
         }
 
         return redirect('/');

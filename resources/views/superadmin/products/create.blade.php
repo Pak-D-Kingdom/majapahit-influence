@@ -29,7 +29,7 @@
 
     {{-- Form --}}
     <div class="rounded-2xl border border-[#421b13]/8 bg-white p-6 sm:p-8 shadow-xs">
-        <form action="{{ route('superadmin.products.store') }}" method="POST" class="space-y-6">
+        <form action="{{ route('superadmin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             {{-- Brand & Category --}}
@@ -107,10 +107,10 @@
             {{-- Image & Pathway --}}
             <div class="grid sm:grid-cols-2 gap-5">
                 <div>
-                    <label for="image_path" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
-                        URL Gambar Produk (Foto Utama)
+                    <label for="image" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
+                        Upload Foto Produk Utama <span class="font-normal text-[#765f58]">(Format JPG, PNG, WEBP maks. 5MB)</span>
                     </label>
-                    <input type="url" id="image_path" name="image_path" value="{{ old('image_path') }}" placeholder="https://images.unsplash.com/..." class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3.5 py-2.5 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                    <input type="file" id="image" name="image" accept="image/*" class="w-full rounded-xl border border-dashed border-[#421b13]/25 bg-[#fff9f4] p-2.5 text-xs text-[#765f58] file:mr-3 file:rounded-lg file:border-0 file:bg-[#d57028]/10 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-[#d57028] hover:file:bg-[#d57028]/20 focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
                 </div>
 
                 <div>
@@ -142,20 +142,32 @@
 
             {{-- Initial Bank Konten --}}
             <div class="pt-5 border-t border-[#421b13]/10 space-y-4">
-                <h3 class="text-xs font-black uppercase tracking-wider text-[#d57028] font-heading">Aset Awal Bank Konten (Opsional)</h3>
-
                 <div>
-                    <label for="copywriting_brief" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
-                        Script Copywriting / Talking Points Promosi
-                    </label>
-                    <textarea id="copywriting_brief" name="copywriting_brief" rows="3" placeholder="HOOK: Jangan lewatkan serum viral ini!&#10;USP: Mencerahkan dalam 14 hari...&#10;CTA: Klik keranjang sekarang!" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3.5 py-2.5 text-xs font-mono text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">{{ old('copywriting_brief') }}</textarea>
+                    <h3 class="text-xs font-black uppercase tracking-wider text-[#d57028] font-heading flex items-center gap-1.5">
+                        <i class="bi bi-google"></i>
+                        <span>Bank Konten Promosi (Google Drive)</span>
+                    </h3>
+                    <p class="text-[11px] text-[#765f58] mt-0.5">Seluruh materi video mentah, foto HD, banner, dan naskah copywriting disimpan dalam 1 folder Google Drive agar server tidak penuh.</p>
                 </div>
 
                 <div>
                     <label for="drive_folder_url" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
-                        Link Folder Google Drive (Aset Foto HD / Video B-Roll)
+                        Link Folder Google Drive (Opsional)
                     </label>
-                    <input type="url" id="drive_folder_url" name="drive_folder_url" value="{{ old('drive_folder_url') }}" placeholder="https://drive.google.com/drive/folders/..." class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3.5 py-2.5 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                    <div class="relative">
+                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#765f58]">
+                            <i class="bi bi-google text-sm text-[#d57028]"></i>
+                        </div>
+                        <input type="url" id="drive_folder_url" name="drive_folder_url" value="{{ old('drive_folder_url') }}" placeholder="https://drive.google.com/drive/folders/..." class="w-full rounded-xl border border-[#421b13]/15 bg-white pl-9 pr-3.5 py-2.5 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                    </div>
+                    <p class="text-[11px] text-[#765f58] mt-1">Pastikan hak akses link Google Drive disetel ke <strong>'Siapa saja yang memiliki link' (Viewer / Pelihat)</strong>.</p>
+                </div>
+
+                <div>
+                    <label for="drive_description" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
+                        Keterangan Isi Folder Google Drive
+                    </label>
+                    <textarea id="drive_description" name="drive_description" rows="3" placeholder="Sebutkan isi di dalam folder Google Drive ini. Contoh:&#10;1. Video mentah B-Roll 4K unboxing & swatch&#10;2. Foto produk HD (PNG transparan & lifestyle)&#10;3. Naskah script copywriting & talking points&#10;4. Dokumen klaim manfaat & sertifikasi BPOM" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3.5 py-2.5 text-xs font-mono text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">{{ old('drive_description') }}</textarea>
                 </div>
             </div>
 

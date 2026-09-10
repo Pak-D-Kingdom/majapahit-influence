@@ -57,6 +57,14 @@ Route::get('/ecommerce', fn () => redirect()->route('catalog.index'))->name('eco
 Route::get('/katalog/{product:slug}', [CatalogController::class, 'show'])->name('catalog.show');
 Route::get('/katalog/{product:slug}/bank-konten', [CatalogController::class, 'contentBank'])->name('catalog.content-bank');
 
+// Public Explore Pages (from Adinda Frontend)
+Route::get('/explore/creators', function () {
+    return view('explore.creators');
+})->name('explore.creators');
+Route::get('/explore/brands', function () {
+    return view('explore.brands');
+})->name('explore.brands');
+
 // Authentication Routes (Guest Only) (Dev 1)
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -77,11 +85,11 @@ Route::middleware('guest')->group(function () {
 });
 
 // Logout (Authenticated Only)
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
+Route::match(['GET', 'POST'], '/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
 // Notifications (Dev 5)
 Route::middleware('auth')->group(function () {
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
-    Route::post('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+    Route::match(['GET', 'POST', 'PATCH'], '/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
 });

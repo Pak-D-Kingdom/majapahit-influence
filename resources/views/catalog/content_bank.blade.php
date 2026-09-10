@@ -34,7 +34,7 @@
         {{-- Quick Product Card Summary --}}
         <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
             <div class="flex items-center gap-4">
-                <img src="{{ $product->image_path ?: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=300&auto=format&fit=crop&q=80' }}" alt="{{ $product->name }}" class="w-16 h-16 rounded-2xl object-cover shadow-sm">
+                <img src="{{ $product->image_url }}" alt="{{ $product->name }}" class="w-16 h-16 rounded-2xl object-cover shadow-sm">
                 <div>
                     <span class="text-xs font-bold text-gray-400 block">{{ $product->category->name ?? 'Kategori' }}</span>
                     <h3 class="text-base font-black text-gray-900">{{ $product->name }}</h3>
@@ -59,35 +59,57 @@
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
                                 <span class="px-3 py-1 rounded-lg text-xs font-bold uppercase tracking-wider
-                                    @if ($asset->asset_type === 'image') bg-blue-50 text-blue-700
-                                    @elseif ($asset->asset_type === 'video') bg-purple-50 text-purple-700
-                                    @elseif ($asset->asset_type === 'copywriting') bg-amber-50 text-amber-700
-                                    @elseif ($asset->asset_type === 'drive_link') bg-green-50 text-green-700
-                                    @else bg-gray-100 text-gray-700 @endif">
-                                    {{ strtoupper($asset->asset_type) }}
+                                    @if ($asset->asset_type === 'image') bg-blue-50 text-blue-700 border border-blue-200
+                                    @elseif ($asset->asset_type === 'video') bg-purple-50 text-purple-700 border border-purple-200
+                                    @elseif ($asset->asset_type === 'copywriting') bg-amber-50 text-amber-700 border border-amber-200
+                                    @elseif ($asset->asset_type === 'drive_link') bg-emerald-50 text-emerald-700 border border-emerald-200
+                                    @else bg-gray-100 text-gray-700 border border-gray-200 @endif">
+                                    <i class="bi
+                                        @if ($asset->asset_type === 'image') bi-images
+                                        @elseif ($asset->asset_type === 'video') bi-camera-video
+                                        @elseif ($asset->asset_type === 'copywriting') bi-body-text
+                                        @elseif ($asset->asset_type === 'drive_link') bi-google
+                                        @else bi-file-earmark-pdf @endif mr-1"></i>
+                                    {{ strtoupper($asset->asset_type === 'drive_link' ? 'Google Drive Master' : ($asset->asset_type === 'video' ? 'Video B-Roll (GDrive)' : ($asset->asset_type === 'image' ? 'Foto HD (GDrive)' : ($asset->asset_type === 'document' ? 'Dokumen (GDrive)' : 'Copywriting')))) }}
                                 </span>
                             </div>
 
                             <h3 class="text-base font-bold text-gray-900">{{ $asset->title }}</h3>
 
-                            @if ($asset->asset_type === 'image' && !empty($asset->external_url))
-                                <div class="rounded-2xl overflow-hidden bg-gray-100 h-44">
-                                    <img src="{{ $asset->external_url }}" alt="{{ $asset->title }}" class="w-full h-full object-cover">
-                                </div>
-                            @elseif ($asset->asset_type === 'video' && !empty($asset->external_url))
-                                <div class="rounded-2xl overflow-hidden bg-black h-44 flex items-center justify-center relative group">
-                                    <video src="{{ $asset->external_url }}" controls class="w-full h-full object-contain"></video>
-                                </div>
-                            @elseif ($asset->asset_type === 'copywriting')
+                            @if ($asset->asset_type === 'copywriting')
                                 <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200 text-xs font-mono text-gray-800 whitespace-pre-line max-h-48 overflow-y-auto">
                                     {{ $asset->content_text }}
                                 </div>
                             @elseif ($asset->asset_type === 'drive_link')
-                                <div class="p-4 bg-green-50/60 rounded-2xl border border-green-200 text-xs text-green-900 flex items-center gap-3">
-                                    <i class="bi bi-google text-2xl text-green-700"></i>
-                                    <div>
-                                        <strong class="block font-bold">Akses Folder Cloud Master</strong>
-                                        <span class="text-[11px] text-green-700">Download banner PSD, audio, dan aset grafis resolusi penuh.</span>
+                                <div class="p-4 bg-emerald-50/70 rounded-2xl border border-emerald-200 text-xs text-emerald-900 flex items-center gap-3">
+                                    <i class="bi bi-google text-2xl text-emerald-700 shrink-0"></i>
+                                    <div class="truncate">
+                                        <strong class="block font-bold">Folder Master Google Drive</strong>
+                                        <span class="text-[11px] text-emerald-700">Akses seluruh materi master foto HD, video mentah, dan grafis resolusi tinggi.</span>
+                                    </div>
+                                </div>
+                            @elseif ($asset->asset_type === 'video')
+                                <div class="p-4 bg-purple-50/70 rounded-2xl border border-purple-200 text-xs text-purple-900 flex items-center gap-3">
+                                    <i class="bi bi-camera-video text-2xl text-purple-700 shrink-0"></i>
+                                    <div class="truncate">
+                                        <strong class="block font-bold">Video B-Roll & Footage (Google Drive)</strong>
+                                        <span class="text-[11px] text-purple-700">Download video mentah unboxing, swatch, dan pemakaian.</span>
+                                    </div>
+                                </div>
+                            @elseif ($asset->asset_type === 'image')
+                                <div class="p-4 bg-blue-50/70 rounded-2xl border border-blue-200 text-xs text-blue-900 flex items-center gap-3">
+                                    <i class="bi bi-images text-2xl text-blue-700 shrink-0"></i>
+                                    <div class="truncate">
+                                        <strong class="block font-bold">Foto HD & Banner Grafis (Google Drive)</strong>
+                                        <span class="text-[11px] text-blue-700">Aset foto produk PNG cutout, lifestyle, dan banner promosi.</span>
+                                    </div>
+                                </div>
+                            @elseif ($asset->asset_type === 'document')
+                                <div class="p-4 bg-amber-50/70 rounded-2xl border border-amber-200 text-xs text-amber-900 flex items-center gap-3">
+                                    <i class="bi bi-file-earmark-pdf text-2xl text-amber-700 shrink-0"></i>
+                                    <div class="truncate">
+                                        <strong class="block font-bold">Dokumen Panduan & Fact Sheet (Google Drive)</strong>
+                                        <span class="text-[11px] text-amber-700">PDF panduan produk, aturan brand, dan do's & don'ts.</span>
                                     </div>
                                 </div>
                             @endif
@@ -103,9 +125,9 @@
                                 <button type="button" onclick="navigator.clipboard.writeText(`{{ addslashes($asset->content_text) }}`); alert('Teks copywriting berhasil disalin!');" class="w-full py-2.5 rounded-xl bg-gray-900 hover:bg-black text-white font-bold text-xs transition-colors flex items-center justify-center gap-2">
                                     <i class="bi bi-clipboard-check"></i> Salin Semua Teks
                                 </button>
-                            @elseif ($asset->asset_type === 'drive_link' || !empty($asset->external_url))
-                                <a href="{{ $asset->external_url }}" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs text-center transition-colors flex items-center justify-center gap-2">
-                                    <i class="bi bi-box-arrow-up-right"></i> Buka Folder Aset / Download
+                            @elseif (!empty($asset->external_url))
+                                <a href="{{ $asset->external_url }}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs text-center transition-colors flex items-center justify-center gap-2">
+                                    <i class="bi bi-google"></i> Buka di Google Drive
                                 </a>
                             @endif
                         </div>

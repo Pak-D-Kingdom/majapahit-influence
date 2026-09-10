@@ -13,7 +13,7 @@
         content="Majapahit Influence: Connect, Create, and Grow with Brands."
     >
 
-    <link rel="icon" type="image/png" href="{{ asset('assets/Logo/majapahit.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/kerajaanlogov1.png') }}">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,15 +37,21 @@
             theme: {
                 extend: {
                     colors: {
+                        kerajaan: {
+                            blue: '#0b64d4',
+                            sky: '#1698f6',
+                            soft: '#78a5d6',
+                            navy: '#0c3685',
+                        },
                         majapahit: {
-                            orange: '#d57028',
-                            red: '#d5282d',
-                            yellow: '#fec200',
-                            dark: '#421b13',
-                            brown: '#b86021',
-                            cream: '#fff9f4',
-                            sand: '#f7eee8',
-                            muted: '#765f58',
+                            orange: '#0b64d4',
+                            red: '#1698f6',
+                            yellow: '#78a5d6',
+                            dark: '#0c3685',
+                            brown: '#0b64d4',
+                            cream: '#f8fafc',
+                            sand: '#f1f5f9',
+                            muted: '#64748b',
                         },
                     },
                     fontFamily: {

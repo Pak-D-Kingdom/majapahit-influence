@@ -1,4 +1,4 @@
-@extends($role === 'superadmin' ? 'superadmin.layouts.app' : 'kol.layouts.app')
+@extends($role === 'superadmin' ? 'superadmin.layouts.app' : ($role === 'brand' ? 'brand.layouts.app' : 'kol.layouts.app'))
 
 @section('title', 'Notifikasi')
 @section('page-title', 'Notifikasi')

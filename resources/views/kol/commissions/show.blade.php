@@ -93,7 +93,7 @@
                 </div>
 
                 <div class="mt-5">
-                    @if ($commission->status === 'approved' && ! $commission->approvals->contains('action', 'request'))
+                    @if (in_array($commission->status, ['pending', 'approved', 'rejected'], true) && ! $commission->approvals->contains('action', 'request'))
                         <form method="POST" action="{{ route('kol.commissions.request-disbursement', $commission) }}" class="space-y-4">
                             @csrf
                             <div>
@@ -111,16 +111,43 @@
                             </button>
                         </form>
                     @elseif ($commission->status === 'dicairkan')
-                        <div class="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 text-center">
-                            <div class="mx-auto flex size-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                        <div class="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-5 text-center space-y-3">
+                            <div class="mx-auto flex size-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600 shadow-xs">
                                 <i class="bi bi-patch-check-fill text-2xl"></i>
                             </div>
-                            <p class="mt-3 text-sm font-extrabold text-emerald-800 font-heading">Komisi Telah Dicairkan</p>
-                            <p class="mt-1 text-xs text-emerald-700">
-                                Dicairkan pada {{ $commission->disbursed_at ? $commission->disbursed_at->format('d M Y, H:i') : '-' }}
-                            </p>
+                            <div>
+                                <p class="text-sm font-extrabold text-emerald-900 font-heading">Komisi Telah Dicairkan</p>
+                                <p class="mt-0.5 text-xs text-emerald-700">
+                                    Ditransfer pada {{ $commission->disbursed_at ? $commission->disbursed_at->format('d M Y, H:i') : '-' }}
+                                </p>
+                            </div>
+
+                            @if ($commission->disbursement_proof_path)
+                                @php
+                                    $proofUrl = asset('storage/' . $commission->disbursement_proof_path);
+                                    $isImg = in_array(strtolower(pathinfo($commission->disbursement_proof_path, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp', 'gif']);
+                                @endphp
+                                <div class="pt-3 border-t border-emerald-200/60 text-left">
+                                    <p class="text-xs font-bold text-emerald-900 font-heading mb-2 flex items-center gap-1.5">
+                                        <i class="bi bi-receipt text-emerald-600"></i> Bukti Transfer Bank:
+                                    </p>
+                                    @if ($isImg)
+                                        <a href="{{ $proofUrl }}" target="_blank" class="group relative block overflow-hidden rounded-xl border border-emerald-200 bg-white shadow-xs hover:border-emerald-500 transition">
+                                            <img src="{{ $proofUrl }}" alt="Bukti Transfer Bank" class="max-h-48 w-full object-contain bg-gray-50 rounded-lg">
+                                            <div class="p-2 text-center text-xs font-bold text-emerald-800 bg-white group-hover:bg-emerald-50 transition flex items-center justify-center gap-1">
+                                                <i class="bi bi-arrows-fullscreen"></i> Lihat Bukti Transfer Penuh
+                                            </div>
+                                        </a>
+                                    @else
+                                        <a href="{{ $proofUrl }}" target="_blank" class="flex items-center justify-center gap-2 rounded-xl bg-white border border-emerald-200 py-2.5 px-3 text-xs font-bold text-emerald-800 hover:bg-emerald-100 transition">
+                                            <i class="bi bi-file-earmark-pdf text-lg text-rose-500"></i>
+                                            <span>Unduh Bukti Transfer (PDF)</span>
+                                        </a>
+                                    @endif
+                                </div>
+                            @endif
                         </div>
-                    @elseif ($commission->approvals->contains('action', 'request'))
+                    @elseif ($commission->status === 'pending_review' || $commission->approvals->contains('action', 'request'))
                         <div class="rounded-2xl border border-[#fec200]/50 bg-[#fec200]/15 p-5 text-center">
                             <div class="mx-auto flex size-12 items-center justify-center rounded-xl bg-[#fec200]/30 text-[#b86021]">
                                 <i class="bi bi-hourglass-split text-2xl"></i>

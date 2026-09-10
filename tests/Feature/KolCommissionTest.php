@@ -124,10 +124,10 @@ class KolCommissionTest extends TestCase
         ]);
 
         $response->assertRedirect(); // Or assertSessionHasNoErrors();
-        
+
         $this->assertDatabaseHas('commission_approvals', [
             'commission_id' => $commission->id,
-            'action' => 'request'
+            'action' => 'request',
         ]);
 
         $this->assertDatabaseHas('audit_logs', [

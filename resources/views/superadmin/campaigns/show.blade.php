@@ -14,7 +14,7 @@
             </a>
             <h2 class="mt-3 text-2xl font-black tracking-tight text-[#421b13] font-heading">{{ $campaign->name }}</h2>
             <p class="mt-1 text-xs text-[#765f58]">
-                Brand: <strong class="text-[#421b13]">{{ $campaign->brand->name }}</strong> &bull;
+                Brand: <strong class="text-[#421b13]">{{ $campaign->brand->name ?? 'Partner' }}</strong> &bull;
                 Periode: {{ $campaign->start_date ? $campaign->start_date->format('d M Y') : '-' }} s/d {{ $campaign->end_date ? $campaign->end_date->format('d M Y') : '-' }}
             </p>
         </div>
@@ -26,6 +26,31 @@
             </a>
         </div>
     </div>
+
+    {{-- SUCCESS ALERT BANNER --}}
+    @if (session('success'))
+        <div class="rounded-2xl border border-emerald-200 bg-emerald-50/80 p-4 text-xs font-bold text-emerald-800 flex items-center gap-2 shadow-xs">
+            <i class="bi bi-check-circle-fill text-base text-emerald-600"></i>
+            <div>
+                <strong class="block text-sm">Berhasil!</strong>
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+
+    {{-- ERROR ALERT BANNER --}}
+    @if ($errors->any())
+        <div class="rounded-2xl border border-[#d5282d]/20 bg-[#d5282d]/10 p-4 text-xs text-[#d5282d] space-y-1 shadow-xs">
+            <div class="font-bold font-heading flex items-center gap-1.5">
+                <i class="bi bi-exclamation-triangle-fill text-base"></i> Gagal memproses penugasan:
+            </div>
+            <ul class="list-disc list-inside space-y-0.5">
+                @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     {{-- Content Layout --}}
     <div class="grid gap-6 lg:grid-cols-[1fr_1.3fr]">
@@ -84,18 +109,18 @@
                 <p class="text-xs font-bold uppercase tracking-wider text-[#d57028] font-heading mb-3">Tugaskan Kreator Baru</p>
                 <div class="grid gap-3 sm:grid-cols-2">
                     <div>
-                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Pilih KOL</label>
+                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Pilih KOL <span class="text-[#d5282d]">*</span></label>
                         <select name="kol_profile_id" required class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
                             <option value="">-- Pilih Kreator --</option>
                             @foreach ($kols as $kol)
-                                <option value="{{ $kol->id }}">{{ $kol->user->name }} ({{ $kol->tier?->name ?: 'No Tier' }})</option>
+                                <option value="{{ $kol->id }}">{{ $kol->user->name ?? 'KOL' }} ({{ $kol->tier?->name ?: 'No Tier' }})</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Tipe Konten</label>
-                        <select name="content_type" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Tipe Konten <span class="text-[#d5282d]">*</span></label>
+                        <select name="content_type" required class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
                             <option value="reels">Instagram Reels</option>
                             <option value="video">TikTok Video</option>
                             <option value="feed_post">Feed Post</option>
@@ -104,17 +129,17 @@
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Fee Endorsement (Rp)</label>
-                        <input type="number" name="fee" min="0" required placeholder="Contoh: 500000" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
+                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Fee Endorsement (Rp) <span class="text-[#d5282d]">*</span></label>
+                        <input type="number" name="fee" min="0" step="50000" required placeholder="Contoh: 500000" class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs font-bold text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Batas Deadline</label>
+                        <label class="block text-xs font-bold text-[#421b13] font-heading mb-1">Batas Deadline <span class="text-[#d5282d]">*</span></label>
                         <input type="date" name="deadline" required class="w-full rounded-xl border border-[#421b13]/15 bg-white px-3 py-2 text-xs text-[#421b13] focus:border-[#d57028] focus:ring-2 focus:ring-[#d57028]/20 focus:outline-hidden">
                     </div>
 
                     <div class="sm:col-span-2 pt-1">
-                        <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-[#d57028] to-[#b86021] py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-[#b86021] hover:to-[#934510] font-heading">
+                        <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-[#d57028] to-[#b86021] py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-[#b86021] hover:to-[#934510] font-heading flex items-center justify-center gap-1.5">
                             <i class="bi bi-person-plus mr-1"></i>
                             <span>Tugaskan KOL Sekarang</span>
                         </button>
@@ -124,16 +149,16 @@
 
             {{-- List of Assigned KOLs --}}
             <div class="mt-6 space-y-3">
-                <p class="text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">KOL yang Sedang Berjalan</p>
+                <p class="text-xs font-bold uppercase tracking-wider text-[#765f58] font-heading">KOL yang Ditugaskan</p>
                 @forelse ($campaign->endorsements as $endorsement)
                     <div class="flex items-center justify-between rounded-xl border border-[#421b13]/8 bg-white p-3.5 shadow-xs">
                         <div class="flex items-center gap-3">
                             <div class="flex size-9 items-center justify-center rounded-lg bg-[#d57028]/10 text-xs font-black text-[#d57028] font-heading">
-                                {{ str($endorsement->kolProfile->user->name)->substr(0, 1)->upper() }}
+                                {{ str($endorsement->kolProfile->user->name ?? 'K')->substr(0, 1)->upper() }}
                             </div>
                             <div>
                                 <a href="{{ route('superadmin.endorsements.show', $endorsement) }}" class="text-xs font-bold text-[#421b13] hover:text-[#d57028] font-heading">
-                                    {{ $endorsement->kolProfile->user->name }}
+                                    {{ $endorsement->kolProfile->user->name ?? 'KOL' }}
                                 </a>
                                 <p class="text-[11px] text-[#765f58]">
                                     {{ str($endorsement->content_type)->replace('_', ' ')->title() }} &bull; Rp{{ number_format($endorsement->fee, 0, ',', '.') }}
@@ -142,8 +167,8 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <x-dashboard.status-badge :status="$endorsement->status" />
-                            <a href="{{ route('superadmin.endorsements.show', $endorsement) }}" class="text-xs text-[#765f58] hover:text-[#d57028]">
-                                <i class="bi bi-chevron-right"></i>
+                            <a href="{{ route('superadmin.endorsements.show', $endorsement) }}" class="text-xs text-[#765f58] hover:text-[#d57028] inline-flex items-center gap-1 font-bold">
+                                <span>Detail</span> <i class="bi bi-chevron-right"></i>
                             </a>
                         </div>
                     </div>

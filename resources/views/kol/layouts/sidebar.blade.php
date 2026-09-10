@@ -1,9 +1,9 @@
-<aside id="kol-dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-72 -translate-x-full flex-col border-r border-[#421b13]/30 bg-[#240e09] text-white/80 transition-transform duration-300 ease-in-out lg:static lg:translate-x-0">
+<aside id="kol-dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#421b13]/30 bg-[#240e09] text-white/80 transition-transform duration-300 ease-in-out lg:sticky lg:top-0 lg:h-screen lg:w-72 lg:shrink-0 lg:translate-x-0">
     {{-- Brand Header --}}
     <div class="flex h-20 items-center gap-3 border-b border-white/10 px-6">
         <a href="{{ url('/') }}" class="flex items-center gap-3 group">
-            <div class="flex size-10 items-center justify-center rounded-xl bg-white p-0.5 shadow-md shadow-[#d57028]/30 group-hover:scale-105 transition overflow-hidden">
-                <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
+            <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#d57028] to-[#d5282d] text-sm font-extrabold text-white font-heading shadow-md shadow-[#d57028]/30 group-hover:scale-105 transition">
+                MI
             </div>
             <div class="flex flex-col leading-tight">
                 <span class="font-heading text-[10px] font-bold tracking-[2px] text-[#fec200]">MAJAPAHIT</span>
@@ -57,12 +57,12 @@
     <div class="border-t border-white/10 p-4">
         <div class="rounded-xl border border-white/5 bg-[#31140d]/80 p-3.5 backdrop-blur-xs">
             <div class="flex items-center gap-3">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#d57028]/20 text-[#fec200]">
-                    <i class="bi bi-stars text-lg" aria-hidden="true"></i>
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#d57028] to-[#d5282d] text-xs font-bold text-white font-heading shadow-xs">
+                    {{ strtoupper(substr(auth()->user()->name ?? 'K', 0, 2)) }}
                 </div>
                 <div class="min-w-0 flex-1">
-                    <p class="truncate text-xs font-bold text-white font-heading">Program KOL Pak De</p>
-                    <p class="mt-0.5 truncate text-[11px] text-white/70">Tumbuh bersama brand</p>
+                    <p class="truncate text-xs font-bold text-white font-heading">{{ auth()->user()->name ?? 'KOL Creator' }}</p>
+                    <p class="mt-0.5 truncate text-[11px] text-white/70">{{ auth()->user()->email ?? 'kol@majapahit.com' }}</p>
                 </div>
             </div>
             <form method="POST" action="{{ route('logout') }}" class="mt-3 pt-2.5 border-t border-white/5">

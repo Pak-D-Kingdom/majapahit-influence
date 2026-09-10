@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,10 +63,16 @@ class ProductManagementController extends Controller
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'locked_commission_percent' => ['required', 'numeric', 'min:1', 'max:100'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'image_path' => ['nullable', 'string', 'max:500'],
             'stock' => ['required', 'integer', 'min:0'],
             'promotion_pathway' => ['required', 'in:direct,marketplace,both'],
         ]);
+
+        if ($request->hasFile('image')) {
+            $validated['image_path'] = $request->file('image')->store('products', 'public');
+        }
+        unset($validated['image']);
 
         $validated['slug'] = Str::slug($validated['name']).'-'.Str::random(5);
         $validated['locked_commission_amount'] = round(($validated['price'] * $validated['locked_commission_percent']) / 100, 2);
@@ -73,24 +80,15 @@ class ProductManagementController extends Controller
 
         $product = Product::create($validated);
 
-        // Optional default Bank Konten entries
-        if ($request->filled('copywriting_brief')) {
-            ContentBank::create([
-                'brand_id' => $product->brand_id,
-                'product_id' => $product->id,
-                'title' => 'Script Copywriting & Talking Points',
-                'asset_type' => 'copywriting',
-                'content_text' => $request->input('copywriting_brief'),
-            ]);
-        }
-
+        // Optional Bank Konten entry (Google Drive Link with description)
         if ($request->filled('drive_folder_url')) {
             ContentBank::create([
                 'brand_id' => $product->brand_id,
                 'product_id' => $product->id,
-                'title' => 'Folder Google Drive Aset Lengkap',
+                'title' => 'Bank Konten Resmi Produk',
                 'asset_type' => 'drive_link',
                 'external_url' => $request->input('drive_folder_url'),
+                'content_text' => $request->input('drive_description') ?: 'Folder aset promosi resmi dari Brand di Google Drive (video B-roll, foto produk HD, dan materi copywriting).',
             ]);
         }
 
@@ -138,11 +136,20 @@ class ProductManagementController extends Controller
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
             'locked_commission_percent' => ['required', 'numeric', 'min:1', 'max:100'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'],
             'image_path' => ['nullable', 'string', 'max:500'],
             'stock' => ['required', 'integer', 'min:0'],
             'promotion_pathway' => ['required', 'in:direct,marketplace,both'],
             'is_active' => ['boolean'],
         ]);
+
+        if ($request->hasFile('image')) {
+            if ($product->image_path && ! str_starts_with($product->image_path, 'http') && Storage::disk('public')->exists($product->image_path)) {
+                Storage::disk('public')->delete($product->image_path);
+            }
+            $validated['image_path'] = $request->file('image')->store('products', 'public');
+        }
+        unset($validated['image']);
 
         $validated['locked_commission_amount'] = round(($validated['price'] * $validated['locked_commission_percent']) / 100, 2);
         $product->update($validated);
@@ -174,5 +181,55 @@ class ProductManagementController extends Controller
 
         return redirect()->route('superadmin.products.index')
             ->with('success', 'Produk berhasil dihapus.');
+    }
+
+    /**
+     * Toggle public e-commerce publication status of a product.
+     * Requires Google Drive bank content link to be present before publishing.
+     */
+    public function togglePublish(Request $request, Product $product): Response|RedirectResponse
+    {
+        abort_unless($request->user() && $request->user()->isSuperadmin(), 403, 'Unauthorized.');
+
+        if (! $product->is_active) {
+            // Check if product has at least one valid Google Drive link
+            $hasDriveContent = $product->contentBanks()
+                ->where(function ($q) {
+                    $q->whereNotNull('external_url')->where('external_url', '!=', '');
+                })
+                ->exists();
+
+            if (! $hasDriveContent) {
+                if ($request->wantsJson()) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Produk belum memiliki link Google Drive Bank Konten. Silakan lengkapi Bank Konten terlebih dahulu sebelum mempublikasikan ke E-Commerce.',
+                    ], 422);
+                }
+
+                return redirect()->route('superadmin.products.edit', $product->id)
+                    ->with('error', 'Produk belum memiliki link Google Drive Bank Konten. Silakan tambahkan link Google Drive di bagian Bank Konten terlebih dahulu agar materi promosi tersedia untuk kreator sebelum produk dipublikasikan ke E-Commerce.');
+            }
+
+            $product->update([
+                'is_active' => true,
+                'verification_status' => 'approved',
+            ]);
+
+            $message = "Produk '{$product->name}' berhasil dipublikasikan ke E-Commerce / Katalog Publik!";
+        } else {
+            $product->update(['is_active' => false]);
+            $message = "Produk '{$product->name}' berhasil ditarik (Unpublished) dari E-Commerce.";
+        }
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => $message,
+                'is_active' => $product->is_active,
+            ]);
+        }
+
+        return back()->with('success', $message);
     }
 }

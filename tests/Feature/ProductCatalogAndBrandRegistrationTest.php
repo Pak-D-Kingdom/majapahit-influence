@@ -24,10 +24,10 @@ class ProductCatalogAndBrandRegistrationTest extends TestCase
         $response = $this->get('/');
 
         $response->assertStatus(200);
-        $response->assertSee('Solusi Brand');
-        $response->assertSee('Layanan Maklon');
-        $response->assertSee('Daftar Brand');
-        $response->assertSee('Katalog E-Commerce');
+        $response->assertSee('Gabung sebagai Brand');
+        $response->assertSee('Gabung sebagai Creator');
+        $response->assertSee('E-Commerce');
+        $response->assertSee('Ekosistem');
     }
 
     public function test_brand_registration_form_renders_and_submits(): void
@@ -44,6 +44,8 @@ class ProductCatalogAndBrandRegistrationTest extends TestCase
             'pic_title' => 'CEO',
             'pic_email' => 'pic@brandtest.com',
             'pic_phone' => '081234567899',
+            'password' => 'password123',
+            'password_confirmation' => 'password123',
             'service_need' => 'both',
             'notes' => 'Catatan test kebutuhan maklon',
         ]);

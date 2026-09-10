@@ -1,0 +1,1985 @@
+{
+  "communities": {
+    "0": [
+      "app_http_controllers_admin_kolmanagementcontroller",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_construct",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_create",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_edit",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_export",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_index",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_show",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_store",
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_update",
+      "app_http_controllers_superadmin_kolcontroller",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_create",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_edit",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_index",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_show",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_store",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_syncprofiledetails",
+      "app_http_controllers_superadmin_kolcontroller_kolcontroller_update",
+      "app_http_controllers_superadmin_registrationcontroller",
+      "app_http_controllers_superadmin_registrationcontroller_registrationcontroller_review",
+      "app_http_requests_superadmin_kolprofilerequest_kolprofilerequest",
+      "app_http_requests_superadmin_kolprofilerequest_kolprofilerequest_authorize",
+      "app_http_requests_superadmin_kolprofilerequest_kolprofilerequest_rules",
+      "app_models_kolprofile_kolprofile",
+      "app_models_kolprofile_kolprofile_casts",
+      "app_models_kolprofile_kolprofile_geteffectivecommissionpctattribute",
+      "app_models_kolprofile_kolprofile_niches",
+      "app_models_kolprofile_kolprofile_scopeactive",
+      "app_models_kolprofile_kolprofile_tier",
+      "app_models_kolprofile_kolprofile_user",
+      "app_models_kolratecard_kolratecard",
+      "app_models_kolratecard_kolratecard_casts",
+      "app_models_kolratecard_kolratecard_kolprofile",
+      "app_models_kolsocialmedia_kolsocialmedia",
+      "app_models_kolsocialmedia_kolsocialmedia_casts",
+      "app_models_niche_niche",
+      "app_models_niche_niche_casts",
+      "app_models_niche_niche_kolprofiles",
+      "app_models_notification_notification_scopeunread",
+      "app_models_role_role",
+      "app_models_role_role_users",
+      "app_models_tier_tier",
+      "app_models_tier_tier_casts",
+      "app_services_kolprofileservice",
+      "app_services_kolprofileservice_kolprofileservice",
+      "app_services_kolprofileservice_kolprofileservice_changestatus",
+      "app_services_kolprofileservice_kolprofileservice_filter",
+      "app_services_kolprofileservice_kolprofileservice_updateprofile",
+      "app_services_kolregistrationservice",
+      "database_seeders_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder",
+      "database_seeders_databaseseeder_databaseseeder_run",
+      "database_seeders_demodataseeder",
+      "database_seeders_nicheseeder",
+      "database_seeders_nicheseeder_nicheseeder",
+      "database_seeders_nicheseeder_nicheseeder_run",
+      "database_seeders_roleseeder",
+      "database_seeders_roleseeder_roleseeder",
+      "database_seeders_roleseeder_roleseeder_run",
+      "database_seeders_tierseeder",
+      "database_seeders_tierseeder_tierseeder",
+      "database_seeders_tierseeder_tierseeder_run",
+      "database_seeders_userseeder",
+      "database_seeders_userseeder_userseeder",
+      "database_seeders_userseeder_userseeder_run",
+      "illuminate_database_eloquent_builder",
+      "illuminate_database_eloquent_relations_belongstomany",
+      "illuminate_database_seeder",
+      "illuminate_support_facades_db",
+      "illuminate_support_facades_hash",
+      "illuminate_support_facades_mail",
+      "tests_feature_authentication_roleauthorizationtest",
+      "tests_feature_authtest",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_setup",
+      "tests_feature_kolprofiletest",
+      "tests_feature_kolprofiletest_kolprofiletest",
+      "tests_feature_kolprofiletest_kolprofiletest_createuserwithrole",
+      "tests_feature_kolprofiletest_kolprofiletest_test_guest_cannot_access_edit_profile",
+      "tests_feature_kolprofiletest_kolprofiletest_test_guest_is_redirected_to_login",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_can_sync_rate_cards_and_audit_trail_is_recorded",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_can_sync_social_media_accounts",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_can_update_profile_and_bank_info",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_can_upload_new_photo",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_can_view_edit_profile_form",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_with_profile_can_view_profile_page",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_without_profile_gets_404",
+      "tests_feature_kolprofiletest_kolprofiletest_test_kol_without_profile_gets_404_on_edit",
+      "tests_feature_kolprofiletest_kolprofiletest_test_non_kol_cannot_access_edit_profile",
+      "tests_feature_kolprofiletest_kolprofiletest_test_non_kol_user_cannot_access_profile",
+      "tests_feature_kolprofiletest_kolprofiletest_test_validation_requires_at_least_one_social_media",
+      "tests_feature_kolprofiletest_kolprofiletest_test_validation_requires_nickname"
+    ],
+    "1": [
+      "app_enums_commissionstatus",
+      "app_enums_commissionstatus_commissionstatus",
+      "app_enums_commissionstatus_commissionstatus_badgeclass",
+      "app_enums_commissionstatus_commissionstatus_label",
+      "app_enums_commissionstatus_commissionstatus_values",
+      "app_http_controllers_admin_commissioncontroller",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller_approve",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller_construct",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller_export",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller_index",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller_process",
+      "app_http_controllers_admin_commissioncontroller_commissioncontroller_show",
+      "app_http_controllers_admin_reportcontroller",
+      "app_http_controllers_admin_reportcontroller_reportcontroller",
+      "app_http_controllers_admin_reportcontroller_reportcontroller_construct",
+      "app_http_controllers_admin_reportcontroller_reportcontroller_exportcommissions",
+      "app_http_controllers_admin_reportcontroller_reportcontroller_exportkol",
+      "app_http_controllers_admin_reportcontroller_reportcontroller_index",
+      "app_http_controllers_kol_commissioncontroller",
+      "app_http_controllers_kol_commissioncontroller_commissioncontroller",
+      "app_http_controllers_kol_commissioncontroller_commissioncontroller_construct",
+      "app_http_controllers_kol_commissioncontroller_commissioncontroller_index",
+      "app_http_controllers_kol_commissioncontroller_commissioncontroller_requestdisbursement",
+      "app_http_controllers_kol_commissioncontroller_commissioncontroller_requestdisbursementbatch",
+      "app_http_controllers_kol_commissioncontroller_commissioncontroller_show",
+      "app_http_controllers_superadmin_dashboardcontroller",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller_builddailytrend",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller_buildmonthlytrend",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller_buildweeklytrend",
+      "app_http_controllers_superadmin_dashboardcontroller_dashboardcontroller_invoke",
+      "app_http_requests_admin_approvedisbursementrequest_approvedisbursementrequest",
+      "app_http_requests_admin_approvedisbursementrequest_approvedisbursementrequest_authorize",
+      "app_http_requests_admin_approvedisbursementrequest_approvedisbursementrequest_messages",
+      "app_http_requests_admin_approvedisbursementrequest_approvedisbursementrequest_rules",
+      "app_http_requests_admin_processdisbursementrequest",
+      "app_http_requests_admin_processdisbursementrequest_processdisbursementrequest",
+      "app_http_requests_admin_processdisbursementrequest_processdisbursementrequest_authorize",
+      "app_http_requests_admin_processdisbursementrequest_processdisbursementrequest_messages",
+      "app_http_requests_admin_processdisbursementrequest_processdisbursementrequest_rules",
+      "app_models_commission_commission",
+      "app_models_commission_commission_calculatecommission",
+      "app_models_commission_commission_casts",
+      "app_models_commission_commission_endorsement",
+      "app_models_commission_commission_kolprofile",
+      "app_models_commission_commission_statusenum",
+      "app_models_commission_php_self",
+      "app_policies_commissionpolicy",
+      "app_policies_commissionpolicy_commissionpolicy",
+      "app_policies_commissionpolicy_commissionpolicy_approve",
+      "app_policies_commissionpolicy_commissionpolicy_process",
+      "app_policies_commissionpolicy_commissionpolicy_requestdisbursement",
+      "app_policies_commissionpolicy_commissionpolicy_view",
+      "app_services_commissionservice_commissionservice",
+      "app_services_commissionservice_commissionservice_calculateandcreate",
+      "app_services_exportservice",
+      "app_services_exportservice_exportservice",
+      "app_services_exportservice_exportservice_exportcommissions",
+      "app_services_exportservice_exportservice_exportkolprofiles",
+      "carbon_carbon",
+      "carbon_carbonperiod",
+      "symfony_component_httpfoundation_streamedresponse"
+    ],
+    "2": [
+      "database_migrations_0001_01_01_000000_create_users_table",
+      "database_migrations_0001_01_01_000000_create_users_table_down",
+      "database_migrations_0001_01_01_000000_create_users_table_up",
+      "database_migrations_0001_01_01_000001_create_cache_table",
+      "database_migrations_0001_01_01_000001_create_cache_table_down",
+      "database_migrations_0001_01_01_000001_create_cache_table_up",
+      "database_migrations_0001_01_01_000002_create_jobs_table",
+      "database_migrations_0001_01_01_000002_create_jobs_table_down",
+      "database_migrations_0001_01_01_000002_create_jobs_table_up",
+      "database_migrations_2026_09_02_000001_create_roles_and_permissions_tables",
+      "database_migrations_2026_09_02_000001_create_roles_and_permissions_tables_down",
+      "database_migrations_2026_09_02_000001_create_roles_and_permissions_tables_up",
+      "database_migrations_2026_09_02_000002_create_tiers_and_niches_tables",
+      "database_migrations_2026_09_02_000002_create_tiers_and_niches_tables_down",
+      "database_migrations_2026_09_02_000002_create_tiers_and_niches_tables_up",
+      "database_migrations_2026_09_02_000003_create_kol_profiles_and_related_tables",
+      "database_migrations_2026_09_02_000003_create_kol_profiles_and_related_tables_down",
+      "database_migrations_2026_09_02_000003_create_kol_profiles_and_related_tables_up",
+      "database_migrations_2026_09_02_000004_create_kol_registrations_tables",
+      "database_migrations_2026_09_02_000004_create_kol_registrations_tables_down",
+      "database_migrations_2026_09_02_000004_create_kol_registrations_tables_up",
+      "database_migrations_2026_09_02_000005_create_brands_and_campaigns_tables",
+      "database_migrations_2026_09_02_000005_create_brands_and_campaigns_tables_down",
+      "database_migrations_2026_09_02_000005_create_brands_and_campaigns_tables_up",
+      "database_migrations_2026_09_02_000006_create_endorsements_and_proofs_tables",
+      "database_migrations_2026_09_02_000006_create_endorsements_and_proofs_tables_down",
+      "database_migrations_2026_09_02_000006_create_endorsements_and_proofs_tables_up",
+      "database_migrations_2026_09_02_000007_create_commissions_and_disbursements_tables",
+      "database_migrations_2026_09_02_000007_create_commissions_and_disbursements_tables_down",
+      "database_migrations_2026_09_02_000007_create_commissions_and_disbursements_tables_up",
+      "database_migrations_2026_09_02_000008_create_notifications_and_audit_logs_tables",
+      "database_migrations_2026_09_02_000008_create_notifications_and_audit_logs_tables_down",
+      "database_migrations_2026_09_02_000008_create_notifications_and_audit_logs_tables_up",
+      "database_migrations_2026_09_02_000009_create_product_categories_products_and_content_banks_tables",
+      "database_migrations_2026_09_02_000009_create_product_categories_products_and_content_banks_tables_down",
+      "database_migrations_2026_09_02_000009_create_product_categories_products_and_content_banks_tables_up",
+      "database_migrations_2026_09_07_045023_add_password_to_brand_registrations_table",
+      "database_migrations_2026_09_07_045023_add_password_to_brand_registrations_table_down",
+      "database_migrations_2026_09_07_045023_add_password_to_brand_registrations_table_up",
+      "database_migrations_2026_09_07_045026_add_user_id_to_brands_table",
+      "database_migrations_2026_09_07_045026_add_user_id_to_brands_table_down",
+      "database_migrations_2026_09_07_045026_add_user_id_to_brands_table_up",
+      "database_migrations_2026_09_07_045028_add_verification_status_to_products_table",
+      "database_migrations_2026_09_07_045028_add_verification_status_to_products_table_down",
+      "database_migrations_2026_09_07_045028_add_verification_status_to_products_table_up",
+      "database_migrations_2026_09_07_052127_add_performance_composite_indexes",
+      "database_migrations_2026_09_07_052127_add_performance_composite_indexes_down",
+      "database_migrations_2026_09_07_052127_add_performance_composite_indexes_up",
+      "database_migrations_2026_09_07_060417_add_password_to_kol_registrations_table",
+      "database_migrations_2026_09_07_060417_add_password_to_kol_registrations_table_down",
+      "database_migrations_2026_09_07_060417_add_password_to_kol_registrations_table_up",
+      "illuminate_database_migrations_migration",
+      "illuminate_database_schema_blueprint",
+      "illuminate_support_facades_schema"
+    ],
+    "3": [
+      "app_mail_kolapprovedmail",
+      "app_mail_kolapprovedmail_kolapprovedmail",
+      "app_mail_kolapprovedmail_kolapprovedmail_attachments",
+      "app_mail_kolapprovedmail_kolapprovedmail_construct",
+      "app_mail_kolapprovedmail_kolapprovedmail_content",
+      "app_mail_kolapprovedmail_kolapprovedmail_envelope",
+      "app_mail_kolapprovedmail_php_content",
+      "app_mail_kolapprovedmail_php_envelope",
+      "app_mail_kolregistrationconfirmedmail",
+      "app_mail_kolregistrationconfirmedmail_kolregistrationconfirmedmail",
+      "app_mail_kolregistrationconfirmedmail_kolregistrationconfirmedmail_attachments",
+      "app_mail_kolregistrationconfirmedmail_kolregistrationconfirmedmail_construct",
+      "app_mail_kolregistrationconfirmedmail_kolregistrationconfirmedmail_content",
+      "app_mail_kolregistrationconfirmedmail_kolregistrationconfirmedmail_envelope",
+      "app_mail_kolregistrationconfirmedmail_php_content",
+      "app_mail_kolregistrationconfirmedmail_php_envelope",
+      "app_mail_kolwelcomemail",
+      "app_mail_kolwelcomemail_kolwelcomemail",
+      "app_mail_kolwelcomemail_kolwelcomemail_build",
+      "app_mail_kolwelcomemail_kolwelcomemail_construct",
+      "app_mail_kolwelcomemail_php_self",
+      "app_notifications_commissionstatuschangednotification",
+      "app_notifications_commissionstatuschangednotification_commissionstatuschangednotification",
+      "app_notifications_commissionstatuschangednotification_commissionstatuschangednotification_construct",
+      "app_notifications_commissionstatuschangednotification_commissionstatuschangednotification_toarray",
+      "app_notifications_commissionstatuschangednotification_commissionstatuschangednotification_via",
+      "app_notifications_deadlineremindernotification",
+      "app_notifications_deadlineremindernotification_deadlineremindernotification",
+      "app_notifications_deadlineremindernotification_deadlineremindernotification_construct",
+      "app_notifications_deadlineremindernotification_deadlineremindernotification_toarray",
+      "app_notifications_deadlineremindernotification_deadlineremindernotification_via",
+      "app_notifications_endorsementassignednotification",
+      "app_notifications_endorsementassignednotification_endorsementassignednotification",
+      "app_notifications_endorsementassignednotification_endorsementassignednotification_construct",
+      "app_notifications_endorsementassignednotification_endorsementassignednotification_toarray",
+      "app_notifications_endorsementassignednotification_endorsementassignednotification_via",
+      "app_notifications_kolregisterednotification",
+      "app_notifications_kolregisterednotification_kolregisterednotification",
+      "app_notifications_kolregisterednotification_kolregisterednotification_construct",
+      "app_notifications_kolregisterednotification_kolregisterednotification_toarray",
+      "app_notifications_kolregisterednotification_kolregisterednotification_via",
+      "app_notifications_proofsubmittednotification",
+      "app_notifications_proofsubmittednotification_proofsubmittednotification",
+      "app_notifications_proofsubmittednotification_proofsubmittednotification_construct",
+      "app_notifications_proofsubmittednotification_proofsubmittednotification_toarray",
+      "app_notifications_proofsubmittednotification_proofsubmittednotification_via",
+      "illuminate_bus_queueable",
+      "illuminate_contracts_queue_shouldqueue",
+      "illuminate_mail_mailable",
+      "illuminate_mail_mailables_content",
+      "illuminate_mail_mailables_envelope",
+      "illuminate_notifications_notification",
+      "illuminate_queue_serializesmodels"
+    ],
+    "4": [
+      "composer",
+      "composer_allow_plugins_pestphp_pest_plugin",
+      "composer_allow_plugins_php_http_discovery",
+      "composer_autoload",
+      "composer_autoload_dev",
+      "composer_autoload_dev_psr_4",
+      "composer_autoload_psr_4",
+      "composer_config",
+      "composer_config_allow_plugins",
+      "composer_config_optimize_autoloader",
+      "composer_config_preferred_install",
+      "composer_config_sort_packages",
+      "composer_description",
+      "composer_extra",
+      "composer_extra_laravel",
+      "composer_keywords",
+      "composer_laravel_dont_discover",
+      "composer_license",
+      "composer_minimum_stability",
+      "composer_name",
+      "composer_prefer_stable",
+      "composer_psr_4_app",
+      "composer_psr_4_database_factories",
+      "composer_psr_4_database_seeders",
+      "composer_psr_4_tests",
+      "composer_require",
+      "composer_require_dev",
+      "composer_require_dev_fakerphp_faker",
+      "composer_require_dev_laravel_boost",
+      "composer_require_dev_laravel_pail",
+      "composer_require_dev_laravel_pao",
+      "composer_require_dev_laravel_pint",
+      "composer_require_dev_mockery_mockery",
+      "composer_require_dev_nunomaduro_collision",
+      "composer_require_dev_phpunit_phpunit",
+      "composer_require_laravel_framework",
+      "composer_require_laravel_tinker",
+      "composer_require_php",
+      "composer_schema",
+      "composer_scripts",
+      "composer_scripts_dev",
+      "composer_scripts_post_autoload_dump",
+      "composer_scripts_post_create_project_cmd",
+      "composer_scripts_post_root_package_install",
+      "composer_scripts_post_update_cmd",
+      "composer_scripts_pre_package_uninstall",
+      "composer_scripts_setup",
+      "composer_scripts_test",
+      "composer_type"
+    ],
+    "5": [
+      "app_http_controllers_admin_productverificationcontroller",
+      "app_http_controllers_admin_productverificationcontroller_productverificationcontroller",
+      "app_http_controllers_admin_productverificationcontroller_productverificationcontroller_construct",
+      "app_http_controllers_admin_productverificationcontroller_productverificationcontroller_index",
+      "app_http_controllers_admin_productverificationcontroller_productverificationcontroller_verify",
+      "app_http_controllers_brand_productcontroller_productcontroller",
+      "app_http_controllers_brand_productcontroller_productcontroller_construct",
+      "app_http_controllers_brand_productcontroller_productcontroller_create",
+      "app_http_controllers_brand_productcontroller_productcontroller_destroy",
+      "app_http_controllers_brand_productcontroller_productcontroller_edit",
+      "app_http_controllers_brand_productcontroller_productcontroller_getbrand",
+      "app_http_controllers_brand_productcontroller_productcontroller_index",
+      "app_http_controllers_brand_productcontroller_productcontroller_show",
+      "app_http_controllers_brand_productcontroller_productcontroller_store",
+      "app_http_controllers_brand_productcontroller_productcontroller_update",
+      "app_http_requests_admin_verifyproductrequest",
+      "app_http_requests_admin_verifyproductrequest_verifyproductrequest",
+      "app_http_requests_admin_verifyproductrequest_verifyproductrequest_authorize",
+      "app_http_requests_admin_verifyproductrequest_verifyproductrequest_rules",
+      "app_models_contentbank_contentbank",
+      "app_models_contentbank_contentbank_brand",
+      "app_models_contentbank_contentbank_getdownloadurlattribute",
+      "app_models_contentbank_contentbank_product",
+      "app_models_product_product",
+      "app_models_product_product_brand",
+      "app_models_product_product_casts",
+      "app_models_product_product_category",
+      "app_models_product_product_getformattedcommissionattribute",
+      "app_models_product_product_getformattedpriceattribute",
+      "app_models_product_product_getimageurlattribute",
+      "app_services_productservice_productservice",
+      "app_services_productservice_productservice_createproduct",
+      "app_services_productservice_productservice_verifyproduct",
+      "database_seeders_productcatalogseeder",
+      "database_seeders_productcatalogseeder_productcatalogseeder",
+      "database_seeders_productcatalogseeder_productcatalogseeder_run",
+      "tests_feature_superadminproductandcontentbanktest",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_setup",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_approved_product_verification_keeps_product_unpublished_until_superadmin_publishes",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_product_image_url_accessor_handles_urls_and_storage_paths",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_can_add_content_bank_with_drive_link",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_can_create_product_with_image_upload",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_can_create_product_with_integrated_drive_folder",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_can_publish_and_unpublish_product_with_gdrive_bank_konten",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_can_update_and_delete_content_bank_asset",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_can_update_product_and_replace_image",
+      "tests_feature_superadminproductandcontentbanktest_superadminproductandcontentbanktest_test_superadmin_cannot_publish_product_without_gdrive_bank_konten"
+    ],
+    "6": [
+      "illuminate_foundation_testing_refreshdatabase",
+      "illuminate_foundation_testing_testcase",
+      "tests_feature_auditlogservicetest",
+      "tests_feature_auditlogservicetest_auditlogservicetest",
+      "tests_feature_auditlogservicetest_auditlogservicetest_test_it_records_the_authenticated_actor_and_request_context",
+      "tests_feature_auditlogservicetest_auditlogservicetest_test_it_redacts_sensitive_values_and_supports_system_actions",
+      "tests_feature_brandportaltest",
+      "tests_feature_brandportaltest_brandportaltest",
+      "tests_feature_brandportaltest_brandportaltest_setup",
+      "tests_feature_brandportaltest_brandportaltest_test_brand_user_can_access_dashboard_and_pages",
+      "tests_feature_brandportaltest_brandportaltest_test_brand_user_can_create_product_for_verification",
+      "tests_feature_brandportaltest_brandportaltest_test_guest_is_redirected_to_login",
+      "tests_feature_exploredirectoriestest",
+      "tests_feature_exploredirectoriestest_exploredirectoriestest",
+      "tests_feature_exploredirectoriestest_exploredirectoriestest_test_explore_brands_page_renders_successfully",
+      "tests_feature_exploredirectoriestest_exploredirectoriestest_test_explore_creators_page_renders_successfully",
+      "tests_feature_kolfiltertest",
+      "tests_feature_kolfiltertest_kolfiltertest",
+      "tests_feature_kolfiltertest_kolfiltertest_test_example",
+      "tests_feature_kolprofilemanagementtest",
+      "tests_feature_kolprofilemanagementtest_kolprofilemanagementtest",
+      "tests_feature_kolprofilemanagementtest_kolprofilemanagementtest_test_example",
+      "tests_feature_kolregistrationtest",
+      "tests_feature_kolregistrationtest_kolregistrationtest",
+      "tests_feature_kolregistrationtest_kolregistrationtest_test_kol_registration_approve_handles_associative_social_media",
+      "tests_feature_kolregistrationtest_kolregistrationtest_test_landing_renders_successfully",
+      "tests_feature_productcatalogandbrandregistrationtest",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest_setup",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest_test_brand_registration_form_renders_and_submits",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest_test_catalog_index_and_filtering",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest_test_landing_page_renders_with_dual_audience_and_maklon_content",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest_test_product_detail_and_bank_konten",
+      "tests_feature_productcatalogandbrandregistrationtest_productcatalogandbrandregistrationtest_test_superadmin_can_approve_brand_registration",
+      "tests_feature_superadmindashboardtest",
+      "tests_feature_superadmindashboardtest_superadmindashboardtest",
+      "tests_feature_superadmindashboardtest_superadmindashboardtest_setup",
+      "tests_feature_superadmindashboardtest_superadmindashboardtest_test_dashboard_computes_trend_metrics_and_multi_periods_correctly",
+      "tests_feature_superadmindashboardtest_superadmindashboardtest_test_superadmin_can_view_dashboard_with_dual_metric_trend",
+      "tests_testcase",
+      "tests_testcase_testcase"
+    ],
+    "7": [
+      "app_http_controllers_brand_campaigncontroller",
+      "app_http_controllers_brand_campaigncontroller_campaigncontroller",
+      "app_http_controllers_brand_campaigncontroller_campaigncontroller_index",
+      "app_http_controllers_brand_dashboardcontroller",
+      "app_http_controllers_brand_dashboardcontroller_dashboardcontroller",
+      "app_http_controllers_brand_dashboardcontroller_dashboardcontroller_index",
+      "app_http_controllers_brand_endorsementcontroller",
+      "app_http_controllers_brand_endorsementcontroller_endorsementcontroller",
+      "app_http_controllers_brand_endorsementcontroller_endorsementcontroller_index",
+      "app_http_controllers_controller_controller",
+      "app_http_controllers_controller_controller_authorize",
+      "app_http_controllers_kol_contentproofcontroller",
+      "app_http_controllers_kol_contentproofcontroller_contentproofcontroller",
+      "app_http_controllers_kol_contentproofcontroller_contentproofcontroller_create",
+      "app_http_controllers_kol_contentproofcontroller_contentproofcontroller_store",
+      "app_http_controllers_kol_dashboardcontroller",
+      "app_http_controllers_kol_dashboardcontroller_dashboardcontroller",
+      "app_http_controllers_kol_dashboardcontroller_dashboardcontroller_invoke",
+      "app_http_controllers_superadmin_audittrailcontroller",
+      "app_http_controllers_superadmin_audittrailcontroller_audittrailcontroller",
+      "app_http_controllers_superadmin_audittrailcontroller_audittrailcontroller_index",
+      "app_http_controllers_superadmin_brandcontroller",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_create",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_edit",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_index",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_show",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_store",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_update",
+      "illuminate_support_facades_route",
+      "illuminate_view_view",
+      "routes_brand",
+      "routes_kol",
+      "routes_superadmin"
+    ],
+    "8": [
+      "app_http_controllers_admin_brandregistrationreviewcontroller",
+      "app_http_controllers_admin_brandregistrationreviewcontroller_brandregistrationreviewcontroller",
+      "app_http_controllers_admin_brandregistrationreviewcontroller_brandregistrationreviewcontroller_approve",
+      "app_http_controllers_admin_brandregistrationreviewcontroller_brandregistrationreviewcontroller_index",
+      "app_http_controllers_admin_brandregistrationreviewcontroller_brandregistrationreviewcontroller_reject",
+      "app_http_controllers_admin_brandregistrationreviewcontroller_brandregistrationreviewcontroller_show",
+      "app_http_controllers_admin_productmanagementcontroller",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_create",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_destroy",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_edit",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_index",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_store",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_togglepublish",
+      "app_http_controllers_admin_productmanagementcontroller_productmanagementcontroller_update",
+      "app_http_controllers_brand_productcontroller",
+      "app_http_controllers_brandregistrationcontroller",
+      "app_http_controllers_brandregistrationcontroller_brandregistrationcontroller",
+      "app_http_controllers_brandregistrationcontroller_brandregistrationcontroller_confirmation",
+      "app_http_controllers_brandregistrationcontroller_brandregistrationcontroller_create",
+      "app_http_controllers_brandregistrationcontroller_brandregistrationcontroller_store",
+      "app_http_controllers_catalogcontroller",
+      "app_http_controllers_catalogcontroller_catalogcontroller",
+      "app_http_controllers_catalogcontroller_catalogcontroller_contentbank",
+      "app_http_controllers_catalogcontroller_catalogcontroller_index",
+      "app_http_controllers_catalogcontroller_catalogcontroller_show",
+      "app_models_brandregistration_brandregistration",
+      "app_models_brandregistration_brandregistration_casts",
+      "app_models_brandregistration_brandregistration_getserviceneedlabelattribute",
+      "app_models_productcategory_productcategory",
+      "app_models_productcategory_productcategory_casts",
+      "symfony_component_httpfoundation_response"
+    ],
+    "9": [
+      "app_http_controllers_admin_campaigncontroller",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_create",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_destroy",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_edit",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_index",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_show",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_store",
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_update",
+      "app_http_controllers_kol_endorsementcontroller",
+      "app_http_controllers_kol_endorsementcontroller_endorsementcontroller",
+      "app_http_controllers_kol_endorsementcontroller_endorsementcontroller_index",
+      "app_http_controllers_kol_endorsementcontroller_endorsementcontroller_show",
+      "app_http_controllers_kol_endorsementcontroller_endorsementcontroller_uploadproof",
+      "app_http_controllers_kol_profilecontroller",
+      "app_http_controllers_kol_profilecontroller_profilecontroller",
+      "app_http_controllers_kol_profilecontroller_profilecontroller_edit",
+      "app_http_controllers_kol_profilecontroller_profilecontroller_show",
+      "app_http_controllers_kol_profilecontroller_profilecontroller_update",
+      "app_http_controllers_notificationcontroller",
+      "app_http_controllers_notificationcontroller_notificationcontroller",
+      "app_http_controllers_notificationcontroller_notificationcontroller_index",
+      "app_http_controllers_notificationcontroller_notificationcontroller_markallasread",
+      "app_http_controllers_notificationcontroller_notificationcontroller_markasread",
+      "app_http_controllers_registrationcontroller",
+      "app_http_controllers_registrationcontroller_registrationcontroller",
+      "app_http_controllers_registrationcontroller_registrationcontroller_confirmation",
+      "app_http_controllers_registrationcontroller_registrationcontroller_create",
+      "app_http_controllers_registrationcontroller_registrationcontroller_store",
+      "app_http_controllers_superadmin_brandcontroller_brandcontroller_destroy",
+      "illuminate_http_jsonresponse",
+      "illuminate_http_request"
+    ],
+    "10": [
+      "app_http_controllers_admin_registrationreviewcontroller",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_approve",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_construct",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_index",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_processapprove",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_processreject",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_reject",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_review",
+      "app_http_controllers_admin_registrationreviewcontroller_registrationreviewcontroller_show",
+      "app_http_controllers_publicregistrationcontroller",
+      "app_http_controllers_publicregistrationcontroller_publicregistrationcontroller",
+      "app_http_controllers_publicregistrationcontroller_publicregistrationcontroller_confirmation",
+      "app_http_controllers_publicregistrationcontroller_publicregistrationcontroller_construct",
+      "app_http_controllers_publicregistrationcontroller_publicregistrationcontroller_create",
+      "app_http_controllers_superadmin_registrationcontroller_registrationcontroller",
+      "app_http_controllers_superadmin_registrationcontroller_registrationcontroller_index",
+      "app_http_controllers_superadmin_registrationcontroller_registrationcontroller_show",
+      "app_models_kolregistration_kolregistration",
+      "app_models_kolregistration_kolregistration_approver",
+      "app_models_kolregistration_kolregistration_casts",
+      "app_models_kolregistration_kolregistration_generateregistrationnumber",
+      "app_models_kolregistration_kolregistration_reviewer",
+      "app_services_kolregistrationservice_kolregistrationservice",
+      "app_services_kolregistrationservice_kolregistrationservice_approve",
+      "app_services_kolregistrationservice_kolregistrationservice_determinetier",
+      "app_services_kolregistrationservice_kolregistrationservice_normalizeniches",
+      "app_services_kolregistrationservice_kolregistrationservice_normalizesocialmedia",
+      "app_services_kolregistrationservice_kolregistrationservice_reject",
+      "app_services_kolregistrationservice_kolregistrationservice_store"
+    ],
+    "11": [
+      "app_models_auditlog",
+      "app_models_brand",
+      "app_models_brandregistration",
+      "app_models_brandregistration_brandregistration_reviewer",
+      "app_models_campaign",
+      "app_models_campaignfile",
+      "app_models_commission",
+      "app_models_commissionapproval",
+      "app_models_contentbank",
+      "app_models_contentproof",
+      "app_models_contentprooffile",
+      "app_models_endorsement",
+      "app_models_kolprofile",
+      "app_models_kolratecard",
+      "app_models_kolregistration",
+      "app_models_kolsocialmedia",
+      "app_models_kolsocialmedia_kolsocialmedia_kolprofile",
+      "app_models_niche",
+      "app_models_notification",
+      "app_models_product",
+      "app_models_registrationfile",
+      "app_models_registrationfile_registrationfile",
+      "app_models_registrationfile_registrationfile_casts",
+      "app_models_registrationfile_registrationfile_registration",
+      "app_models_role",
+      "app_models_tier",
+      "illuminate_database_eloquent_factories_hasfactory",
+      "illuminate_database_eloquent_model",
+      "illuminate_database_eloquent_relations_belongsto",
+      "illuminate_database_eloquent_softdeletes"
+    ],
+    "12": [
+      "app_models_brand_brand",
+      "app_models_brand_brand_casts",
+      "app_models_brand_brand_endorsements",
+      "app_models_brand_brand_user",
+      "app_models_campaign_campaign",
+      "app_models_campaign_campaign_brand",
+      "app_models_campaign_campaign_casts",
+      "app_models_campaign_campaign_creator",
+      "database_seeders_commissionseeder",
+      "database_seeders_commissionseeder_commissionseeder",
+      "database_seeders_commissionseeder_commissionseeder_run",
+      "illuminate_database_eloquent_relations_hasmanythrough",
+      "tests_feature_dev3endorsementtest",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_cannot_assign_inactive_or_pending_kol_due_to_business_rules",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_kol_can_view_endorsements_and_upload_content_proof",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_superadmin_can_approve_proof_and_mark_completed_with_commission",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_superadmin_can_assign_active_kol_to_campaign",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_superadmin_can_create_and_list_brands",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_superadmin_can_create_campaign_with_brief_files",
+      "tests_feature_dev3endorsementtest_dev3endorsementtest_test_superadmin_can_review_and_reject_proof_with_notes",
+      "tests_feature_kolcommissiontest",
+      "tests_feature_kolcommissiontest_kolcommissiontest",
+      "tests_feature_kolcommissiontest_kolcommissiontest_createuserwithrole",
+      "tests_feature_kolcommissiontest_kolcommissiontest_test_kol_can_request_disbursement_for_unpaid_commission",
+      "tests_feature_kolcommissiontest_kolcommissiontest_test_kol_can_view_commission_detail",
+      "tests_feature_kolcommissiontest_kolcommissiontest_test_kol_can_view_commissions_list",
+      "tests_feature_kolcommissiontest_kolcommissiontest_test_kol_cannot_request_disbursement_for_already_paid_commission",
+      "tests_feature_kolcommissiontest_kolcommissiontest_test_kol_cannot_view_other_kol_commission"
+    ],
+    "13": [
+      "app_http_controllers_admin_contentbankcontroller",
+      "app_http_controllers_admin_contentbankcontroller_contentbankcontroller",
+      "app_http_controllers_admin_contentbankcontroller_contentbankcontroller_destroy",
+      "app_http_controllers_admin_contentbankcontroller_contentbankcontroller_store",
+      "app_http_controllers_admin_contentbankcontroller_contentbankcontroller_update",
+      "app_http_controllers_admin_endorsementcontroller",
+      "app_http_controllers_admin_endorsementcontroller_endorsementcontroller",
+      "app_http_controllers_admin_endorsementcontroller_endorsementcontroller_assign",
+      "app_http_controllers_admin_endorsementcontroller_endorsementcontroller_complete",
+      "app_http_controllers_admin_endorsementcontroller_endorsementcontroller_destroy",
+      "app_http_controllers_admin_endorsementcontroller_endorsementcontroller_reviewproof",
+      "app_http_controllers_auth_authcontroller",
+      "app_http_controllers_auth_authcontroller_authcontroller",
+      "app_http_controllers_auth_authcontroller_authcontroller_login",
+      "app_http_controllers_auth_authcontroller_authcontroller_logout",
+      "app_http_controllers_auth_authcontroller_authcontroller_showloginform",
+      "app_http_controllers_auth_logincontroller",
+      "app_http_controllers_auth_logincontroller_logincontroller",
+      "app_http_controllers_auth_logincontroller_logincontroller_create",
+      "app_http_controllers_auth_logincontroller_logincontroller_destroy",
+      "app_http_controllers_auth_logincontroller_logincontroller_redirectbyrole",
+      "app_http_controllers_auth_logincontroller_logincontroller_store",
+      "illuminate_http_redirectresponse",
+      "illuminate_support_facades_auth"
+    ],
+    "14": [
+      "app_models_user_user",
+      "app_models_user_user_assignrole",
+      "app_models_user_user_casts",
+      "app_models_user_user_hasrole",
+      "app_models_user_user_isadmin",
+      "app_models_user_user_isbrand",
+      "app_models_user_user_iskol",
+      "app_models_user_user_issuperadmin",
+      "app_models_user_user_revokesessions",
+      "app_models_user_user_roles",
+      "app_policies_campaignpolicy",
+      "app_policies_campaignpolicy_campaignpolicy",
+      "app_policies_campaignpolicy_campaignpolicy_create",
+      "app_policies_campaignpolicy_campaignpolicy_delete",
+      "app_policies_campaignpolicy_campaignpolicy_update",
+      "app_policies_campaignpolicy_campaignpolicy_view",
+      "app_policies_campaignpolicy_campaignpolicy_viewany",
+      "app_policies_endorsementpolicy",
+      "app_policies_endorsementpolicy_endorsementpolicy",
+      "app_policies_endorsementpolicy_endorsementpolicy_delete",
+      "app_policies_endorsementpolicy_endorsementpolicy_update",
+      "app_policies_endorsementpolicy_endorsementpolicy_view",
+      "config_auth",
+      "illuminate_foundation_auth_user"
+    ],
+    "15": [
+      "tests_feature_authtest_authtest",
+      "tests_feature_authtest_authtest_setup",
+      "tests_feature_authtest_authtest_test_admin_can_access_admin_dashboard",
+      "tests_feature_authtest_authtest_test_admin_can_login_and_redirects_to_admin_dashboard",
+      "tests_feature_authtest_authtest_test_admin_cannot_access_kol_dashboard_gets_403",
+      "tests_feature_authtest_authtest_test_failed_login_is_recorded_without_password",
+      "tests_feature_authtest_authtest_test_guest_cannot_access_superadmin_dashboard",
+      "tests_feature_authtest_authtest_test_guest_gets_json_401_for_superadmin_dashboard",
+      "tests_feature_authtest_authtest_test_inactive_user_cannot_access_protected_dashboard",
+      "tests_feature_authtest_authtest_test_inactive_user_cannot_login",
+      "tests_feature_authtest_authtest_test_inactive_user_gets_json_403",
+      "tests_feature_authtest_authtest_test_kol_can_access_kol_dashboard",
+      "tests_feature_authtest_authtest_test_kol_can_login_and_redirects_to_kol_dashboard",
+      "tests_feature_authtest_authtest_test_kol_can_set_password_with_valid_token_and_redirects_to_dashboard",
+      "tests_feature_authtest_authtest_test_kol_can_view_set_password_screen",
+      "tests_feature_authtest_authtest_test_kol_cannot_access_admin_dashboard_gets_403",
+      "tests_feature_authtest_authtest_test_login_screen_can_be_rendered",
+      "tests_feature_authtest_authtest_test_password_reset_revokes_existing_database_sessions",
+      "tests_feature_authtest_authtest_test_user_can_logout_and_audit_log_created",
+      "tests_feature_authtest_authtest_test_user_can_request_password_reset_link",
+      "tests_feature_authtest_authtest_test_user_can_reset_password_with_valid_token",
+      "tests_feature_authtest_authtest_test_user_without_role_cannot_access_protected_dashboard",
+      "tests_feature_authtest_authtest_test_users_cannot_login_with_invalid_password"
+    ],
+    "16": [
+      "app_http_controllers_kol_endorsementcontroller_endorsementcontroller_construct",
+      "app_models_auditlog_auditlog",
+      "app_models_auditlog_auditlog_casts",
+      "app_models_auditlog_auditlog_user",
+      "app_models_commissionapproval_commissionapproval",
+      "app_models_commissionapproval_commissionapproval_commission",
+      "app_models_commissionapproval_commissionapproval_performedby",
+      "app_models_commissionapproval_commissionapproval_performer",
+      "app_models_commissionapproval_commissionapproval_reviewer",
+      "app_services_commissionservice",
+      "app_services_commissionservice_commissionservice_approvedisbursement",
+      "app_services_commissionservice_commissionservice_markasdisbursed",
+      "app_services_commissionservice_commissionservice_requestdisbursement",
+      "app_services_endorsementservice",
+      "app_services_endorsementservice_endorsementservice",
+      "app_services_endorsementservice_endorsementservice_assignkol",
+      "app_services_endorsementservice_endorsementservice_cancelendorsement",
+      "app_services_endorsementservice_endorsementservice_markascompleted",
+      "app_services_endorsementservice_endorsementservice_reviewproof",
+      "app_services_endorsementservice_endorsementservice_submitproof",
+      "app_services_productservice",
+      "illuminate_http_uploadedfile"
+    ],
+    "17": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_concurrently",
+      "package_devdependencies_laravel_vite_plugin",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_tailwindcss_vite",
+      "package_devdependencies_vite",
+      "package_optionaldependencies",
+      "package_optionaldependencies_laravel_multiplex",
+      "package_private",
+      "package_schema",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_type",
+      "ref_concurrently",
+      "ref_laravel_multiplex",
+      "ref_laravel_vite_plugin",
+      "ref_tailwindcss",
+      "ref_tailwindcss_vite",
+      "ref_vite",
+      "vite_config"
+    ],
+    "18": [
+      "app_models_brand_brand_campaigns",
+      "app_models_brand_brand_contentbanks",
+      "app_models_brand_brand_products",
+      "app_models_campaign_campaign_endorsements",
+      "app_models_campaign_campaign_files",
+      "app_models_commission_commission_approvals",
+      "app_models_endorsement_endorsement_contentproofs",
+      "app_models_kolprofile_kolprofile_commissions",
+      "app_models_kolprofile_kolprofile_endorsements",
+      "app_models_kolprofile_kolprofile_ratecards",
+      "app_models_kolprofile_kolprofile_socialmedia",
+      "app_models_kolregistration_kolregistration_files",
+      "app_models_product_product_contentbanks",
+      "app_models_productcategory_productcategory_products",
+      "app_models_tier_tier_kolprofiles",
+      "app_models_user_user_auditlogs",
+      "app_models_user_user_notifications",
+      "app_models_user_user_unreadnotifications",
+      "illuminate_database_eloquent_relations_hasmany"
+    ],
+    "19": [
+      "app_http_controllers_superadmin_endorsementcontroller_endorsementcontroller",
+      "app_http_controllers_superadmin_endorsementcontroller_endorsementcontroller_edit",
+      "app_http_controllers_superadmin_endorsementcontroller_endorsementcontroller_index",
+      "app_http_controllers_superadmin_endorsementcontroller_endorsementcontroller_reviewproof",
+      "app_http_controllers_superadmin_endorsementcontroller_endorsementcontroller_show",
+      "app_http_controllers_superadmin_endorsementcontroller_endorsementcontroller_update",
+      "app_models_endorsement_endorsement",
+      "app_models_endorsement_endorsement_assigner",
+      "app_models_endorsement_endorsement_campaign",
+      "app_models_endorsement_endorsement_casts",
+      "app_models_endorsement_endorsement_kolprofile",
+      "tests_feature_kolcontentprooftest",
+      "tests_feature_kolcontentprooftest_kolcontentprooftest",
+      "tests_feature_kolcontentprooftest_kolcontentprooftest_createuserwithrole",
+      "tests_feature_kolcontentprooftest_kolcontentprooftest_test_kol_can_submit_content_proof_successfully",
+      "tests_feature_kolcontentprooftest_kolcontentprooftest_test_kol_can_view_upload_proof_form_for_allowed_status",
+      "tests_feature_kolcontentprooftest_kolcontentprooftest_test_kol_cannot_upload_proof_for_finished_endorsement",
+      "tests_feature_kolcontentprooftest_kolcontentprooftest_test_proof_submission_validates_required_fields"
+    ],
+    "20": [
+      "app_http_controllers_superadmin_campaigncontroller",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_assign",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_create",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_edit",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_index",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_show",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_store",
+      "app_http_controllers_superadmin_campaigncontroller_campaigncontroller_update",
+      "app_http_requests_superadmin_assignmentrequest",
+      "app_http_requests_superadmin_assignmentrequest_assignmentrequest",
+      "app_http_requests_superadmin_assignmentrequest_assignmentrequest_authorize",
+      "app_http_requests_superadmin_assignmentrequest_assignmentrequest_rules",
+      "app_http_requests_superadmin_campaignrequest_campaignrequest",
+      "app_http_requests_superadmin_campaignrequest_campaignrequest_authorize",
+      "app_http_requests_superadmin_campaignrequest_campaignrequest_rules"
+    ],
+    "21": [
+      "app_http_controllers_publicregistrationcontroller_publicregistrationcontroller_store",
+      "app_http_requests_admin_approvedisbursementrequest",
+      "app_http_requests_admin_storekolmanualrequest",
+      "app_http_requests_admin_storekolmanualrequest_storekolmanualrequest",
+      "app_http_requests_admin_storekolmanualrequest_storekolmanualrequest_authorize",
+      "app_http_requests_admin_storekolmanualrequest_storekolmanualrequest_rules",
+      "app_http_requests_kol_updateprofilerequest",
+      "app_http_requests_kol_updateprofilerequest_updateprofilerequest",
+      "app_http_requests_kol_updateprofilerequest_updateprofilerequest_authorize",
+      "app_http_requests_kol_updateprofilerequest_updateprofilerequest_rules",
+      "app_http_requests_public_storekolregistrationrequest",
+      "app_http_requests_public_storekolregistrationrequest_storekolregistrationrequest",
+      "app_http_requests_public_storekolregistrationrequest_storekolregistrationrequest_authorize",
+      "app_http_requests_public_storekolregistrationrequest_storekolregistrationrequest_rules",
+      "illuminate_contracts_validation_validationrule"
+    ],
+    "22": [
+      "app_enums_endorsementstatus",
+      "app_enums_endorsementstatus_endorsementstatus",
+      "app_enums_endorsementstatus_endorsementstatus_label",
+      "app_enums_endorsementstatus_endorsementstatus_values",
+      "app_enums_registrationstatus",
+      "app_enums_registrationstatus_registrationstatus",
+      "app_enums_registrationstatus_registrationstatus_label",
+      "app_enums_registrationstatus_registrationstatus_values",
+      "app_models_endorsement_endorsement_statusenum",
+      "tests_unit_commissioncalculationtest",
+      "tests_unit_commissioncalculationtest_commissioncalculationtest",
+      "tests_unit_commissioncalculationtest_commissioncalculationtest_test_commission_calculation_respects_override_percentage",
+      "tests_unit_commissioncalculationtest_commissioncalculationtest_test_commission_calculation_uses_kol_tier_percentage",
+      "tests_unit_commissioncalculationtest_commissioncalculationtest_test_status_enums_return_expected_values_and_labels"
+    ],
+    "23": [
+      "app_http_controllers_auth_forgotpasswordcontroller",
+      "app_http_controllers_auth_forgotpasswordcontroller_forgotpasswordcontroller",
+      "app_http_controllers_auth_forgotpasswordcontroller_forgotpasswordcontroller_sendresetlinkemail",
+      "app_http_controllers_auth_forgotpasswordcontroller_forgotpasswordcontroller_showlinkrequestform",
+      "app_http_controllers_auth_resetpasswordcontroller",
+      "app_http_controllers_auth_resetpasswordcontroller_resetpasswordcontroller",
+      "app_http_controllers_auth_resetpasswordcontroller_resetpasswordcontroller_resetpassword",
+      "app_http_controllers_auth_resetpasswordcontroller_resetpasswordcontroller_showresetpasswordform",
+      "app_http_controllers_auth_setpasswordcontroller",
+      "app_http_controllers_auth_setpasswordcontroller_setpasswordcontroller",
+      "app_http_controllers_auth_setpasswordcontroller_setpasswordcontroller_showsetpasswordform",
+      "app_http_controllers_auth_setpasswordcontroller_setpasswordcontroller_updatepassword",
+      "illuminate_support_facades_password",
+      "routes_web"
+    ],
+    "24": [
+      "app_models_notification_notification",
+      "app_models_notification_notification_casts",
+      "app_models_notification_notification_user",
+      "app_policies_notificationpolicy",
+      "app_policies_notificationpolicy_notificationpolicy",
+      "app_policies_notificationpolicy_notificationpolicy_view",
+      "illuminate_database_eloquent_concerns_hasuuids",
+      "tests_feature_notificationtest",
+      "tests_feature_notificationtest_notificationtest",
+      "tests_feature_notificationtest_notificationtest_createuserwithrole",
+      "tests_feature_notificationtest_notificationtest_test_user_can_mark_all_notifications_as_read",
+      "tests_feature_notificationtest_notificationtest_test_user_can_mark_single_notification_as_read",
+      "tests_feature_notificationtest_notificationtest_test_user_can_view_notifications_list",
+      "tests_feature_notificationtest_notificationtest_test_user_cannot_read_other_users_notification"
+    ],
+    "25": [
+      "app_http_requests_admin_storecampaignrequest",
+      "app_http_requests_admin_storecampaignrequest_storecampaignrequest",
+      "app_http_requests_admin_storecampaignrequest_storecampaignrequest_authorize",
+      "app_http_requests_admin_storecampaignrequest_storecampaignrequest_rules",
+      "app_http_requests_kol_disbursementrequest",
+      "app_http_requests_kol_disbursementrequest_disbursementrequest",
+      "app_http_requests_kol_disbursementrequest_disbursementrequest_authorize",
+      "app_http_requests_kol_disbursementrequest_disbursementrequest_rules",
+      "app_http_requests_superadmin_campaignrequest",
+      "app_http_requests_superadmin_endorsementrequest",
+      "app_http_requests_superadmin_kolprofilerequest",
+      "illuminate_foundation_http_formrequest",
+      "illuminate_validation_rule"
+    ],
+    "26": [
+      "asset_brand_01",
+      "asset_creator_01",
+      "locked_commission_40",
+      "majapahit_influence_design_system",
+      "majapahit_influence_ecosystem",
+      "motion_graphic_index",
+      "motion_ui_index",
+      "pak_de_group",
+      "public_flowcharts_07_komisi_pencairan_flowchart_png",
+      "public_flowcharts_07_komisi_pencairan_flowchart_svg",
+      "public_motion_index",
+      "public_motion_ui_index"
+    ],
+    "27": [
+      "database_seeders_demodataseeder_demodataseeder",
+      "database_seeders_demodataseeder_demodataseeder_idsfor",
+      "database_seeders_demodataseeder_demodataseeder_run",
+      "database_seeders_demodataseeder_demodataseeder_seedauditlogs",
+      "database_seeders_demodataseeder_demodataseeder_seedbrands",
+      "database_seeders_demodataseeder_demodataseeder_seedcampaigns",
+      "database_seeders_demodataseeder_demodataseeder_seedendorsements",
+      "database_seeders_demodataseeder_demodataseeder_seedkols",
+      "database_seeders_demodataseeder_demodataseeder_seednotifications",
+      "database_seeders_demodataseeder_demodataseeder_seedproofsandcommissions",
+      "database_seeders_demodataseeder_demodataseeder_seedregistrations",
+      "illuminate_support_collection"
+    ],
+    "28": [
+      "app_http_controllers_admin_campaigncontroller_campaigncontroller_construct",
+      "app_http_controllers_admin_endorsementcontroller_endorsementcontroller_construct",
+      "app_models_campaignfile_campaignfile",
+      "app_models_campaignfile_campaignfile_campaign",
+      "app_models_campaignfile_campaignfile_casts",
+      "app_services_campaignservice",
+      "app_services_campaignservice_campaignservice",
+      "app_services_campaignservice_campaignservice_assignkol",
+      "app_services_campaignservice_campaignservice_store",
+      "app_services_campaignservice_campaignservice_update"
+    ],
+    "29": [
+      "app_http_controllers_superadmin_endorsementcontroller",
+      "app_http_requests_superadmin_contentproofreviewrequest",
+      "app_http_requests_superadmin_contentproofreviewrequest_contentproofreviewrequest",
+      "app_http_requests_superadmin_contentproofreviewrequest_contentproofreviewrequest_authorize",
+      "app_http_requests_superadmin_contentproofreviewrequest_contentproofreviewrequest_prepareforvalidation",
+      "app_http_requests_superadmin_contentproofreviewrequest_contentproofreviewrequest_rules",
+      "app_http_requests_superadmin_endorsementrequest_endorsementrequest",
+      "app_http_requests_superadmin_endorsementrequest_endorsementrequest_authorize",
+      "app_http_requests_superadmin_endorsementrequest_endorsementrequest_rules"
+    ],
+    "30": [
+      "app_http_middleware_rolemiddleware",
+      "app_http_middleware_rolemiddleware_rolemiddleware",
+      "app_http_middleware_rolemiddleware_rolemiddleware_handle",
+      "bootstrap_app",
+      "closure",
+      "illuminate_foundation_application",
+      "illuminate_foundation_configuration_exceptions",
+      "illuminate_foundation_configuration_middleware",
+      "public_index"
+    ],
+    "31": [
+      "app_http_requests_auth_loginrequest",
+      "app_models_productcategory",
+      "config_cache",
+      "config_database",
+      "config_session",
+      "illuminate_support_facades_ratelimiter",
+      "illuminate_support_str",
+      "illuminate_validation_validationexception",
+      "pdo_mysql"
+    ],
+    "32": [
+      "app_http_controllers_controller",
+      "app_providers_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider",
+      "app_providers_appserviceprovider_appserviceprovider_boot",
+      "app_providers_appserviceprovider_appserviceprovider_register",
+      "bootstrap_providers",
+      "illuminate_support_facades_gate",
+      "illuminate_support_serviceprovider"
+    ],
+    "33": [
+      "app_http_requests_auth_loginrequest_loginrequest",
+      "app_http_requests_auth_loginrequest_loginrequest_authorize",
+      "app_http_requests_auth_loginrequest_loginrequest_clearratelimiter",
+      "app_http_requests_auth_loginrequest_loginrequest_ensureisnotratelimited",
+      "app_http_requests_auth_loginrequest_loginrequest_hitratelimiter",
+      "app_http_requests_auth_loginrequest_loginrequest_messages",
+      "app_http_requests_auth_loginrequest_loginrequest_rules",
+      "app_http_requests_auth_loginrequest_loginrequest_throttlekey"
+    ],
+    "34": [
+      "app_models_product_product_booted",
+      "app_models_productcategory_productcategory_booted",
+      "database_factories_userfactory",
+      "database_factories_userfactory_userfactory",
+      "database_factories_userfactory_userfactory_definition",
+      "database_factories_userfactory_userfactory_unverified",
+      "illuminate_database_eloquent_factories_factory",
+      "static"
+    ],
+    "35": [
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_test_guest_is_redirected_to_login_from_protected_areas",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_test_inactive_user_cannot_login",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_test_kol_can_access_kol_notifications",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_test_roles_cannot_access_each_others_area",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_test_superadmin_can_access_superadmin_notifications",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_test_user_without_role_is_forbidden",
+      "tests_feature_authentication_roleauthorizationtest_roleauthorizationtest_userwithrole"
+    ],
+    "36": [
+      "app_models_endorsement_endorsement_commission",
+      "app_models_endorsement_endorsement_latestcontentproof",
+      "app_models_user",
+      "app_models_user_user_brand",
+      "app_models_user_user_kolprofile",
+      "illuminate_database_eloquent_relations_hasone",
+      "illuminate_notifications_notifiable"
+    ],
+    "37": [
+      "tests_feature_kolendorsementtest",
+      "tests_feature_kolendorsementtest_kolendorsementtest",
+      "tests_feature_kolendorsementtest_kolendorsementtest_createuserwithrole",
+      "tests_feature_kolendorsementtest_kolendorsementtest_test_kol_can_filter_endorsements_by_status",
+      "tests_feature_kolendorsementtest_kolendorsementtest_test_kol_can_view_endorsement_detail",
+      "tests_feature_kolendorsementtest_kolendorsementtest_test_kol_can_view_endorsements_list",
+      "tests_feature_kolendorsementtest_kolendorsementtest_test_kol_cannot_view_other_kol_endorsement"
+    ],
+    "38": [
+      "app_console_commands_senddeadlinereminders",
+      "app_console_commands_senddeadlinereminders_senddeadlinereminders",
+      "app_console_commands_senddeadlinereminders_senddeadlinereminders_handle",
+      "illuminate_console_attributes_description",
+      "illuminate_console_attributes_signature",
+      "illuminate_console_command"
+    ],
+    "39": [
+      "app_http_requests_admin_assignkolrequest",
+      "app_http_requests_admin_assignkolrequest_assignkolrequest",
+      "app_http_requests_admin_assignkolrequest_assignkolrequest_after",
+      "app_http_requests_admin_assignkolrequest_assignkolrequest_authorize",
+      "app_http_requests_admin_assignkolrequest_assignkolrequest_rules",
+      "illuminate_validation_validator"
+    ],
+    "40": [
+      "app_policies_kolprofilepolicy",
+      "app_policies_kolprofilepolicy_kolprofilepolicy",
+      "app_policies_kolprofilepolicy_kolprofilepolicy_delete",
+      "app_policies_kolprofilepolicy_kolprofilepolicy_update",
+      "app_policies_kolprofilepolicy_kolprofilepolicy_view",
+      "app_policies_kolprofilepolicy_kolprofilepolicy_viewany"
+    ],
+    "41": [
+      "app_services_auditlogger",
+      "app_services_auditlogger_auditlogger",
+      "app_services_auditlogger_auditlogger_construct",
+      "app_services_auditlogger_auditlogger_record",
+      "app_services_auditlogger_auditlogger_redact",
+      "app_services_auditlogger_auditlogger_resolvesubject"
+    ],
+    "42": [
+      "public_flowcharts_01_master_ecosystem_flowchart_bank_konten",
+      "public_flowcharts_01_master_ecosystem_flowchart_catalog",
+      "public_flowcharts_01_master_ecosystem_flowchart_maklon_service",
+      "public_flowcharts_04_dua_jalur_promosi_flowchart_jalur_a",
+      "public_flowcharts_04_dua_jalur_promosi_flowchart_jalur_b",
+      "public_flowcharts_05_katalog_bank_konten_flowchart_product_create"
+    ],
+    "43": [
+      "tests_feature_koldashboardtest",
+      "tests_feature_koldashboardtest_koldashboardtest",
+      "tests_feature_koldashboardtest_koldashboardtest_createuserwithrole",
+      "tests_feature_koldashboardtest_koldashboardtest_test_kol_can_view_dashboard",
+      "tests_feature_koldashboardtest_koldashboardtest_test_kol_without_profile_cannot_access_dashboard",
+      "tests_feature_koldashboardtest_koldashboardtest_test_non_kol_cannot_access_dashboard"
+    ],
+    "44": [
+      "app_enums_kolstatus",
+      "app_enums_kolstatus_kolstatus",
+      "app_enums_kolstatus_kolstatus_label",
+      "app_enums_kolstatus_kolstatus_values",
+      "app_models_kolprofile_kolprofile_statusenum"
+    ],
+    "45": [
+      "app_helpers_filestoragehelper",
+      "app_helpers_filestoragehelper_filestoragehelper",
+      "app_helpers_filestoragehelper_filestoragehelper_delete",
+      "app_helpers_filestoragehelper_filestoragehelper_upload",
+      "illuminate_support_facades_storage"
+    ],
+    "46": [
+      "app_http_controllers_admin_kolmanagementcontroller_kolmanagementcontroller_updatestatus",
+      "app_http_requests_admin_updatekolstatusrequest",
+      "app_http_requests_admin_updatekolstatusrequest_updatekolstatusrequest",
+      "app_http_requests_admin_updatekolstatusrequest_updatekolstatusrequest_authorize",
+      "app_http_requests_admin_updatekolstatusrequest_updatekolstatusrequest_rules"
+    ],
+    "47": [
+      "app_http_requests_admin_reviewcontentproofrequest",
+      "app_http_requests_admin_reviewcontentproofrequest_reviewcontentproofrequest",
+      "app_http_requests_admin_reviewcontentproofrequest_reviewcontentproofrequest_authorize",
+      "app_http_requests_admin_reviewcontentproofrequest_reviewcontentproofrequest_passedvalidation",
+      "app_http_requests_admin_reviewcontentproofrequest_reviewcontentproofrequest_rules"
+    ],
+    "48": [
+      "app_http_requests_auth_forgotpasswordrequest",
+      "app_http_requests_auth_forgotpasswordrequest_forgotpasswordrequest",
+      "app_http_requests_auth_forgotpasswordrequest_forgotpasswordrequest_authorize",
+      "app_http_requests_auth_forgotpasswordrequest_forgotpasswordrequest_messages",
+      "app_http_requests_auth_forgotpasswordrequest_forgotpasswordrequest_rules"
+    ],
+    "49": [
+      "app_http_requests_auth_resetpasswordrequest",
+      "app_http_requests_auth_resetpasswordrequest_resetpasswordrequest",
+      "app_http_requests_auth_resetpasswordrequest_resetpasswordrequest_authorize",
+      "app_http_requests_auth_resetpasswordrequest_resetpasswordrequest_messages",
+      "app_http_requests_auth_resetpasswordrequest_resetpasswordrequest_rules"
+    ],
+    "50": [
+      "app_http_requests_auth_setpasswordrequest",
+      "app_http_requests_auth_setpasswordrequest_setpasswordrequest",
+      "app_http_requests_auth_setpasswordrequest_setpasswordrequest_authorize",
+      "app_http_requests_auth_setpasswordrequest_setpasswordrequest_messages",
+      "app_http_requests_auth_setpasswordrequest_setpasswordrequest_rules"
+    ],
+    "51": [
+      "app_http_requests_kol_requestdisbursementrequest",
+      "app_http_requests_kol_requestdisbursementrequest_requestdisbursementrequest",
+      "app_http_requests_kol_requestdisbursementrequest_requestdisbursementrequest_authorize",
+      "app_http_requests_kol_requestdisbursementrequest_requestdisbursementrequest_messages",
+      "app_http_requests_kol_requestdisbursementrequest_requestdisbursementrequest_rules"
+    ],
+    "52": [
+      "app_http_requests_kol_storecontentproofrequest",
+      "app_http_requests_kol_storecontentproofrequest_storecontentproofrequest",
+      "app_http_requests_kol_storecontentproofrequest_storecontentproofrequest_authorize",
+      "app_http_requests_kol_storecontentproofrequest_storecontentproofrequest_passedvalidation",
+      "app_http_requests_kol_storecontentproofrequest_storecontentproofrequest_rules"
+    ],
+    "53": [
+      "app_models_contentproof_contentproof",
+      "app_models_contentproof_contentproof_casts",
+      "app_models_contentproof_contentproof_endorsement",
+      "app_models_contentproof_contentproof_files",
+      "app_models_contentproof_contentproof_reviewer"
+    ],
+    "54": [
+      "app_services_auditlogservice",
+      "app_services_auditlogservice_auditlogservice",
+      "app_services_auditlogservice_auditlogservice_record",
+      "app_services_auditlogservice_auditlogservice_sanitize",
+      "illuminate_support_facades_request"
+    ],
+    "55": [
+      "app_services_notificationservice",
+      "app_services_notificationservice_notificationservice",
+      "app_services_notificationservice_notificationservice_endorsementassigned",
+      "app_services_notificationservice_notificationservice_notifysuperadmins",
+      "app_services_notificationservice_notificationservice_send"
+    ],
+    "56": [
+      "config_logging",
+      "monolog_handler_nullhandler",
+      "monolog_handler_streamhandler",
+      "monolog_handler_syslogudphandler",
+      "monolog_processor_psrlogmessageprocessor"
+    ],
+    "57": [
+      "public_flowcharts_01_master_ecosystem_flowchart_brand_registration",
+      "public_flowcharts_01_master_ecosystem_flowchart_kol_registration",
+      "public_flowcharts_01_master_ecosystem_flowchart_landing_page",
+      "public_flowcharts_01_master_ecosystem_flowchart_visitor",
+      "public_flowcharts_02_pendaftaran_brand_flowchart_brand_registrations_table"
+    ],
+    "58": [
+      "app_http_requests_admin_approveregistrationrequest",
+      "app_http_requests_admin_approveregistrationrequest_approveregistrationrequest",
+      "app_http_requests_admin_approveregistrationrequest_approveregistrationrequest_authorize",
+      "app_http_requests_admin_approveregistrationrequest_approveregistrationrequest_rules"
+    ],
+    "59": [
+      "app_http_requests_admin_rejectregistrationrequest",
+      "app_http_requests_admin_rejectregistrationrequest_rejectregistrationrequest",
+      "app_http_requests_admin_rejectregistrationrequest_rejectregistrationrequest_authorize",
+      "app_http_requests_admin_rejectregistrationrequest_rejectregistrationrequest_rules"
+    ],
+    "60": [
+      "app_http_requests_admin_updatecampaignrequest",
+      "app_http_requests_admin_updatecampaignrequest_updatecampaignrequest",
+      "app_http_requests_admin_updatecampaignrequest_updatecampaignrequest_authorize",
+      "app_http_requests_admin_updatecampaignrequest_updatecampaignrequest_rules"
+    ],
+    "61": [
+      "app_http_requests_brand_storebrandrequest",
+      "app_http_requests_brand_storebrandrequest_storebrandrequest",
+      "app_http_requests_brand_storebrandrequest_storebrandrequest_authorize",
+      "app_http_requests_brand_storebrandrequest_storebrandrequest_rules"
+    ],
+    "62": [
+      "app_http_requests_brand_storeproductrequest",
+      "app_http_requests_brand_storeproductrequest_storeproductrequest",
+      "app_http_requests_brand_storeproductrequest_storeproductrequest_authorize",
+      "app_http_requests_brand_storeproductrequest_storeproductrequest_rules"
+    ],
+    "63": [
+      "app_http_requests_brand_updatebrandrequest",
+      "app_http_requests_brand_updatebrandrequest_updatebrandrequest",
+      "app_http_requests_brand_updatebrandrequest_updatebrandrequest_authorize",
+      "app_http_requests_brand_updatebrandrequest_updatebrandrequest_rules"
+    ],
+    "64": [
+      "app_http_requests_brandregistrationrequest",
+      "app_http_requests_brandregistrationrequest_brandregistrationrequest",
+      "app_http_requests_brandregistrationrequest_brandregistrationrequest_authorize",
+      "app_http_requests_brandregistrationrequest_brandregistrationrequest_rules"
+    ],
+    "65": [
+      "app_http_requests_kol_contentproofrequest",
+      "app_http_requests_kol_contentproofrequest_contentproofrequest",
+      "app_http_requests_kol_contentproofrequest_contentproofrequest_authorize",
+      "app_http_requests_kol_contentproofrequest_contentproofrequest_rules"
+    ],
+    "66": [
+      "app_http_requests_loginrequest",
+      "app_http_requests_loginrequest_loginrequest",
+      "app_http_requests_loginrequest_loginrequest_authorize",
+      "app_http_requests_loginrequest_loginrequest_rules"
+    ],
+    "67": [
+      "app_http_requests_registrationrequest",
+      "app_http_requests_registrationrequest_registrationrequest",
+      "app_http_requests_registrationrequest_registrationrequest_authorize",
+      "app_http_requests_registrationrequest_registrationrequest_rules"
+    ],
+    "68": [
+      "app_http_requests_superadmin_brandrequest",
+      "app_http_requests_superadmin_brandrequest_brandrequest",
+      "app_http_requests_superadmin_brandrequest_brandrequest_authorize",
+      "app_http_requests_superadmin_brandrequest_brandrequest_rules"
+    ],
+    "69": [
+      "app_http_requests_superadmin_registrationreviewrequest",
+      "app_http_requests_superadmin_registrationreviewrequest_registrationreviewrequest",
+      "app_http_requests_superadmin_registrationreviewrequest_registrationreviewrequest_authorize",
+      "app_http_requests_superadmin_registrationreviewrequest_registrationreviewrequest_rules"
+    ],
+    "70": [
+      "illuminate_foundation_inspiring",
+      "illuminate_support_facades_artisan",
+      "illuminate_support_facades_schedule",
+      "routes_console"
+    ],
+    "71": [
+      "app_models_contentprooffile_contentprooffile",
+      "app_models_contentprooffile_contentprooffile_casts",
+      "app_models_contentprooffile_contentprooffile_contentproof"
+    ],
+    "72": [
+      "brand_layouts_navbar",
+      "brand_layouts_sidebar",
+      "resources_views_brand_layouts_app_blade"
+    ],
+    "73": [
+      "kol_layouts_navbar",
+      "kol_layouts_sidebar",
+      "resources_views_kol_layouts_app_blade"
+    ],
+    "74": [
+      "mcp",
+      "mcp_command_php",
+      "mcp_mcp_server_laravel_boost"
+    ],
+    "75": [
+      "resources_views_superadmin_layouts_app_blade",
+      "superadmin_layouts_navbar",
+      "superadmin_layouts_sidebar"
+    ],
+    "76": [
+      "app_models_auditlog_auditlog_log",
+      "app_models_auditlog_php_self"
+    ],
+    "77": [
+      "docs_auth_authorization_integration",
+      "docs_dev1_manual_postman_testing"
+    ],
+    "78": [
+      "public_flowcharts_06_onboarding_kol_flowchart_png",
+      "public_flowcharts_06_onboarding_kol_flowchart_svg"
+    ],
+    "79": [
+      "resources_js_app",
+      "resources_js_app_setupsidebar"
+    ],
+    "80": [
+      "agents_md"
+    ],
+    "81": [
+      "artisan"
+    ],
+    "82": [
+      "asset_brand_02"
+    ],
+    "83": [
+      "asset_brand_03"
+    ],
+    "84": [
+      "asset_brand_04"
+    ],
+    "85": [
+      "asset_brand_05"
+    ],
+    "86": [
+      "asset_brand_06"
+    ],
+    "87": [
+      "asset_brand_07"
+    ],
+    "88": [
+      "asset_brand_08"
+    ],
+    "89": [
+      "asset_brand_09"
+    ],
+    "90": [
+      "asset_brand_10"
+    ],
+    "91": [
+      "asset_creator_02"
+    ],
+    "92": [
+      "asset_creator_03"
+    ],
+    "93": [
+      "asset_creator_04"
+    ],
+    "94": [
+      "asset_creator_05"
+    ],
+    "95": [
+      "asset_creator_06"
+    ],
+    "96": [
+      "asset_creator_07"
+    ],
+    "97": [
+      "asset_creator_08"
+    ],
+    "98": [
+      "asset_creator_09"
+    ],
+    "99": [
+      "asset_creator_10"
+    ],
+    "100": [
+      "audit_md"
+    ],
+    "101": [
+      "config_app"
+    ],
+    "102": [
+      "config_filesystems"
+    ],
+    "103": [
+      "config_mail"
+    ],
+    "104": [
+      "config_queue"
+    ],
+    "105": [
+      "config_services"
+    ],
+    "106": [
+      "dev1_roadmap_dan_prompt_md"
+    ],
+    "107": [
+      "impeccable_critique_catalog"
+    ],
+    "108": [
+      "implementation_plan_dev_1_md"
+    ],
+    "109": [
+      "implementation_plan_dev_4_md"
+    ],
+    "110": [
+      "public_assets_js_landing"
+    ],
+    "111": [
+      "public_assets_kol_js_kol"
+    ],
+    "112": [
+      "public_assets_landing_images_logo_kerajaanlogofull"
+    ],
+    "113": [
+      "public_assets_landing_js_landing"
+    ],
+    "114": [
+      "public_assets_logo_majapahit"
+    ],
+    "115": [
+      "public_assets_superadmin_js_superadmin"
+    ],
+    "116": [
+      "public_flowcharts_02_pendaftaran_brand_flowchart_brands_table"
+    ],
+    "117": [
+      "public_robots"
+    ],
+    "118": [
+      "resources_views_auth_forgot_password_blade"
+    ],
+    "119": [
+      "resources_views_auth_login_blade"
+    ],
+    "120": [
+      "resources_views_auth_reset_password_blade"
+    ],
+    "121": [
+      "resources_views_auth_set_password_blade"
+    ],
+    "122": [
+      "resources_views_brand_campaigns_index_blade"
+    ],
+    "123": [
+      "resources_views_brand_confirmation_blade"
+    ],
+    "124": [
+      "resources_views_brand_dashboard_blade"
+    ],
+    "125": [
+      "resources_views_brand_endorsements_index_blade"
+    ],
+    "126": [
+      "resources_views_brand_layouts_navbar_blade"
+    ],
+    "127": [
+      "resources_views_brand_layouts_sidebar_blade"
+    ],
+    "128": [
+      "resources_views_brand_products_create_blade"
+    ],
+    "129": [
+      "resources_views_brand_products_edit_blade"
+    ],
+    "130": [
+      "resources_views_brand_products_index_blade"
+    ],
+    "131": [
+      "resources_views_brand_register_blade"
+    ],
+    "132": [
+      "resources_views_catalog_content_bank_blade"
+    ],
+    "133": [
+      "resources_views_catalog_index_blade"
+    ],
+    "134": [
+      "resources_views_catalog_show_blade"
+    ],
+    "135": [
+      "resources_views_components_dashboard_notification_link_blade"
+    ],
+    "136": [
+      "resources_views_components_dashboard_stat_card_blade"
+    ],
+    "137": [
+      "resources_views_components_dashboard_status_badge_blade"
+    ],
+    "138": [
+      "resources_views_components_notification_dropdown_blade"
+    ],
+    "139": [
+      "resources_views_emails_kol_approved_blade"
+    ],
+    "140": [
+      "resources_views_emails_kol_registration_confirmed_blade"
+    ],
+    "141": [
+      "resources_views_emails_kol_welcome_blade"
+    ],
+    "142": [
+      "resources_views_explore_brands_blade"
+    ],
+    "143": [
+      "resources_views_explore_creators_blade"
+    ],
+    "144": [
+      "resources_views_kol_campaigns_campaign_blade"
+    ],
+    "145": [
+      "resources_views_kol_collaboration_collaboration_blade"
+    ],
+    "146": [
+      "resources_views_kol_commissions_index_blade"
+    ],
+    "147": [
+      "resources_views_kol_commissions_show_blade"
+    ],
+    "148": [
+      "resources_views_kol_dashboard_blade"
+    ],
+    "149": [
+      "resources_views_kol_earnings_earning_blade"
+    ],
+    "150": [
+      "resources_views_kol_endorsements_index_blade"
+    ],
+    "151": [
+      "resources_views_kol_endorsements_proof_blade"
+    ],
+    "152": [
+      "resources_views_kol_endorsements_show_blade"
+    ],
+    "153": [
+      "resources_views_kol_layouts_navbar_blade"
+    ],
+    "154": [
+      "resources_views_kol_layouts_sidebar_blade"
+    ],
+    "155": [
+      "resources_views_kol_notifications_notification_blade"
+    ],
+    "156": [
+      "resources_views_kol_profile_edit_blade"
+    ],
+    "157": [
+      "resources_views_kol_profile_profile_blade"
+    ],
+    "158": [
+      "resources_views_kol_profile_show_blade"
+    ],
+    "159": [
+      "resources_views_landing_index_blade"
+    ],
+    "160": [
+      "resources_views_landing_layouts_landing_blade"
+    ],
+    "161": [
+      "resources_views_landing_sections_section_blade"
+    ],
+    "162": [
+      "resources_views_layouts_app_blade"
+    ],
+    "163": [
+      "resources_views_layouts_auth_blade"
+    ],
+    "164": [
+      "resources_views_notifications_index_blade"
+    ],
+    "165": [
+      "resources_views_registration_confirmation_blade"
+    ],
+    "166": [
+      "resources_views_registration_create_blade"
+    ],
+    "167": [
+      "resources_views_superadmin_audit_index_blade"
+    ],
+    "168": [
+      "resources_views_superadmin_brand_registrations_index_blade"
+    ],
+    "169": [
+      "resources_views_superadmin_brand_registrations_show_blade"
+    ],
+    "170": [
+      "resources_views_superadmin_brands_brand_blade"
+    ],
+    "171": [
+      "resources_views_superadmin_brands_form_blade"
+    ],
+    "172": [
+      "resources_views_superadmin_brands_index_blade"
+    ],
+    "173": [
+      "resources_views_superadmin_brands_show_blade"
+    ],
+    "174": [
+      "resources_views_superadmin_campaigns_campaigns_blade"
+    ],
+    "175": [
+      "resources_views_superadmin_campaigns_form_blade"
+    ],
+    "176": [
+      "resources_views_superadmin_campaigns_index_blade"
+    ],
+    "177": [
+      "resources_views_superadmin_campaigns_show_blade"
+    ],
+    "178": [
+      "resources_views_superadmin_commissions_index_blade"
+    ],
+    "179": [
+      "resources_views_superadmin_commissions_show_blade"
+    ],
+    "180": [
+      "resources_views_superadmin_dashboard_blade"
+    ],
+    "181": [
+      "resources_views_superadmin_endorsements_form_blade"
+    ],
+    "182": [
+      "resources_views_superadmin_endorsements_index_blade"
+    ],
+    "183": [
+      "resources_views_superadmin_endorsements_show_blade"
+    ],
+    "184": [
+      "resources_views_superadmin_kol_form_blade"
+    ],
+    "185": [
+      "resources_views_superadmin_kol_index_blade"
+    ],
+    "186": [
+      "resources_views_superadmin_kol_kol_blade"
+    ],
+    "187": [
+      "resources_views_superadmin_kol_show_blade"
+    ],
+    "188": [
+      "resources_views_superadmin_layouts_navbar_blade"
+    ],
+    "189": [
+      "resources_views_superadmin_layouts_sidebar_blade"
+    ],
+    "190": [
+      "resources_views_superadmin_product_verifications_index_blade"
+    ],
+    "191": [
+      "resources_views_superadmin_products_create_blade"
+    ],
+    "192": [
+      "resources_views_superadmin_products_edit_blade"
+    ],
+    "193": [
+      "resources_views_superadmin_products_index_blade"
+    ],
+    "194": [
+      "resources_views_superadmin_products_products_blade"
+    ],
+    "195": [
+      "resources_views_superadmin_registrations_index_blade"
+    ],
+    "196": [
+      "resources_views_superadmin_registrations_show_blade"
+    ],
+    "197": [
+      "resources_views_superadmin_reports_index_blade"
+    ],
+    "198": [
+      "resources_views_superadmin_reports_report_blade"
+    ],
+    "199": [
+      "resources_views_superadmin_settings_setting_blade"
+    ]
+  },
+  "cohesion": {
+    "0": 0.052795031055900624,
+    "1": 0.05222734254992319,
+    "2": 0.0593990216631726,
+    "3": 0.06531204644412192,
+    "4": 0.04081632653061224,
+    "5": 0.07092198581560284,
+    "6": 0.06951219512195123,
+    "7": 0.1140819964349376,
+    "8": 0.125,
+    "9": 0.14112903225806453,
+    "10": 0.11724137931034483,
+    "11": 0.16551724137931034,
+    "12": 0.14285714285714285,
+    "13": 0.14492753623188406,
+    "14": 0.13405797101449277,
+    "15": 0.08695652173913043,
+    "16": 0.1341991341991342,
+    "17": 0.09956709956709957,
+    "18": 0.10526315789473684,
+    "19": 0.19607843137254902,
+    "20": 0.175,
+    "21": 0.13333333333333333,
+    "22": 0.14285714285714285,
+    "23": 0.16483516483516483,
+    "24": 0.24175824175824176,
+    "25": 0.20512820512820512,
+    "26": 0.18181818181818182,
+    "27": 0.3484848484848485,
+    "28": 0.26666666666666666,
+    "29": 0.2222222222222222,
+    "30": 0.25,
+    "31": 0.2222222222222222,
+    "32": 0.2857142857142857,
+    "33": 0.35714285714285715,
+    "34": 0.32142857142857145,
+    "35": 0.35714285714285715,
+    "36": 0.2857142857142857,
+    "37": 0.47619047619047616,
+    "38": 0.4,
+    "39": 0.3333333333333333,
+    "40": 0.3333333333333333,
+    "41": 0.4666666666666667,
+    "42": 0.3333333333333333,
+    "43": 0.5333333333333333,
+    "44": 0.4,
+    "45": 0.4,
+    "46": 0.4,
+    "47": 0.4,
+    "48": 0.4,
+    "49": 0.4,
+    "50": 0.4,
+    "51": 0.4,
+    "52": 0.4,
+    "53": 0.4,
+    "54": 0.5,
+    "55": 0.6,
+    "56": 0.4,
+    "57": 0.4,
+    "58": 0.5,
+    "59": 0.5,
+    "60": 0.5,
+    "61": 0.5,
+    "62": 0.5,
+    "63": 0.5,
+    "64": 0.5,
+    "65": 0.5,
+    "66": 0.5,
+    "67": 0.5,
+    "68": 0.5,
+    "69": 0.5,
+    "70": 0.5,
+    "71": 0.6666666666666666,
+    "72": 0.6666666666666666,
+    "73": 0.6666666666666666,
+    "74": 0.6666666666666666,
+    "75": 0.6666666666666666,
+    "76": 1.0,
+    "77": 1.0,
+    "78": 1.0,
+    "79": 1.0,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0,
+    "97": 1.0,
+    "98": 1.0,
+    "99": 1.0,
+    "100": 1.0,
+    "101": 1.0,
+    "102": 1.0,
+    "103": 1.0,
+    "104": 1.0,
+    "105": 1.0,
+    "106": 1.0,
+    "107": 1.0,
+    "108": 1.0,
+    "109": 1.0,
+    "110": 1.0,
+    "111": 1.0,
+    "112": 1.0,
+    "113": 1.0,
+    "114": 1.0,
+    "115": 1.0,
+    "116": 1.0,
+    "117": 1.0,
+    "118": 1.0,
+    "119": 1.0,
+    "120": 1.0,
+    "121": 1.0,
+    "122": 1.0,
+    "123": 1.0,
+    "124": 1.0,
+    "125": 1.0,
+    "126": 1.0,
+    "127": 1.0,
+    "128": 1.0,
+    "129": 1.0,
+    "130": 1.0,
+    "131": 1.0,
+    "132": 1.0,
+    "133": 1.0,
+    "134": 1.0,
+    "135": 1.0,
+    "136": 1.0,
+    "137": 1.0,
+    "138": 1.0,
+    "139": 1.0,
+    "140": 1.0,
+    "141": 1.0,
+    "142": 1.0,
+    "143": 1.0,
+    "144": 1.0,
+    "145": 1.0,
+    "146": 1.0,
+    "147": 1.0,
+    "148": 1.0,
+    "149": 1.0,
+    "150": 1.0,
+    "151": 1.0,
+    "152": 1.0,
+    "153": 1.0,
+    "154": 1.0,
+    "155": 1.0,
+    "156": 1.0,
+    "157": 1.0,
+    "158": 1.0,
+    "159": 1.0,
+    "160": 1.0,
+    "161": 1.0,
+    "162": 1.0,
+    "163": 1.0,
+    "164": 1.0,
+    "165": 1.0,
+    "166": 1.0,
+    "167": 1.0,
+    "168": 1.0,
+    "169": 1.0,
+    "170": 1.0,
+    "171": 1.0,
+    "172": 1.0,
+    "173": 1.0,
+    "174": 1.0,
+    "175": 1.0,
+    "176": 1.0,
+    "177": 1.0,
+    "178": 1.0,
+    "179": 1.0,
+    "180": 1.0,
+    "181": 1.0,
+    "182": 1.0,
+    "183": 1.0,
+    "184": 1.0,
+    "185": 1.0,
+    "186": 1.0,
+    "187": 1.0,
+    "188": 1.0,
+    "189": 1.0,
+    "190": 1.0,
+    "191": 1.0,
+    "192": 1.0,
+    "193": 1.0,
+    "194": 1.0,
+    "195": 1.0,
+    "196": 1.0,
+    "197": 1.0,
+    "198": 1.0,
+    "199": 1.0
+  },
+  "gods": [
+    {
+      "id": "app_models_user_user",
+      "label": "User",
+      "degree": 150
+    },
+    {
+      "id": "app_models_kolprofile_kolprofile",
+      "label": "KolProfile",
+      "degree": 102
+    },
+    {
+      "id": "app_models_endorsement_endorsement",
+      "label": "Endorsement",
+      "degree": 86
+    },
+    {
+      "id": "app_models_brand_brand",
+      "label": "Brand",
+      "degree": 83
+    },
+    {
+      "id": "app_models_campaign_campaign",
+      "label": "Campaign",
+      "degree": 75
+    },
+    {
+      "id": "app_http_controllers_controller_controller",
+      "label": "Controller",
+      "degree": 69
+    },
+    {
+      "id": "app_models_auditlog_auditlog",
+      "label": "AuditLog",
+      "degree": 56
+    },
+    {
+      "id": "app_models_product_product",
+      "label": "Product",
+      "degree": 51
+    },
+    {
+      "id": "app_models_commission_commission",
+      "label": "Commission",
+      "degree": 50
+    },
+    {
+      "id": "tests_testcase_testcase",
+      "label": "TestCase",
+      "degree": 40
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Motion Graphic Index",
+      "target": "Motion UI Index",
+      "source_files": [
+        "motion-graphic/index.html",
+        "motion-ui/index.html"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; semantically similar concepts with no structural link; peripheral node `Motion Graphic Index` unexpectedly reaches hub `Motion UI Index`"
+    },
+    {
+      "source": "Motion UI Index",
+      "target": "Sepatu Logo",
+      "source_files": [
+        "motion-ui/index.html",
+        "public/assets/landing/images/brand/brand-01.jpg"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc ↔ image); connects across different repos/directories; peripheral node `Sepatu Logo` unexpectedly reaches hub `Motion UI Index`"
+    },
+    {
+      "source": "Motion UI Index",
+      "target": "Creator Portrait 01",
+      "source_files": [
+        "motion-ui/index.html",
+        "public/assets/landing/images/creator/creator-01.jpg"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc ↔ image); connects across different repos/directories; peripheral node `Creator Portrait 01` unexpectedly reaches hub `Motion UI Index`"
+    },
+    {
+      "source": "Dev3EndorsementTest",
+      "target": "KolProfile",
+      "source_files": [
+        "tests/Feature/Dev3EndorsementTest.php",
+        "app/Models/KolProfile.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "Dev3EndorsementTest",
+      "target": "Tier",
+      "source_files": [
+        "tests/Feature/Dev3EndorsementTest.php",
+        "app/Models/Tier.php"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `User` connect `User Roles and Policies` to `KOL Profile Management`, `Commission Administration`, `KOL Email Notifications`, `Product Verification`, `Audit and Brand Testing`, `Campaign and Endorsement Controllers`, `Brand and Product Reviews`, `Registration Review System`, `Core Data Models`, `Database Seeders and Relations`, `Content and Auth Controllers`, `Authentication Feature Tests`, `Audit and Commission Services`, `Model Relationship Definitions`, `Endorsement Management`, `Status Enums and Calculations`, `Password Management`, `Notification System`, `Demo Data Seeding`, `Campaign Business Logic`, `App Service Providers`, `Model Factories`, `Role Authorization Tests`, `User Profile Relations`, `KOL Endorsement Tests`, `KOL Profile Permissions`, `Audit Logging Utility`, `KOL Dashboard Tests`, `Audit Log Service`, `Notification Service`, `System Logs`?",
+      "why": "High betweenness centrality (0.169) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `KolProfile` connect `KOL Profile Management` to `Commission Administration`, `Audit and Brand Testing`, `Admin Campaign Management`, `Registration Review System`, `Core Data Models`, `Database Seeders and Relations`, `Authentication Feature Tests`, `Model Relationship Definitions`, `Endorsement Management`, `Superadmin Campaign Assignment`, `Status Enums and Calculations`, `Campaign Form Requests`, `Demo Data Seeding`, `Campaign Business Logic`, `KOL Endorsement Tests`, `KOL Assignment Validation`, `KOL Profile Permissions`, `KOL Dashboard Tests`, `KOL Status Enums`, `KOL Status Updates`?",
+      "why": "High betweenness centrality (0.066) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Controller` connect `Campaign and Endorsement Controllers` to `KOL Profile Management`, `Commission Administration`, `App Service Providers`, `Product Verification`, `Brand and Product Reviews`, `Admin Campaign Management`, `Registration Review System`, `Content and Auth Controllers`, `Endorsement Management`, `Superadmin Campaign Assignment`, `Password Management`, `Superadmin Endorsement Review`?",
+      "why": "High betweenness centrality (0.060) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `concurrently`, `laravel-vite-plugin`, `tailwindcss` to the rest of the system?",
+      "why": "100 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `KOL Profile Management` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.052795031055900624 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Commission Administration` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.05222734254992319 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Database Migrations` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.0593990216631726 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

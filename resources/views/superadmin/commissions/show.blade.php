@@ -135,10 +135,38 @@
                         </button>
                     </form>
                 @else
-                    <div class="mt-4 rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-xs text-emerald-800">
-                        <i class="bi bi-check-circle-fill text-2xl text-emerald-600 mb-1 block"></i>
-                        <p class="font-bold text-sm font-heading">Komisi Telah Dicairkan</p>
-                        <p class="mt-1 text-[#765f58]">Dana komisi ini telah sukses ditransfer ke rekening kreator.</p>
+                    <div class="mt-4 rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-center text-xs text-emerald-800 space-y-3">
+                        <div>
+                            <i class="bi bi-check-circle-fill text-2xl text-emerald-600 mb-1 block"></i>
+                            <p class="font-bold text-sm font-heading">Komisi Telah Dicairkan</p>
+                            <p class="mt-1 text-[#765f58]">Dana komisi ini telah sukses ditransfer ke rekening kreator pada {{ $commission->disbursed_at ? $commission->disbursed_at->format('d M Y') : '-' }}.</p>
+                        </div>
+
+                        @if ($commission->disbursement_proof_path)
+                            @php
+                                $proofUrl = asset('storage/' . $commission->disbursement_proof_path);
+                                $isImg = in_array(strtolower(pathinfo($commission->disbursement_proof_path, PATHINFO_EXTENSION)), ['jpg', 'jpeg', 'png', 'webp', 'gif']);
+                            @endphp
+                            <div class="pt-3 border-t border-emerald-200 text-left">
+                                <p class="text-xs font-bold text-emerald-900 font-heading mb-2 flex items-center gap-1.5">
+                                    <i class="bi bi-receipt text-emerald-600"></i> Bukti Transfer Tersimpan:
+                                </p>
+                                @if ($isImg)
+                                    <a href="{{ $proofUrl }}" target="_blank" class="group relative block overflow-hidden rounded-xl border border-emerald-200 bg-white shadow-xs hover:border-emerald-500 transition">
+                                        <img src="{{ $proofUrl }}" alt="Bukti Transfer Bank" class="max-h-48 w-full object-contain bg-gray-50 rounded-lg">
+                                        <div class="p-2 text-center text-xs font-bold text-emerald-800 bg-white group-hover:bg-emerald-50 transition flex items-center justify-center gap-1">
+                                            <i class="bi bi-arrows-fullscreen"></i> Lihat Bukti Penuh
+                                        </div>
+                                    </a>
+                                @else
+                                    <a href="{{ $proofUrl }}" target="_blank" class="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-3.5 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 transition">
+                                        <i class="bi bi-file-earmark-pdf"></i>
+                                        <span>Unduh / Buka Dokumen Bukti</span>
+                                        <i class="bi bi-box-arrow-up-right text-[10px]"></i>
+                                    </a>
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>

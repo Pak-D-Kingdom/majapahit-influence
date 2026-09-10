@@ -98,7 +98,7 @@ class CommissionController extends Controller
     {
         $this->authorize('view', $commission);
 
-        $commission->load(['endorsement.campaign.brand', 'approvals.reviewer']);
+        $commission->load(['endorsement.campaign.brand', 'approvals.performer']);
 
         if ($request->wantsJson()) {
             return response()->json([
@@ -124,10 +124,13 @@ class CommissionController extends Controller
     {
         $this->authorize('requestDisbursement', $commission);
 
-        abort_unless($commission->status === 'approved', 422, 'Komisi belum dapat diajukan untuk pencairan.');
+        abort_unless(in_array($commission->status, ['pending', 'approved', 'rejected'], true), 422, 'Komisi belum dapat diajukan untuk pencairan.');
         abort_if($commission->approvals()->where('action', 'request')->exists(), 422, 'Pencairan komisi sudah pernah diajukan.');
 
         DB::transaction(function () use ($request, $commission): void {
+            $commission->status = 'pending_review';
+            $commission->save();
+
             $commission->approvals()->create([
                 'action' => 'request',
                 'performed_by' => $request->user()->id,

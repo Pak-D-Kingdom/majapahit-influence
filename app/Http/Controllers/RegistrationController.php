@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class RegistrationController extends Controller
@@ -33,6 +34,7 @@ class RegistrationController extends Controller
                 'registration_number' => KolRegistration::generateRegistrationNumber(),
                 'full_name' => $data['full_name'],
                 'email' => $data['email'],
+                'password' => ! empty($data['password']) ? Hash::make($data['password']) : null,
                 'phone' => $data['phone'],
                 'city' => $data['city'] ?? null,
                 'niches' => $data['niches'] ?? [],

@@ -3,11 +3,14 @@
 use App\Http\Controllers\Admin\BrandRegistrationReviewController;
 use App\Http\Controllers\Admin\CampaignController;
 use App\Http\Controllers\Admin\CommissionController;
+use App\Http\Controllers\Admin\ContentBankController;
 use App\Http\Controllers\Admin\EndorsementController;
 use App\Http\Controllers\Admin\KolManagementController;
 use App\Http\Controllers\Admin\ProductManagementController;
+use App\Http\Controllers\Admin\ProductVerificationController;
 use App\Http\Controllers\Admin\RegistrationReviewController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Superadmin\AuditTrailController;
 use App\Http\Controllers\Superadmin\BrandController;
@@ -21,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::match(['GET', 'POST'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Dev 2: Pendaftaran Review (KOL)
 Route::get('/pendaftaran', [RegistrationReviewController::class, 'index'])->name('registrations.index');
@@ -42,6 +46,14 @@ Route::patch('/kol/{kol}/status', [KolManagementController::class, 'updateStatus
 
 // Superadmin Product Catalog & Content Bank Management
 Route::resource('products', ProductManagementController::class);
+Route::post('products/{product}/toggle-publish', [ProductManagementController::class, 'togglePublish'])->name('products.toggle-publish');
+Route::post('products/{product}/content-banks', [ContentBankController::class, 'store'])->name('products.content-banks.store');
+Route::put('content-banks/{contentBank}', [ContentBankController::class, 'update'])->name('content-banks.update');
+Route::delete('content-banks/{contentBank}', [ContentBankController::class, 'destroy'])->name('content-banks.destroy');
+
+// Dev 6: Product Verification
+Route::get('product-verifications', [ProductVerificationController::class, 'index'])->name('product-verifications.index');
+Route::post('product-verifications/{product}/verify', [ProductVerificationController::class, 'verify'])->name('product-verifications.verify');
 
 // Dev 3: Superadmin Brand Management
 Route::resource('brands', BrandController::class);
@@ -80,4 +92,4 @@ if (class_exists(AuditTrailController::class)) {
 }
 Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.read-all');
-Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+Route::match(['GET', 'POST', 'PATCH'], '/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');

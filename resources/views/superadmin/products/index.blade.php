@@ -32,17 +32,20 @@
                         <th class="py-3.5 px-4">Brand & Kategori</th>
                         <th class="py-3.5 px-4">Harga Retail</th>
                         <th class="py-3.5 px-4">Komisi Terkunci</th>
-                        <th class="py-3.5 px-4">Bank Konten</th>
-                        <th class="py-3.5 px-4">Jalur Promosi</th>
+                        <th class="py-3.5 px-4">Bank Konten (GDrive)</th>
+                        <th class="py-3.5 px-4 text-center">Status E-Commerce</th>
                         <th class="py-3.5 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-[#421b13]/6">
                     @forelse ($products as $prod)
+                        @php
+                            $hasDrive = $prod->contentBanks->whereNotNull('external_url')->isNotEmpty();
+                        @endphp
                         <tr class="hover:bg-[#fff9f4]/60 transition-colors">
                             <td class="py-4 px-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="{{ $prod->image_path ?: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=100&auto=format&fit=crop&q=80' }}" alt="{{ $prod->name }}" class="w-12 h-12 rounded-xl object-cover shadow-xs border border-[#421b13]/8 shrink-0">
+                                    <img src="{{ $prod->image_url }}" alt="{{ $prod->name }}" class="w-12 h-12 rounded-xl object-cover shadow-xs border border-[#421b13]/8 shrink-0">
                                     <div>
                                         <strong class="text-sm font-bold text-[#421b13] font-heading block leading-snug">{{ $prod->name }}</strong>
                                         <span class="text-[11px] text-[#765f58]">SKU: {{ $prod->sku ?: '-' }} · Stok: {{ $prod->stock }}</span>
@@ -64,24 +67,53 @@
                                 </span>
                             </td>
                             <td class="py-4 px-4">
-                                <span class="px-2.5 py-1 rounded-lg bg-[#d57028]/10 text-[#d57028] font-bold text-[11px] border border-[#d57028]/20">
-                                    <i class="bi bi-folder2-open mr-1"></i> {{ $prod->contentBanks->count() }} Aset
-                                </span>
+                                @if($hasDrive)
+                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}#bank-konten" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-[11px] border border-emerald-200 inline-flex items-center gap-1 transition" title="Bank Konten Google Drive Tersambung">
+                                        <i class="bi bi-google text-emerald-600"></i> Ada GDrive ({{ $prod->contentBanks->count() }})
+                                    </a>
+                                @else
+                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}#bank-konten" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold text-[11px] border border-amber-300 inline-flex items-center gap-1 transition" title="Belum Ada Bank Konten GDrive">
+                                        <i class="bi bi-exclamation-circle text-amber-600"></i> Belum Ada GDrive
+                                    </a>
+                                @endif
                             </td>
-                            <td class="py-4 px-4">
-                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider
-                                    @if ($prod->promotion_pathway === 'both') bg-[#fec200]/20 text-[#b86021] border border-[#fec200]/50
-                                    @elseif ($prod->promotion_pathway === 'marketplace') bg-emerald-50 text-emerald-700 border border-emerald-200
-                                    @else bg-[#d57028]/10 text-[#d57028] border border-[#d57028]/25 @endif">
-                                    {{ $prod->promotion_pathway }}
-                                </span>
-                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <div class="flex flex-col items-center gap-1.5">
+                                    @if ($prod->is_active)
+                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 inline-flex items-center gap-1">
+                                            <i class="bi bi-check-circle-fill text-emerald-600"></i> Tayang di E-Commerce
+                                        </span>
+                                        <form action="{{ route('superadmin.products.toggle-publish', $prod->id) }}" method="POST" class="inline" onsubmit="return confirm('Tarik produk ini dari katalog E-Commerce publik?');">
+                                            @csrf
+                                            <button type="submit" class="text-[10px] text-[#765f58] hover:text-[#d5282d] font-bold underline transition" title="Tarik produk agar tidak muncul di katalog">
+                                                Tarik (Unpublish)
+                                            </button>
+                                        </form>
+                                    @else
+                                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-slate-100 text-slate-600 border border-slate-200 inline-flex items-center gap-1">
+                                            <i class="bi bi-dash-circle"></i> Draft / Belum Tayang
+                                        </span>
+                                        @if($hasDrive)
+                                            <form action="{{ route('superadmin.products.toggle-publish', $prod->id) }}" method="POST" class="inline">
+                                                @csrf
+                                                <button type="submit" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] shadow-xs inline-flex items-center gap-1 transition font-heading">
+                                                    <i class="bi bi-cloud-upload"></i> Publish ke E-Commerce
+                                                </button>
+                                            </form>
+                                        @else
+                                            <a href="{{ route('superadmin.products.edit', $prod->id) }}#bank-konten" class="px-2.5 py-1 rounded-lg bg-[#d57028]/10 hover:bg-[#d57028]/20 text-[#d57028] font-bold text-[10px] inline-flex items-center gap-1 transition font-heading" title="Lengkapi Google Drive Bank Konten terlebih dahulu untuk mempublikasikan">
+                                                <i class="bi bi-plus-circle"></i> Isi GDrive Dulu
+                                            </a>
+                                        @endif
+                                    @endif
+                                </div>
+                            </td>>
                             <td class="py-4 px-4 text-center whitespace-nowrap">
                                 <div class="flex items-center justify-center gap-1.5">
                                     <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-[#f7eee8] hover:bg-[#f7eee8]/80 text-[#421b13] transition" title="Lihat Halaman Katalog">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-2 rounded-lg bg-[#d57028]/10 hover:bg-[#d57028]/20 text-[#d57028] transition" title="Edit Produk">
+                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-2 rounded-lg bg-[#d57028]/10 hover:bg-[#d57028]/20 text-[#d57028] transition" title="Edit Produk & Bank Konten">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <form action="{{ route('superadmin.products.destroy', $prod->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">

@@ -24,13 +24,6 @@
             <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#d57028] to-[#d5282d] text-sm font-bold text-white shadow-sm shadow-[#d57028]/25 font-heading">
                 {{ strtoupper(substr(auth()->user()->name ?? 'K', 0, 2)) }}
             </div>
-            <form method="POST" action="{{ route('logout') }}" class="inline ml-1">
-                @csrf
-                <button type="submit" class="inline-flex items-center gap-1 rounded-xl border border-[#421b13]/15 bg-white px-2.5 py-1.5 text-xs font-semibold text-[#d5282d] hover:bg-rose-50 transition" title="Logout">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span class="hidden sm:inline">Keluar</span>
-                </button>
-            </form>
         </div>
     </div>
 </header>

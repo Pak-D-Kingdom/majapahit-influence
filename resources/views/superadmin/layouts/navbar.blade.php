@@ -23,13 +23,5 @@
                 <p class="text-[11px] font-medium text-[#765f58]">Admin Agensi</p>
             </div>
         </div>
-
-        <form method="POST" action="{{ route('logout') }}" class="inline">
-            @csrf
-            <button type="submit" class="inline-flex items-center gap-1.5 rounded-xl border border-rose-200/80 bg-white px-3 py-2 text-xs font-bold text-rose-600 shadow-xs hover:bg-rose-50 hover:border-rose-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500">
-                <i class="bi bi-box-arrow-right"></i>
-                <span class="hidden sm:inline">Logout</span>
-            </button>
-        </form>
     </div>
 </header>

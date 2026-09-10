@@ -35,31 +35,89 @@
 
     {{-- Visualisasi Tren & Notifikasi Terbaru --}}
     <div class="mt-8 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
-        {{-- Grafik Tren Endorsement --}}
-        <section class="rounded-2xl border border-[#421b13]/8 bg-white p-6 shadow-sm">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                    <h3 class="font-heading text-lg font-bold text-[#421b13]">Tren Endorsement</h3>
-                    <p class="mt-0.5 text-xs text-[#765f58]">Volume endorsement dalam 6 bulan terakhir</p>
+        {{-- Grafik Tren Endorsement & Perputaran Nilai Komisi (Dual-Metric Visualization + Multi-Period Filter) --}}
+        <section class="flex flex-col justify-between rounded-2xl border border-[#421b13]/8 bg-white p-6 shadow-sm">
+            <div>
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#421b13]/8 pb-4">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="font-heading text-lg font-bold text-[#421b13]">Tren Kinerja & Nilai Komisi</h3>
+                            <span id="summary-period-badge" class="rounded-md bg-[#d57028]/10 px-2 py-0.5 text-[11px] font-bold text-[#d57028] font-heading">6 Bulan</span>
+                        </div>
+                        <p class="mt-0.5 text-xs text-[#765f58]">Volume endorsement vs perputaran nilai komisi (Rp)</p>
+                    </div>
+                    
+                    {{-- Filter Periode Waktu (Pill Switcher) --}}
+                    <div class="flex items-center">
+                        <div class="inline-flex rounded-xl bg-[#f7eee8] p-1 border border-[#421b13]/8 text-xs font-medium text-[#765f58]">
+                            <button type="button" data-period="weekly" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#421b13]">
+                                Mingguan
+                            </button>
+                            <button type="button" data-period="1m" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#421b13]">
+                                1 Bulan
+                            </button>
+                            <button type="button" data-period="6m" class="period-filter-btn active-filter rounded-lg bg-white px-2.5 py-1 font-bold text-[#d57028] shadow-xs transition">
+                                6 Bulan
+                            </button>
+                            <button type="button" data-period="1y" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#421b13]">
+                                1 Tahun
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <span class="inline-flex items-center gap-1.5 rounded-full border border-[#d57028]/20 bg-[#d57028]/10 px-3 py-1 text-xs font-bold text-[#b86021] font-heading">
-                    <span class="size-1.5 rounded-full bg-[#d57028]"></span>
-                    {{ $totalCampaigns }} Campaign Aktif
-                </span>
+
+                {{-- Mini Summary Metric Bar --}}
+                <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-xl bg-[#fbf7f4] p-3 border border-[#421b13]/5">
+                    <div>
+                        <p class="text-[11px] font-medium text-[#765f58]">Total Volume</p>
+                        <p class="mt-0.5 text-sm font-bold text-[#421b13] font-heading">
+                            <span id="summary-total-volume">{{ number_format($trendSummary['totalEndorsements']) }}</span> 
+                            <span class="text-xs font-normal text-[#765f58]">Proyek</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-[#765f58]">Total Komisi</p>
+                        <p class="mt-0.5 text-sm font-bold text-[#d5282d] font-heading">
+                            <span id="summary-total-commission">Rp {{ number_format($trendSummary['totalCommission'], 0, ',', '.') }}</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-[#765f58]">Rata-rata Volume</p>
+                        <p class="mt-0.5 text-sm font-bold text-[#421b13] font-heading">
+                            <span id="summary-avg-volume">{{ $trendSummary['avgEndorsements'] }}</span> 
+                            <span id="summary-volume-unit" class="text-xs font-normal text-[#765f58]">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
+                        </p>
+                    </div>
+                    <div>
+                        <p class="text-[11px] font-medium text-[#765f58]">Rata-rata Komisi</p>
+                        <p class="mt-0.5 text-sm font-bold text-[#d57028] font-heading">
+                            <span id="summary-avg-commission">Rp {{ number_format($trendSummary['avgCommission'], 0, ',', '.') }}</span>
+                            <span id="summary-commission-unit" class="text-xs font-normal text-[#765f58]">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
+                        </p>
+                    </div>
+                </div>
+
+                {{-- Chart Canvas Container --}}
+                <div class="mt-4 relative h-60 sm:h-64 w-full">
+                    <canvas id="dualMetricTrendChart"></canvas>
+                </div>
             </div>
 
-            <div class="mt-8 flex h-56 items-end justify-between gap-3 border-b border-[#421b13]/8 px-2 pb-2">
-                @php $maxTrend = max(1, $endorsementTrend->max('total')); @endphp
-                @foreach ($endorsementTrend as $month)
-                    <div class="group flex h-full flex-1 flex-col items-center justify-end gap-2">
-                        <span class="text-xs font-bold text-[#765f58] transition group-hover:text-[#d57028] group-hover:scale-110 font-heading">
-                            {{ $month['total'] }}
-                        </span>
-                        <div class="w-full max-w-11 rounded-t-xl bg-gradient-to-t from-[#d57028] to-[#d5282d] transition-all duration-300 group-hover:from-[#d5282d] group-hover:to-[#fec200] group-hover:shadow-md group-hover:shadow-[#d57028]/20" 
-                             style="height: {{ max(10, ($month['total'] / $maxTrend) * 85) }}%"></div>
-                        <span class="text-[11px] font-semibold text-[#765f58]">{{ $month['label'] }}</span>
+            {{-- Custom Legend Footer --}}
+            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-[#421b13]/8 pt-3 text-xs text-[#765f58]">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="size-3 rounded bg-[#d57028]"></span>
+                        <span class="font-medium text-[#421b13]">Volume Endorsement (Kiri)</span>
                     </div>
-                @endforeach
+                    <div class="flex items-center gap-2">
+                        <span class="inline-block h-1 w-4 rounded-full bg-[#d5282d]"></span>
+                        <span class="font-medium text-[#421b13]">Total Komisi Rp (Kanan)</span>
+                    </div>
+                </div>
+                <div class="text-[11px] text-[#765f58]/80">
+                    <i class="bi bi-info-circle mr-1"></i> Arahkan kursor ke titik grafik untuk detail
+                </div>
             </div>
         </section>
 
@@ -216,3 +274,262 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('dualMetricTrendChart');
+            if (!ctx) return;
+
+            const trendDatasets = @json($trendDatasets);
+            let currentPeriod = '6m';
+
+            const activeBtnClasses = ['active-filter', 'bg-white', 'text-[#d57028]', 'shadow-xs', 'font-bold'];
+            const inactiveBtnClasses = ['text-[#765f58]', 'hover:text-[#421b13]', 'font-medium'];
+
+            const formatRupiah = (number) => {
+                return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
+            };
+
+            const initialData = trendDatasets[currentPeriod] || trendDatasets['6m'];
+            const maxVolume = Math.max(...initialData.volumes, 5);
+            const maxCommission = Math.max(...initialData.commissions, 1000000);
+
+            const chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: initialData.labels,
+                    datasets: [
+                        {
+                            label: 'Volume Endorsement',
+                            data: initialData.volumes,
+                            type: 'bar',
+                            yAxisID: 'y',
+                            backgroundColor: 'rgba(213, 112, 40, 0.85)',
+                            hoverBackgroundColor: '#d57028',
+                            borderRadius: 6,
+                            borderSkipped: false,
+                            barPercentage: 0.45,
+                            categoryPercentage: 0.7,
+                            order: 2
+                        },
+                        {
+                            label: 'Total Komisi',
+                            data: initialData.commissions,
+                            type: 'line',
+                            yAxisID: 'y1',
+                            borderColor: '#d5282d',
+                            backgroundColor: 'rgba(213, 40, 45, 0.08)',
+                            borderWidth: 2.5,
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#d5282d',
+                            pointBorderWidth: 2,
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            pointHoverBackgroundColor: '#d5282d',
+                            pointHoverBorderColor: '#ffffff',
+                            pointHoverBorderWidth: 2,
+                            tension: 0.35,
+                            fill: true,
+                            order: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(66, 27, 19, 0.95)',
+                            titleColor: '#ffffff',
+                            bodyColor: '#f7eee8',
+                            titleFont: {
+                                family: '"Plus Jakarta Sans", sans-serif',
+                                size: 12,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                family: '"DM Sans", sans-serif',
+                                size: 12
+                            },
+                            padding: 12,
+                            cornerRadius: 10,
+                            boxPadding: 6,
+                            usePointStyle: true,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    if (!tooltipItems.length) return '';
+                                    const rawLabel = tooltipItems[0].label || '';
+                                    if (currentPeriod === 'weekly') {
+                                        return 'Rentang: ' + rawLabel;
+                                    }
+                                    return rawLabel;
+                                },
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+
+                                    const isCommission = context.dataset.yAxisID === 'y1';
+                                    const currentValue = context.parsed.y;
+                                    const dataIndex = context.dataIndex;
+                                    const datasetData = context.dataset.data;
+
+                                    if (isCommission) {
+                                        label += formatRupiah(currentValue);
+                                    } else {
+                                        label += currentValue + ' Proyek';
+                                    }
+
+                                    // Persentase kenaikan/penurunan dibanding titik sebelumnya
+                                    if (dataIndex > 0) {
+                                        const prevValue = datasetData[dataIndex - 1];
+                                        let diffPct = 0;
+                                        if (prevValue > 0) {
+                                            diffPct = ((currentValue - prevValue) / prevValue) * 100;
+                                        } else if (currentValue > 0) {
+                                            diffPct = 100;
+                                        }
+
+                                        const formattedPct = (diffPct >= 0 ? '+' : '') + (diffPct % 1 === 0 ? diffPct.toFixed(0) : diffPct.toFixed(1)) + '%';
+                                        label += ` (${formattedPct})`;
+                                    }
+
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                font: {
+                                    family: '"DM Sans", sans-serif',
+                                    size: 11,
+                                    weight: '600'
+                                },
+                                color: '#765f58'
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            beginAtZero: true,
+                            suggestedMax: Math.ceil(maxVolume * 1.25),
+                            grid: {
+                                color: 'rgba(66, 27, 19, 0.06)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                precision: 0,
+                                font: {
+                                    family: '"DM Sans", sans-serif',
+                                    size: 11
+                                },
+                                color: '#765f58',
+                                callback: function(value) {
+                                    return value + ' prj';
+                                }
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            beginAtZero: true,
+                            suggestedMax: maxCommission > 0 ? maxCommission * 1.25 : 1000000,
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                            ticks: {
+                                font: {
+                                    family: '"DM Sans", sans-serif',
+                                    size: 11
+                                },
+                                color: '#d5282d',
+                                callback: function(value) {
+                                    if (value >= 1000000) {
+                                        return 'Rp ' + (value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1) + ' jt';
+                                    } else if (value >= 1000) {
+                                        return 'Rp ' + (value / 1000).toFixed(0) + ' rb';
+                                    }
+                                    return 'Rp ' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            function updateSummaryUI(periodData) {
+                const summary = periodData.summary;
+
+                const periodBadge = document.getElementById('summary-period-badge');
+                if (periodBadge) periodBadge.textContent = periodData.period_label;
+
+                const totalVolume = document.getElementById('summary-total-volume');
+                if (totalVolume) totalVolume.textContent = new Intl.NumberFormat('id-ID').format(summary.totalEndorsements);
+
+                const totalCommission = document.getElementById('summary-total-commission');
+                if (totalCommission) totalCommission.textContent = formatRupiah(summary.totalCommission);
+
+                const avgVolume = document.getElementById('summary-avg-volume');
+                if (avgVolume) avgVolume.textContent = summary.avgEndorsements;
+
+                const avgCommission = document.getElementById('summary-avg-commission');
+                if (avgCommission) avgCommission.textContent = formatRupiah(summary.avgCommission);
+
+                const volumeUnit = document.getElementById('summary-volume-unit');
+                if (volumeUnit) volumeUnit.textContent = summary.unitLabel || '/bln';
+
+                const commissionUnit = document.getElementById('summary-commission-unit');
+                if (commissionUnit) commissionUnit.textContent = summary.unitLabel || '/bln';
+            }
+
+            const filterButtons = document.querySelectorAll('.period-filter-btn');
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const period = this.getAttribute('data-period');
+                    if (!trendDatasets[period] || period === currentPeriod) return;
+
+                    currentPeriod = period;
+                    const periodData = trendDatasets[period];
+
+                    filterButtons.forEach(b => {
+                        b.classList.remove(...activeBtnClasses);
+                        b.classList.add(...inactiveBtnClasses);
+                    });
+                    this.classList.remove(...inactiveBtnClasses);
+                    this.classList.add(...activeBtnClasses);
+
+                    chart.data.labels = periodData.labels;
+                    chart.data.datasets[0].data = periodData.volumes;
+                    chart.data.datasets[1].data = periodData.commissions;
+
+                    const newMaxVol = Math.max(...periodData.volumes, 5);
+                    const newMaxComm = Math.max(...periodData.commissions, 1000000);
+
+                    chart.options.scales.y.suggestedMax = Math.ceil(newMaxVol * 1.25);
+                    chart.options.scales.y1.suggestedMax = newMaxComm > 0 ? newMaxComm * 1.25 : 1000000;
+
+                    chart.update();
+
+                    updateSummaryUI(periodData);
+                });
+            });
+        });
+    </script>
+@endpush

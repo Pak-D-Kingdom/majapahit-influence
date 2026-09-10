@@ -17,7 +17,7 @@
                     PROGRAM KOL PAK DE GROUP
                 </div>
                 <h2 class="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl font-heading">
-                    Halo, <span class="bg-gradient-to-r from-[#fec200] to-[#d57028] bg-clip-text text-transparent">{{ $profile->nickname ?: $profile->user->name }}</span>!
+                    Halo, <span class="text-[#fec200]">{{ $profile->nickname ?: $profile->user->name }}</span>!
                 </h2>
                 <p class="mt-2 text-sm leading-relaxed text-white/75 sm:text-base">
                     Kembangkan pengaruhmu dan buka peluang kolaborasi bersama brand terpercaya. Pantau progress campaign dan komisi transparanmu di sini.

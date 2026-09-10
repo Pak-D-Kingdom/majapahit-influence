@@ -13,8 +13,7 @@ class EndorsementAssignedNotification extends Notification
         public string $brandName,
         public ?string $endorsementTitle = null,
         public ?string $deadline = null,
-    ) {
-    }
+    ) {}
 
     public function via(object $notifiable): array
     {

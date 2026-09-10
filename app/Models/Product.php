@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Product extends Model
@@ -28,6 +29,8 @@ class Product extends Model
         'stock',
         'promotion_pathway',
         'is_active',
+        'verification_status',
+        'rejection_reason',
     ];
 
     protected function casts(): array
@@ -84,5 +87,18 @@ class Product extends Model
     public function getFormattedCommissionAttribute(): string
     {
         return 'Rp '.number_format((float) $this->locked_commission_amount, 0, ',', '.');
+    }
+
+    public function getImageUrlAttribute(): string
+    {
+        if (empty($this->image_path)) {
+            return 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500&auto=format&fit=crop&q=80';
+        }
+
+        if (str_starts_with($this->image_path, 'http://') || str_starts_with($this->image_path, 'https://')) {
+            return $this->image_path;
+        }
+
+        return Storage::url($this->image_path);
     }
 }

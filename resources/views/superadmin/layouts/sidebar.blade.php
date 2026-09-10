@@ -1,31 +1,30 @@
-<aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex w-72 -translate-x-full flex-col border-r border-[#421b13]/40 bg-[#190906] text-[#f7eee8]/80 transition-transform lg:static lg:translate-x-0">
+<aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#421b13]/40 bg-[#190906] text-[#f7eee8]/80 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-72 lg:shrink-0 lg:translate-x-0">
     <div class="flex h-20 items-center gap-3 border-b border-white/8 px-6">
-        <a href="{{ route('superadmin.dashboard') }}" class="flex items-center gap-3 group">
-            <div class="flex size-10 items-center justify-center rounded-xl bg-white p-0.5 shadow-md shadow-[#d57028]/20 group-hover:scale-105 transition overflow-hidden">
-                <img src="{{ asset('assets/Logo/majapahit.png') }}" alt="Majapahit Influence Logo" class="size-full object-contain">
-            </div>
-            <div class="leading-tight">
-                <p class="font-heading text-sm font-extrabold tracking-[0.18em] text-[#fec200]">MAJAPAHIT</p>
-                <p class="text-[10px] font-semibold tracking-[0.25em] text-white/80">INFLUENCE</p>
-            </div>
-        </a>
+        <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#d57028] via-[#d5282d] to-[#fec200] font-heading font-extrabold text-white shadow-md shadow-[#d57028]/20">
+            MI
+        </div>
+        <div class="leading-tight">
+            <p class="font-heading text-sm font-extrabold tracking-[0.18em] text-[#fec200]">MAJAPAHIT</p>
+            <p class="text-[10px] font-semibold tracking-[0.25em] text-white/80">INFLUENCE</p>
+        </div>
     </div>
 
     <div class="flex-1 overflow-y-auto px-4 py-6">
         <p class="mb-3 px-3 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#fec200]/70 font-heading">Workspace</p>
         <nav class="space-y-1" aria-label="Menu Utama">
-            @php 
+            @php
                 $workspaceItems = [
                     ['superadmin.dashboard', 'Dashboard', 'bi-grid-1x2-fill'], 
                     ['superadmin.registrations.index', 'Pendaftaran KOL', 'bi-person-plus-fill'], 
                     ['superadmin.brand-registrations.index', 'Pendaftaran Brand', 'bi-building-add'],
                     ['superadmin.kol.index', 'Database KOL', 'bi-people-fill'], 
                     ['superadmin.brands.index', 'Brand & Klien', 'bi-building'], 
+                    ['superadmin.product-verifications.index', 'Verifikasi Produk', 'bi-check2-square'],
                     ['superadmin.products.index', 'Katalog Produk', 'bi-shop'],
                     ['superadmin.campaigns.index', 'Campaign', 'bi-megaphone-fill'], 
                     ['superadmin.endorsements.index', 'Endorsement', 'bi-clipboard-check'], 
-                    ['superadmin.commissions.index', 'Komisi & Pencairan', 'bi-wallet2']
-                ]; 
+                    ['superadmin.commissions.index', 'Komisi & Pencairan', 'bi-wallet2'],
+                ];
             @endphp
             @foreach ($workspaceItems as [$route, $label, $icon])
                 @php
@@ -63,21 +62,23 @@
         </nav>
     </div>
 
-    <div class="border-t border-white/8 p-4">
-        <div class="flex items-center justify-between rounded-xl bg-white/5 p-3 border border-white/6">
-            <div class="flex items-center gap-2.5 min-w-0">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-[#d57028] to-[#d5282d] text-xs font-bold text-white shadow-xs">
+    {{-- Footer Box --}}
+    <div class="border-t border-white/10 p-4">
+        <div class="rounded-xl border border-white/5 bg-[#31140d]/80 p-3.5 backdrop-blur-xs">
+            <div class="flex items-center gap-3">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-[#d57028] to-[#d5282d] text-xs font-bold text-white font-heading shadow-xs">
                     SA
                 </div>
-                <div class="min-w-0">
+                <div class="min-w-0 flex-1">
                     <p class="truncate text-xs font-bold text-white font-heading">{{ auth()->user()->name ?? 'Superadmin' }}</p>
-                    <p class="truncate text-[11px] text-[#f7eee8]/60">{{ auth()->user()->email ?? 'admin@majapahit.com' }}</p>
+                    <p class="mt-0.5 truncate text-[11px] text-white/70">{{ auth()->user()->email ?? 'admin@majapahit.com' }}</p>
                 </div>
             </div>
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" class="mt-3 pt-2.5 border-t border-white/5">
                 @csrf
-                <button type="submit" title="Logout" aria-label="Logout" class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/10 text-rose-300 hover:bg-rose-600 hover:text-white transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
-                    <i class="bi bi-box-arrow-right"></i>
+                <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-lg bg-white/5 py-1.5 text-xs font-medium text-white/70 hover:bg-rose-500/20 hover:text-rose-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+                    <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+                    Keluar Akun
                 </button>
             </form>
         </div>

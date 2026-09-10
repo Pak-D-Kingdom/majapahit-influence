@@ -26,8 +26,8 @@ class BrandController extends Controller
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('pic_name', 'like', "%{$search}%")
-                  ->orWhere('pic_email', 'like', "%{$search}%");
+                    ->orWhere('pic_name', 'like', "%{$search}%")
+                    ->orWhere('pic_email', 'like', "%{$search}%");
             });
         }
 
@@ -46,6 +46,17 @@ class BrandController extends Controller
         }
 
         return view('superadmin.brands.index', compact('brands'));
+    }
+
+    /**
+     * Show the form for creating a new brand.
+     */
+    public function create(): View
+    {
+        $brand = new Brand;
+        $mode = 'create';
+
+        return view('superadmin.brands.form', compact('brand', 'mode'));
     }
 
     /**
@@ -89,6 +100,16 @@ class BrandController extends Controller
         }
 
         return view('superadmin.brands.show', compact('brand'));
+    }
+
+    /**
+     * Show the form for editing the specified brand.
+     */
+    public function edit(Brand $brand): View
+    {
+        $mode = 'edit';
+
+        return view('superadmin.brands.form', compact('brand', 'mode'));
     }
 
     /**

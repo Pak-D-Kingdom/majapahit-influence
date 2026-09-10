@@ -42,6 +42,16 @@ class CampaignService
 
             $campaign = Campaign::create($campaignData);
 
+            if ($campaign->brand?->user && $campaign->brand->user->id !== $creatorId) {
+                app(NotificationService::class)->send(
+                    $campaign->brand->user,
+                    'campaign_created',
+                    'Campaign Baru',
+                    "Campaign '{$campaign->name}' telah ditambahkan ke portal Anda.",
+                    route('brand.campaigns.index')
+                );
+            }
+
             foreach ($files as $file) {
                 if ($file instanceof UploadedFile) {
                     $path = $file->store('campaign_briefs', 'public');
@@ -142,13 +152,24 @@ class CampaignService
             );
 
             // In-app notification for KOL
-            if ($kol->user) {
+            if ($kol->user_id) {
+                Notification::create([
+                    'user_id' => $kol->user_id,
+                    'type' => 'new_endorsement',
+                    'title' => 'Tugas Endorsement Baru',
+                    'body' => "Anda telah ditugaskan untuk campaign '{$campaign->name}' ({$endorsement->content_type}). Deadline: ".date('d/m/Y', strtotime($endorsement->deadline)),
+                    'target_url' => "/kol/endorsements/{$endorsement->id}",
+                ]);
+            }
+
+            // In-app notification for Brand
+            if ($campaign->brand?->user) {
                 app(NotificationService::class)->send(
-                    $kol->user,
+                    $campaign->brand->user,
                     'new_endorsement',
-                    'Tugas Endorsement Baru',
-                    "Anda telah ditugaskan untuk campaign '{$campaign->name}' ({$endorsement->content_type}). Deadline: ".date('d/m/Y', strtotime($endorsement->deadline)),
-                    "/kol/endorsements/{$endorsement->id}"
+                    'KOL Ditugaskan',
+                    "KOL {$kol->nickname} telah ditugaskan untuk campaign '{$campaign->name}'.",
+                    route('brand.endorsements.index')
                 );
             }
 

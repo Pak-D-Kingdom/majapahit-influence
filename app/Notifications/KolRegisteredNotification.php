@@ -15,8 +15,7 @@ class KolRegisteredNotification extends Notification
     public function __construct(
         public string $kolName,
         public ?string $registrationNumber = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the notification's delivery channels.

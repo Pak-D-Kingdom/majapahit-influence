@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Superadmin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Superadmin\RegistrationReviewRequest;
+use App\Mail\KolWelcomeMail;
 use App\Models\AuditLog;
-use App\Models\KolProfile;
 use App\Models\KolRegistration;
 use App\Models\KolSocialMedia;
 use App\Models\Niche;
@@ -15,9 +15,8 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\KolWelcomeMail;
+use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
 
 class RegistrationController extends Controller
@@ -41,6 +40,7 @@ class RegistrationController extends Controller
                 AuditLog::log('registration_rejected', 'kol_registrations', $registration->id, null, ['reason' => $request->validated('rejection_reason')], $request->user());
                 $registration->delete();
             });
+
             return redirect()->route('superadmin.registrations.index')->with('success', 'Pendaftaran ditolak dan dihapus.');
         }
 
@@ -58,6 +58,7 @@ class RegistrationController extends Controller
             Mail::to($user)->queue((new KolWelcomeMail($user, $token))->afterCommit());
             AuditLog::log('registration_approved', 'kol_registrations', $registration->id, null, ['user_id' => $user->id], $request->user());
         });
+
         return redirect()->route('superadmin.registrations.index')->with('success', 'Pendaftaran disetujui dan akun KOL dibuat.');
     }
 }

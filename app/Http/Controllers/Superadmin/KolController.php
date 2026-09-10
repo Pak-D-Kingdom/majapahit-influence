@@ -11,11 +11,11 @@ use App\Models\Niche;
 use App\Models\Role;
 use App\Models\Tier;
 use App\Models\User;
+use App\Services\AuditLogService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
-use App\Services\AuditLogService;
 
 class KolController extends Controller
 {
@@ -42,7 +42,7 @@ class KolController extends Controller
 
     public function create(): View
     {
-        return view('superadmin.kol.form', ['kol' => new KolProfile(), 'tiers' => Tier::orderBy('min_followers')->get(), 'niches' => Niche::where('is_active', true)->orderBy('name')->get(), 'mode' => 'create']);
+        return view('superadmin.kol.form', ['kol' => new KolProfile, 'tiers' => Tier::orderBy('min_followers')->get(), 'niches' => Niche::where('is_active', true)->orderBy('name')->get(), 'mode' => 'create']);
     }
 
     public function store(KolProfileRequest $request): RedirectResponse
@@ -53,10 +53,12 @@ class KolController extends Controller
             $user->assignRole(Role::where('name', 'kol')->firstOrFail());
             $profile = $user->kolProfile()->create(collect($data)->only(['nickname', 'bio', 'city', 'province', 'tier_id', 'status'])->put('joined_at', now())->all());
             $this->syncProfileDetails($profile, $data);
+
             return $profile;
         });
 
         app(AuditLogService::class)->record('kol_created', 'kol_profiles', $kol->id, null, ['user_id' => $kol->user_id, 'status' => $kol->status], $request->user());
+
         return redirect()->route('superadmin.kol.show', $kol)->with('success', 'Data KOL berhasil ditambahkan.');
     }
 
@@ -64,6 +66,7 @@ class KolController extends Controller
     {
         $this->authorize('view', $kol);
         $kol->load(['user', 'tier', 'niches', 'socialMedia', 'rateCards', 'endorsements.campaign.brand', 'commissions']);
+
         return view('superadmin.kol.show', compact('kol'));
     }
 
@@ -71,6 +74,7 @@ class KolController extends Controller
     {
         $this->authorize('update', $kol);
         $kol->load(['user', 'niches', 'socialMedia']);
+
         return view('superadmin.kol.form', ['kol' => $kol, 'tiers' => Tier::orderBy('min_followers')->get(), 'niches' => Niche::where('is_active', true)->orderBy('name')->get(), 'mode' => 'edit']);
     }
 
@@ -81,12 +85,15 @@ class KolController extends Controller
         DB::transaction(function () use ($request, $kol): void {
             $data = $request->validated();
             $kol->user->update(['name' => $data['name'], 'email' => $data['email'], 'is_active' => $data['status'] === 'aktif']);
-            if (! empty($data['password'])) $kol->user->update(['password' => Hash::make($data['password'])]);
+            if (! empty($data['password'])) {
+                $kol->user->update(['password' => Hash::make($data['password'])]);
+            }
             $kol->update(collect($data)->only(['nickname', 'bio', 'city', 'province', 'tier_id', 'status'])->all());
             $this->syncProfileDetails($kol, $data);
         });
 
         app(AuditLogService::class)->record('kol_updated', 'kol_profiles', $kol->id, $oldValues, $kol->fresh()->only(['nickname', 'bio', 'city', 'province', 'tier_id', 'status']), $request->user());
+
         return redirect()->route('superadmin.kol.show', $kol)->with('success', 'Data KOL berhasil diperbarui.');
     }
 

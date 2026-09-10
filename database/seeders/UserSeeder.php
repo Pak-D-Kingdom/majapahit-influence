@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Brand;
 use App\Models\KolProfile;
 use App\Models\KolRateCard;
 use App\Models\KolSocialMedia;
@@ -136,5 +137,35 @@ class UserSeeder extends Seeder
                 'rate' => 4000000.00,
             ]
         );
+
+        // 3. Sample Brand User
+        $brandRole = Role::firstOrCreate(['name' => 'brand'], ['display_name' => 'Brand']);
+        $brandUser = User::firstOrCreate(
+            ['email' => 'brand@majapahit.com'],
+            [
+                'name' => 'Skin Zenith Official',
+                'password' => Hash::make('password'),
+                'is_active' => true,
+            ]
+        );
+        $brandUser->roles()->syncWithoutDetaching([$brandRole->id]);
+
+        $sampleBrand = Brand::firstOrCreate(
+            ['name' => 'Skin Zenith Naturals'],
+            [
+                'user_id' => $brandUser->id,
+                'industry' => 'Beauty & Skincare',
+                'address' => 'Jl. Pemuda No. 45, Surabaya',
+                'pic_name' => 'Sarah Wijaya',
+                'pic_title' => 'Brand Manager',
+                'pic_email' => 'brand@majapahit.com',
+                'pic_phone' => '081234567890',
+                'is_active' => true,
+            ]
+        );
+
+        if (! $sampleBrand->user_id) {
+            $sampleBrand->update(['user_id' => $brandUser->id]);
+        }
     }
 }

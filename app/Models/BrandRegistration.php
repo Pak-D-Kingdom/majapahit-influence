@@ -18,6 +18,7 @@ class BrandRegistration extends Model
         'pic_title',
         'pic_email',
         'pic_phone',
+        'password',
         'social_media',
         'website',
         'service_need',
@@ -28,10 +29,15 @@ class BrandRegistration extends Model
         'admin_notes',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     protected function casts(): array
     {
         return [
             'reviewed_at' => 'datetime',
+            'password' => 'hashed',
         ];
     }
 

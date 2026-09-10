@@ -16,6 +16,7 @@ class RegistrationRequest extends FormRequest
         return [
             'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
+            'password' => ['nullable', 'string', 'min:6', 'confirmed'],
             'phone' => ['required', 'regex:/^(08|62)[0-9+\- ]{8,17}$/'],
             'city' => ['nullable', 'string', 'max:100'],
             'niches' => ['required', 'array', 'min:1'],
