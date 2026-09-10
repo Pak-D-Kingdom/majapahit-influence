@@ -2,19 +2,19 @@
 
 @php
     $styles = [
-        'aktif' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        'selesai' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        'approved' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        'content_approved' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        'dicairkan' => 'bg-emerald-50 text-emerald-700 border-emerald-200',
-        'pending' => 'bg-[#fec200]/20 text-[#b86021] border-[#fec200]/50',
-        'pending_review' => 'bg-[#fec200]/20 text-[#b86021] border-[#fec200]/50',
-        'in_progress' => 'bg-[#d57028]/10 text-[#d57028] border-[#d57028]/30',
-        'assigned' => 'bg-[#d57028]/10 text-[#d57028] border-[#d57028]/30',
-        'content_submitted' => 'bg-[#d57028]/10 text-[#d57028] border-[#d57028]/30',
-        'rejected' => 'bg-[#d5282d]/10 text-[#d5282d] border-[#d5282d]/30',
-        'content_rejected' => 'bg-[#d5282d]/10 text-[#d5282d] border-[#d5282d]/30',
-        'nonaktif' => 'bg-[#f7eee8] text-[#765f58] border-[#421b13]/10',
+        'aktif' => 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+        'selesai' => 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+        'approved' => 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+        'content_approved' => 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+        'dicairkan' => 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+        'pending' => 'bg-amber-50 text-amber-700 border-amber-200/80',
+        'pending_review' => 'bg-amber-50 text-amber-700 border-amber-200/80',
+        'in_progress' => 'bg-blue-50 text-[#0b64d4] border-blue-200/80',
+        'assigned' => 'bg-blue-50 text-[#0b64d4] border-blue-200/80',
+        'content_submitted' => 'bg-blue-50 text-[#0b64d4] border-blue-200/80',
+        'rejected' => 'bg-rose-50 text-rose-700 border-rose-200/80',
+        'content_rejected' => 'bg-rose-50 text-rose-700 border-rose-200/80',
+        'nonaktif' => 'bg-slate-50 text-slate-600 border-slate-200/80',
     ];
     $labels = [
         'pending_review' => 'Menunggu review',
@@ -28,7 +28,7 @@
     $key = strtolower((string) $status);
 @endphp
 
-<span class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $styles[$key] ?? 'bg-[#f7eee8] text-[#765f58] border-[#421b13]/10' }}">
+<span class="inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold {{ $styles[$key] ?? 'bg-slate-50 text-slate-600 border-slate-200/80' }}">
     <span class="size-1.5 rounded-full bg-current"></span>
     {{ $labels[$key] ?? str($status)->replace('_', ' ')->title() }}
 </span>

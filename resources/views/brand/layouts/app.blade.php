@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Brand Portal') | Majapahit Influence</title>
+    <title>@yield('title', 'Brand Portal') | KERAJAAN</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/kerajaanlogov1.png') }}">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,15 +21,21 @@
             theme: {
                 extend: {
                     colors: {
+                        kerajaan: {
+                            blue: '#0b64d4',
+                            sky: '#1698f6',
+                            soft: '#78a5d6',
+                            navy: '#0c3685',
+                        },
                         majapahit: {
-                            orange: '#d57028',
-                            red: '#d5282d',
-                            yellow: '#fec200',
-                            dark: '#421b13',
-                            brown: '#b86021',
-                            cream: '#fff9f4',
-                            sand: '#f7eee8',
-                            muted: '#765f58',
+                            orange: '#0b64d4',
+                            red: '#1698f6',
+                            yellow: '#78a5d6',
+                            dark: '#0c3685',
+                            brown: '#0b64d4',
+                            cream: '#f8fafc',
+                            sand: '#f1f5f9',
+                            muted: '#64748b',
                         }
                     },
                     fontFamily: {
@@ -42,7 +49,7 @@
     <style>
         .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-sans, .font-body { font-family: 'DM Sans', sans-serif; }
-        .btn-majapahit-primary {
+        .btn-majapahit-primary, .btn-kerajaan-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -52,16 +59,16 @@
             font-size: 0.875rem;
             font-weight: 600;
             color: #ffffff;
-            background: linear-gradient(135deg, #d57028, #d5282d);
-            box-shadow: 0 4px 14px rgba(213, 112, 40, 0.25);
+            background: linear-gradient(135deg, #0b64d4, #1698f6);
+            box-shadow: 0 4px 14px rgba(11, 100, 212, 0.25);
             transition: all 0.2s ease;
         }
-        .btn-majapahit-primary:hover {
+        .btn-majapahit-primary:hover, .btn-kerajaan-primary:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(213, 112, 40, 0.35);
+            box-shadow: 0 6px 20px rgba(11, 100, 212, 0.35);
             filter: brightness(1.05);
         }
-        .btn-majapahit-secondary {
+        .btn-majapahit-secondary, .btn-kerajaan-secondary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -70,15 +77,15 @@
             border-radius: 0.75rem;
             font-size: 0.875rem;
             font-weight: 600;
-            color: #421b13;
+            color: #0c3685;
             background-color: #ffffff;
-            border: 1px solid rgba(66, 27, 19, 0.15);
+            border: 1px solid rgba(12, 54, 133, 0.15);
             transition: all 0.2s ease;
         }
-        .btn-majapahit-secondary:hover {
-            background-color: #f7eee8;
-            border-color: rgba(213, 112, 40, 0.4);
-            color: #d57028;
+        .btn-majapahit-secondary:hover, .btn-kerajaan-secondary:hover {
+            background-color: #eff6ff;
+            border-color: rgba(11, 100, 212, 0.4);
+            color: #0b64d4;
         }
     </style>
     @if (file_exists(public_path('build/manifest.json')))
@@ -86,16 +93,16 @@
     @endif
     @stack('styles')
 </head>
-<body class="min-h-screen bg-[#fbf7f4] font-sans text-[#421b13] antialiased selection:bg-[#d57028]/20 selection:text-[#421b13]">
+<body class="min-h-screen bg-[#f8fafc] font-sans text-[#0c3685] antialiased selection:bg-[#0b64d4] selection:text-white">
     <div class="min-h-screen lg:flex">
         {{-- Mobile Overlay --}}
-        <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-[#421b13]/50 backdrop-blur-xs transition-opacity lg:hidden" aria-hidden="true"></div>
+        <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-[#0c3685]/40 backdrop-blur-xs transition-opacity lg:hidden" aria-hidden="true"></div>
 
         {{-- Sidebar --}}
         @include('brand.layouts.sidebar')
 
         {{-- Main Container --}}
-        <div class="min-w-0 flex-1 flex flex-col min-h-screen">
+        <div class="min-w-0 flex-1 flex flex-col min-h-screen bg-[#f8fafc]">
             {{-- Navbar --}}
             @include('brand.layouts.navbar')
 
@@ -104,15 +111,15 @@
                 <div class="mx-auto max-w-[1600px] space-y-6">
                     {{-- Flash Alerts --}}
                     @if (session('success'))
-                        <div class="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-xs text-emerald-800 shadow-xs" role="alert">
+                        <div class="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3.5 text-sm text-emerald-800 shadow-xs" role="alert">
                             <i class="bi bi-check-circle-fill text-base text-emerald-600"></i>
-                            <span>{{ session('success') }}</span>
+                            <span class="font-medium">{{ session('success') }}</span>
                         </div>
                     @endif
                     @if (session('error'))
-                        <div class="flex items-center gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-xs text-rose-800 shadow-xs" role="alert">
+                        <div class="flex items-center gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3.5 text-sm text-rose-800 shadow-xs" role="alert">
                             <i class="bi bi-exclamation-octagon-fill text-base text-rose-600"></i>
-                            <span>{{ session('error') }}</span>
+                            <span class="font-medium">{{ session('error') }}</span>
                         </div>
                     @endif
 
@@ -132,14 +139,14 @@
             function openSidebar() {
                 sidebar?.classList.remove('-translate-x-full');
                 overlay?.classList.remove('hidden');
-                document.body.classList.add('overflow-hidden');
+                document.body.classList.add('overflow-hidden', 'lg:overflow-auto');
                 toggle?.setAttribute('aria-expanded', 'true');
             }
 
             function closeSidebar() {
                 sidebar?.classList.add('-translate-x-full');
                 overlay?.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
+                document.body.classList.remove('overflow-hidden', 'lg:overflow-auto');
                 toggle?.setAttribute('aria-expanded', 'false');
             }
 
@@ -152,6 +159,11 @@
             });
 
             overlay?.addEventListener('click', closeSidebar);
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar && !sidebar.classList.contains('-translate-x-full')) {
+                    closeSidebar();
+                }
+            });
         });
     </script>
     @stack('scripts')

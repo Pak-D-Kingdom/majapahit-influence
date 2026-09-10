@@ -110,6 +110,9 @@
 
         <section class="hero" id="home">
 
+            {{-- 3D Interactive Ecosystem Constellation Canvas --}}
+            <canvas id="hero3dCanvas" class="hero-3d-canvas" aria-hidden="true"></canvas>
+
             <div class="hero-decoration hero-decoration-one"></div>
             <div class="hero-decoration hero-decoration-two"></div>
 
@@ -185,14 +188,14 @@
 
                 </div>
 
-                {{-- Hero Visual --}}
-                <div class="hero-visual">
+                {{-- Hero Visual (3D Multi-Layered Rig) --}}
+                <div class="hero-visual" id="heroVisual">
 
                     <div class="hero-glow"></div>
 
 
                     {{-- Main Card --}}
-                    <div class="creator-card">
+                    <div class="creator-card" id="heroCreatorCard">
 
                         <div class="creator-card-top">
 
@@ -234,7 +237,7 @@
                         </div>
 
 
-                        <div class="mini-chart collaboration-visual">
+                        <div class="collaboration-visual">
 
                             <div class="collab-item">
                                 <i class="bi bi-person-video3"></i>
@@ -242,7 +245,9 @@
                             </div>
 
                             <div class="collab-line">
-                                <span></span>
+                                <span class="collab-nexus">
+                                    <i class="bi bi-stars"></i>
+                                </span>
                             </div>
 
                             <div class="collab-item">
@@ -256,7 +261,7 @@
 
 
                     {{-- Floating Campaign Card --}}
-                    <div class="campaign-card">
+                    <div class="campaign-card" id="heroCampaignCard">
 
                         <div class="campaign-icon">
                             <i class="bi bi-stars"></i>
@@ -277,7 +282,7 @@
 
 
                     {{-- Floating KOL Badge --}}
-                    <div class="kol-badge">
+                    <div class="kol-badge" id="heroKolBadge">
 
                         <i class="bi bi-camera-fill"></i>
 
@@ -290,7 +295,7 @@
 
 
                     {{-- Decorative Circle --}}
-                    <div class="hero-circle">
+                    <div class="hero-circle" id="heroCircle">
                         <span>MA</span>
                     </div>
 

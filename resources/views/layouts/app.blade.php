@@ -62,7 +62,7 @@
             },
         };
     </script>
-    <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}?v={{ file_exists(public_path('assets/css/landing.css')) ? filemtime(public_path('assets/css/landing.css')) : time() }}">
 
     @stack('styles')
 </head>
@@ -71,7 +71,11 @@
 
     @yield('content')
 
-    <script src="{{ asset('assets/js/landing.js') }}"></script>
+    {{-- GSAP & ScrollTrigger for Cinematic 3D & Web Animations --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script src="{{ asset('assets/js/landing.js') }}?v={{ file_exists(public_path('assets/js/landing.js')) ? filemtime(public_path('assets/js/landing.js')) : time() }}"></script>
 
     @stack('scripts')
 
