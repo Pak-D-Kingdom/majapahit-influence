@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Brand Portal') | Majapahit Influence</title>
 
     {{-- Google Fonts --}}
@@ -154,6 +155,9 @@
             overlay?.addEventListener('click', closeSidebar);
         });
     </script>
+    
+    <x-chatbot-widget role="brand" />
+
     @stack('scripts')
 </body>
 </html>

@@ -29,6 +29,7 @@ Thumbs.db
 # IDE & AI Agents
 .agents/
 .claude/
+graphify-out/
 .mcp.json
 opencode.json
 boost.json
