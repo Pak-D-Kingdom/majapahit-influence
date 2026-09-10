@@ -89,7 +89,7 @@ class ProductCatalogSeeder extends Seeder
         );
 
         $brandFnB = Brand::firstOrCreate(
-            ['name' => 'Sambal Majapahit Juara'],
+            ['name' => 'Sambal kerajaan Juara'],
             [
                 'industry' => 'Food & Beverage',
                 'pic_name' => 'Dewi Sartika',
@@ -102,12 +102,12 @@ class ProductCatalogSeeder extends Seeder
         );
 
         $brandFashion = Brand::firstOrCreate(
-            ['name' => 'Majapahit Hijab & Silk'],
+            ['name' => 'kerajaan Hijab & Silk'],
             [
                 'industry' => 'Fashion & Apparel',
                 'pic_name' => 'Annisa Rahma',
                 'pic_title' => 'Creative Director',
-                'pic_email' => 'annisa@majapahithijab.com',
+                'pic_email' => 'annisa@kerajaanhijab.com',
                 'pic_phone' => '081234567804',
                 'notes' => 'Koleksi Hijab Premium',
                 'is_active' => true,
@@ -167,8 +167,8 @@ class ProductCatalogSeeder extends Seeder
             [
                 'brand_id' => $brandFnB->id,
                 'category_id' => $catModels['food-beverage']->id,
-                'name' => 'Sambal Cumi Asin Majapahit Level Pedas Juara 200g',
-                'slug' => 'sambal-cumi-asin-majapahit-200g',
+                'name' => 'Sambal Cumi Asin kerajaan Level Pedas Juara 200g',
+                'slug' => 'sambal-cumi-asin-kerajaan-200g',
                 'sku' => 'SB-CMI-200',
                 'short_description' => 'Sambal cumi melimpah dengan racikan rempah khas Nusantara. Gurih pedas bikin nagih!',
                 'description' => 'Dibuat dari cumi segar pilihan dan cabai rawit merah segar, dimasak higienis dan tahan hingga 6 bulan. Siap saji langsung dengan nasi hangat.',
@@ -183,8 +183,8 @@ class ProductCatalogSeeder extends Seeder
             [
                 'brand_id' => $brandFashion->id,
                 'category_id' => $catModels['fashion-apparel']->id,
-                'name' => 'Majapahit Silk Voile Square Scarf Edition',
-                'slug' => 'majapahit-silk-voile-scarf',
+                'name' => 'kerajaan Silk Voile Square Scarf Edition',
+                'slug' => 'kerajaan-silk-voile-scarf',
                 'sku' => 'MJ-SCARF-01',
                 'short_description' => 'Hijab silk premium dengan motif klasik modern, tegak di dahi dan lembut adem.',
                 'description' => 'Material Ultra-Fine Voile Silk dengan laser-cut finishing rapi. Warna elegan cocok untuk acara kasual maupun formal.',
@@ -232,7 +232,7 @@ class ProductCatalogSeeder extends Seeder
         );
 
         BrandRegistration::firstOrCreate(
-            ['pic_email' => 'halo@keripikmajapahit.com'],
+            ['pic_email' => 'halo@keripikkerajaan.com'],
             [
                 'brand_name' => 'Keripik Singkong Renyah Nusantara',
                 'company_name' => 'CV Sumber Rejeki Rasa',
@@ -241,9 +241,9 @@ class ProductCatalogSeeder extends Seeder
                 'pic_title' => 'Owner',
                 'pic_phone' => '081223344556',
                 'social_media' => '@keripiksingkong.juara',
-                'website' => 'https://keripikmajapahit.com',
+                'website' => 'https://keripikkerajaan.com',
                 'service_need' => 'endorsement',
-                'notes' => 'Produk sudah ready stock 10.000 pouch. Ingin ditaruh di katalog e-commerce marketplace Majapahit untuk dipromosikan affiliate influencer.',
+                'notes' => 'Produk sudah ready stock 10.000 pouch. Ingin ditaruh di katalog e-commerce marketplace kerajaan untuk dipromosikan affiliate influencer.',
                 'status' => 'approved',
             ]
         );

@@ -1,19 +1,19 @@
 @props(['role' => 'kol'])
 
 <style>
-    .cb-gradient { background: linear-gradient(135deg, #d57028, #d5282d); color: #ffffff; }
-    .cb-bg-cream { background-color: #fff9f4; }
+    .cb-gradient { background: linear-gradient(135deg, #0b64d4, #1698f6); color: #ffffff; }
+    .cb-bg-cream { background-color: #f8fafc; }
     .cb-bg-white { background-color: #ffffff; }
-    .cb-text-dark { color: #421b13; }
-    .cb-border-dark { border-color: rgba(66, 27, 19, 0.1); border-width: 1px; border-style: solid; }
-    .cb-shadow-orange { box-shadow: 0 4px 14px rgba(213, 112, 40, 0.3); }
-    .cb-bubble-bot { background-color: #ffffff; border: 1px solid rgba(66, 27, 19, 0.05); color: #421b13; }
-    .cb-bubble-user { background: linear-gradient(135deg, #d57028, #d5282d); color: #ffffff; }
-    .cb-quick-action { display: inline-block; padding: 0.5rem 1rem; background-color: #fff9f4; border: 1px solid #d57028; color: #d57028; border-radius: 0.75rem; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; text-decoration: none; margin-top: 0.75rem; }
-    .cb-quick-action:hover { background-color: #d57028; color: #ffffff; }
-    .cb-dot { background-color: #fec200; border: 2px solid #fff9f4; }
-    .cb-ring-anim { animation: cb-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; border: 2px solid #d57028; }
-    .cb-bounce { background-color: #d57028; animation: cb-bounce 1s infinite; }
+    .cb-text-dark { color: #071d49; }
+    .cb-border-dark { border-color: rgba(7, 29, 73, 0.1); border-width: 1px; border-style: solid; }
+    .cb-shadow-blue { box-shadow: 0 4px 14px rgba(11, 100, 212, 0.3); }
+    .cb-bubble-bot { background-color: #ffffff; border: 1px solid rgba(7, 29, 73, 0.05); color: #071d49; }
+    .cb-bubble-user { background: linear-gradient(135deg, #0b64d4, #1698f6); color: #ffffff; }
+    .cb-quick-action { display: inline-block; padding: 0.5rem 1rem; background-color: #f8fafc; border: 1px solid #0b64d4; color: #0b64d4; border-radius: 0.75rem; font-size: 0.75rem; font-weight: 700; transition: all 0.2s; text-decoration: none; margin-top: 0.75rem; }
+    .cb-quick-action:hover { background-color: #0b64d4; color: #ffffff; }
+    .cb-dot { background-color: #10b981; border: 2px solid #f8fafc; }
+    .cb-ring-anim { animation: cb-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; border: 2px solid #0b64d4; }
+    .cb-bounce { background-color: #0b64d4; animation: cb-bounce 1s infinite; }
     
     @keyframes cb-ping {
         75%, 100% { transform: scale(1.5); opacity: 0; }
@@ -34,7 +34,7 @@
                     <i class="bi bi-robot text-xl"></i>
                 </div>
                 <div>
-                    <h4 class="font-heading font-bold text-sm leading-tight">Asisten Majapahit</h4>
+                    <h4 class="font-heading font-bold text-sm leading-tight">Prabu AI</h4>
                     <p class="text-[10px] text-white/80">Online | AI-Powered Guide</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <i class="bi bi-robot text-xs"></i>
                 </div>
                 <div class="cb-bubble-bot p-3 rounded-2xl rounded-tl-sm text-sm shadow-sm">
-                    <p>Halo! Saya asisten virtual Majapahit Influence. Ada yang bisa saya bantu hari ini terkait dashboard Anda?</p>
+                    <p>Halo! Saya Prabu AI, asisten virtual Anda. Ada yang bisa saya bantu hari ini terkait dashboard Anda?</p>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
     </div>
 
     {{-- Floating Action Button --}}
-    <button id="chatbot-toggle" class="w-14 h-14 rounded-full cb-gradient flex items-center justify-center cb-shadow-orange hover:scale-105 transition-transform duration-200 focus:outline-none relative group">
+    <button id="chatbot-toggle" class="w-14 h-14 rounded-full cb-gradient flex items-center justify-center cb-shadow-blue hover:scale-105 transition-transform duration-200 focus:outline-none relative group">
         {{-- Notification dot --}}
         <span class="absolute top-0 right-0 w-3.5 h-3.5 cb-dot rounded-full"></span>
         {{-- Ripple effect --}}

@@ -29,7 +29,7 @@
                             navy: '#0c3685',
                             dark: '#071d49',
                         },
-                        majapahit: {
+                        kerajaan: {
                             orange: '#0b64d4',
                             red: '#1698f6',
                             yellow: '#78a5d6',
@@ -51,7 +51,7 @@
     <style>
         .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-sans, .font-body { font-family: 'DM Sans', sans-serif; }
-        .btn-majapahit-primary, .btn-kerajaan-primary {
+        .btn-kerajaan-primary, .btn-kerajaan-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -65,12 +65,12 @@
             box-shadow: 0 4px 14px rgba(11, 100, 212, 0.25);
             transition: all 0.2s ease;
         }
-        .btn-majapahit-primary:hover, .btn-kerajaan-primary:hover {
+        .btn-kerajaan-primary:hover, .btn-kerajaan-primary:hover {
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(11, 100, 212, 0.35);
             filter: brightness(1.05);
         }
-        .btn-majapahit-secondary, .btn-kerajaan-secondary {
+        .btn-kerajaan-secondary, .btn-kerajaan-secondary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -84,12 +84,12 @@
             border: 1px solid rgba(12, 54, 133, 0.18);
             transition: all 0.2s ease;
         }
-        .btn-majapahit-secondary:hover, .btn-kerajaan-secondary:hover {
+        .btn-kerajaan-secondary:hover, .btn-kerajaan-secondary:hover {
             background-color: #f8fafc;
             border-color: rgba(11, 100, 212, 0.4);
             color: #0b64d4;
         }
-        .majapahit-card, .kerajaan-card {
+        .kerajaan-card, .kerajaan-card {
             background-color: #ffffff;
             border: 1px solid rgba(226, 232, 240, 0.8);
             border-radius: 1rem;

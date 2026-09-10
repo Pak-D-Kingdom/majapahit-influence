@@ -29,7 +29,7 @@ class DemoDataSeeder extends Seeder
     public function run(): void
     {
         DB::transaction(function (): void {
-            $superadmin = User::where('email', 'admin@majapahit.com')->firstOrFail();
+            $superadmin = User::where('email', 'admin@kerajaan.com')->firstOrFail();
             $kolRole = Role::where('name', 'kol')->firstOrFail();
             $tiers = Tier::all()->keyBy('name');
             $niches = Niche::all()->keyBy('name');
@@ -48,20 +48,20 @@ class DemoDataSeeder extends Seeder
     private function seedKols(Role $kolRole, $tiers, $niches): Collection
     {
         $data = [
-            ['name' => 'Dimas Lifestyle', 'email' => 'kol@majapahit.com', 'nickname' => 'Dimas', 'city' => 'Jakarta Selatan', 'tier' => 'Micro', 'followers' => 75000, 'platform' => 'instagram', 'username' => '@dimas_lifestyle', 'niches' => ['Lifestyle', 'Fashion & Style'], 'status' => 'aktif'],
-            ['name' => 'Alya Beauty', 'email' => 'alya@majapahit.com', 'nickname' => 'Alya', 'city' => 'Bandung', 'tier' => 'Macro', 'followers' => 245000, 'platform' => 'instagram', 'username' => '@alyabeauty.id', 'niches' => ['Beauty & Skincare'], 'status' => 'aktif'],
-            ['name' => 'Raka Gaming', 'email' => 'raka@majapahit.com', 'nickname' => 'Raka', 'city' => 'Surabaya', 'tier' => 'Micro', 'followers' => 68000, 'platform' => 'tiktok', 'username' => '@raka.play', 'niches' => ['Gaming & Esports'], 'status' => 'aktif'],
-            ['name' => 'Naya Kuliner', 'email' => 'naya@majapahit.com', 'nickname' => 'Naya', 'city' => 'Jakarta Barat', 'tier' => 'Micro', 'followers' => 42000, 'platform' => 'tiktok', 'username' => '@nayakuliner', 'niches' => ['Food & Beverage'], 'status' => 'aktif'],
-            ['name' => 'Bimo Tech', 'email' => 'bimo@majapahit.com', 'nickname' => 'Bimo', 'city' => 'Tangerang', 'tier' => 'Macro', 'followers' => 180000, 'platform' => 'youtube', 'username' => '@bimotech', 'niches' => ['Tech & Gadgets'], 'status' => 'aktif'],
-            ['name' => 'Salsa Travel', 'email' => 'salsa@majapahit.com', 'nickname' => 'Salsa', 'city' => 'Yogyakarta', 'tier' => 'Nano', 'followers' => 8500, 'platform' => 'instagram', 'username' => '@salsajalan', 'niches' => ['Travel & Tourism'], 'status' => 'aktif'],
-            ['name' => 'Fajar Fitness', 'email' => 'fajar@majapahit.com', 'nickname' => 'Fajar', 'city' => 'Depok', 'tier' => 'Micro', 'followers' => 91000, 'platform' => 'instagram', 'username' => '@fajar.fit', 'niches' => ['Health & Fitness'], 'status' => 'nonaktif'],
-            ['name' => 'Mira Fashion', 'email' => 'mira@majapahit.com', 'nickname' => 'Mira', 'city' => 'Semarang', 'tier' => 'Mega', 'followers' => 1200000, 'platform' => 'tiktok', 'username' => '@miramode', 'niches' => ['Fashion & Style', 'Lifestyle'], 'status' => 'pending'],
+            ['name' => 'Dimas Lifestyle', 'email' => 'kol@kerajaan.com', 'nickname' => 'Dimas', 'city' => 'Jakarta Selatan', 'tier' => 'Micro', 'followers' => 75000, 'platform' => 'instagram', 'username' => '@dimas_lifestyle', 'niches' => ['Lifestyle', 'Fashion & Style'], 'status' => 'aktif'],
+            ['name' => 'Alya Beauty', 'email' => 'alya@kerajaan.com', 'nickname' => 'Alya', 'city' => 'Bandung', 'tier' => 'Macro', 'followers' => 245000, 'platform' => 'instagram', 'username' => '@alyabeauty.id', 'niches' => ['Beauty & Skincare'], 'status' => 'aktif'],
+            ['name' => 'Raka Gaming', 'email' => 'raka@kerajaan.com', 'nickname' => 'Raka', 'city' => 'Surabaya', 'tier' => 'Micro', 'followers' => 68000, 'platform' => 'tiktok', 'username' => '@raka.play', 'niches' => ['Gaming & Esports'], 'status' => 'aktif'],
+            ['name' => 'Naya Kuliner', 'email' => 'naya@kerajaan.com', 'nickname' => 'Naya', 'city' => 'Jakarta Barat', 'tier' => 'Micro', 'followers' => 42000, 'platform' => 'tiktok', 'username' => '@nayakuliner', 'niches' => ['Food & Beverage'], 'status' => 'aktif'],
+            ['name' => 'Bimo Tech', 'email' => 'bimo@kerajaan.com', 'nickname' => 'Bimo', 'city' => 'Tangerang', 'tier' => 'Macro', 'followers' => 180000, 'platform' => 'youtube', 'username' => '@bimotech', 'niches' => ['Tech & Gadgets'], 'status' => 'aktif'],
+            ['name' => 'Salsa Travel', 'email' => 'salsa@kerajaan.com', 'nickname' => 'Salsa', 'city' => 'Yogyakarta', 'tier' => 'Nano', 'followers' => 8500, 'platform' => 'instagram', 'username' => '@salsajalan', 'niches' => ['Travel & Tourism'], 'status' => 'aktif'],
+            ['name' => 'Fajar Fitness', 'email' => 'fajar@kerajaan.com', 'nickname' => 'Fajar', 'city' => 'Depok', 'tier' => 'Micro', 'followers' => 91000, 'platform' => 'instagram', 'username' => '@fajar.fit', 'niches' => ['Health & Fitness'], 'status' => 'nonaktif'],
+            ['name' => 'Mira Fashion', 'email' => 'mira@kerajaan.com', 'nickname' => 'Mira', 'city' => 'Semarang', 'tier' => 'Mega', 'followers' => 1200000, 'platform' => 'tiktok', 'username' => '@miramode', 'niches' => ['Fashion & Style', 'Lifestyle'], 'status' => 'pending'],
         ];
 
         return collect($data)->mapWithKeys(function (array $item, int $index) use ($kolRole, $tiers, $niches): array {
             $user = User::updateOrCreate(['email' => $item['email']], ['name' => $item['name'], 'password' => Hash::make('password'), 'is_active' => true]);
             $user->roles()->syncWithoutDetaching([$kolRole->id]);
-            $profile = KolProfile::updateOrCreate(['user_id' => $user->id], ['nickname' => $item['nickname'], 'bio' => $item['name'].' — content creator Majapahit Influence.', 'city' => $item['city'], 'province' => 'Jawa Barat', 'tier_id' => $tiers[$item['tier']]->id, 'status' => $item['status'], 'joined_at' => now()->subMonths(10 - $index)]);
+            $profile = KolProfile::updateOrCreate(['user_id' => $user->id], ['nickname' => $item['nickname'], 'bio' => $item['name'].' — content creator kerajaan Influence.', 'city' => $item['city'], 'province' => 'Jawa Barat', 'tier_id' => $tiers[$item['tier']]->id, 'status' => $item['status'], 'joined_at' => now()->subMonths(10 - $index)]);
             $profile->niches()->sync($this->idsFor($item['niches'], $niches));
             KolSocialMedia::updateOrCreate(['kol_profile_id' => $profile->id, 'platform' => $item['platform']], ['username' => $item['username'], 'profile_url' => 'https://'.$item['platform'].'.com/'.$item['username'], 'followers_count' => $item['followers'], 'engagement_rate' => 3.5 + ($index * 0.4)]);
             KolRateCard::updateOrCreate(['kol_profile_id' => $profile->id, 'platform' => $item['platform'], 'content_type' => 'video'], ['rate' => 1500000 + ($index * 500000)]);
@@ -118,7 +118,7 @@ class DemoDataSeeder extends Seeder
     private function seedRegistrations($niches): void
     {
         foreach ([['REG-DEMO-0001', 'Gita Prameswari', 'gita@example.com', 'Lifestyle'], ['REG-DEMO-0002', 'Rio Creative', 'rio@example.com', 'Entertainment & Comedy'], ['REG-DEMO-0003', 'Tari Beauty', 'tari@example.com', 'Beauty & Skincare']] as [$number, $name, $email, $niche]) {
-            KolRegistration::updateOrCreate(['registration_number' => $number], ['full_name' => $name, 'email' => $email, 'phone' => '081234567890', 'city' => 'Jakarta', 'niches' => [$niche], 'social_media' => ['platform' => 'instagram', 'username' => strtolower(str_replace(' ', '', $name))], 'join_reason' => 'Ingin berkembang bersama Majapahit Influence.', 'status' => 'pending_review']);
+            KolRegistration::updateOrCreate(['registration_number' => $number], ['full_name' => $name, 'email' => $email, 'phone' => '081234567890', 'city' => 'Jakarta', 'niches' => [$niche], 'social_media' => ['platform' => 'instagram', 'username' => strtolower(str_replace(' ', '', $name))], 'join_reason' => 'Ingin berkembang bersama kerajaan Influence.', 'status' => 'pending_review']);
         }
     }
 

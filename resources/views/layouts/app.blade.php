@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
-        @yield('title', 'Majapahit Influence')
+        @yield('title', 'kerajaan Influence')
     </title>
 
     <meta
         name="description"
-        content="Majapahit Influence: Connect, Create, and Grow with Brands."
+        content="kerajaan Influence: Connect, Create, and Grow with Brands."
     >
 
     <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/kerajaanlogov1.png') }}">
@@ -43,7 +43,7 @@
                             soft: '#78a5d6',
                             navy: '#0c3685',
                         },
-                        majapahit: {
+                        kerajaan: {
                             orange: '#0b64d4',
                             red: '#1698f6',
                             yellow: '#78a5d6',

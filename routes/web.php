@@ -32,7 +32,7 @@ Route::get('/', function () {
         return view('landing.index', compact('featuredProducts'));
     }
 
-    return response()->json(['message' => 'Majapahit Influence API is running']);
+    return response()->json(['message' => 'kerajaan Influence API is running']);
 })->name('home');
 
 // Public KOL Registration (Dev 2 & Frontend)

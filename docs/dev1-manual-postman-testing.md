@@ -11,9 +11,9 @@ Project menggunakan web/session authentication. Testing ini tidak menggunakan AP
 
 ```text
 base_url = http://localhost:8000
-superadmin_email = admin@majapahit.com
+superadmin_email = admin@kerajaan.com
 superadmin_password = password
-kol_email = kol@majapahit.com
+kol_email = kol@kerajaan.com
 kol_password = password
 ```
 
@@ -242,13 +242,13 @@ _token={{csrf_token}}
 
 Periksa tabel `audit_logs` setelah setiap skenario:
 
-| Aktivitas | Action yang diharapkan |
-|---|---|
-| Login berhasil | `auth.login` |
-| Password salah | `auth.login_failed` |
-| Akun inactive | `auth.login_failed` |
-| Logout | `auth.logout` |
-| Reset password | `auth.password_reset` |
+| Aktivitas         | Action yang diharapkan  |
+| ----------------- | ----------------------- |
+| Login berhasil    | `auth.login`            |
+| Password salah    | `auth.login_failed`     |
+| Akun inactive     | `auth.login_failed`     |
+| Logout            | `auth.logout`           |
+| Reset password    | `auth.password_reset`   |
 | Set password awal | `auth.password_changed` |
 
 Pastikan:
@@ -263,15 +263,15 @@ Pastikan:
 
 Catat hasil di bawah ini:
 
-| Skenario | Status | Catatan |
-|---|---|---|
-| Login superadmin | PASS / FAIL | |
-| Login KOL | PASS / FAIL | |
-| Password salah | PASS / FAIL | |
-| Rate limit | PASS / FAIL | |
-| Guest access | PASS / FAIL | |
-| Cross-role access | PASS / FAIL | |
-| Inactive user | PASS / FAIL | |
-| Logout | PASS / FAIL | |
-| Password reset | PASS / FAIL | |
-| Audit trail | PASS / FAIL | |
+| Skenario          | Status      | Catatan |
+| ----------------- | ----------- | ------- |
+| Login superadmin  | PASS / FAIL |         |
+| Login KOL         | PASS / FAIL |         |
+| Password salah    | PASS / FAIL |         |
+| Rate limit        | PASS / FAIL |         |
+| Guest access      | PASS / FAIL |         |
+| Cross-role access | PASS / FAIL |         |
+| Inactive user     | PASS / FAIL |         |
+| Logout            | PASS / FAIL |         |
+| Password reset    | PASS / FAIL |         |
+| Audit trail       | PASS / FAIL |         |

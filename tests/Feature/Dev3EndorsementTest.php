@@ -48,8 +48,8 @@ class Dev3EndorsementTest extends TestCase
 
         // Setup Admin User
         $this->adminUser = User::create([
-            'name' => 'Admin Majapahit',
-            'email' => 'admin@majapahit.com',
+            'name' => 'Admin kerajaan',
+            'email' => 'admin@kerajaan.com',
             'password' => bcrypt('password'),
         ]);
         $this->adminUser->roles()->attach($adminRole);

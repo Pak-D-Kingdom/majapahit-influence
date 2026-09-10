@@ -68,7 +68,7 @@ class SetPasswordController extends Controller
         if ($status === Password::PASSWORD_RESET) {
             return redirect()->route('kol.dashboard')->with(
                 'status',
-                'Selamat datang di platform Majapahit! Akun Anda telah aktif dan password berhasil disimpan.'
+                'Selamat datang di platform kerajaan! Akun Anda telah aktif dan password berhasil disimpan.'
             );
         }
 

@@ -9,14 +9,14 @@
     --font-sans: 'DM Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-    --color-majapahit-orange: #d57028;
-    --color-majapahit-red: #d5282d;
-    --color-majapahit-yellow: #fec200;
-    --color-majapahit-dark: #421b13;
-    --color-majapahit-brown: #b86021;
-    --color-majapahit-cream: #fff9f4;
-    --color-majapahit-sand: #f7eee8;
-    --color-majapahit-muted: #765f58;
+    --color-kerajaan-orange: #0b64d4; /* Kerajaan Blue */
+    --color-kerajaan-red: #1698f6;    /* Kerajaan Sky */
+    --color-kerajaan-yellow: #78a5d6; /* Kerajaan Soft */
+    --color-kerajaan-dark: #0c3685;   /* Kerajaan Navy */
+    --color-kerajaan-brown: #0b64d4;  /* Kerajaan Blue */
+    --color-kerajaan-cream: #f8fafc;  /* Slate 50 */
+    --color-kerajaan-sand: #f1f5f9;   /* Slate 100 */
+    --color-kerajaan-muted: #64748b;  /* Slate 500 */
 }
 
 @layer utilities {
@@ -28,8 +28,8 @@
     }
 }
 
-/* Custom Majapahit Elements */
-.btn-majapahit-primary {
+/* Custom kerajaan Elements (Mapped to Kerajaan) */
+.btn-kerajaan-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -37,24 +37,24 @@
     padding: 0.625rem 1.25rem;
     border-radius: 0.75rem;
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: 700;
     color: #ffffff;
-    background: linear-gradient(135deg, #d57028, #d5282d);
-    box-shadow: 0 4px 14px rgba(213, 112, 40, 0.25);
+    background: linear-gradient(135deg, #0b64d4, #1698f6);
+    box-shadow: 0 4px 14px rgba(11, 100, 212, 0.25);
     transition: all 0.2s ease;
 }
 
-.btn-majapahit-primary:hover {
+.btn-kerajaan-primary:hover {
     transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(213, 112, 40, 0.35);
+    box-shadow: 0 6px 20px rgba(11, 100, 212, 0.35);
     filter: brightness(1.05);
 }
 
-.btn-majapahit-primary:active {
+.btn-kerajaan-primary:active {
     transform: translateY(0);
 }
 
-.btn-majapahit-secondary {
+.btn-kerajaan-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -63,21 +63,21 @@
     border-radius: 0.75rem;
     font-size: 0.875rem;
     font-weight: 600;
-    color: #421b13;
+    color: #0c3685;
     background-color: #ffffff;
-    border: 1px solid rgba(66, 27, 19, 0.12);
+    border: 1px solid rgba(12, 54, 133, 0.18);
     transition: all 0.2s ease;
 }
 
-.btn-majapahit-secondary:hover {
-    background-color: #f7eee8;
-    border-color: rgba(66, 27, 19, 0.2);
-    color: #d57028;
+.btn-kerajaan-secondary:hover {
+    background-color: #f8fafc;
+    border-color: rgba(11, 100, 212, 0.4);
+    color: #0b64d4;
 }
 
-.majapahit-card {
+.kerajaan-card {
     background-color: #ffffff;
+    border: 1px solid rgba(226, 232, 240, 0.8);
     border-radius: 1rem;
-    border: 1px solid rgba(66, 27, 19, 0.08);
-    box-shadow: 0 4px 20px -2px rgba(66, 27, 19, 0.04);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }

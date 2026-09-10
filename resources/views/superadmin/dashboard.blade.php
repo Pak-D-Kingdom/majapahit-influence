@@ -7,17 +7,17 @@
     {{-- Header Sambutan & Quick Actions --}}
     <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-            <p class="text-sm font-medium text-[#765f58]">Selamat datang kembali di Workspace Superadmin.</p>
-            <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#421b13] font-heading">
+            <p class="text-sm font-medium text-kerajaan-muted">Selamat datang kembali di Workspace Superadmin.</p>
+            <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-kerajaan-dark font-heading">
                 Pantau Aktivitas Agensi Hari Ini
             </h2>
         </div>
         <div class="flex items-center gap-3">
-            <a href="{{ route('superadmin.reports.index') }}" class="btn-majapahit-secondary">
+            <a href="{{ route('superadmin.reports.index') }}" class="btn-kerajaan-secondary">
                 <i class="bi bi-file-earmark-bar-graph"></i>
                 <span>Laporan & Ekspor</span>
             </a>
-            <a href="{{ route('superadmin.campaigns.create') }}" class="btn-majapahit-primary">
+            <a href="{{ route('superadmin.campaigns.create') }}" class="btn-kerajaan-primary">
                 <i class="bi bi-plus-circle-fill"></i>
                 <span>Buat Campaign</span>
             </a>
@@ -36,30 +36,30 @@
     {{-- Visualisasi Tren & Notifikasi Terbaru --}}
     <div class="mt-8 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
         {{-- Grafik Tren Endorsement & Perputaran Nilai Komisi (Dual-Metric Visualization + Multi-Period Filter) --}}
-        <section class="flex flex-col justify-between rounded-2xl border border-[#421b13]/8 bg-white p-6 shadow-sm">
+        <section class="flex flex-col justify-between rounded-2xl border border-kerajaan-dark/8 bg-white p-6 shadow-sm">
             <div>
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-[#421b13]/8 pb-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-kerajaan-dark/8 pb-4">
                     <div>
                         <div class="flex items-center gap-2">
-                            <h3 class="font-heading text-lg font-bold text-[#421b13]">Tren Kinerja & Nilai Komisi</h3>
-                            <span id="summary-period-badge" class="rounded-md bg-[#d57028]/10 px-2 py-0.5 text-[11px] font-bold text-[#d57028] font-heading">6 Bulan</span>
+                            <h3 class="font-heading text-lg font-bold text-kerajaan-dark">Tren Kinerja & Nilai Komisi</h3>
+                            <span id="summary-period-badge" class="rounded-md bg-kerajaan-orange/10 px-2 py-0.5 text-[11px] font-bold text-kerajaan-orange font-heading">6 Bulan</span>
                         </div>
-                        <p class="mt-0.5 text-xs text-[#765f58]">Volume endorsement vs perputaran nilai komisi (Rp)</p>
+                        <p class="mt-0.5 text-xs text-kerajaan-muted">Volume endorsement vs perputaran nilai komisi (Rp)</p>
                     </div>
                     
                     {{-- Filter Periode Waktu (Pill Switcher) --}}
                     <div class="flex items-center">
-                        <div class="inline-flex rounded-xl bg-[#f7eee8] p-1 border border-[#421b13]/8 text-xs font-medium text-[#765f58]">
-                            <button type="button" data-period="weekly" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#421b13]">
+                        <div class="inline-flex rounded-xl bg-kerajaan-sand p-1 border border-kerajaan-dark/8 text-xs font-medium text-kerajaan-muted">
+                            <button type="button" data-period="weekly" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-kerajaan-dark">
                                 Mingguan
                             </button>
-                            <button type="button" data-period="1m" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#421b13]">
+                            <button type="button" data-period="1m" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-kerajaan-dark">
                                 1 Bulan
                             </button>
-                            <button type="button" data-period="6m" class="period-filter-btn active-filter rounded-lg bg-white px-2.5 py-1 font-bold text-[#d57028] shadow-xs transition">
+                            <button type="button" data-period="6m" class="period-filter-btn active-filter rounded-lg bg-white px-2.5 py-1 font-bold text-kerajaan-orange shadow-xs transition">
                                 6 Bulan
                             </button>
-                            <button type="button" data-period="1y" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#421b13]">
+                            <button type="button" data-period="1y" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-kerajaan-dark">
                                 1 Tahun
                             </button>
                         </div>
@@ -67,32 +67,32 @@
                 </div>
 
                 {{-- Mini Summary Metric Bar --}}
-                <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-xl bg-[#fbf7f4] p-3 border border-[#421b13]/5">
+                <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-xl bg-kerajaan-cream p-3 border border-kerajaan-dark/5">
                     <div>
-                        <p class="text-[11px] font-medium text-[#765f58]">Total Volume</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#421b13] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Total Volume</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-dark font-heading">
                             <span id="summary-total-volume">{{ number_format($trendSummary['totalEndorsements']) }}</span> 
-                            <span class="text-xs font-normal text-[#765f58]">Proyek</span>
+                            <span class="text-xs font-normal text-kerajaan-muted">Proyek</span>
                         </p>
                     </div>
                     <div>
-                        <p class="text-[11px] font-medium text-[#765f58]">Total Komisi</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#d5282d] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Total Komisi</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-red font-heading">
                             <span id="summary-total-commission">Rp {{ number_format($trendSummary['totalCommission'], 0, ',', '.') }}</span>
                         </p>
                     </div>
                     <div>
-                        <p class="text-[11px] font-medium text-[#765f58]">Rata-rata Volume</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#421b13] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Rata-rata Volume</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-dark font-heading">
                             <span id="summary-avg-volume">{{ $trendSummary['avgEndorsements'] }}</span> 
-                            <span id="summary-volume-unit" class="text-xs font-normal text-[#765f58]">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
+                            <span id="summary-volume-unit" class="text-xs font-normal text-kerajaan-muted">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
                         </p>
                     </div>
                     <div>
-                        <p class="text-[11px] font-medium text-[#765f58]">Rata-rata Komisi</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#d57028] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Rata-rata Komisi</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-orange font-heading">
                             <span id="summary-avg-commission">Rp {{ number_format($trendSummary['avgCommission'], 0, ',', '.') }}</span>
-                            <span id="summary-commission-unit" class="text-xs font-normal text-[#765f58]">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
+                            <span id="summary-commission-unit" class="text-xs font-normal text-kerajaan-muted">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
                         </p>
                     </div>
                 </div>
@@ -104,55 +104,55 @@
             </div>
 
             {{-- Custom Legend Footer --}}
-            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-[#421b13]/8 pt-3 text-xs text-[#765f58]">
+            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-kerajaan-dark/8 pt-3 text-xs text-kerajaan-muted">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2">
-                        <span class="size-3 rounded bg-[#d57028]"></span>
-                        <span class="font-medium text-[#421b13]">Volume Endorsement (Kiri)</span>
+                        <span class="size-3 rounded bg-kerajaan-orange"></span>
+                        <span class="font-medium text-kerajaan-dark">Volume Endorsement (Kiri)</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="inline-block h-1 w-4 rounded-full bg-[#d5282d]"></span>
-                        <span class="font-medium text-[#421b13]">Total Komisi Rp (Kanan)</span>
+                        <span class="inline-block h-1 w-4 rounded-full bg-kerajaan-red"></span>
+                        <span class="font-medium text-kerajaan-dark">Total Komisi Rp (Kanan)</span>
                     </div>
                 </div>
-                <div class="text-[11px] text-[#765f58]/80">
+                <div class="text-[11px] text-kerajaan-muted/80">
                     <i class="bi bi-info-circle mr-1"></i> Arahkan kursor ke titik grafik untuk detail
                 </div>
             </div>
         </section>
 
         {{-- Notifikasi Terbaru --}}
-        <section class="rounded-2xl border border-[#421b13]/8 bg-white p-6 shadow-sm flex flex-col justify-between">
+        <section class="rounded-2xl border border-kerajaan-dark/8 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
                 <div class="flex items-center justify-between">
                     <div>
-                        <h3 class="font-heading text-lg font-bold text-[#421b13]">Notifikasi Terbaru</h3>
-                        <p class="mt-0.5 text-xs text-[#765f58]">Pemberitahuan aktivitas sistem penting</p>
+                        <h3 class="font-heading text-lg font-bold text-kerajaan-dark">Notifikasi Terbaru</h3>
+                        <p class="mt-0.5 text-xs text-kerajaan-muted">Pemberitahuan aktivitas sistem penting</p>
                     </div>
-                    <a href="{{ route('superadmin.notifications.index') }}" class="text-xs font-bold text-[#d57028] hover:text-[#b86021] transition hover:underline">
+                    <a href="{{ route('superadmin.notifications.index') }}" class="text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown transition hover:underline">
                         Lihat semua
                     </a>
                 </div>
 
                 @if ($notifications->isEmpty())
-                    <div class="flex h-48 flex-col items-center justify-center text-center text-sm text-[#765f58]">
-                        <div class="flex size-12 items-center justify-center rounded-2xl bg-[#f7eee8] text-[#765f58] mb-3">
+                    <div class="flex h-48 flex-col items-center justify-center text-center text-sm text-kerajaan-muted">
+                        <div class="flex size-12 items-center justify-center rounded-2xl bg-kerajaan-sand text-kerajaan-muted mb-3">
                             <i class="bi bi-bell-slash text-xl"></i>
                         </div>
                         <p class="font-medium">Belum ada notifikasi baru.</p>
-                        <p class="text-xs text-[#765f58]/80 mt-1">Aktivitas penting akan muncul otomatis di sini.</p>
+                        <p class="text-xs text-kerajaan-muted/80 mt-1">Aktivitas penting akan muncul otomatis di sini.</p>
                     </div>
                 @else
                     <div class="mt-5 space-y-3.5">
                         @foreach ($notifications->take(4) as $notification)
-                            <div class="flex items-start gap-3 rounded-xl p-2.5 transition hover:bg-[#fbf7f4]">
-                                <span class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-[#d57028]/10 text-[#d57028]">
+                            <div class="flex items-start gap-3 rounded-xl p-2.5 transition hover:bg-kerajaan-cream">
+                                <span class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-kerajaan-orange/10 text-kerajaan-orange">
                                     <i class="bi bi-bell-fill text-sm"></i>
                                 </span>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-xs font-bold text-[#421b13] font-heading">{{ $notification->title }}</p>
-                                    <p class="mt-0.5 text-xs text-[#765f58] line-clamp-2">{{ $notification->body }}</p>
-                                    <span class="mt-1 block text-[10px] text-[#765f58]/70">{{ $notification->created_at->diffForHumans() }}</span>
+                                    <p class="text-xs font-bold text-kerajaan-dark font-heading">{{ $notification->title }}</p>
+                                    <p class="mt-0.5 text-xs text-kerajaan-muted line-clamp-2">{{ $notification->body }}</p>
+                                    <span class="mt-1 block text-[10px] text-kerajaan-muted/70">{{ $notification->created_at->diffForHumans() }}</span>
                                 </div>
                             </div>
                         @endforeach
@@ -161,8 +161,8 @@
             </div>
 
             @if (!$notifications->isEmpty())
-                <div class="mt-4 pt-4 border-t border-[#421b13]/8">
-                    <a href="{{ route('superadmin.notifications.index') }}" class="block text-center text-xs font-bold text-[#d57028] hover:text-[#b86021]">
+                <div class="mt-4 pt-4 border-t border-kerajaan-dark/8">
+                    <a href="{{ route('superadmin.notifications.index') }}" class="block text-center text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown">
                         Buka Pusat Notifikasi Lengkap &rarr;
                     </a>
                 </div>
@@ -173,20 +173,20 @@
     {{-- Tabel Ringkasan Operasional --}}
     <div class="mt-8 grid gap-6 xl:grid-cols-2">
         {{-- Endorsement Mendekati Deadline --}}
-        <section class="overflow-hidden rounded-2xl border border-[#421b13]/8 bg-white shadow-sm">
-            <div class="flex items-center justify-between p-5 border-b border-[#421b13]/8">
+        <section class="overflow-hidden rounded-2xl border border-kerajaan-dark/8 bg-white shadow-sm">
+            <div class="flex items-center justify-between p-5 border-b border-kerajaan-dark/8">
                 <div>
-                    <h3 class="font-heading text-base font-bold text-[#421b13]">Endorsement Mendekati Deadline</h3>
-                    <p class="text-xs text-[#765f58]">Perlu pemantauan progres konten kreator</p>
+                    <h3 class="font-heading text-base font-bold text-kerajaan-dark">Endorsement Mendekati Deadline</h3>
+                    <p class="text-xs text-kerajaan-muted">Perlu pemantauan progres konten kreator</p>
                 </div>
-                <a href="{{ route('superadmin.endorsements.index') }}" class="text-xs font-bold text-[#d57028] hover:text-[#b86021] hover:underline">
+                <a href="{{ route('superadmin.endorsements.index') }}" class="text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown hover:underline">
                     Lihat semua
                 </a>
             </div>
 
             @if ($upcomingEndorsements->isEmpty())
-                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-[#765f58] p-6">
-                    <div class="flex size-11 items-center justify-center rounded-xl bg-[#f7eee8] text-[#765f58] mb-2">
+                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-kerajaan-muted p-6">
+                    <div class="flex size-11 items-center justify-center rounded-xl bg-kerajaan-sand text-kerajaan-muted mb-2">
                         <i class="bi bi-calendar-check text-xl"></i>
                     </div>
                     <p class="font-medium">Tidak ada endorsement mendekati deadline saat ini.</p>
@@ -194,22 +194,22 @@
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
-                        <thead class="border-b border-[#421b13]/8 bg-[#fbf7f4] text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">
+                        <thead class="border-b border-kerajaan-dark/8 bg-kerajaan-cream text-[11px] font-bold uppercase tracking-wider text-kerajaan-muted font-heading">
                             <tr>
                                 <th class="px-5 py-3.5 font-semibold">KOL / Brand</th>
                                 <th class="px-5 py-3.5 font-semibold">Tenggat Waktu</th>
                                 <th class="px-5 py-3.5 font-semibold">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-[#421b13]/6">
+                        <tbody class="divide-y divide-kerajaan-dark/6">
                             @foreach ($upcomingEndorsements as $endorsement)
-                                <tr class="transition hover:bg-[#fff9f4]/60">
+                                <tr class="transition hover:bg-kerajaan-cream/60">
                                     <td class="px-5 py-3.5">
-                                        <p class="font-bold text-[#421b13] font-heading">{{ $endorsement->kolProfile->user->name ?? 'KOL' }}</p>
-                                        <p class="text-xs text-[#765f58]">{{ $endorsement->campaign->brand->name ?? 'Brand' }}</p>
+                                        <p class="font-bold text-kerajaan-dark font-heading">{{ $endorsement->kolProfile->user->name ?? 'KOL' }}</p>
+                                        <p class="text-xs text-kerajaan-muted">{{ $endorsement->campaign->brand->name ?? 'Brand' }}</p>
                                     </td>
-                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs font-semibold text-[#421b13]">
-                                        <i class="bi bi-clock mr-1 text-[#d57028]"></i>
+                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs font-semibold text-kerajaan-dark">
+                                        <i class="bi bi-clock mr-1 text-kerajaan-orange"></i>
                                         {{ $endorsement->deadline ? $endorsement->deadline->format('d M Y') : '-' }}
                                     </td>
                                     <td class="px-5 py-3.5">
@@ -224,20 +224,20 @@
         </section>
 
         {{-- Pendaftaran KOL Terbaru --}}
-        <section class="overflow-hidden rounded-2xl border border-[#421b13]/8 bg-white shadow-sm">
-            <div class="flex items-center justify-between p-5 border-b border-[#421b13]/8">
+        <section class="overflow-hidden rounded-2xl border border-kerajaan-dark/8 bg-white shadow-sm">
+            <div class="flex items-center justify-between p-5 border-b border-kerajaan-dark/8">
                 <div>
-                    <h3 class="font-heading text-base font-bold text-[#421b13]">Pendaftaran KOL Terbaru</h3>
-                    <p class="text-xs text-[#765f58]">Kreator baru yang menunggu review verifikasi</p>
+                    <h3 class="font-heading text-base font-bold text-kerajaan-dark">Pendaftaran KOL Terbaru</h3>
+                    <p class="text-xs text-kerajaan-muted">Kreator baru yang menunggu review verifikasi</p>
                 </div>
-                <a href="{{ route('superadmin.registrations.index') }}" class="text-xs font-bold text-[#d57028] hover:text-[#b86021] hover:underline">
+                <a href="{{ route('superadmin.registrations.index') }}" class="text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown hover:underline">
                     Lihat semua
                 </a>
             </div>
 
             @if ($recentRegistrations->isEmpty())
-                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-[#765f58] p-6">
-                    <div class="flex size-11 items-center justify-center rounded-xl bg-[#f7eee8] text-[#765f58] mb-2">
+                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-kerajaan-muted p-6">
+                    <div class="flex size-11 items-center justify-center rounded-xl bg-kerajaan-sand text-kerajaan-muted mb-2">
                         <i class="bi bi-person-plus text-xl"></i>
                     </div>
                     <p class="font-medium">Belum ada pengajuan pendaftaran baru.</p>
@@ -245,21 +245,21 @@
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
-                        <thead class="border-b border-[#421b13]/8 bg-[#fbf7f4] text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">
+                        <thead class="border-b border-kerajaan-dark/8 bg-kerajaan-cream text-[11px] font-bold uppercase tracking-wider text-kerajaan-muted font-heading">
                             <tr>
                                 <th class="px-5 py-3.5 font-semibold">Nama Kreator</th>
                                 <th class="px-5 py-3.5 font-semibold">Tanggal Daftar</th>
                                 <th class="px-5 py-3.5 font-semibold">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-[#421b13]/6">
+                        <tbody class="divide-y divide-kerajaan-dark/6">
                             @foreach ($recentRegistrations as $registration)
-                                <tr class="transition hover:bg-[#fff9f4]/60">
+                                <tr class="transition hover:bg-kerajaan-cream/60">
                                     <td class="px-5 py-3.5">
-                                        <p class="font-bold text-[#421b13] font-heading">{{ $registration->full_name }}</p>
-                                        <p class="text-xs text-[#765f58]">{{ $registration->city ?: 'Lokasi belum diisi' }}</p>
+                                        <p class="font-bold text-kerajaan-dark font-heading">{{ $registration->full_name }}</p>
+                                        <p class="text-xs text-kerajaan-muted">{{ $registration->city ?: 'Lokasi belum diisi' }}</p>
                                     </td>
-                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs text-[#765f58]">
+                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs text-kerajaan-muted">
                                         {{ $registration->created_at->format('d M Y') }}
                                     </td>
                                     <td class="px-5 py-3.5">
@@ -285,8 +285,8 @@
             const trendDatasets = @json($trendDatasets);
             let currentPeriod = '6m';
 
-            const activeBtnClasses = ['active-filter', 'bg-white', 'text-[#d57028]', 'shadow-xs', 'font-bold'];
-            const inactiveBtnClasses = ['text-[#765f58]', 'hover:text-[#421b13]', 'font-medium'];
+            const activeBtnClasses = ['active-filter', 'bg-white', 'text-kerajaan-orange', 'shadow-xs', 'font-bold'];
+            const inactiveBtnClasses = ['text-kerajaan-muted', 'hover:text-kerajaan-dark', 'font-medium'];
 
             const formatRupiah = (number) => {
                 return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
@@ -306,8 +306,8 @@
                             data: initialData.volumes,
                             type: 'bar',
                             yAxisID: 'y',
-                            backgroundColor: 'rgba(213, 112, 40, 0.85)',
-                            hoverBackgroundColor: '#d57028',
+                            backgroundColor: 'rgba(11, 100, 212, 0.85)',
+                            hoverBackgroundColor: '#0b64d4',
                             borderRadius: 6,
                             borderSkipped: false,
                             barPercentage: 0.45,
@@ -319,15 +319,15 @@
                             data: initialData.commissions,
                             type: 'line',
                             yAxisID: 'y1',
-                            borderColor: '#d5282d',
-                            backgroundColor: 'rgba(213, 40, 45, 0.08)',
+                            borderColor: '#1698f6',
+                            backgroundColor: 'rgba(22, 152, 246, 0.08)',
                             borderWidth: 2.5,
                             pointBackgroundColor: '#ffffff',
-                            pointBorderColor: '#d5282d',
+                            pointBorderColor: '#1698f6',
                             pointBorderWidth: 2,
                             pointRadius: 4,
                             pointHoverRadius: 6,
-                            pointHoverBackgroundColor: '#d5282d',
+                            pointHoverBackgroundColor: '#1698f6',
                             pointHoverBorderColor: '#ffffff',
                             pointHoverBorderWidth: 2,
                             tension: 0.35,
@@ -348,9 +348,9 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(66, 27, 19, 0.95)',
+                            backgroundColor: 'rgba(7, 29, 73, 0.95)',
                             titleColor: '#ffffff',
-                            bodyColor: '#f7eee8',
+                            bodyColor: '#f1f5f9',
                             titleFont: {
                                 family: '"Plus Jakarta Sans", sans-serif',
                                 size: 12,
@@ -420,7 +420,7 @@
                                     size: 11,
                                     weight: '600'
                                 },
-                                color: '#765f58'
+                                color: '#64748b'
                             }
                         },
                         y: {
@@ -430,7 +430,7 @@
                             beginAtZero: true,
                             suggestedMax: Math.ceil(maxVolume * 1.25),
                             grid: {
-                                color: 'rgba(66, 27, 19, 0.06)',
+                                color: 'rgba(12, 54, 133, 0.06)',
                                 drawBorder: false
                             },
                             ticks: {
@@ -439,7 +439,7 @@
                                     family: '"DM Sans", sans-serif',
                                     size: 11
                                 },
-                                color: '#765f58',
+                                color: '#64748b',
                                 callback: function(value) {
                                     return value + ' prj';
                                 }
@@ -459,7 +459,7 @@
                                     family: '"DM Sans", sans-serif',
                                     size: 11
                                 },
-                                color: '#d5282d',
+                                color: '#1698f6',
                                 callback: function(value) {
                                     if (value >= 1000000) {
                                         return 'Rp ' + (value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1) + ' jt';

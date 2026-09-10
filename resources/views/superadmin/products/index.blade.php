@@ -1,6 +1,6 @@
 @extends('superadmin.layouts.app')
 
-@section('title', 'Katalog Produk & Bank Konten | Superadmin Majapahit Influence')
+@section('title', 'Katalog Produk & Bank Konten | Superadmin kerajaan Influence')
 @section('page-title', 'Katalog Produk & Bank Konten')
 
 @section('content')
@@ -9,24 +9,24 @@
     {{-- Header --}}
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-extrabold text-[#421b13] font-heading">Katalog Produk & Bank Konten</h1>
-            <p class="text-xs text-[#765f58] mt-1">Kelola produk e-commerce mitra, penetapan komisi affiliate, dan materi Bank Konten promosi.</p>
+            <h1 class="text-2xl font-extrabold text-kerajaan-dark font-heading">Katalog Produk & Bank Konten</h1>
+            <p class="text-xs text-kerajaan-muted mt-1">Kelola produk e-commerce mitra, penetapan komisi affiliate, dan materi Bank Konten promosi.</p>
         </div>
         <div class="flex items-center gap-3">
-            <a href="{{ route('catalog.index') }}" target="_blank" rel="noopener noreferrer" class="btn-majapahit-secondary text-xs">
+            <a href="{{ route('catalog.index') }}" target="_blank" rel="noopener noreferrer" class="btn-kerajaan-secondary text-xs">
                 <i class="bi bi-eye"></i> Lihat Katalog Publik
             </a>
-            <a href="{{ route('superadmin.products.create') }}" class="btn-majapahit-primary text-xs">
+            <a href="{{ route('superadmin.products.create') }}" class="btn-kerajaan-primary text-xs">
                 <i class="bi bi-plus-lg"></i> Tambah Produk Baru
             </a>
         </div>
     </div>
 
     {{-- Product Table Card --}}
-    <div class="bg-white rounded-2xl border border-[#421b13]/8 shadow-sm overflow-hidden">
+    <div class="bg-white rounded-2xl border border-kerajaan-dark/8 shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
-                <thead class="bg-[#fbf7f4] border-b border-[#421b13]/8 text-[#765f58] font-heading font-bold uppercase tracking-wider text-[11px]">
+                <thead class="bg-kerajaan-cream border-b border-kerajaan-dark/8 text-kerajaan-muted font-heading font-bold uppercase tracking-wider text-[11px]">
                     <tr>
                         <th class="py-3.5 px-4">Produk</th>
                         <th class="py-3.5 px-4">Brand & Kategori</th>
@@ -37,28 +37,28 @@
                         <th class="py-3.5 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-[#421b13]/6">
+                <tbody class="divide-y divide-kerajaan-dark/6">
                     @forelse ($products as $prod)
                         @php
                             $hasDrive = $prod->contentBanks->whereNotNull('external_url')->isNotEmpty();
                         @endphp
-                        <tr class="hover:bg-[#fff9f4]/60 transition-colors">
+                        <tr class="hover:bg-kerajaan-cream/60 transition-colors">
                             <td class="py-4 px-4">
                                 <div class="flex items-center gap-3">
-                                    <img src="{{ $prod->image_url }}" alt="{{ $prod->name }}" class="w-12 h-12 rounded-xl object-cover shadow-xs border border-[#421b13]/8 shrink-0">
+                                    <img src="{{ $prod->image_url }}" alt="{{ $prod->name }}" class="w-12 h-12 rounded-xl object-cover shadow-xs border border-kerajaan-dark/8 shrink-0">
                                     <div>
-                                        <strong class="text-sm font-bold text-[#421b13] font-heading block leading-snug">{{ $prod->name }}</strong>
-                                        <span class="text-[11px] text-[#765f58]">SKU: {{ $prod->sku ?: '-' }} · Stok: {{ $prod->stock }}</span>
+                                        <strong class="text-sm font-bold text-kerajaan-dark font-heading block leading-snug">{{ $prod->name }}</strong>
+                                        <span class="text-[11px] text-kerajaan-muted">SKU: {{ $prod->sku ?: '-' }} · Stok: {{ $prod->stock }}</span>
                                     </div>
                                 </div>
                             </td>
                             <td class="py-4 px-4">
-                                <strong class="text-[#421b13] font-heading block">{{ $prod->brand->name ?? 'Brand Partner' }}</strong>
-                                <span class="px-2 py-0.5 rounded-md bg-[#f7eee8] text-[#421b13] text-[10px] font-bold mt-1 inline-block border border-[#421b13]/10">
+                                <strong class="text-kerajaan-dark font-heading block">{{ $prod->brand->name ?? 'Brand Partner' }}</strong>
+                                <span class="px-2 py-0.5 rounded-md bg-kerajaan-sand text-kerajaan-dark text-[10px] font-bold mt-1 inline-block border border-kerajaan-dark/10">
                                     {{ $prod->category->name ?? 'Umum' }}
                                 </span>
                             </td>
-                            <td class="py-4 px-4 font-bold text-[#421b13] font-heading">
+                            <td class="py-4 px-4 font-bold text-kerajaan-dark font-heading">
                                 {{ $prod->formatted_price }}
                             </td>
                             <td class="py-4 px-4">
@@ -85,7 +85,7 @@
                                         </span>
                                         <form action="{{ route('superadmin.products.toggle-publish', $prod->id) }}" method="POST" class="inline" onsubmit="return confirm('Tarik produk ini dari katalog E-Commerce publik?');">
                                             @csrf
-                                            <button type="submit" class="text-[10px] text-[#765f58] hover:text-[#d5282d] font-bold underline transition" title="Tarik produk agar tidak muncul di katalog">
+                                            <button type="submit" class="text-[10px] text-kerajaan-muted hover:text-kerajaan-red font-bold underline transition" title="Tarik produk agar tidak muncul di katalog">
                                                 Tarik (Unpublish)
                                             </button>
                                         </form>
@@ -101,7 +101,7 @@
                                                 </button>
                                             </form>
                                         @else
-                                            <a href="{{ route('superadmin.products.edit', $prod->id) }}#bank-konten" class="px-2.5 py-1 rounded-lg bg-[#d57028]/10 hover:bg-[#d57028]/20 text-[#d57028] font-bold text-[10px] inline-flex items-center gap-1 transition font-heading" title="Lengkapi Google Drive Bank Konten terlebih dahulu untuk mempublikasikan">
+                                            <a href="{{ route('superadmin.products.edit', $prod->id) }}#bank-konten" class="px-2.5 py-1 rounded-lg bg-kerajaan-orange/10 hover:bg-kerajaan-orange/20 text-kerajaan-orange font-bold text-[10px] inline-flex items-center gap-1 transition font-heading" title="Lengkapi Google Drive Bank Konten terlebih dahulu untuk mempublikasikan">
                                                 <i class="bi bi-plus-circle"></i> Isi GDrive Dulu
                                             </a>
                                         @endif
@@ -110,16 +110,16 @@
                             </td>>
                             <td class="py-4 px-4 text-center whitespace-nowrap">
                                 <div class="flex items-center justify-center gap-1.5">
-                                    <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-[#f7eee8] hover:bg-[#f7eee8]/80 text-[#421b13] transition" title="Lihat Halaman Katalog">
+                                    <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-kerajaan-sand hover:bg-kerajaan-sand/80 text-kerajaan-dark transition" title="Lihat Halaman Katalog">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-2 rounded-lg bg-[#d57028]/10 hover:bg-[#d57028]/20 text-[#d57028] transition" title="Edit Produk & Bank Konten">
+                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-2 rounded-lg bg-kerajaan-orange/10 hover:bg-kerajaan-orange/20 text-kerajaan-orange transition" title="Edit Produk & Bank Konten">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <form action="{{ route('superadmin.products.destroy', $prod->id) }}" method="POST" class="inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="p-2 rounded-lg bg-[#d5282d]/10 hover:bg-[#d5282d]/20 text-[#d5282d] transition" title="Hapus Produk">
+                                        <button type="submit" class="p-2 rounded-lg bg-kerajaan-red/10 hover:bg-kerajaan-red/20 text-kerajaan-red transition" title="Hapus Produk">
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
@@ -128,8 +128,8 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="7" class="py-12 text-center text-[#765f58]">
-                                <div class="flex size-12 mx-auto items-center justify-center rounded-2xl bg-[#f7eee8] text-[#765f58] mb-3">
+                            <td colspan="7" class="py-12 text-center text-kerajaan-muted">
+                                <div class="flex size-12 mx-auto items-center justify-center rounded-2xl bg-kerajaan-sand text-kerajaan-muted mb-3">
                                     <i class="bi bi-box-seam text-xl"></i>
                                 </div>
                                 <p class="font-medium text-sm">Belum ada produk di katalog.</p>
@@ -141,7 +141,7 @@
         </div>
 
         @if ($products->hasPages())
-            <div class="p-4 border-t border-[#421b13]/8">
+            <div class="p-4 border-t border-kerajaan-dark/8">
                 {{ $products->links() }}
             </div>
         @endif

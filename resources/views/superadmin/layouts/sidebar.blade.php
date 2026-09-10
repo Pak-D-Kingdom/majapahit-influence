@@ -1,16 +1,16 @@
-<aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#421b13]/40 bg-[#190906] text-[#f7eee8]/80 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-72 lg:shrink-0 lg:translate-x-0">
-    <div class="flex h-20 items-center gap-3 border-b border-white/8 px-6">
-        <div class="flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr from-[#d57028] via-[#d5282d] to-[#fec200] font-heading font-extrabold text-white shadow-md shadow-[#d57028]/20">
-            MI
-        </div>
-        <div class="leading-tight">
-            <p class="font-heading text-sm font-extrabold tracking-[0.18em] text-[#fec200]">MAJAPAHIT</p>
-            <p class="text-[10px] font-semibold tracking-[0.25em] text-white/80">INFLUENCE</p>
-        </div>
+<aside id="dashboard-sidebar" class="fixed inset-y-0 left-0 z-40 flex h-screen w-72 -translate-x-full flex-col border-r border-[#071d49]/30 bg-[#071d49] text-slate-200 transition-transform lg:sticky lg:top-0 lg:h-screen lg:w-72 lg:shrink-0 lg:translate-x-0">
+    <div class="flex h-20 items-center gap-3 border-b border-white/10 px-6">
+        <a href="{{ url('/') }}" class="flex items-center gap-3 group transition-transform hover:scale-102">
+            <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-9 w-auto object-contain">
+            <div class="flex flex-col leading-tight">
+                <span class="font-heading text-[10px] font-bold tracking-[2px] text-[#78a5d6]">KERAJAAN</span>
+                <strong class="font-heading text-[12px] font-extrabold tracking-[1px] text-white">WORKSPACE</strong>
+            </div>
+        </a>
     </div>
 
     <div class="flex-1 overflow-y-auto px-4 py-6">
-        <p class="mb-3 px-3 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#fec200]/70 font-heading">Workspace</p>
+        <p class="mb-3 px-3 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#78a5d6] font-heading">Workspace</p>
         <nav class="space-y-1" aria-label="Menu Utama">
             @php
                 $workspaceItems = [
@@ -31,14 +31,14 @@
                     $isActive = request()->routeIs($route, $route.'.*', str_replace('.index', '', $route).'.*');
                 @endphp
                 <a href="{{ Route::has($route) ? route($route) : '#' }}" 
-                   class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fec200] {{ $isActive ? 'bg-gradient-to-r from-[#d57028] to-[#b86021] font-semibold text-white shadow-md shadow-[#d57028]/25' : 'text-[#f7eee8]/75 hover:bg-white/6 hover:text-white' }}">
-                    <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-[#d57028]' }}"></i>
+                   class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kerajaan-yellow {{ $isActive ? 'bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown font-semibold text-white shadow-md shadow-kerajaan-orange/25' : 'text-kerajaan-sand/75 hover:bg-white/6 hover:text-white' }}">
+                    <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-kerajaan-orange' }}"></i>
                     <span>{{ $label }}</span>
                 </a>
             @endforeach
         </nav>
 
-        <p class="mb-3 mt-8 px-3 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#fec200]/70 font-heading">Sistem</p>
+        <p class="mb-3 mt-8 px-3 text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#78a5d6] font-heading">Sistem</p>
         <nav class="space-y-1" aria-label="Menu Sistem">
             @php
                 $systemItems = [
@@ -53,8 +53,8 @@
                         $isActive = request()->routeIs($route, $route.'.*', str_replace('.index', '', $route).'.*');
                     @endphp
                     <a href="{{ route($route) }}" 
-                       class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#fec200] {{ $isActive ? 'bg-gradient-to-r from-[#d57028] to-[#b86021] font-semibold text-white shadow-md shadow-[#d57028]/25' : 'text-[#f7eee8]/75 hover:bg-white/6 hover:text-white' }}">
-                        <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-[#d57028]' }}"></i>
+                       class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1698f6] {{ $isActive ? 'bg-gradient-to-r from-kerajaan-orange to-kerajaan-red font-semibold text-white shadow-md shadow-kerajaan-orange/25' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                        <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-[#78a5d6]' }}"></i>
                         <span>{{ $label }}</span>
                     </a>
                 @endif
@@ -64,19 +64,19 @@
 
     {{-- Footer Box --}}
     <div class="border-t border-white/10 p-4">
-        <div class="rounded-xl border border-white/5 bg-[#31140d]/80 p-3.5 backdrop-blur-xs">
+        <div class="rounded-xl border border-white/10 bg-[#0a2560]/70 p-3.5 backdrop-blur-xs">
             <div class="flex items-center gap-3">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-[#d57028] to-[#d5282d] text-xs font-bold text-white font-heading shadow-xs">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-kerajaan-orange to-kerajaan-red text-xs font-bold text-white font-heading shadow-xs">
                     SA
                 </div>
                 <div class="min-w-0 flex-1">
                     <p class="truncate text-xs font-bold text-white font-heading">{{ auth()->user()->name ?? 'Superadmin' }}</p>
-                    <p class="mt-0.5 truncate text-[11px] text-white/70">{{ auth()->user()->email ?? 'admin@majapahit.com' }}</p>
+                    <p class="mt-0.5 truncate text-[11px] text-slate-300">{{ auth()->user()->email ?? 'admin@kerajaan.id' }}</p>
                 </div>
             </div>
             <form method="POST" action="{{ route('logout') }}" class="mt-3 pt-2.5 border-t border-white/5">
                 @csrf
-                <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-lg bg-white/5 py-1.5 text-xs font-medium text-white/70 hover:bg-rose-500/20 hover:text-rose-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+                <button type="submit" class="flex w-full items-center justify-center gap-2 rounded-lg bg-white/5 py-1.5 text-xs font-medium text-slate-300 hover:bg-rose-500/20 hover:text-rose-300 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
                     <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
                     Keluar Akun
                 </button>
