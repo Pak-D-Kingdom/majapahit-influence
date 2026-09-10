@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProductManagementController;
 use App\Http\Controllers\Admin\ProductVerificationController;
 use App\Http\Controllers\Admin\RegistrationReviewController;
 use App\Http\Controllers\Admin\ReportController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Superadmin\AuditTrailController;
 use App\Http\Controllers\Superadmin\BrandController;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::match(['GET', 'POST'], '/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Dev 2: Pendaftaran Review (KOL)
 Route::get('/pendaftaran', [RegistrationReviewController::class, 'index'])->name('registrations.index');

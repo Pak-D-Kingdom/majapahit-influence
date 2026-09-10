@@ -1,5 +1,83 @@
 @extends('layouts.app')
-@section('title', 'Lupa Password')
+
+@section('title', 'Lupa Kata Sandi — KERAJAAN')
+
 @section('content')
-<main class="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10"><div class="w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8"><a href="{{ route('login') }}" class="text-sm font-semibold text-indigo-600">← Kembali ke login</a><h1 class="mt-6 text-2xl font-bold text-slate-950">Lupa password?</h1><p class="mt-2 text-sm leading-6 text-slate-500">Masukkan email akun Anda untuk menerima link reset password.</p>@if(session('success'))<div class="mt-5 rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{{ session('success') }}</div>@endif @if($errors->any())<div class="mt-5 rounded-xl bg-rose-50 p-3 text-sm text-rose-700">{{ $errors->first() }}</div>@endif<form method="POST" action="{{ route('password.email') }}" class="mt-6 space-y-5">@csrf<label class="block text-sm font-medium text-slate-700">Email<input type="email" name="email" value="{{ old('email') }}" required autofocus class="mt-2 w-full rounded-xl border-slate-200 text-sm focus:border-indigo-500 focus:ring-indigo-500"></label><button class="w-full rounded-xl bg-slate-950 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800">Kirim link reset</button></form></div></main>
+<main class="min-h-screen flex flex-col justify-between bg-gradient-to-b from-blue-50/40 via-white to-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full mx-auto my-auto">
+
+        {{-- Brand Logo Header --}}
+        <div class="text-center mb-8">
+            <a href="{{ url('/') }}" class="inline-flex flex-col items-center gap-2 group transition-transform hover:scale-105">
+                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-12 w-auto object-contain">
+                <span class="text-[11px] font-bold tracking-[0.22em] text-[#0c3685] uppercase">
+                    KERAJAAN &bull; MAJAPAHIT INFLUENCE
+                </span>
+            </a>
+        </div>
+
+        {{-- Main Card --}}
+        <div class="bg-white rounded-3xl border border-blue-100/80 shadow-xl shadow-blue-950/5 p-7 sm:p-9 backdrop-blur-sm">
+            
+            <div class="mb-6">
+                <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] mb-4 transition">
+                    <i class="bi bi-arrow-left"></i> Kembali ke Halaman Masuk
+                </a>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold text-[#0b64d4] tracking-wider uppercase mb-2 block w-fit">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#0b64d4]"></span>
+                    PEMULIHAN AKUN
+                </div>
+                <h1 class="text-2xl font-black text-[#0c3685] tracking-tight">Lupa Kata Sandi?</h1>
+                <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                    Masukkan alamat email yang terdaftar. Kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.
+                </p>
+            </div>
+
+            @if (session('success'))
+                <div class="mb-5 rounded-2xl bg-emerald-50 border border-emerald-200/80 p-3.5 text-xs text-emerald-800 flex items-center gap-2.5">
+                    <i class="bi bi-check-circle-fill text-emerald-600 text-sm"></i>
+                    <span>{{ session('success') }}</span>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="mb-5 rounded-2xl bg-rose-50 border border-rose-200/80 p-3.5 text-xs text-rose-800 flex items-center gap-2.5">
+                    <i class="bi bi-exclamation-circle-fill text-rose-600 text-sm"></i>
+                    <span>{{ $errors->first() }}</span>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('password.email') }}" class="space-y-4">
+                @csrf
+
+                <div>
+                    <label class="block text-xs font-bold text-[#0c3685] mb-1.5">
+                        Alamat Email Terdaftar <span class="text-rose-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-slate-400">
+                            <i class="bi bi-envelope"></i>
+                        </span>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            value="{{ old('email') }}" 
+                            required 
+                            autofocus 
+                            placeholder="nama@domain.com"
+                            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white"
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full mt-2 py-3 rounded-xl bg-gradient-to-r from-[#0b64d4] to-[#1698f6] hover:from-[#0c3685] hover:to-[#0b64d4] text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md shadow-blue-600/20 flex items-center justify-center gap-2">
+                    <span>Kirim Tautan Reset</span>
+                    <i class="bi bi-send"></i>
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+</main>
 @endsection
