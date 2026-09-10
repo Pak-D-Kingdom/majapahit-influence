@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\KolRegistrationService;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -55,6 +56,29 @@ class KolRegistration extends Model
     public function approver(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    /**
+     * Get normalized social media accounts list.
+     *
+     * @return array<int, array{platform: string, username: string, profile_url: ?string, followers_count: int}>
+     */
+    public function getNormalizedSocialMediaAttribute(): array
+    {
+        return app(KolRegistrationService::class)->normalizeSocialMedia($this->social_media);
+    }
+
+    /**
+     * Get formatted label of all platforms.
+     */
+    public function getPlatformsLabelAttribute(): string
+    {
+        $accounts = $this->normalized_social_media;
+        if (empty($accounts)) {
+            return '-';
+        }
+
+        return collect($accounts)->pluck('platform')->map(fn ($p) => str($p)->title())->join(', ');
     }
 
     /**

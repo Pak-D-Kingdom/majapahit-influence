@@ -6,9 +6,9 @@
 @section('content')
     {{-- Header --}}
     <div class="mb-6">
-        <p class="text-xs font-bold uppercase tracking-wider text-[#d57028] font-heading">Transparansi Finansial</p>
-        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#421b13] font-heading">Komisi Saya</h2>
-        <p class="mt-1 text-sm text-[#765f58]">Pantau riwayat pembagian komisi, transparansi perhitungan, dan status pencairan ke rekeningmu.</p>
+        <p class="text-xs font-bold uppercase tracking-wider text-[#0b64d4] font-heading">Transparansi Finansial</p>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#071d49] font-heading">Komisi Saya</h2>
+        <p class="mt-1 text-sm text-slate-500">Pantau riwayat pembagian komisi, transparansi perhitungan, dan status pencairan ke rekeningmu.</p>
     </div>
 
     {{-- Stat Cards --}}
@@ -37,17 +37,17 @@
     </div>
 
     {{-- Commission Table --}}
-    <div class="mt-8 overflow-hidden rounded-2xl border border-[#421b13]/8 bg-white shadow-sm">
-        <div class="flex items-center justify-between border-b border-[#421b13]/6 p-5 sm:px-6">
+    <div class="mt-8 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
+        <div class="flex items-center justify-between border-b border-slate-100 p-5 sm:px-6">
             <div>
-                <h3 class="text-base font-extrabold text-[#421b13] font-heading">Riwayat Komisi Endorsement</h3>
-                <p class="text-xs text-[#765f58]">Daftar komisi yang didapatkan dari tiap campaign yang selesai dikerjakan</p>
+                <h3 class="text-base font-extrabold text-[#071d49] font-heading">Riwayat Komisi Endorsement</h3>
+                <p class="text-xs text-slate-500">Daftar komisi yang didapatkan dari tiap campaign yang selesai dikerjakan</p>
             </div>
         </div>
 
         <div class="overflow-x-auto">
             <table class="w-full min-w-[750px] text-left text-sm">
-                <thead class="border-b border-[#421b13]/6 bg-[#fff9f4] text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">
+                <thead class="border-b border-slate-100 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 font-heading">
                     <tr>
                         <th class="px-5 py-3.5 sm:px-6">Campaign & Brand</th>
                         <th class="px-5 py-3.5">Fee Campaign</th>
@@ -56,16 +56,16 @@
                         <th class="px-5 py-3.5 text-right">Rincian</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-[#421b13]/6">
+                <tbody class="divide-y divide-slate-100">
                     @forelse ($commissions as $commission)
-                        <tr class="group hover:bg-[#fff9f4]/60 transition">
+                        <tr class="group hover:bg-slate-50/70 transition">
                             <td class="px-5 py-4 sm:px-6">
-                                <a href="{{ route('kol.commissions.show', $commission) }}" class="font-bold text-[#421b13] group-hover:text-[#d57028] transition font-heading block">
+                                <a href="{{ route('kol.commissions.show', $commission) }}" class="font-bold text-[#071d49] group-hover:text-[#0b64d4] transition font-heading block">
                                     {{ $commission->endorsement->campaign->name }}
                                 </a>
-                                <p class="text-xs text-[#765f58]">{{ $commission->endorsement->campaign->brand->name }}</p>
+                                <p class="text-xs text-slate-500">{{ $commission->endorsement->campaign->brand->name }}</p>
                             </td>
-                            <td class="whitespace-nowrap px-5 py-4 text-xs font-semibold text-[#765f58]">
+                            <td class="whitespace-nowrap px-5 py-4 text-xs font-semibold text-slate-600">
                                 Rp {{ number_format($commission->endorsement_fee, 0, ',', '.') }}
                             </td>
                             <td class="whitespace-nowrap px-5 py-4">
@@ -81,19 +81,19 @@
                             </td>
                             <td class="whitespace-nowrap px-5 py-4 text-right">
                                 <a href="{{ route('kol.commissions.show', $commission) }}"
-                                   class="inline-flex size-8 items-center justify-center rounded-lg bg-[#fff9f4] text-[#d57028] hover:bg-[#d57028] hover:text-white transition">
+                                   class="inline-flex size-8 items-center justify-center rounded-lg bg-slate-50 text-[#0b64d4] hover:bg-[#0b64d4] hover:text-white transition">
                                     <i class="bi bi-chevron-right text-xs"></i>
                                 </a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="py-16 text-center text-[#765f58]">
-                                <div class="mx-auto flex size-14 items-center justify-center rounded-2xl bg-[#fff9f4] text-[#d57028]">
+                            <td colspan="5" class="py-16 text-center text-slate-500">
+                                <div class="mx-auto flex size-14 items-center justify-center rounded-2xl bg-slate-50 text-[#0b64d4]">
                                     <i class="bi bi-wallet2 text-2xl"></i>
                                 </div>
-                                <p class="mt-3 text-sm font-semibold text-[#421b13]">Belum ada riwayat komisi</p>
-                                <p class="mt-1 text-xs text-[#765f58]">Komisi akan tercatat otomatis saat endorsement kamu ditandai selesai.</p>
+                                <p class="mt-3 text-sm font-semibold text-[#071d49]">Belum ada riwayat komisi</p>
+                                <p class="mt-1 text-xs text-slate-500">Komisi akan tercatat otomatis saat endorsement kamu ditandai selesai.</p>
                             </td>
                         </tr>
                     @endforelse
@@ -102,7 +102,7 @@
         </div>
 
         @if ($commissions->hasPages())
-            <div class="border-t border-[#421b13]/6 p-4 sm:px-6">
+            <div class="border-t border-slate-100 p-4 sm:px-6">
                 {{ $commissions->links() }}
             </div>
         @endif
