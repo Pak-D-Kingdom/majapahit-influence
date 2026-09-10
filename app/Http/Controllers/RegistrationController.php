@@ -30,6 +30,31 @@ class RegistrationController extends Controller
     {
         $registration = DB::transaction(function () use ($request): KolRegistration {
             $data = $request->validated();
+
+            $socialMedia = [];
+            if (! empty($data['social_media']) && is_array($data['social_media'])) {
+                $selectedPlatforms = (array) ($request->input('platforms') ?? array_keys($data['social_media']));
+                foreach ($data['social_media'] as $platformKey => $account) {
+                    if (is_array($account) && ! empty($account['username']) && (empty($selectedPlatforms) || in_array($platformKey, $selectedPlatforms))) {
+                        $socialMedia[] = [
+                            'platform' => (string) ($account['platform'] ?? $platformKey),
+                            'username' => (string) $account['username'],
+                            'profile_url' => $account['profile_url'] ?? null,
+                            'followers_count' => (int) ($account['followers_count'] ?? 0),
+                        ];
+                    }
+                }
+            }
+
+            if (empty($socialMedia)) {
+                $socialMedia = [
+                    'platform' => $data['platform'] ?? ($data['social_media']['platform'] ?? 'instagram'),
+                    'username' => $data['username'] ?? ($data['social_media']['username'] ?? ''),
+                    'profile_url' => $data['profile_url'] ?? ($data['social_media']['profile_url'] ?? null),
+                    'followers_count' => (int) ($data['followers_count'] ?? ($data['social_media']['followers_count'] ?? 0)),
+                ];
+            }
+
             $registration = KolRegistration::create([
                 'registration_number' => KolRegistration::generateRegistrationNumber(),
                 'full_name' => $data['full_name'],
@@ -38,12 +63,7 @@ class RegistrationController extends Controller
                 'phone' => $data['phone'],
                 'city' => $data['city'] ?? null,
                 'niches' => $data['niches'] ?? [],
-                'social_media' => [
-                    'platform' => $data['platform'] ?? ($data['social_media']['platform'] ?? 'instagram'),
-                    'username' => $data['username'] ?? ($data['social_media']['username'] ?? ''),
-                    'profile_url' => $data['profile_url'] ?? ($data['social_media']['profile_url'] ?? null),
-                    'followers_count' => $data['followers_count'] ?? ($data['social_media']['followers_count'] ?? 0),
-                ],
+                'social_media' => $socialMedia,
                 'expected_rate' => $data['expected_rate'] ?? null,
                 'join_reason' => $data['join_reason'] ?? null,
             ]);

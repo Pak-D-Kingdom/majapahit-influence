@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Katalog E-Commerce Produk — Majapahit Influence')
+@section('title', 'Katalog E-Commerce Produk — kerajaan Influence')
 
 @section('content')
 <div class="min-h-screen bg-gray-50/70 pb-20">

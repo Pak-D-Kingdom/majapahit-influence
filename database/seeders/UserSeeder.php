@@ -26,9 +26,9 @@ class UserSeeder extends Seeder
 
         // 1. Superadmin User
         $superadmin = User::firstOrCreate(
-            ['email' => 'admin@majapahit.com'],
+            ['email' => 'admin@kerajaan.com'],
             [
-                'name' => 'Superadmin Majapahit',
+                'name' => 'Superadmin kerajaan',
                 'password' => Hash::make('password'),
                 'is_active' => true,
             ]
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
 
         // 2. Sample Active KOL User
         $kolUser = User::firstOrCreate(
-            ['email' => 'kol@majapahit.com'],
+            ['email' => 'kol@kerajaan.com'],
             [
                 'name' => 'Dimas Lifestyle',
                 'password' => Hash::make('password'),
@@ -141,7 +141,7 @@ class UserSeeder extends Seeder
         // 3. Sample Brand User
         $brandRole = Role::firstOrCreate(['name' => 'brand'], ['display_name' => 'Brand']);
         $brandUser = User::firstOrCreate(
-            ['email' => 'brand@majapahit.com'],
+            ['email' => 'brand@kerajaan.com'],
             [
                 'name' => 'Skin Zenith Official',
                 'password' => Hash::make('password'),
@@ -158,7 +158,7 @@ class UserSeeder extends Seeder
                 'address' => 'Jl. Pemuda No. 45, Surabaya',
                 'pic_name' => 'Sarah Wijaya',
                 'pic_title' => 'Brand Manager',
-                'pic_email' => 'brand@majapahit.com',
+                'pic_email' => 'brand@kerajaan.com',
                 'pic_phone' => '081234567890',
                 'is_active' => true,
             ]

@@ -7,9 +7,9 @@
     {{-- Header Sambutan & Quick Actions --}}
     <div class="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-            <p class="text-sm font-medium text-slate-500">Selamat datang kembali di Workspace Superadmin KERAJAAN.</p>
-            <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0c3685] font-heading">
-                Pantau Aktivitas Ekosistem Hari Ini
+            <p class="text-sm font-medium text-kerajaan-muted">Selamat datang kembali di Workspace Superadmin.</p>
+            <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-kerajaan-dark font-heading">
+                Pantau Aktivitas Agensi Hari Ini
             </h2>
         </div>
         <div class="flex items-center gap-3">
@@ -35,31 +35,31 @@
 
     {{-- Visualisasi Tren & Notifikasi Terbaru --}}
     <div class="mt-8 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
-        {{-- Grafik Tren Endorsement & Perputaran Nilai Komisi --}}
-        <section class="flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs">
+        {{-- Grafik Tren Endorsement & Perputaran Nilai Komisi (Dual-Metric Visualization + Multi-Period Filter) --}}
+        <section class="flex flex-col justify-between rounded-2xl border border-kerajaan-dark/8 bg-white p-6 shadow-sm">
             <div>
-                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
+                <div class="flex flex-wrap items-center justify-between gap-3 border-b border-kerajaan-dark/8 pb-4">
                     <div>
                         <div class="flex items-center gap-2">
-                            <h3 class="font-heading text-lg font-bold text-[#0c3685]">Tren Kinerja & Nilai Komisi</h3>
-                            <span id="summary-period-badge" class="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-bold text-[#0b64d4] font-heading">6 Bulan</span>
+                            <h3 class="font-heading text-lg font-bold text-kerajaan-dark">Tren Kinerja & Nilai Komisi</h3>
+                            <span id="summary-period-badge" class="rounded-md bg-kerajaan-orange/10 px-2 py-0.5 text-[11px] font-bold text-kerajaan-orange font-heading">6 Bulan</span>
                         </div>
-                        <p class="mt-0.5 text-xs text-slate-500">Volume endorsement vs perputaran nilai komisi (Rp)</p>
+                        <p class="mt-0.5 text-xs text-kerajaan-muted">Volume endorsement vs perputaran nilai komisi (Rp)</p>
                     </div>
                     
                     {{-- Filter Periode Waktu (Pill Switcher) --}}
                     <div class="flex items-center">
-                        <div class="inline-flex rounded-xl bg-slate-100/80 p-1 border border-slate-200/60 text-xs font-medium text-slate-600">
-                            <button type="button" data-period="weekly" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#0c3685]">
+                        <div class="inline-flex rounded-xl bg-kerajaan-sand p-1 border border-kerajaan-dark/8 text-xs font-medium text-kerajaan-muted">
+                            <button type="button" data-period="weekly" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-kerajaan-dark">
                                 Mingguan
                             </button>
-                            <button type="button" data-period="1m" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#0c3685]">
+                            <button type="button" data-period="1m" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-kerajaan-dark">
                                 1 Bulan
                             </button>
-                            <button type="button" data-period="6m" class="period-filter-btn active-filter rounded-lg bg-white px-2.5 py-1 font-bold text-[#0b64d4] shadow-xs transition">
+                            <button type="button" data-period="6m" class="period-filter-btn active-filter rounded-lg bg-white px-2.5 py-1 font-bold text-kerajaan-orange shadow-xs transition">
                                 6 Bulan
                             </button>
-                            <button type="button" data-period="1y" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-[#0c3685]">
+                            <button type="button" data-period="1y" class="period-filter-btn rounded-lg px-2.5 py-1 transition hover:text-kerajaan-dark">
                                 1 Tahun
                             </button>
                         </div>
@@ -67,32 +67,32 @@
                 </div>
 
                 {{-- Mini Summary Metric Bar --}}
-                <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-xl bg-slate-50/80 p-3 border border-slate-100">
+                <div class="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 rounded-xl bg-kerajaan-cream p-3 border border-kerajaan-dark/5">
                     <div>
-                        <p class="text-[11px] font-medium text-slate-500">Total Volume</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#0c3685] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Total Volume</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-dark font-heading">
                             <span id="summary-total-volume">{{ number_format($trendSummary['totalEndorsements']) }}</span> 
-                            <span class="text-xs font-normal text-slate-500">Proyek</span>
+                            <span class="text-xs font-normal text-kerajaan-muted">Proyek</span>
                         </p>
                     </div>
                     <div>
-                        <p class="text-[11px] font-medium text-slate-500">Total Komisi</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#0b64d4] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Total Komisi</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-red font-heading">
                             <span id="summary-total-commission">Rp {{ number_format($trendSummary['totalCommission'], 0, ',', '.') }}</span>
                         </p>
                     </div>
                     <div>
-                        <p class="text-[11px] font-medium text-slate-500">Rata-rata Volume</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#0c3685] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Rata-rata Volume</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-dark font-heading">
                             <span id="summary-avg-volume">{{ $trendSummary['avgEndorsements'] }}</span> 
-                            <span id="summary-volume-unit" class="text-xs font-normal text-slate-500">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
+                            <span id="summary-volume-unit" class="text-xs font-normal text-kerajaan-muted">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
                         </p>
                     </div>
                     <div>
-                        <p class="text-[11px] font-medium text-slate-500">Rata-rata Komisi</p>
-                        <p class="mt-0.5 text-sm font-bold text-[#1698f6] font-heading">
+                        <p class="text-[11px] font-medium text-kerajaan-muted">Rata-rata Komisi</p>
+                        <p class="mt-0.5 text-sm font-bold text-kerajaan-orange font-heading">
                             <span id="summary-avg-commission">Rp {{ number_format($trendSummary['avgCommission'], 0, ',', '.') }}</span>
-                            <span id="summary-commission-unit" class="text-xs font-normal text-slate-500">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
+                            <span id="summary-commission-unit" class="text-xs font-normal text-kerajaan-muted">{{ $trendSummary['unitLabel'] ?? '/bln' }}</span>
                         </p>
                     </div>
                 </div>
@@ -104,55 +104,55 @@
             </div>
 
             {{-- Custom Legend Footer --}}
-            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-3 text-xs text-slate-500">
+            <div class="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-kerajaan-dark/8 pt-3 text-xs text-kerajaan-muted">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center gap-2">
-                        <span class="size-3 rounded bg-[#0b64d4]"></span>
-                        <span class="font-medium text-[#0c3685]">Volume Endorsement (Kiri)</span>
+                        <span class="size-3 rounded bg-kerajaan-orange"></span>
+                        <span class="font-medium text-kerajaan-dark">Volume Endorsement (Kiri)</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="inline-block h-1 w-4 rounded-full bg-[#1698f6]"></span>
-                        <span class="font-medium text-[#0c3685]">Total Komisi Rp (Kanan)</span>
+                        <span class="inline-block h-1 w-4 rounded-full bg-kerajaan-red"></span>
+                        <span class="font-medium text-kerajaan-dark">Total Komisi Rp (Kanan)</span>
                     </div>
                 </div>
-                <div class="text-[11px] text-slate-400">
+                <div class="text-[11px] text-kerajaan-muted/80">
                     <i class="bi bi-info-circle mr-1"></i> Arahkan kursor ke titik grafik untuk detail
                 </div>
             </div>
         </section>
 
         {{-- Notifikasi Terbaru --}}
-        <section class="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-xs flex flex-col justify-between">
+        <section class="rounded-2xl border border-kerajaan-dark/8 bg-white p-6 shadow-sm flex flex-col justify-between">
             <div>
                 <div class="flex items-center justify-between">
                     <div>
-                        <h3 class="font-heading text-lg font-bold text-[#0c3685]">Notifikasi Terbaru</h3>
-                        <p class="mt-0.5 text-xs text-slate-500">Pemberitahuan aktivitas ekosistem penting</p>
+                        <h3 class="font-heading text-lg font-bold text-kerajaan-dark">Notifikasi Terbaru</h3>
+                        <p class="mt-0.5 text-xs text-kerajaan-muted">Pemberitahuan aktivitas sistem penting</p>
                     </div>
-                    <a href="{{ route('superadmin.notifications.index') }}" class="text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] transition hover:underline">
+                    <a href="{{ route('superadmin.notifications.index') }}" class="text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown transition hover:underline">
                         Lihat semua
                     </a>
                 </div>
 
                 @if ($notifications->isEmpty())
-                    <div class="flex h-48 flex-col items-center justify-center text-center text-sm text-slate-500">
-                        <div class="flex size-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-400 mb-3 border border-slate-100">
+                    <div class="flex h-48 flex-col items-center justify-center text-center text-sm text-kerajaan-muted">
+                        <div class="flex size-12 items-center justify-center rounded-2xl bg-kerajaan-sand text-kerajaan-muted mb-3">
                             <i class="bi bi-bell-slash text-xl"></i>
                         </div>
-                        <p class="font-medium text-[#0c3685]">Belum ada notifikasi baru.</p>
-                        <p class="text-xs text-slate-400 mt-1">Aktivitas penting akan muncul otomatis di sini.</p>
+                        <p class="font-medium">Belum ada notifikasi baru.</p>
+                        <p class="text-xs text-kerajaan-muted/80 mt-1">Aktivitas penting akan muncul otomatis di sini.</p>
                     </div>
                 @else
                     <div class="mt-5 space-y-3.5">
                         @foreach ($notifications->take(4) as $notification)
-                            <div class="flex items-start gap-3 rounded-xl p-2.5 transition hover:bg-slate-50">
-                                <span class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#0b64d4]">
+                            <div class="flex items-start gap-3 rounded-xl p-2.5 transition hover:bg-kerajaan-cream">
+                                <span class="flex size-9 shrink-0 items-center justify-center rounded-xl bg-kerajaan-orange/10 text-kerajaan-orange">
                                     <i class="bi bi-bell-fill text-sm"></i>
                                 </span>
                                 <div class="min-w-0 flex-1">
-                                    <p class="text-xs font-bold text-[#0c3685] font-heading">{{ $notification->title }}</p>
-                                    <p class="mt-0.5 text-xs text-slate-500 line-clamp-2">{{ $notification->body }}</p>
-                                    <span class="mt-1 block text-[10px] text-slate-400">{{ $notification->created_at->diffForHumans() }}</span>
+                                    <p class="text-xs font-bold text-kerajaan-dark font-heading">{{ $notification->title }}</p>
+                                    <p class="mt-0.5 text-xs text-kerajaan-muted line-clamp-2">{{ $notification->body }}</p>
+                                    <span class="mt-1 block text-[10px] text-kerajaan-muted/70">{{ $notification->created_at->diffForHumans() }}</span>
                                 </div>
                             </div>
                         @endforeach
@@ -161,8 +161,8 @@
             </div>
 
             @if (!$notifications->isEmpty())
-                <div class="mt-4 pt-4 border-t border-slate-100">
-                    <a href="{{ route('superadmin.notifications.index') }}" class="block text-center text-xs font-bold text-[#0b64d4] hover:text-[#0c3685]">
+                <div class="mt-4 pt-4 border-t border-kerajaan-dark/8">
+                    <a href="{{ route('superadmin.notifications.index') }}" class="block text-center text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown">
                         Buka Pusat Notifikasi Lengkap &rarr;
                     </a>
                 </div>
@@ -173,20 +173,20 @@
     {{-- Tabel Ringkasan Operasional --}}
     <div class="mt-8 grid gap-6 xl:grid-cols-2">
         {{-- Endorsement Mendekati Deadline --}}
-        <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
-            <div class="flex items-center justify-between p-5 border-b border-slate-100">
+        <section class="overflow-hidden rounded-2xl border border-kerajaan-dark/8 bg-white shadow-sm">
+            <div class="flex items-center justify-between p-5 border-b border-kerajaan-dark/8">
                 <div>
-                    <h3 class="font-heading text-base font-bold text-[#0c3685]">Endorsement Mendekati Deadline</h3>
-                    <p class="text-xs text-slate-500">Perlu pemantauan progres konten kreator</p>
+                    <h3 class="font-heading text-base font-bold text-kerajaan-dark">Endorsement Mendekati Deadline</h3>
+                    <p class="text-xs text-kerajaan-muted">Perlu pemantauan progres konten kreator</p>
                 </div>
-                <a href="{{ route('superadmin.endorsements.index') }}" class="text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] hover:underline">
+                <a href="{{ route('superadmin.endorsements.index') }}" class="text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown hover:underline">
                     Lihat semua
                 </a>
             </div>
 
             @if ($upcomingEndorsements->isEmpty())
-                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-slate-500 p-6">
-                    <div class="flex size-11 items-center justify-center rounded-xl bg-slate-50 text-slate-400 mb-2 border border-slate-100">
+                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-kerajaan-muted p-6">
+                    <div class="flex size-11 items-center justify-center rounded-xl bg-kerajaan-sand text-kerajaan-muted mb-2">
                         <i class="bi bi-calendar-check text-xl"></i>
                     </div>
                     <p class="font-medium text-[#0c3685]">Tidak ada endorsement mendekati deadline saat ini.</p>
@@ -194,22 +194,22 @@
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
-                        <thead class="border-b border-slate-100 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 font-heading">
+                        <thead class="border-b border-kerajaan-dark/8 bg-kerajaan-cream text-[11px] font-bold uppercase tracking-wider text-kerajaan-muted font-heading">
                             <tr>
                                 <th class="px-5 py-3.5 font-semibold">KOL / Brand</th>
                                 <th class="px-5 py-3.5 font-semibold">Tenggat Waktu</th>
                                 <th class="px-5 py-3.5 font-semibold">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100">
+                        <tbody class="divide-y divide-kerajaan-dark/6">
                             @foreach ($upcomingEndorsements as $endorsement)
-                                <tr class="transition hover:bg-blue-50/30">
+                                <tr class="transition hover:bg-kerajaan-cream/60">
                                     <td class="px-5 py-3.5">
-                                        <p class="font-bold text-[#0c3685] font-heading">{{ $endorsement->kolProfile->user->name ?? 'KOL' }}</p>
-                                        <p class="text-xs text-slate-500">{{ $endorsement->campaign->brand->name ?? 'Brand' }}</p>
+                                        <p class="font-bold text-kerajaan-dark font-heading">{{ $endorsement->kolProfile->user->name ?? 'KOL' }}</p>
+                                        <p class="text-xs text-kerajaan-muted">{{ $endorsement->campaign->brand->name ?? 'Brand' }}</p>
                                     </td>
-                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs font-semibold text-[#0c3685]">
-                                        <i class="bi bi-clock mr-1 text-[#0b64d4]"></i>
+                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs font-semibold text-kerajaan-dark">
+                                        <i class="bi bi-clock mr-1 text-kerajaan-orange"></i>
                                         {{ $endorsement->deadline ? $endorsement->deadline->format('d M Y') : '-' }}
                                     </td>
                                     <td class="px-5 py-3.5">
@@ -224,20 +224,20 @@
         </section>
 
         {{-- Pendaftaran KOL Terbaru --}}
-        <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
-            <div class="flex items-center justify-between p-5 border-b border-slate-100">
+        <section class="overflow-hidden rounded-2xl border border-kerajaan-dark/8 bg-white shadow-sm">
+            <div class="flex items-center justify-between p-5 border-b border-kerajaan-dark/8">
                 <div>
-                    <h3 class="font-heading text-base font-bold text-[#0c3685]">Pendaftaran KOL Terbaru</h3>
-                    <p class="text-xs text-slate-500">Kreator baru yang menunggu review verifikasi</p>
+                    <h3 class="font-heading text-base font-bold text-kerajaan-dark">Pendaftaran KOL Terbaru</h3>
+                    <p class="text-xs text-kerajaan-muted">Kreator baru yang menunggu review verifikasi</p>
                 </div>
-                <a href="{{ route('superadmin.registrations.index') }}" class="text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] hover:underline">
+                <a href="{{ route('superadmin.registrations.index') }}" class="text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown hover:underline">
                     Lihat semua
                 </a>
             </div>
 
             @if ($recentRegistrations->isEmpty())
-                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-slate-500 p-6">
-                    <div class="flex size-11 items-center justify-center rounded-xl bg-slate-50 text-slate-400 mb-2 border border-slate-100">
+                <div class="flex h-44 flex-col items-center justify-center text-center text-sm text-kerajaan-muted p-6">
+                    <div class="flex size-11 items-center justify-center rounded-xl bg-kerajaan-sand text-kerajaan-muted mb-2">
                         <i class="bi bi-person-plus text-xl"></i>
                     </div>
                     <p class="font-medium text-[#0c3685]">Belum ada pengajuan pendaftaran baru.</p>
@@ -245,21 +245,21 @@
             @else
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm">
-                        <thead class="border-b border-slate-100 bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 font-heading">
+                        <thead class="border-b border-kerajaan-dark/8 bg-kerajaan-cream text-[11px] font-bold uppercase tracking-wider text-kerajaan-muted font-heading">
                             <tr>
                                 <th class="px-5 py-3.5 font-semibold">Nama Kreator</th>
                                 <th class="px-5 py-3.5 font-semibold">Tanggal Daftar</th>
                                 <th class="px-5 py-3.5 font-semibold">Status</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-100">
+                        <tbody class="divide-y divide-kerajaan-dark/6">
                             @foreach ($recentRegistrations as $registration)
-                                <tr class="transition hover:bg-blue-50/30">
+                                <tr class="transition hover:bg-kerajaan-cream/60">
                                     <td class="px-5 py-3.5">
-                                        <p class="font-bold text-[#0c3685] font-heading">{{ $registration->full_name }}</p>
-                                        <p class="text-xs text-slate-500">{{ $registration->city ?: 'Lokasi belum diisi' }}</p>
+                                        <p class="font-bold text-kerajaan-dark font-heading">{{ $registration->full_name }}</p>
+                                        <p class="text-xs text-kerajaan-muted">{{ $registration->city ?: 'Lokasi belum diisi' }}</p>
                                     </td>
-                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs text-slate-500">
+                                    <td class="whitespace-nowrap px-5 py-3.5 text-xs text-kerajaan-muted">
                                         {{ $registration->created_at->format('d M Y') }}
                                     </td>
                                     <td class="px-5 py-3.5">
@@ -285,8 +285,8 @@
             const trendDatasets = @json($trendDatasets);
             let currentPeriod = '6m';
 
-            const activeBtnClasses = ['active-filter', 'bg-white', 'text-[#0b64d4]', 'shadow-xs', 'font-bold'];
-            const inactiveBtnClasses = ['text-slate-500', 'hover:text-[#0c3685]', 'font-medium'];
+            const activeBtnClasses = ['active-filter', 'bg-white', 'text-kerajaan-orange', 'shadow-xs', 'font-bold'];
+            const inactiveBtnClasses = ['text-kerajaan-muted', 'hover:text-kerajaan-dark', 'font-medium'];
 
             const formatRupiah = (number) => {
                 return 'Rp ' + new Intl.NumberFormat('id-ID').format(number);
@@ -320,7 +320,7 @@
                             type: 'line',
                             yAxisID: 'y1',
                             borderColor: '#1698f6',
-                            backgroundColor: 'rgba(22, 152, 246, 0.12)',
+                            backgroundColor: 'rgba(22, 152, 246, 0.08)',
                             borderWidth: 2.5,
                             pointBackgroundColor: '#ffffff',
                             pointBorderColor: '#1698f6',
@@ -348,9 +348,9 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: 'rgba(8, 29, 71, 0.95)',
+                            backgroundColor: 'rgba(7, 29, 73, 0.95)',
                             titleColor: '#ffffff',
-                            bodyColor: '#e2e8f0',
+                            bodyColor: '#f1f5f9',
                             titleFont: {
                                 family: '"Plus Jakarta Sans", sans-serif',
                                 size: 12,
@@ -397,7 +397,7 @@
                             beginAtZero: true,
                             suggestedMax: Math.ceil(maxVolume * 1.25),
                             grid: {
-                                color: 'rgba(12, 54, 133, 0.05)',
+                                color: 'rgba(12, 54, 133, 0.06)',
                                 drawBorder: false
                             },
                             ticks: {

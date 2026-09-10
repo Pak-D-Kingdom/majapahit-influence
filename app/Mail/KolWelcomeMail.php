@@ -16,6 +16,6 @@ class KolWelcomeMail extends Mailable implements ShouldQueue
 
     public function build(): self
     {
-        return $this->subject('Akun Majapahit Influence Anda siap digunakan')->view('emails.kol-welcome');
+        return $this->subject('Akun kerajaan Influence Anda siap digunakan')->view('emails.kol-welcome');
     }
 }

@@ -27,7 +27,7 @@ class AuthTest extends TestCase
         $kolRole = Role::firstOrCreate(['name' => 'kol'], ['display_name' => 'KOL']);
 
         $this->adminUser = User::firstOrCreate(
-            ['email' => 'admin_test@majapahit.com'],
+            ['email' => 'admin_test@kerajaan.com'],
             [
                 'name' => 'Test Admin',
                 'password' => Hash::make('password123'),
@@ -37,7 +37,7 @@ class AuthTest extends TestCase
         $this->adminUser->assignRole('superadmin');
 
         $this->kolUser = User::firstOrCreate(
-            ['email' => 'kol_test@majapahit.com'],
+            ['email' => 'kol_test@kerajaan.com'],
             [
                 'name' => 'Test KOL',
                 'password' => Hash::make('password123'),
@@ -55,13 +55,13 @@ class AuthTest extends TestCase
     {
         $response = $this->get('/login');
         $response->assertStatus(200);
-        $response->assertSee('MAJAPAHIT');
+        $response->assertSee('kerajaan');
     }
 
     public function test_admin_can_login_and_redirects_to_admin_dashboard(): void
     {
         $response = $this->post('/login', [
-            'email' => 'admin_test@majapahit.com',
+            'email' => 'admin_test@kerajaan.com',
             'password' => 'password123',
         ]);
 
@@ -79,7 +79,7 @@ class AuthTest extends TestCase
     public function test_kol_can_login_and_redirects_to_kol_dashboard(): void
     {
         $response = $this->post('/login', [
-            'email' => 'kol_test@majapahit.com',
+            'email' => 'kol_test@kerajaan.com',
             'password' => 'password123',
         ]);
 
@@ -97,7 +97,7 @@ class AuthTest extends TestCase
     public function test_users_cannot_login_with_invalid_password(): void
     {
         $response = $this->post('/login', [
-            'email' => 'admin_test@majapahit.com',
+            'email' => 'admin_test@kerajaan.com',
             'password' => 'wrong-password',
         ]);
 
@@ -108,7 +108,7 @@ class AuthTest extends TestCase
     public function test_failed_login_is_recorded_without_password(): void
     {
         $response = $this->post('/login', [
-            'email' => 'admin_test@majapahit.com',
+            'email' => 'admin_test@kerajaan.com',
             'password' => 'wrong-password',
         ]);
 
@@ -123,7 +123,7 @@ class AuthTest extends TestCase
     public function test_inactive_user_cannot_login(): void
     {
         $inactiveUser = User::firstOrCreate(
-            ['email' => 'inactive@majapahit.com'],
+            ['email' => 'inactive@kerajaan.com'],
             [
                 'name' => 'Inactive User',
                 'password' => Hash::make('password123'),
@@ -133,7 +133,7 @@ class AuthTest extends TestCase
         $inactiveUser->assignRole('kol');
 
         $response = $this->post('/login', [
-            'email' => 'inactive@majapahit.com',
+            'email' => 'inactive@kerajaan.com',
             'password' => 'password123',
         ]);
 
@@ -228,7 +228,7 @@ class AuthTest extends TestCase
 
     public function test_kol_can_view_set_password_screen(): void
     {
-        $response = $this->get('/kol/set-password/sample-token?email=kol_test@majapahit.com');
+        $response = $this->get('/kol/set-password/sample-token?email=kol_test@kerajaan.com');
         $response->assertStatus(200);
         $response->assertSee('Aktivasi Akun KOL Anda');
     }
@@ -239,7 +239,7 @@ class AuthTest extends TestCase
 
         $response = $this->post('/kol/set-password', [
             'token' => $token,
-            'email' => 'kol_test@majapahit.com',
+            'email' => 'kol_test@kerajaan.com',
             'password' => 'newpassword123',
             'password_confirmation' => 'newpassword123',
         ]);
@@ -261,7 +261,7 @@ class AuthTest extends TestCase
     public function test_user_can_request_password_reset_link(): void
     {
         $response = $this->post('/forgot-password', [
-            'email' => 'admin_test@majapahit.com',
+            'email' => 'admin_test@kerajaan.com',
         ]);
 
         $response->assertSessionHas('status');
@@ -273,7 +273,7 @@ class AuthTest extends TestCase
 
         $response = $this->post('/reset-password', [
             'token' => $token,
-            'email' => 'admin_test@majapahit.com',
+            'email' => 'admin_test@kerajaan.com',
             'password' => 'brandnewpass123',
             'password_confirmation' => 'brandnewpass123',
         ]);
@@ -303,7 +303,7 @@ class AuthTest extends TestCase
 
         $this->post('/reset-password', [
             'token' => $token,
-            'email' => 'admin_test@majapahit.com',
+            'email' => 'admin_test@kerajaan.com',
             'password' => 'brandnewpass123',
             'password_confirmation' => 'brandnewpass123',
         ]);

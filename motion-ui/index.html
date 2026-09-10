@@ -1,1518 +1,1944 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Majapahit Influence — UI/UX Cinematic Showcase</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>kerajaan Influence — UI/UX Cinematic Showcase</title>
 
-  <!-- Google Fonts: DM Sans & Plus Jakarta Sans (Real App Fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+        <!-- Google Fonts: DM Sans & Plus Jakarta Sans (Real App Fonts) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Space+Grotesk:wght@500;600;700&display=swap"
+            rel="stylesheet"
+        />
 
-  <!-- Bootstrap Icons (Real App Icons) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- Bootstrap Icons (Real App Icons) -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
 
-  <!-- GSAP 3.12.5 -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <!-- Three.js for subtle luxury ambient particle environment -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <!-- GSAP 3.12.5 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <!-- Three.js for subtle luxury ambient particle environment -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
-  <style>
-    /* ==========================================================================
-       RESET & THEME TOKENS (100% Matches Majapahit Influence Design System)
+        <style>
+            /* ==========================================================================
+       RESET & THEME TOKENS (100% Matches kerajaan Influence Design System)
        ========================================================================== */
-    :root {
-      --orange: #d57028;
-      --red: #d5282d;
-      --yellow: #fec200;
-      --dark: #421b13;
-      --brown: #b86021;
-      --white: #ffffff;
-      --off-white: #fff9f4;
-      --sand: #f7eee8;
-      --muted: #765f58;
-      --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    }
+            :root {
+                --orange: #d57028;
+                --red: #d5282d;
+                --yellow: #fec200;
+                --dark: #421b13;
+                --brown: #b86021;
+                --white: #ffffff;
+                --off-white: #fff9f4;
+                --sand: #f7eee8;
+                --muted: #765f58;
+                --font-heading:
+                    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+                    sans-serif;
+                --font-body:
+                    "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+            }
 
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #060302;
-      color: #fff;
-      font-family: var(--font-body);
-      user-select: none;
-    }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                background: #060302;
+                color: #fff;
+                font-family: var(--font-body);
+                user-select: none;
+            }
 
-    /* Fixed 1920x1080 Viewport Auto-Scaling Rig */
-    #viewport-container {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at center, #140a06 0%, #060302 70%, #030101 100%);
-      perspective: 1400px;
-    }
+            /* Fixed 1920x1080 Viewport Auto-Scaling Rig */
+            #viewport-container {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: radial-gradient(
+                    circle at center,
+                    #140a06 0%,
+                    #060302 70%,
+                    #030101 100%
+                );
+                perspective: 1400px;
+            }
 
-    #stage {
-      position: relative;
-      width: 1920px;
-      height: 1080px;
-      flex-shrink: 0;
-      transform-origin: center center;
-      overflow: hidden;
-      background: transparent;
-    }
+            #stage {
+                position: relative;
+                width: 1920px;
+                height: 1080px;
+                flex-shrink: 0;
+                transform-origin: center center;
+                overflow: hidden;
+                background: transparent;
+            }
 
-    /* Three.js Background Canvas */
-    #bg-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+            /* Three.js Background Canvas */
+            #bg-canvas {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+            }
 
-    /* Ambient Spotlight & Backlight Aura */
-    .ambient-glow {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 1400px;
-      height: 850px;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(ellipse at center, rgba(213, 112, 40, 0.22) 0%, rgba(213, 40, 45, 0.12) 40%, transparent 70%);
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0;
-    }
+            /* Ambient Spotlight & Backlight Aura */
+            .ambient-glow {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 1400px;
+                height: 850px;
+                transform: translate(-50%, -50%);
+                background: radial-gradient(
+                    ellipse at center,
+                    rgba(213, 112, 40, 0.22) 0%,
+                    rgba(213, 40, 45, 0.12) 40%,
+                    transparent 70%
+                );
+                filter: blur(80px);
+                pointer-events: none;
+                z-index: 2;
+                opacity: 0;
+            }
 
-    /* Minimal Futuristic Background Grid */
-    .digital-grid {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(to right, rgba(213, 112, 40, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(213, 112, 40, 0.05) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 75%);
-      -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 75%);
-      pointer-events: none;
-      z-index: 2;
-      opacity: 0.4;
-    }
+            /* Minimal Futuristic Background Grid */
+            .digital-grid {
+                position: absolute;
+                inset: 0;
+                background-image:
+                    linear-gradient(
+                        to right,
+                        rgba(213, 112, 40, 0.05) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        to bottom,
+                        rgba(213, 112, 40, 0.05) 1px,
+                        transparent 1px
+                    );
+                background-size: 80px 80px;
+                mask-image: radial-gradient(
+                    circle at center,
+                    black 30%,
+                    transparent 75%
+                );
+                -webkit-mask-image: radial-gradient(
+                    circle at center,
+                    black 30%,
+                    transparent 75%
+                );
+                pointer-events: none;
+                z-index: 2;
+                opacity: 0.4;
+            }
 
-    /* 3D Camera Scene Container */
-    #camera-rig {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
+            /* 3D Camera Scene Container */
+            #camera-rig {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                transform-style: preserve-3d;
+                will-change: transform;
+            }
 
-    /* Sleek Floating Browser Mockup */
-    #browser-frame {
-      position: relative;
-      width: 1560px;
-      height: 890px;
-      background: #ffffff;
-      border-radius: 22px;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 
-        0 40px 100px -20px rgba(0, 0, 0, 0.85),
-        0 0 80px rgba(213, 112, 40, 0.16),
-        0 0 0 1px rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transform-style: preserve-3d;
-      will-change: transform;
-    }
+            /* Sleek Floating Browser Mockup */
+            #browser-frame {
+                position: relative;
+                width: 1560px;
+                height: 890px;
+                background: #ffffff;
+                border-radius: 22px;
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                box-shadow:
+                    0 40px 100px -20px rgba(0, 0, 0, 0.85),
+                    0 0 80px rgba(213, 112, 40, 0.16),
+                    0 0 0 1px rgba(255, 255, 255, 0.08);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                transform-style: preserve-3d;
+                will-change: transform;
+            }
 
-    /* Browser Header / Window Chrome */
-    .browser-header {
-      height: 52px;
-      background: #190906;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      gap: 18px;
-      flex-shrink: 0;
-      z-index: 50;
-    }
+            /* Browser Header / Window Chrome */
+            .browser-header {
+                height: 52px;
+                background: #190906;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                display: flex;
+                align-items: center;
+                padding: 0 20px;
+                gap: 18px;
+                flex-shrink: 0;
+                z-index: 50;
+            }
 
-    .mac-buttons {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
+            .mac-buttons {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+            }
 
-    .mac-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .mac-dot.close { background: #ff5f56; }
-    .mac-dot.min { background: #ffbd2e; }
-    .mac-dot.max { background: #27c93f; }
+            .mac-dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+            .mac-dot.close {
+                background: #ff5f56;
+            }
+            .mac-dot.min {
+                background: #ffbd2e;
+            }
+            .mac-dot.max {
+                background: #27c93f;
+            }
 
-    .browser-nav-icons {
-      display: flex;
-      gap: 12px;
-      color: rgba(255, 255, 255, 0.4);
-      font-size: 14px;
-    }
+            .browser-nav-icons {
+                display: flex;
+                gap: 12px;
+                color: rgba(255, 255, 255, 0.4);
+                font-size: 14px;
+            }
 
-    .address-bar {
-      flex: 1;
-      max-width: 680px;
-      margin: 0 auto;
-      height: 32px;
-      background: rgba(255, 255, 255, 0.07);
-      border-radius: 9px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.85);
-      letter-spacing: 0.02em;
-    }
+            .address-bar {
+                flex: 1;
+                max-width: 680px;
+                margin: 0 auto;
+                height: 32px;
+                background: rgba(255, 255, 255, 0.07);
+                border-radius: 9px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 13px;
+                font-weight: 500;
+                color: rgba(255, 255, 255, 0.85);
+                letter-spacing: 0.02em;
+            }
 
-    .address-bar i.lock {
-      color: #27c93f;
-      font-size: 11px;
-    }
+            .address-bar i.lock {
+                color: #27c93f;
+                font-size: 11px;
+            }
 
-    .browser-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--yellow);
-      background: rgba(254, 194, 0, 0.12);
-      padding: 2px 8px;
-      border-radius: 6px;
-      margin-left: 6px;
-    }
+            .browser-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 4px;
+                font-size: 11px;
+                font-weight: 700;
+                color: var(--yellow);
+                background: rgba(254, 194, 0, 0.12);
+                padding: 2px 8px;
+                border-radius: 6px;
+                margin-left: 6px;
+            }
 
-    /* Light Glare / Bezel Sweep Overlay */
-    .bezel-sheen {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.12) 48%, rgba(255, 255, 255, 0.28) 50%, rgba(255, 255, 255, 0.08) 52%, transparent 65%);
-      transform: translateX(-150%);
-      pointer-events: none;
-      z-index: 60;
-    }
+            /* Light Glare / Bezel Sweep Overlay */
+            .bezel-sheen {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    105deg,
+                    transparent 35%,
+                    rgba(255, 255, 255, 0.12) 48%,
+                    rgba(255, 255, 255, 0.28) 50%,
+                    rgba(255, 255, 255, 0.08) 52%,
+                    transparent 65%
+                );
+                transform: translateX(-150%);
+                pointer-events: none;
+                z-index: 60;
+            }
 
-    /* Browser Viewport & Scroll Container */
-    .browser-viewport {
-      position: relative;
-      flex: 1;
-      width: 100%;
-      background: var(--off-white);
-      color: var(--dark);
-      overflow: hidden;
-    }
+            /* Browser Viewport & Scroll Container */
+            .browser-viewport {
+                position: relative;
+                flex: 1;
+                width: 100%;
+                background: var(--off-white);
+                color: var(--dark);
+                overflow: hidden;
+            }
 
-    #page-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      will-change: transform;
-    }
+            #page-canvas {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                will-change: transform;
+            }
 
-    /* Selective Blur & Focus Overlay */
-    #focus-dimmer {
-      position: absolute;
-      inset: 0;
-      background: rgba(66, 27, 19, 0.35);
-      backdrop-filter: blur(4px);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 30;
-      transition: opacity 0.4s ease;
-    }
+            /* Selective Blur & Focus Overlay */
+            #focus-dimmer {
+                position: absolute;
+                inset: 0;
+                background: rgba(66, 27, 19, 0.35);
+                backdrop-filter: blur(4px);
+                opacity: 0;
+                pointer-events: none;
+                z-index: 30;
+                transition: opacity 0.4s ease;
+            }
 
-    /* ==========================================================================
+            /* ==========================================================================
        ACTUAL WEBSITE DOM STYLING (Preserved 1:1 with Tailwind Classes & Styles)
        ========================================================================== */
-    .site-header {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(66, 27, 19, 0.08);
-      padding: 14px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
+            .site-header {
+                background: rgba(255, 255, 255, 0.96);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid rgba(66, 27, 19, 0.08);
+                padding: 14px 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: sticky;
+                top: 0;
+                z-index: 40;
+            }
 
-    .brand-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+            .brand-logo-wrap {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
 
-    .brand-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #d57028 0%, #d5282d 50%, #fec200 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-family: var(--font-heading);
-      font-weight: 900;
-      font-size: 17px;
-      box-shadow: 0 4px 14px rgba(213, 112, 40, 0.3);
-    }
+            .brand-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 12px;
+                background: linear-gradient(
+                    135deg,
+                    #d57028 0%,
+                    #d5282d 50%,
+                    #fec200 100%
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                font-family: var(--font-heading);
+                font-weight: 900;
+                font-size: 17px;
+                box-shadow: 0 4px 14px rgba(213, 112, 40, 0.3);
+            }
 
-    .brand-text {
-      line-height: 1.15;
-    }
-    .brand-text .top {
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
-      color: var(--orange);
-      font-family: var(--font-heading);
-    }
-    .brand-text .bottom {
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      color: var(--dark);
-      font-family: var(--font-heading);
-    }
+            .brand-text {
+                line-height: 1.15;
+            }
+            .brand-text .top {
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.18em;
+                color: var(--orange);
+                font-family: var(--font-heading);
+            }
+            .brand-text .bottom {
+                font-size: 16px;
+                font-weight: 900;
+                letter-spacing: -0.02em;
+                color: var(--dark);
+                font-family: var(--font-heading);
+            }
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--muted);
-    }
-    .nav-links a.active {
-      color: var(--orange);
-    }
+            .nav-links {
+                display: flex;
+                align-items: center;
+                gap: 28px;
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--muted);
+            }
+            .nav-links a.active {
+                color: var(--orange);
+            }
 
-    .nav-catalog-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      background: var(--sand);
-      color: var(--brown);
-      font-weight: 700;
-      border: 1px solid rgba(213, 112, 40, 0.25);
-      font-size: 13px;
-    }
+            .nav-catalog-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 14px;
+                border-radius: 9999px;
+                background: var(--sand);
+                color: var(--brown);
+                font-weight: 700;
+                border: 1px solid rgba(213, 112, 40, 0.25);
+                font-size: 13px;
+            }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+            .nav-actions {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
 
-    .btn-login {
-      padding: 8px 16px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--dark);
-    }
+            .btn-login {
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: 700;
+                color: var(--dark);
+            }
 
-    .btn-brand-reg {
-      padding: 8px 16px;
-      border-radius: 12px;
-      background: #421b13;
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-family: var(--font-heading);
-      box-shadow: 0 2px 8px rgba(66, 27, 19, 0.2);
-    }
+            .btn-brand-reg {
+                padding: 8px 16px;
+                border-radius: 12px;
+                background: #421b13;
+                color: #fff;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                font-family: var(--font-heading);
+                box-shadow: 0 2px 8px rgba(66, 27, 19, 0.2);
+            }
 
-    .btn-kol-join {
-      padding: 8px 18px;
-      border-radius: 12px;
-      background: linear-gradient(to right, #d57028, #b86021);
-      color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-family: var(--font-heading);
-      box-shadow: 0 3px 12px rgba(213, 112, 40, 0.25);
-    }
+            .btn-kol-join {
+                padding: 8px 18px;
+                border-radius: 12px;
+                background: linear-gradient(to right, #d57028, #b86021);
+                color: #fff;
+                font-size: 11px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                font-family: var(--font-heading);
+                box-shadow: 0 3px 12px rgba(213, 112, 40, 0.25);
+            }
 
-    /* HERO SECTION */
-    .hero-section {
-      padding: 44px 50px 60px;
-      background: linear-gradient(180deg, rgba(254, 243, 199, 0.35) 0%, #fff 60%);
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 50px;
-      align-items: center;
-      position: relative;
-    }
+            /* HERO SECTION */
+            .hero-section {
+                padding: 44px 50px 60px;
+                background: linear-gradient(
+                    180deg,
+                    rgba(254, 243, 199, 0.35) 0%,
+                    #fff 60%
+                );
+                display: grid;
+                grid-template-columns: 1.15fr 0.85fr;
+                gap: 50px;
+                align-items: center;
+                position: relative;
+            }
 
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
+            .hero-left {
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+            }
 
-    .kicker-pill {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      background: var(--sand);
-      color: var(--brown);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border: 1px solid rgba(213, 112, 40, 0.2);
-      font-family: var(--font-heading);
-    }
-    .kicker-pill .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 10px var(--orange);
-    }
+            .kicker-pill {
+                align-self: flex-start;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 14px;
+                border-radius: 9999px;
+                background: var(--sand);
+                color: var(--brown);
+                font-size: 12px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                border: 1px solid rgba(213, 112, 40, 0.2);
+                font-family: var(--font-heading);
+            }
+            .kicker-pill .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--orange);
+                box-shadow: 0 0 10px var(--orange);
+            }
 
-    .hero-title {
-      font-family: var(--font-heading);
-      font-size: 46px;
-      font-weight: 900;
-      color: var(--dark);
-      line-height: 1.16;
-      letter-spacing: -0.03em;
-    }
-    .hero-title .brand-accent { color: var(--orange); }
-    .hero-title .cuan-accent { color: var(--red); }
+            .hero-title {
+                font-family: var(--font-heading);
+                font-size: 46px;
+                font-weight: 900;
+                color: var(--dark);
+                line-height: 1.16;
+                letter-spacing: -0.03em;
+            }
+            .hero-title .brand-accent {
+                color: var(--orange);
+            }
+            .hero-title .cuan-accent {
+                color: var(--red);
+            }
 
-    .hero-desc {
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.6;
-      max-w: 620px;
-    }
+            .hero-desc {
+                font-size: 16px;
+                color: var(--muted);
+                line-height: 1.6;
+                max-w: 620px;
+            }
 
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      padding-top: 6px;
-    }
+            .hero-cta-group {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 14px;
+                padding-top: 6px;
+            }
 
-    .cta-btn-primary {
-      padding: 14px 24px;
-      border-radius: 16px;
-      background: #421b13;
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      font-family: var(--font-heading);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(66, 27, 19, 0.25);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      position: relative;
-    }
-    .cta-btn-primary.is-active-hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 14px 34px rgba(66, 27, 19, 0.4), 0 0 20px rgba(254, 194, 0, 0.4);
-      background: #2b110b;
-      border-color: rgba(254, 194, 0, 0.6);
-    }
-    .cta-btn-primary.is-clicked {
-      transform: scale(0.96);
-    }
+            .cta-btn-primary {
+                padding: 14px 24px;
+                border-radius: 16px;
+                background: #421b13;
+                color: #fff;
+                font-weight: 800;
+                font-size: 14px;
+                font-family: var(--font-heading);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                box-shadow: 0 8px 24px rgba(66, 27, 19, 0.25);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                transition:
+                    transform 0.2s,
+                    box-shadow 0.2s,
+                    background 0.2s;
+                position: relative;
+            }
+            .cta-btn-primary.is-active-hover {
+                transform: translateY(-2px) scale(1.03);
+                box-shadow:
+                    0 14px 34px rgba(66, 27, 19, 0.4),
+                    0 0 20px rgba(254, 194, 0, 0.4);
+                background: #2b110b;
+                border-color: rgba(254, 194, 0, 0.6);
+            }
+            .cta-btn-primary.is-clicked {
+                transform: scale(0.96);
+            }
 
-    .cta-btn-secondary {
-      padding: 14px 24px;
-      border-radius: 16px;
-      background: linear-gradient(to right, #d57028, #b86021);
-      color: #fff;
-      font-weight: 800;
-      font-size: 14px;
-      font-family: var(--font-heading);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 8px 24px rgba(213, 112, 40, 0.3);
-    }
+            .cta-btn-secondary {
+                padding: 14px 24px;
+                border-radius: 16px;
+                background: linear-gradient(to right, #d57028, #b86021);
+                color: #fff;
+                font-weight: 800;
+                font-size: 14px;
+                font-family: var(--font-heading);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                box-shadow: 0 8px 24px rgba(213, 112, 40, 0.3);
+            }
 
-    .hero-sublink {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .hero-sublink strong {
-      color: var(--orange);
-    }
+            .hero-sublink {
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--muted);
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .hero-sublink strong {
+                color: var(--orange);
+            }
 
-    .hero-stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(66, 27, 19, 0.08);
-      max-width: 540px;
-    }
-    .stat-box strong {
-      display: block;
-      font-family: var(--font-heading);
-      font-size: 30px;
-      font-weight: 900;
-      color: #111827;
-      line-height: 1.1;
-    }
-    .stat-box strong.accent { color: var(--orange); }
-    .stat-box span {
-      font-size: 12px;
-      font-weight: 600;
-      color: #6b7280;
-    }
+            .hero-stats-row {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+                padding-top: 18px;
+                border-top: 1px solid rgba(66, 27, 19, 0.08);
+                max-width: 540px;
+            }
+            .stat-box strong {
+                display: block;
+                font-family: var(--font-heading);
+                font-size: 30px;
+                font-weight: 900;
+                color: #111827;
+                line-height: 1.1;
+            }
+            .stat-box strong.accent {
+                color: var(--orange);
+            }
+            .stat-box span {
+                font-size: 12px;
+                font-weight: 600;
+                color: #6b7280;
+            }
 
-    /* HERO RIGHT CARD (Evermos Marketplace Mockup) */
-    .hero-card-container {
-      position: relative;
-      transform-style: preserve-3d;
-    }
+            /* HERO RIGHT CARD (Evermos Marketplace Mockup) */
+            .hero-card-container {
+                position: relative;
+                transform-style: preserve-3d;
+            }
 
-    .card-aura-glow {
-      position: absolute;
-      inset: -12px;
-      background: linear-gradient(135deg, rgba(254, 194, 0, 0.25), rgba(213, 40, 45, 0.2));
-      border-radius: 32px;
-      filter: blur(20px);
-      z-index: 1;
-      opacity: 0.8;
-    }
+            .card-aura-glow {
+                position: absolute;
+                inset: -12px;
+                background: linear-gradient(
+                    135deg,
+                    rgba(254, 194, 0, 0.25),
+                    rgba(213, 40, 45, 0.2)
+                );
+                border-radius: 32px;
+                filter: blur(20px);
+                z-index: 1;
+                opacity: 0.8;
+            }
 
-    .hero-showcase-card {
-      position: relative;
-      z-index: 2;
-      background: #ffffff;
-      border-radius: 26px;
-      padding: 24px;
-      box-shadow: 0 20px 50px rgba(66, 27, 19, 0.12);
-      border: 1px solid rgba(66, 27, 19, 0.08);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      transform-style: preserve-3d;
-      will-change: transform, box-shadow;
-    }
-    .hero-showcase-card.is-spotlight {
-      box-shadow: 0 25px 70px rgba(213, 112, 40, 0.35), 0 0 0 2px rgba(213, 112, 40, 0.6);
-      transform: translateZ(35px);
-    }
+            .hero-showcase-card {
+                position: relative;
+                z-index: 2;
+                background: #ffffff;
+                border-radius: 26px;
+                padding: 24px;
+                box-shadow: 0 20px 50px rgba(66, 27, 19, 0.12);
+                border: 1px solid rgba(66, 27, 19, 0.08);
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+                transform-style: preserve-3d;
+                will-change: transform, box-shadow;
+            }
+            .hero-showcase-card.is-spotlight {
+                box-shadow:
+                    0 25px 70px rgba(213, 112, 40, 0.35),
+                    0 0 0 2px rgba(213, 112, 40, 0.6);
+                transform: translateZ(35px);
+            }
 
-    .card-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(66, 27, 19, 0.06);
-    }
-    .card-head-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .card-shop-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #f59e0b;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-    .card-head-text .cat {
-      font-size: 11px;
-      font-weight: 800;
-      color: var(--brown);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .card-head-text .name {
-      font-size: 14px;
-      font-weight: 900;
-      color: var(--dark);
-      font-family: var(--font-heading);
-    }
+            .card-head {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-bottom: 14px;
+                border-bottom: 1px solid rgba(66, 27, 19, 0.06);
+            }
+            .card-head-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .card-shop-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #f59e0b;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+            }
+            .card-head-text .cat {
+                font-size: 11px;
+                font-weight: 800;
+                color: var(--brown);
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+            }
+            .card-head-text .name {
+                font-size: 14px;
+                font-weight: 900;
+                color: var(--dark);
+                font-family: var(--font-heading);
+            }
 
-    .commission-badge-40 {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 5px 12px;
-      border-radius: 9999px;
-      background: #ecfdf5;
-      color: #047857;
-      font-size: 12px;
-      font-weight: 900;
-      border: 1px solid #a7f3d0;
-      transform-style: preserve-3d;
-      will-change: transform, box-shadow;
-    }
-    .commission-badge-40.is-pop {
-      transform: translateZ(50px) scale(1.08);
-      box-shadow: 0 10px 25px rgba(4, 120, 87, 0.3);
-      border-color: #059669;
-    }
+            .commission-badge-40 {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                padding: 5px 12px;
+                border-radius: 9999px;
+                background: #ecfdf5;
+                color: #047857;
+                font-size: 12px;
+                font-weight: 900;
+                border: 1px solid #a7f3d0;
+                transform-style: preserve-3d;
+                will-change: transform, box-shadow;
+            }
+            .commission-badge-40.is-pop {
+                transform: translateZ(50px) scale(1.08);
+                box-shadow: 0 10px 25px rgba(4, 120, 87, 0.3);
+                border-color: #059669;
+            }
 
-    .product-preview-box {
-      background: #fbf7f4;
-      border-radius: 18px;
-      padding: 14px;
-      border: 1px solid rgba(66, 27, 19, 0.08);
-      display: flex;
-      gap: 16px;
-      align-items: center;
-    }
-    .product-preview-img {
-      width: 76px;
-      height: 76px;
-      border-radius: 14px;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-    .product-preview-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .prod-tag {
-      align-self: flex-start;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 6px;
-      background: var(--sand);
-      color: var(--brown);
-      border: 1px solid rgba(213, 112, 40, 0.2);
-      font-family: var(--font-heading);
-    }
-    .prod-title {
-      font-size: 13px;
-      font-weight: 800;
-      color: var(--dark);
-      font-family: var(--font-heading);
-    }
-    .prod-prices {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 4px;
-    }
-    .prod-price {
-      font-size: 13px;
-      font-weight: 900;
-      color: var(--dark);
-    }
-    .prod-cuan {
-      font-size: 12px;
-      font-weight: 900;
-      color: var(--brown);
-      background: var(--sand);
-      padding: 2px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(213, 112, 40, 0.25);
-      font-family: var(--font-heading);
-    }
+            .product-preview-box {
+                background: #fbf7f4;
+                border-radius: 18px;
+                padding: 14px;
+                border: 1px solid rgba(66, 27, 19, 0.08);
+                display: flex;
+                gap: 16px;
+                align-items: center;
+            }
+            .product-preview-img {
+                width: 76px;
+                height: 76px;
+                border-radius: 14px;
+                object-fit: cover;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            }
+            .product-preview-info {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .prod-tag {
+                align-self: flex-start;
+                font-size: 10px;
+                font-weight: 800;
+                padding: 2px 8px;
+                border-radius: 6px;
+                background: var(--sand);
+                color: var(--brown);
+                border: 1px solid rgba(213, 112, 40, 0.2);
+                font-family: var(--font-heading);
+            }
+            .prod-title {
+                font-size: 13px;
+                font-weight: 800;
+                color: var(--dark);
+                font-family: var(--font-heading);
+            }
+            .prod-prices {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 4px;
+            }
+            .prod-price {
+                font-size: 13px;
+                font-weight: 900;
+                color: var(--dark);
+            }
+            .prod-cuan {
+                font-size: 12px;
+                font-weight: 900;
+                color: var(--brown);
+                background: var(--sand);
+                padding: 2px 8px;
+                border-radius: 6px;
+                border: 1px solid rgba(213, 112, 40, 0.25);
+                font-family: var(--font-heading);
+            }
 
-    .content-bank-banner {
-      background: linear-gradient(135deg, #d57028 0%, #b86021 100%);
-      border-radius: 16px;
-      padding: 14px 18px;
-      color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 8px 20px rgba(213, 112, 40, 0.25);
-      transform-style: preserve-3d;
-      will-change: transform, box-shadow;
-      position: relative;
-      overflow: hidden;
-    }
-    .content-bank-banner.is-hovered {
-      transform: translateZ(40px) scale(1.02);
-      box-shadow: 0 16px 36px rgba(213, 112, 40, 0.45);
-    }
-    .content-bank-banner .highlight-sweep {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-      transform: translateX(-100%);
-      pointer-events: none;
-    }
+            .content-bank-banner {
+                background: linear-gradient(135deg, #d57028 0%, #b86021 100%);
+                border-radius: 16px;
+                padding: 14px 18px;
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                box-shadow: 0 8px 20px rgba(213, 112, 40, 0.25);
+                transform-style: preserve-3d;
+                will-change: transform, box-shadow;
+                position: relative;
+                overflow: hidden;
+            }
+            .content-bank-banner.is-hovered {
+                transform: translateZ(40px) scale(1.02);
+                box-shadow: 0 16px 36px rgba(213, 112, 40, 0.45);
+            }
+            .content-bank-banner .highlight-sweep {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent
+                );
+                transform: translateX(-100%);
+                pointer-events: none;
+            }
 
-    .content-bank-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .content-bank-left i {
-      font-size: 24px;
-    }
-    .content-bank-left strong {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-    .content-bank-left span {
-      font-size: 11px;
-      color: #fef3c7;
-    }
+            .content-bank-left {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .content-bank-left i {
+                font-size: 24px;
+            }
+            .content-bank-left strong {
+                display: block;
+                font-size: 13px;
+                font-weight: 800;
+                line-height: 1.2;
+            }
+            .content-bank-left span {
+                font-size: 11px;
+                color: #fef3c7;
+            }
 
-    .quick-pathways-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .quick-badge {
-      background: #f3f4f6;
-      border-radius: 12px;
-      padding: 10px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: 700;
-      color: #1f2937;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
+            .quick-pathways-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .quick-badge {
+                background: #f3f4f6;
+                border-radius: 12px;
+                padding: 10px;
+                text-align: center;
+                font-size: 12px;
+                font-weight: 700;
+                color: #1f2937;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+            }
 
-    /* SECTION 2: SOLUSI BRAND & 2 DUAL PROMOTION PATHWAYS */
-    .section-solusi {
-      padding: 60px 50px 70px;
-      background: #ffffff;
-      border-top: 1px solid rgba(66, 27, 19, 0.06);
-    }
+            /* SECTION 2: SOLUSI BRAND & 2 DUAL PROMOTION PATHWAYS */
+            .section-solusi {
+                padding: 60px 50px 70px;
+                background: #ffffff;
+                border-top: 1px solid rgba(66, 27, 19, 0.06);
+            }
 
-    .section-head {
-      text-align: center;
-      max-width: 740px;
-      margin: 0 auto 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-    }
-    .section-tag {
-      padding: 5px 14px;
-      border-radius: 9999px;
-      background: #f3f4f6;
-      color: #374151;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .section-title {
-      font-family: var(--font-heading);
-      font-size: 34px;
-      font-weight: 900;
-      color: #111827;
-      line-height: 1.2;
-    }
-    .section-title span {
-      color: var(--orange);
-    }
+            .section-head {
+                text-align: center;
+                max-width: 740px;
+                margin: 0 auto 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            .section-tag {
+                padding: 5px 14px;
+                border-radius: 9999px;
+                background: #f3f4f6;
+                color: #374151;
+                font-size: 11px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+            .section-title {
+                font-family: var(--font-heading);
+                font-size: 34px;
+                font-weight: 900;
+                color: #111827;
+                line-height: 1.2;
+            }
+            .section-title span {
+                color: var(--orange);
+            }
 
-    .solusi-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-    .solusi-card {
-      background: #f9fafb;
-      border: 1px solid #f3f4f6;
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .solusi-card .icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      color: #ffffff;
-    }
-    .solusi-card .icon-box.amber { background: var(--orange); }
-    .solusi-card .icon-box.red { background: var(--red); }
-    .solusi-card .icon-box.dark { background: var(--dark); }
-    .solusi-card h4 {
-      font-size: 16px;
-      font-weight: 800;
-      color: #111827;
-      font-family: var(--font-heading);
-    }
-    .solusi-card p {
-      font-size: 13px;
-      color: #6b7280;
-      line-height: 1.5;
-    }
+            .solusi-cards-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+                margin-bottom: 40px;
+            }
+            .solusi-card {
+                background: #f9fafb;
+                border: 1px solid #f3f4f6;
+                border-radius: 20px;
+                padding: 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .solusi-card .icon-box {
+                width: 48px;
+                height: 48px;
+                border-radius: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 20px;
+                color: #ffffff;
+            }
+            .solusi-card .icon-box.amber {
+                background: var(--orange);
+            }
+            .solusi-card .icon-box.red {
+                background: var(--red);
+            }
+            .solusi-card .icon-box.dark {
+                background: var(--dark);
+            }
+            .solusi-card h4 {
+                font-size: 16px;
+                font-weight: 800;
+                color: #111827;
+                font-family: var(--font-heading);
+            }
+            .solusi-card p {
+                font-size: 13px;
+                color: #6b7280;
+                line-height: 1.5;
+            }
 
-    /* 2 PATHWAYS DISPLAY BOX */
-    .pathways-box {
-      background: linear-gradient(135deg, rgba(213, 112, 40, 0.08), rgba(213, 40, 45, 0.06));
-      border: 1px solid rgba(213, 112, 40, 0.25);
-      border-radius: 24px;
-      padding: 30px;
-    }
-    .pathways-box-title {
-      text-align: center;
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--dark);
-      margin-bottom: 20px;
-      font-family: var(--font-heading);
-    }
-    .pathways-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-    .pathway-item {
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 22px;
-      border: 1px solid rgba(66, 27, 19, 0.08);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      will-change: transform, box-shadow;
-    }
-    .pathway-item.is-spotlight {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 16px 36px rgba(213, 112, 40, 0.22);
-      border-color: var(--orange);
-    }
-    .pathway-tag {
-      align-self: flex-start;
-      font-size: 11px;
-      font-weight: 900;
-      padding: 4px 10px;
-      border-radius: 8px;
-    }
-    .pathway-tag.jalur-a { background: #fef3c7; color: #92400e; }
-    .pathway-tag.jalur-b { background: #fee2e2; color: #991b1b; }
-    .pathway-item h5 {
-      font-size: 15px;
-      font-weight: 800;
-      color: #111827;
-      font-family: var(--font-heading);
-    }
-    .pathway-item p {
-      font-size: 12px;
-      color: #4b5563;
-      line-height: 1.5;
-    }
+            /* 2 PATHWAYS DISPLAY BOX */
+            .pathways-box {
+                background: linear-gradient(
+                    135deg,
+                    rgba(213, 112, 40, 0.08),
+                    rgba(213, 40, 45, 0.06)
+                );
+                border: 1px solid rgba(213, 112, 40, 0.25);
+                border-radius: 24px;
+                padding: 30px;
+            }
+            .pathways-box-title {
+                text-align: center;
+                font-size: 20px;
+                font-weight: 900;
+                color: var(--dark);
+                margin-bottom: 20px;
+                font-family: var(--font-heading);
+            }
+            .pathways-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            .pathway-item {
+                background: #ffffff;
+                border-radius: 18px;
+                padding: 22px;
+                border: 1px solid rgba(66, 27, 19, 0.08);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                will-change: transform, box-shadow;
+            }
+            .pathway-item.is-spotlight {
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 0 16px 36px rgba(213, 112, 40, 0.22);
+                border-color: var(--orange);
+            }
+            .pathway-tag {
+                align-self: flex-start;
+                font-size: 11px;
+                font-weight: 900;
+                padding: 4px 10px;
+                border-radius: 8px;
+            }
+            .pathway-tag.jalur-a {
+                background: #fef3c7;
+                color: #92400e;
+            }
+            .pathway-tag.jalur-b {
+                background: #fee2e2;
+                color: #991b1b;
+            }
+            .pathway-item h5 {
+                font-size: 15px;
+                font-weight: 800;
+                color: #111827;
+                font-family: var(--font-heading);
+            }
+            .pathway-item p {
+                font-size: 12px;
+                color: #4b5563;
+                line-height: 1.5;
+            }
 
-    /* SECTION 3: LAYANAN MAKLON (PAK DE GROUP) */
-    .section-maklon {
-      padding: 60px 50px;
-      background: #111827;
-      color: #ffffff;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .maklon-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      background: rgba(254, 194, 0, 0.15);
-      color: var(--yellow);
-      font-size: 11px;
-      font-weight: 800;
-      border: 1px solid rgba(254, 194, 0, 0.3);
-    }
-    .maklon-title {
-      font-family: var(--font-heading);
-      font-size: 32px;
-      font-weight: 900;
-      line-height: 1.25;
-      margin: 12px 0;
-    }
-    .maklon-title span { color: var(--yellow); }
-    .maklon-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .maklon-box {
-      background: #1f2937;
-      border: 1px solid #374151;
-      border-radius: 18px;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .maklon-num {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      background: rgba(254, 194, 0, 0.15);
-      color: var(--yellow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 13px;
-    }
-    .maklon-box h6 {
-      font-size: 14px;
-      font-weight: 800;
-      color: #fff;
-    }
-    .maklon-box p {
-      font-size: 11px;
-      color: #9ca3af;
-    }
+            /* SECTION 3: LAYANAN MAKLON (PAK DE GROUP) */
+            .section-maklon {
+                padding: 60px 50px;
+                background: #111827;
+                color: #ffffff;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+            }
+            .maklon-tag {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 4px 12px;
+                border-radius: 9999px;
+                background: rgba(254, 194, 0, 0.15);
+                color: var(--yellow);
+                font-size: 11px;
+                font-weight: 800;
+                border: 1px solid rgba(254, 194, 0, 0.3);
+            }
+            .maklon-title {
+                font-family: var(--font-heading);
+                font-size: 32px;
+                font-weight: 900;
+                line-height: 1.25;
+                margin: 12px 0;
+            }
+            .maklon-title span {
+                color: var(--yellow);
+            }
+            .maklon-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .maklon-box {
+                background: #1f2937;
+                border: 1px solid #374151;
+                border-radius: 18px;
+                padding: 18px;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .maklon-num {
+                width: 32px;
+                height: 32px;
+                border-radius: 8px;
+                background: rgba(254, 194, 0, 0.15);
+                color: var(--yellow);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: 800;
+                font-size: 13px;
+            }
+            .maklon-box h6 {
+                font-size: 14px;
+                font-weight: 800;
+                color: #fff;
+            }
+            .maklon-box p {
+                font-size: 11px;
+                color: #9ca3af;
+            }
 
-    /* ==========================================================================
+            /* ==========================================================================
        REALISTIC VECTOR MOUSE CURSOR & INTERACTION RIPPLE
        ========================================================================== */
-    #virtual-cursor {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 28px;
-      height: 28px;
-      pointer-events: none;
-      z-index: 100;
-      transform: translate3d(800px, 450px, 0);
-      will-change: transform;
-      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
-    }
+            #virtual-cursor {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 28px;
+                height: 28px;
+                pointer-events: none;
+                z-index: 100;
+                transform: translate3d(800px, 450px, 0);
+                will-change: transform;
+                filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+            }
 
-    .cursor-svg {
-      width: 24px;
-      height: 24px;
-      transform-origin: 2px 2px;
-    }
+            .cursor-svg {
+                width: 24px;
+                height: 24px;
+                transform-origin: 2px 2px;
+            }
 
-    .cursor-ripple {
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 2px solid var(--orange);
-      background: rgba(213, 112, 40, 0.25);
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      pointer-events: none;
-    }
+            .cursor-ripple {
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                border: 2px solid var(--orange);
+                background: rgba(213, 112, 40, 0.25);
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+                pointer-events: none;
+            }
 
-    /* ==========================================================================
+            /* ==========================================================================
        CINEMATIC OVERLAY & ENDING TITLE LOCKUP
        ========================================================================== */
-    #finale-overlay {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding-top: 75px;
-      pointer-events: none;
-      z-index: 80;
-      opacity: 0;
-    }
+            #finale-overlay {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 75px;
+                pointer-events: none;
+                z-index: 80;
+                opacity: 0;
+            }
 
-    .future-kicker {
-      font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--yellow);
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .future-kicker::before, .future-kicker::after {
-      content: "";
-      display: block;
-      width: 30px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--yellow));
-    }
-    .future-kicker::after {
-      background: linear-gradient(90deg, var(--yellow), transparent);
-    }
+            .future-kicker {
+                font-family: var(--font-heading);
+                font-size: 15px;
+                font-weight: 800;
+                letter-spacing: 0.4em;
+                text-transform: uppercase;
+                color: var(--yellow);
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .future-kicker::before,
+            .future-kicker::after {
+                content: "";
+                display: block;
+                width: 30px;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, var(--yellow));
+            }
+            .future-kicker::after {
+                background: linear-gradient(90deg, var(--yellow), transparent);
+            }
 
-    .future-heading {
-      font-family: var(--font-heading);
-      font-size: 54px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: -0.02em;
-      text-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 60px rgba(213, 112, 40, 0.5);
-      text-align: center;
-      line-height: 1.1;
-    }
+            .future-heading {
+                font-family: var(--font-heading);
+                font-size: 54px;
+                font-weight: 900;
+                color: #ffffff;
+                letter-spacing: -0.02em;
+                text-shadow:
+                    0 10px 40px rgba(0, 0, 0, 0.9),
+                    0 0 60px rgba(213, 112, 40, 0.5);
+                text-align: center;
+                line-height: 1.1;
+            }
 
-    #finale-brand-bottom {
-      position: absolute;
-      bottom: 78px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: rgba(25, 9, 6, 0.85);
-      backdrop-filter: blur(16px);
-      padding: 12px 28px;
-      border-radius: 9999px;
-      border: 1px solid rgba(213, 112, 40, 0.3);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(213, 112, 40, 0.2);
-      opacity: 0;
-      z-index: 85;
-      pointer-events: none;
-    }
-    #finale-brand-bottom .logo {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #d57028, #d5282d, #fec200);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-heading);
-      font-weight: 900;
-      color: #fff;
-      font-size: 16px;
-    }
-    #finale-brand-bottom .text-info strong {
-      display: block;
-      font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      color: #ffffff;
-    }
-    #finale-brand-bottom .text-info span {
-      font-size: 11px;
-      color: #fbd38d;
-      font-weight: 600;
-    }
+            #finale-brand-bottom {
+                position: absolute;
+                bottom: 78px;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                background: rgba(25, 9, 6, 0.85);
+                backdrop-filter: blur(16px);
+                padding: 12px 28px;
+                border-radius: 9999px;
+                border: 1px solid rgba(213, 112, 40, 0.3);
+                box-shadow:
+                    0 20px 50px rgba(0, 0, 0, 0.8),
+                    0 0 30px rgba(213, 112, 40, 0.2);
+                opacity: 0;
+                z-index: 85;
+                pointer-events: none;
+            }
+            #finale-brand-bottom .logo {
+                width: 38px;
+                height: 38px;
+                border-radius: 10px;
+                background: linear-gradient(135deg, #d57028, #d5282d, #fec200);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--font-heading);
+                font-weight: 900;
+                color: #fff;
+                font-size: 16px;
+            }
+            #finale-brand-bottom .text-info strong {
+                display: block;
+                font-family: var(--font-heading);
+                font-size: 15px;
+                font-weight: 900;
+                letter-spacing: 0.05em;
+                color: #ffffff;
+            }
+            #finale-brand-bottom .text-info span {
+                font-size: 11px;
+                color: #fbd38d;
+                font-weight: 600;
+            }
 
-    /* Word split wrapper */
-    .word-span {
-      display: inline-block;
-      overflow: hidden;
-      vertical-align: top;
-    }
-    .word-inner {
-      display: inline-block;
-      transform: translateY(110%);
-      will-change: transform, opacity;
-    }
+            /* Word split wrapper */
+            .word-span {
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: top;
+            }
+            .word-inner {
+                display: inline-block;
+                transform: translateY(110%);
+                will-change: transform, opacity;
+            }
 
-    /* ==========================================================================
+            /* ==========================================================================
        DEBUG SCRUBBER PANEL (?debug=1)
        ========================================================================== */
-    #debug-panel {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 60px;
-      background: rgba(10, 5, 4, 0.95);
-      backdrop-filter: blur(14px);
-      border-top: 1px solid rgba(213, 112, 40, 0.3);
-      display: none;
-      align-items: center;
-      padding: 0 30px;
-      gap: 20px;
-      z-index: 9999;
-      font-family: monospace;
-      font-size: 13px;
-      color: #fff;
-    }
-    #debug-panel.active { display: flex; }
-    #debug-slider {
-      flex: 1;
-      accent-color: var(--orange);
-      cursor: pointer;
-    }
-    .debug-btn {
-      padding: 6px 14px;
-      border-radius: 8px;
-      background: #26120b;
-      border: 1px solid rgba(213, 112, 40, 0.4);
-      color: #fff;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .debug-btn:hover { background: var(--orange); }
-  </style>
-</head>
-<body>
+            #debug-panel {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 60px;
+                background: rgba(10, 5, 4, 0.95);
+                backdrop-filter: blur(14px);
+                border-top: 1px solid rgba(213, 112, 40, 0.3);
+                display: none;
+                align-items: center;
+                padding: 0 30px;
+                gap: 20px;
+                z-index: 9999;
+                font-family: monospace;
+                font-size: 13px;
+                color: #fff;
+            }
+            #debug-panel.active {
+                display: flex;
+            }
+            #debug-slider {
+                flex: 1;
+                accent-color: var(--orange);
+                cursor: pointer;
+            }
+            .debug-btn {
+                padding: 6px 14px;
+                border-radius: 8px;
+                background: #26120b;
+                border: 1px solid rgba(213, 112, 40, 0.4);
+                color: #fff;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .debug-btn:hover {
+                background: var(--orange);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="viewport-container">
+            <div id="stage">
+                <!-- Three.js Ambient Particle Canvas -->
+                <canvas id="bg-canvas"></canvas>
 
-<div id="viewport-container">
-  <div id="stage">
+                <!-- Digital Tech Grid -->
+                <div class="digital-grid"></div>
 
-    <!-- Three.js Ambient Particle Canvas -->
-    <canvas id="bg-canvas"></canvas>
+                <!-- Soft Radial Ambient Glow -->
+                <div class="ambient-glow" id="ambient-glow"></div>
 
-    <!-- Digital Tech Grid -->
-    <div class="digital-grid"></div>
+                <!-- 3D Camera Rig -->
+                <div id="camera-rig">
+                    <!-- Sleek Browser Frame -->
+                    <div id="browser-frame">
+                        <!-- Browser Header / Chrome -->
+                        <div class="browser-header">
+                            <div class="mac-buttons">
+                                <div class="mac-dot close"></div>
+                                <div class="mac-dot min"></div>
+                                <div class="mac-dot max"></div>
+                            </div>
+                            <div class="browser-nav-icons">
+                                <i class="bi bi-chevron-left"></i>
+                                <i class="bi bi-chevron-right"></i>
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </div>
+                            <div class="address-bar">
+                                <i class="bi bi-lock-fill lock"></i>
+                                <span>kerajaan-influence.com</span>
+                                <span class="browser-badge"
+                                    ><i class="bi bi-shield-check"></i> Official
+                                    Portal</span
+                                >
+                            </div>
+                            <div
+                                class="browser-nav-icons"
+                                style="margin-left: auto"
+                            >
+                                <i class="bi bi-share"></i>
+                                <i class="bi bi-plus-lg"></i>
+                            </div>
+                        </div>
 
-    <!-- Soft Radial Ambient Glow -->
-    <div class="ambient-glow" id="ambient-glow"></div>
+                        <!-- Light Sheen / Glass Sweep -->
+                        <div class="bezel-sheen" id="bezel-sheen"></div>
 
-    <!-- 3D Camera Rig -->
-    <div id="camera-rig">
-      
-      <!-- Sleek Browser Frame -->
-      <div id="browser-frame">
-        
-        <!-- Browser Header / Chrome -->
-        <div class="browser-header">
-          <div class="mac-buttons">
-            <div class="mac-dot close"></div>
-            <div class="mac-dot min"></div>
-            <div class="mac-dot max"></div>
-          </div>
-          <div class="browser-nav-icons">
-            <i class="bi bi-chevron-left"></i>
-            <i class="bi bi-chevron-right"></i>
-            <i class="bi bi-arrow-clockwise"></i>
-          </div>
-          <div class="address-bar">
-            <i class="bi bi-lock-fill lock"></i>
-            <span>majapahit-influence.com</span>
-            <span class="browser-badge"><i class="bi bi-shield-check"></i> Official Portal</span>
-          </div>
-          <div class="browser-nav-icons" style="margin-left: auto;">
-            <i class="bi bi-share"></i>
-            <i class="bi bi-plus-lg"></i>
-          </div>
+                        <!-- Browser Viewport (Web Page Canvas) -->
+                        <div class="browser-viewport">
+                            <!-- Selective Focus Dimmer Layer -->
+                            <div id="focus-dimmer"></div>
+
+                            <!-- The Complete Authentic Web Page DOM -->
+                            <div id="page-canvas">
+                                <!-- Real Top Navbar -->
+                                <header class="site-header" id="site-header">
+                                    <div class="brand-logo-wrap">
+                                        <div class="brand-icon">MI</div>
+                                        <div class="brand-text">
+                                            <span class="top">kerajaan</span>
+                                            <strong class="bottom"
+                                                >INFLUENCE</strong
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <nav class="nav-links">
+                                        <a href="#" class="active">Beranda</a>
+                                        <a href="#">Solusi Brand</a>
+                                        <a href="#">Layanan Maklon</a>
+                                        <a href="#">Untuk Kreator</a>
+                                        <span class="nav-catalog-btn">
+                                            <i class="bi bi-shop"></i> Katalog
+                                            E-Commerce
+                                        </span>
+                                    </nav>
+
+                                    <div class="nav-actions">
+                                        <span class="btn-login">Masuk</span>
+                                        <span class="btn-brand-reg"
+                                            ><i class="bi bi-building"></i>
+                                            DAFTAR BRAND</span
+                                        >
+                                        <span class="btn-kol-join"
+                                            ><i class="bi bi-person-plus"></i>
+                                            JOIN AS KOL</span
+                                        >
+                                    </div>
+                                </header>
+
+                                <!-- Real Hero Section -->
+                                <section class="hero-section" id="hero-section">
+                                    <!-- Hero Left Content -->
+                                    <div class="hero-left" id="hero-left">
+                                        <div
+                                            class="kicker-pill"
+                                            id="hero-kicker"
+                                        >
+                                            <span class="dot"></span>
+                                            <span
+                                                >Ekosistem Influencer & Maklon
+                                                Pak De Group</span
+                                            >
+                                        </div>
+
+                                        <h1 class="hero-title" id="hero-title">
+                                            <!-- Animated word spans will be generated dynamically -->
+                                            Percepat Pertumbuhan
+                                            <span class="brand-accent"
+                                                >Brand</span
+                                            >
+                                            Anda & Maksimalkan
+                                            <span class="cuan-accent"
+                                                >Cuan Kreator</span
+                                            >.
+                                        </h1>
+
+                                        <p class="hero-desc" id="hero-desc">
+                                            kerajaan Influence adalah platform
+                                            all-in-one yang menghubungkan Brand
+                                            dengan ribuan KOL & Affiliate
+                                            terverifikasi. Dari produksi custom
+                                            (maklon), bank konten promosi siap
+                                            pakai, hingga penjualan e-commerce
+                                            bergaransi komisi transparan.
+                                        </p>
+
+                                        <!-- Persona-First Action Buttons -->
+                                        <div
+                                            class="hero-cta-group"
+                                            id="hero-cta-group"
+                                        >
+                                            <div
+                                                class="cta-btn-primary"
+                                                id="btn-brand-primary"
+                                            >
+                                                <i
+                                                    class="bi bi-rocket-takeoff-fill"
+                                                    style="
+                                                        color: var(--yellow);
+                                                        font-size: 16px;
+                                                    "
+                                                ></i>
+                                                <span
+                                                    >Saya Brand: Mulai
+                                                    Promosi</span
+                                                >
+                                            </div>
+
+                                            <div
+                                                class="cta-btn-secondary"
+                                                id="btn-kol-primary"
+                                            >
+                                                <i
+                                                    class="bi bi-camera-reels-fill"
+                                                    style="font-size: 16px"
+                                                ></i>
+                                                <span
+                                                    >Saya Kreator: Join
+                                                    KOL</span
+                                                >
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="hero-sublink"
+                                            id="hero-sublink"
+                                        >
+                                            <span
+                                                >Atau ingin lihat produk siap
+                                                jual?</span
+                                            >
+                                            <strong
+                                                >Jelajahi Katalog E-Commerce &
+                                                Bank Konten &rarr;</strong
+                                            >
+                                        </div>
+
+                                        <!-- Stats Highlight -->
+                                        <div
+                                            class="hero-stats-row"
+                                            id="hero-stats-row"
+                                        >
+                                            <div class="stat-box">
+                                                <strong id="stat-kol"
+                                                    >5.000+</strong
+                                                >
+                                                <span
+                                                    >KOL & Affiliate Aktif</span
+                                                >
+                                            </div>
+                                            <div class="stat-box">
+                                                <strong
+                                                    class="accent"
+                                                    id="stat-com"
+                                                    >40%</strong
+                                                >
+                                                <span
+                                                    >Komisi Tetap
+                                                    Transparan</span
+                                                >
+                                            </div>
+                                            <div class="stat-box">
+                                                <strong id="stat-brand"
+                                                    >100+</strong
+                                                >
+                                                <span
+                                                    >Brand & Produk Maklon</span
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Hero Right Interactive Card Preview -->
+                                    <div
+                                        class="hero-card-container"
+                                        id="hero-right"
+                                    >
+                                        <div class="card-aura-glow"></div>
+
+                                        <div
+                                            class="hero-showcase-card"
+                                            id="showcase-card"
+                                        >
+                                            <div class="card-head">
+                                                <div class="card-head-left">
+                                                    <div class="card-shop-icon">
+                                                        <i
+                                                            class="bi bi-shop"
+                                                        ></i>
+                                                    </div>
+                                                    <div class="card-head-text">
+                                                        <div class="cat">
+                                                            Katalog E-Commerce
+                                                        </div>
+                                                        <div class="name">
+                                                            Evermos-Style
+                                                            Marketplace
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="commission-badge-40"
+                                                    id="badge-40"
+                                                >
+                                                    <i
+                                                        class="bi bi-shield-check"
+                                                    ></i>
+                                                    40% Locked
+                                                </div>
+                                            </div>
+
+                                            <!-- Sample Featured Product Card Preview -->
+                                            <div
+                                                class="product-preview-box"
+                                                id="product-box"
+                                            >
+                                                <img
+                                                    src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&auto=format&fit=crop&q=80"
+                                                    alt="GlowUp Niacinamide Serum"
+                                                    class="product-preview-img"
+                                                />
+                                                <div
+                                                    class="product-preview-info"
+                                                >
+                                                    <span class="prod-tag"
+                                                        >Beauty & Skincare</span
+                                                    >
+                                                    <h4 class="prod-title">
+                                                        GlowUp Niacinamide 10%
+                                                        Serum
+                                                    </h4>
+                                                    <div class="prod-prices">
+                                                        <span class="prod-price"
+                                                            >Rp 120.000</span
+                                                        >
+                                                        <span class="prod-cuan"
+                                                            >+Rp 48.000
+                                                            (40%)</span
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Bank Konten Feature Banner -->
+                                            <div
+                                                class="content-bank-banner"
+                                                id="content-bank-banner"
+                                            >
+                                                <div
+                                                    class="highlight-sweep"
+                                                    id="banner-sweep"
+                                                ></div>
+                                                <div class="content-bank-left">
+                                                    <i
+                                                        class="bi bi-folder2-open"
+                                                    ></i>
+                                                    <div>
+                                                        <strong
+                                                            >Bank Konten Brand
+                                                            Siap Unduh</strong
+                                                        >
+                                                        <span
+                                                            >Foto 4K, B-roll
+                                                            Video, & Script
+                                                            Copywriting</span
+                                                        >
+                                                    </div>
+                                                </div>
+                                                <i
+                                                    class="bi bi-arrow-right-circle-fill"
+                                                    style="font-size: 20px"
+                                                ></i>
+                                            </div>
+
+                                            <!-- 2 Promotion Pathways Quick Badges -->
+                                            <div
+                                                class="quick-pathways-row"
+                                                id="quick-pathways-row"
+                                            >
+                                                <div class="quick-badge">
+                                                    <i
+                                                        class="bi bi-person-check-fill"
+                                                        style="
+                                                            color: var(
+                                                                --orange
+                                                            );
+                                                        "
+                                                    ></i>
+                                                    Jalur Direct KOL
+                                                </div>
+                                                <div class="quick-badge">
+                                                    <i
+                                                        class="bi bi-globe2"
+                                                        style="
+                                                            color: var(--red);
+                                                        "
+                                                    ></i>
+                                                    Jalur Marketplace
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Real Solusi Brand Section -->
+                                <section
+                                    class="section-solusi"
+                                    id="section-solusi"
+                                >
+                                    <div class="section-head">
+                                        <span class="section-tag"
+                                            >Solusi Pemasaran Brand
+                                            Terintegrasi</span
+                                        >
+                                        <h2 class="section-title">
+                                            Mengapa Brand Anda Harus Bermitra
+                                            dengan <span>kerajaan Agency</span>?
+                                        </h2>
+                                    </div>
+
+                                    <div class="solusi-cards-grid">
+                                        <div class="solusi-card">
+                                            <div class="icon-box amber">
+                                                <i
+                                                    class="bi bi-people-fill"
+                                                ></i>
+                                            </div>
+                                            <h4>
+                                                Jaringan 5.000+ KOL
+                                                Terverifikasi
+                                            </h4>
+                                            <p>
+                                                Akses ke ribuan kreator di
+                                                berbagai niche (Beauty, F&B,
+                                                Fashion, Herbal, Gadget) dengan
+                                                engagement rate riil.
+                                            </p>
+                                        </div>
+                                        <div class="solusi-card">
+                                            <div class="icon-box red">
+                                                <i
+                                                    class="bi bi-shield-lock-fill"
+                                                ></i>
+                                            </div>
+                                            <h4>
+                                                Komisi 40% Terkunci & Bebas
+                                                Curang
+                                            </h4>
+                                            <p>
+                                                Persentase komisi produk Anda
+                                                dikunci langsung di sistem
+                                                backend. Tidak ada mark-up
+                                                sepihak.
+                                            </p>
+                                        </div>
+                                        <div class="solusi-card">
+                                            <div class="icon-box dark">
+                                                <i
+                                                    class="bi bi-collection-play-fill"
+                                                ></i>
+                                            </div>
+                                            <h4>
+                                                Fitur Bank Konten Terstruktur
+                                            </h4>
+                                            <p>
+                                                Cukup upload materi foto,
+                                                b-roll, dan copywriting sekali.
+                                                Semua influencer langsung
+                                                mengambil materi secara mandiri.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2 Promotion Pathways -->
+                                    <div class="pathways-box" id="pathways-box">
+                                        <h3 class="pathways-box-title">
+                                            2 Pilihan Jalur Promosi untuk Brand
+                                            Anda
+                                        </h3>
+                                        <div class="pathways-grid">
+                                            <div
+                                                class="pathway-item"
+                                                id="pathway-a"
+                                            >
+                                                <span
+                                                    class="pathway-tag jalur-a"
+                                                    ><i
+                                                        class="bi bi-hand-index-thumb-fill"
+                                                    ></i>
+                                                    JALUR A</span
+                                                >
+                                                <h5>
+                                                    Jalur Direct Selection
+                                                    (Pilih Influencer Spesifik)
+                                                </h5>
+                                                <p>
+                                                    Brand bebas memilih dan
+                                                    menugaskan influencer
+                                                    tertentu dari direktori
+                                                    talent kerajaan sesuai
+                                                    kriteria persona & niche.
+                                                </p>
+                                            </div>
+                                            <div
+                                                class="pathway-item"
+                                                id="pathway-b"
+                                            >
+                                                <span
+                                                    class="pathway-tag jalur-b"
+                                                    ><i
+                                                        class="bi bi-lightning-charge-fill"
+                                                    ></i>
+                                                    JALUR B</span
+                                                >
+                                                <h5>
+                                                    Jalur Marketplace Otomatis
+                                                    (Evermos-Style)
+                                                </h5>
+                                                <p>
+                                                    Produk Anda otomatis
+                                                    di-listing di katalog
+                                                    e-commerce. Ribuan kreator
+                                                    langsung mempromosikan
+                                                    dengan komisi bergaransi.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Real Maklon Section -->
+                                <section
+                                    class="section-maklon"
+                                    id="section-maklon"
+                                >
+                                    <div>
+                                        <span class="maklon-tag"
+                                            ><i
+                                                class="bi bi-gear-wide-connected"
+                                            ></i>
+                                            LAYANAN MAKLON TERPADU</span
+                                        >
+                                        <h2 class="maklon-title">
+                                            Ingin Punya Brand Sendiri? Kami
+                                            Buatkan Produknya & Jualkan Lewat
+                                            <span>Ribuan Influencer</span>.
+                                        </h2>
+                                        <p
+                                            style="
+                                                font-size: 13px;
+                                                color: #9ca3af;
+                                                line-height: 1.6;
+                                            "
+                                        >
+                                            Layanan manufaktur kontrak dari
+                                            formulasi skincare, herbal, izin
+                                            BPOM, sertifikasi Halal MUI, hingga
+                                            promosi viral.
+                                        </p>
+                                    </div>
+                                    <div class="maklon-grid">
+                                        <div class="maklon-box">
+                                            <div class="maklon-num">01</div>
+                                            <h6>Riset & Formulasi</h6>
+                                            <p>
+                                                Pengembangan sampel formula unik
+                                                sesuai tren pasar terkini.
+                                            </p>
+                                        </div>
+                                        <div class="maklon-box">
+                                            <div class="maklon-num">02</div>
+                                            <h6>Legalitas & Desain</h6>
+                                            <p>
+                                                Pendaftaran BPOM, Halal, HKI,
+                                                dan desain packaging elegan.
+                                            </p>
+                                        </div>
+                                        <div class="maklon-box">
+                                            <div class="maklon-num">03</div>
+                                            <h6>Produksi Massal</h6>
+                                            <p>
+                                                Produksi higienis dengan QC
+                                                standar industri CPKB.
+                                            </p>
+                                        </div>
+                                        <div class="maklon-box">
+                                            <div class="maklon-num">04</div>
+                                            <h6>Peluncuran & Viral</h6>
+                                            <p>
+                                                Promosi serentak lewat jaringan
+                                                KOL & live streaming.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                            <!-- End #page-canvas -->
+
+                            <!-- Realistic Vector Cursor & Ripple -->
+                            <div id="virtual-cursor">
+                                <svg
+                                    class="cursor-svg"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M5.5 2.5L18.5 13.5H12L9.5 20.5L5.5 2.5Z"
+                                        fill="#180a06"
+                                        stroke="#ffffff"
+                                        stroke-width="1.8"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                                <div
+                                    class="cursor-ripple"
+                                    id="cursor-ripple"
+                                ></div>
+                            </div>
+                        </div>
+                        <!-- End .browser-viewport -->
+                    </div>
+                    <!-- End #browser-frame -->
+                </div>
+                <!-- End #camera-rig -->
+
+                <!-- Cinematic Ending Title & Brand Lockup -->
+                <div id="finale-overlay">
+                    <div class="future-kicker">Next-Gen SaaS Showcase</div>
+                    <h2 class="future-heading">Experience the Future of Web</h2>
+                </div>
+
+                <div id="finale-brand-bottom">
+                    <div class="logo">MI</div>
+                    <div class="text-info">
+                        <strong>kerajaan INFLUENCE</strong>
+                        <span
+                            >Ekosistem Influencer & Maklon Terpadu · Pak De
+                            Group</span
+                        >
+                    </div>
+                </div>
+            </div>
+            <!-- End #stage -->
+        </div>
+        <!-- End #viewport-container -->
+
+        <!-- Interactive Debug Scrubber Bar -->
+        <div id="debug-panel">
+            <button class="debug-btn" id="btn-play">Pause</button>
+            <button class="debug-btn" id="btn-restart">Restart</button>
+            <input
+                type="range"
+                id="debug-slider"
+                min="0"
+                max="26"
+                step="0.01"
+                value="0"
+            />
+            <span
+                id="debug-time"
+                style="min-width: 80px; font-weight: bold; color: var(--yellow)"
+                >0.00s / 26.0s</span
+            >
         </div>
 
-        <!-- Light Sheen / Glass Sweep -->
-        <div class="bezel-sheen" id="bezel-sheen"></div>
-
-        <!-- Browser Viewport (Web Page Canvas) -->
-        <div class="browser-viewport">
-          
-          <!-- Selective Focus Dimmer Layer -->
-          <div id="focus-dimmer"></div>
-
-          <!-- The Complete Authentic Web Page DOM -->
-          <div id="page-canvas">
-
-            <!-- Real Top Navbar -->
-            <header class="site-header" id="site-header">
-              <div class="brand-logo-wrap">
-                <div class="brand-icon">MI</div>
-                <div class="brand-text">
-                  <span class="top">MAJAPAHIT</span>
-                  <strong class="bottom">INFLUENCE</strong>
-                </div>
-              </div>
-
-              <nav class="nav-links">
-                <a href="#" class="active">Beranda</a>
-                <a href="#">Solusi Brand</a>
-                <a href="#">Layanan Maklon</a>
-                <a href="#">Untuk Kreator</a>
-                <span class="nav-catalog-btn">
-                  <i class="bi bi-shop"></i> Katalog E-Commerce
-                </span>
-              </nav>
-
-              <div class="nav-actions">
-                <span class="btn-login">Masuk</span>
-                <span class="btn-brand-reg"><i class="bi bi-building"></i> DAFTAR BRAND</span>
-                <span class="btn-kol-join"><i class="bi bi-person-plus"></i> JOIN AS KOL</span>
-              </div>
-            </header>
-
-            <!-- Real Hero Section -->
-            <section class="hero-section" id="hero-section">
-              
-              <!-- Hero Left Content -->
-              <div class="hero-left" id="hero-left">
-                <div class="kicker-pill" id="hero-kicker">
-                  <span class="dot"></span>
-                  <span>Ekosistem Influencer & Maklon Pak De Group</span>
-                </div>
-
-                <h1 class="hero-title" id="hero-title">
-                  <!-- Animated word spans will be generated dynamically -->
-                  Percepat Pertumbuhan <span class="brand-accent">Brand</span> Anda & Maksimalkan <span class="cuan-accent">Cuan Kreator</span>.
-                </h1>
-
-                <p class="hero-desc" id="hero-desc">
-                  Majapahit Influence adalah platform all-in-one yang menghubungkan Brand dengan ribuan KOL & Affiliate terverifikasi. Dari produksi custom (maklon), bank konten promosi siap pakai, hingga penjualan e-commerce bergaransi komisi transparan.
-                </p>
-
-                <!-- Persona-First Action Buttons -->
-                <div class="hero-cta-group" id="hero-cta-group">
-                  <div class="cta-btn-primary" id="btn-brand-primary">
-                    <i class="bi bi-rocket-takeoff-fill" style="color: var(--yellow); font-size: 16px;"></i>
-                    <span>Saya Brand: Mulai Promosi</span>
-                  </div>
-
-                  <div class="cta-btn-secondary" id="btn-kol-primary">
-                    <i class="bi bi-camera-reels-fill" style="font-size: 16px;"></i>
-                    <span>Saya Kreator: Join KOL</span>
-                  </div>
-                </div>
-
-                <div class="hero-sublink" id="hero-sublink">
-                  <span>Atau ingin lihat produk siap jual?</span>
-                  <strong>Jelajahi Katalog E-Commerce & Bank Konten &rarr;</strong>
-                </div>
-
-                <!-- Stats Highlight -->
-                <div class="hero-stats-row" id="hero-stats-row">
-                  <div class="stat-box">
-                    <strong id="stat-kol">5.000+</strong>
-                    <span>KOL & Affiliate Aktif</span>
-                  </div>
-                  <div class="stat-box">
-                    <strong class="accent" id="stat-com">40%</strong>
-                    <span>Komisi Tetap Transparan</span>
-                  </div>
-                  <div class="stat-box">
-                    <strong id="stat-brand">100+</strong>
-                    <span>Brand & Produk Maklon</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Hero Right Interactive Card Preview -->
-              <div class="hero-card-container" id="hero-right">
-                <div class="card-aura-glow"></div>
-                
-                <div class="hero-showcase-card" id="showcase-card">
-                  
-                  <div class="card-head">
-                    <div class="card-head-left">
-                      <div class="card-shop-icon"><i class="bi bi-shop"></i></div>
-                      <div class="card-head-text">
-                        <div class="cat">Katalog E-Commerce</div>
-                        <div class="name">Evermos-Style Marketplace</div>
-                      </div>
-                    </div>
-                    <div class="commission-badge-40" id="badge-40">
-                      <i class="bi bi-shield-check"></i> 40% Locked
-                    </div>
-                  </div>
-
-                  <!-- Sample Featured Product Card Preview -->
-                  <div class="product-preview-box" id="product-box">
-                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&auto=format&fit=crop&q=80" alt="GlowUp Niacinamide Serum" class="product-preview-img">
-                    <div class="product-preview-info">
-                      <span class="prod-tag">Beauty & Skincare</span>
-                      <h4 class="prod-title">GlowUp Niacinamide 10% Serum</h4>
-                      <div class="prod-prices">
-                        <span class="prod-price">Rp 120.000</span>
-                        <span class="prod-cuan">+Rp 48.000 (40%)</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Bank Konten Feature Banner -->
-                  <div class="content-bank-banner" id="content-bank-banner">
-                    <div class="highlight-sweep" id="banner-sweep"></div>
-                    <div class="content-bank-left">
-                      <i class="bi bi-folder2-open"></i>
-                      <div>
-                        <strong>Bank Konten Brand Siap Unduh</strong>
-                        <span>Foto 4K, B-roll Video, & Script Copywriting</span>
-                      </div>
-                    </div>
-                    <i class="bi bi-arrow-right-circle-fill" style="font-size: 20px;"></i>
-                  </div>
-
-                  <!-- 2 Promotion Pathways Quick Badges -->
-                  <div class="quick-pathways-row" id="quick-pathways-row">
-                    <div class="quick-badge">
-                      <i class="bi bi-person-check-fill" style="color: var(--orange);"></i> Jalur Direct KOL
-                    </div>
-                    <div class="quick-badge">
-                      <i class="bi bi-globe2" style="color: var(--red);"></i> Jalur Marketplace
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </section>
-
-            <!-- Real Solusi Brand Section -->
-            <section class="section-solusi" id="section-solusi">
-              <div class="section-head">
-                <span class="section-tag">Solusi Pemasaran Brand Terintegrasi</span>
-                <h2 class="section-title">Mengapa Brand Anda Harus Bermitra dengan <span>Majapahit Agency</span>?</h2>
-              </div>
-
-              <div class="solusi-cards-grid">
-                <div class="solusi-card">
-                  <div class="icon-box amber"><i class="bi bi-people-fill"></i></div>
-                  <h4>Jaringan 5.000+ KOL Terverifikasi</h4>
-                  <p>Akses ke ribuan kreator di berbagai niche (Beauty, F&B, Fashion, Herbal, Gadget) dengan engagement rate riil.</p>
-                </div>
-                <div class="solusi-card">
-                  <div class="icon-box red"><i class="bi bi-shield-lock-fill"></i></div>
-                  <h4>Komisi 40% Terkunci & Bebas Curang</h4>
-                  <p>Persentase komisi produk Anda dikunci langsung di sistem backend. Tidak ada mark-up sepihak.</p>
-                </div>
-                <div class="solusi-card">
-                  <div class="icon-box dark"><i class="bi bi-collection-play-fill"></i></div>
-                  <h4>Fitur Bank Konten Terstruktur</h4>
-                  <p>Cukup upload materi foto, b-roll, dan copywriting sekali. Semua influencer langsung mengambil materi secara mandiri.</p>
-                </div>
-              </div>
-
-              <!-- 2 Promotion Pathways -->
-              <div class="pathways-box" id="pathways-box">
-                <h3 class="pathways-box-title">2 Pilihan Jalur Promosi untuk Brand Anda</h3>
-                <div class="pathways-grid">
-                  <div class="pathway-item" id="pathway-a">
-                    <span class="pathway-tag jalur-a"><i class="bi bi-hand-index-thumb-fill"></i> JALUR A</span>
-                    <h5>Jalur Direct Selection (Pilih Influencer Spesifik)</h5>
-                    <p>Brand bebas memilih dan menugaskan influencer tertentu dari direktori talent Majapahit sesuai kriteria persona & niche.</p>
-                  </div>
-                  <div class="pathway-item" id="pathway-b">
-                    <span class="pathway-tag jalur-b"><i class="bi bi-lightning-charge-fill"></i> JALUR B</span>
-                    <h5>Jalur Marketplace Otomatis (Evermos-Style)</h5>
-                    <p>Produk Anda otomatis di-listing di katalog e-commerce. Ribuan kreator langsung mempromosikan dengan komisi bergaransi.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- Real Maklon Section -->
-            <section class="section-maklon" id="section-maklon">
-              <div>
-                <span class="maklon-tag"><i class="bi bi-gear-wide-connected"></i> LAYANAN MAKLON TERPADU</span>
-                <h2 class="maklon-title">Ingin Punya Brand Sendiri? Kami Buatkan Produknya & Jualkan Lewat <span>Ribuan Influencer</span>.</h2>
-                <p style="font-size: 13px; color: #9ca3af; line-height: 1.6;">Layanan manufaktur kontrak dari formulasi skincare, herbal, izin BPOM, sertifikasi Halal MUI, hingga promosi viral.</p>
-              </div>
-              <div class="maklon-grid">
-                <div class="maklon-box">
-                  <div class="maklon-num">01</div>
-                  <h6>Riset & Formulasi</h6>
-                  <p>Pengembangan sampel formula unik sesuai tren pasar terkini.</p>
-                </div>
-                <div class="maklon-box">
-                  <div class="maklon-num">02</div>
-                  <h6>Legalitas & Desain</h6>
-                  <p>Pendaftaran BPOM, Halal, HKI, dan desain packaging elegan.</p>
-                </div>
-                <div class="maklon-box">
-                  <div class="maklon-num">03</div>
-                  <h6>Produksi Massal</h6>
-                  <p>Produksi higienis dengan QC standar industri CPKB.</p>
-                </div>
-                <div class="maklon-box">
-                  <div class="maklon-num">04</div>
-                  <h6>Peluncuran & Viral</h6>
-                  <p>Promosi serentak lewat jaringan KOL & live streaming.</p>
-                </div>
-              </div>
-            </section>
-
-          </div> <!-- End #page-canvas -->
-
-          <!-- Realistic Vector Cursor & Ripple -->
-          <div id="virtual-cursor">
-            <svg class="cursor-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M5.5 2.5L18.5 13.5H12L9.5 20.5L5.5 2.5Z" fill="#180a06" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"/>
-            </svg>
-            <div class="cursor-ripple" id="cursor-ripple"></div>
-          </div>
-
-        </div> <!-- End .browser-viewport -->
-      </div> <!-- End #browser-frame -->
-    </div> <!-- End #camera-rig -->
-
-    <!-- Cinematic Ending Title & Brand Lockup -->
-    <div id="finale-overlay">
-      <div class="future-kicker">Next-Gen SaaS Showcase</div>
-      <h2 class="future-heading">Experience the Future of Web</h2>
-    </div>
-
-    <div id="finale-brand-bottom">
-      <div class="logo">MI</div>
-      <div class="text-info">
-        <strong>MAJAPAHIT INFLUENCE</strong>
-        <span>Ekosistem Influencer & Maklon Terpadu · Pak De Group</span>
-      </div>
-    </div>
-
-  </div> <!-- End #stage -->
-</div> <!-- End #viewport-container -->
-
-<!-- Interactive Debug Scrubber Bar -->
-<div id="debug-panel">
-  <button class="debug-btn" id="btn-play">Pause</button>
-  <button class="debug-btn" id="btn-restart">Restart</button>
-  <input type="range" id="debug-slider" min="0" max="26" step="0.01" value="0">
-  <span id="debug-time" style="min-width: 80px; font-weight: bold; color: var(--yellow);">0.00s / 26.0s</span>
-</div>
-
-<script>
-  /* ==========================================================================
+        <script>
+            /* ==========================================================================
      AUTO-RESPONSIVE STAGE SCALING
      ========================================================================== */
-  const stage = document.getElementById('stage');
-  function resizeStage() {
-    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-    stage.style.transform = `scale(${scale})`;
-  }
-  window.addEventListener('resize', resizeStage);
-  resizeStage();
+            const stage = document.getElementById("stage");
+            function resizeStage() {
+                const scale = Math.min(
+                    window.innerWidth / 1920,
+                    window.innerHeight / 1080,
+                );
+                stage.style.transform = `scale(${scale})`;
+            }
+            window.addEventListener("resize", resizeStage);
+            resizeStage();
 
-  /* ==========================================================================
+            /* ==========================================================================
      THREE.JS AMBIENT LUXURY PARTICLES
      ========================================================================== */
-  const canvas = document.getElementById('bg-canvas');
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, 1920 / 1080, 0.1, 1000);
-  camera.position.z = 100;
+            const canvas = document.getElementById("bg-canvas");
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(
+                50,
+                1920 / 1080,
+                0.1,
+                1000,
+            );
+            camera.position.z = 100;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setSize(1920, 1080);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            const renderer = new THREE.WebGLRenderer({
+                canvas,
+                alpha: true,
+                antialias: true,
+            });
+            renderer.setSize(1920, 1080);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  const particleCount = 75;
-  const geometry = new THREE.BufferGeometry();
-  const positions = new Float32Array(particleCount * 3);
-  const colors = new Float32Array(particleCount * 3);
+            const particleCount = 75;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
 
-  const colGold = new THREE.Color('#fec200');
-  const colAmber = new THREE.Color('#d57028');
+            const colGold = new THREE.Color("#fec200");
+            const colAmber = new THREE.Color("#d57028");
 
-  for (let i = 0; i < particleCount; i++) {
-    positions[i * 3] = (Math.random() - 0.5) * 160;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
+            for (let i = 0; i < particleCount; i++) {
+                positions[i * 3] = (Math.random() - 0.5) * 160;
+                positions[i * 3 + 1] = (Math.random() - 0.5) * 100;
+                positions[i * 3 + 2] = (Math.random() - 0.5) * 80;
 
-    const col = Math.random() > 0.4 ? colGold : colAmber;
-    colors[i * 3] = col.r;
-    colors[i * 3 + 1] = col.g;
-    colors[i * 3 + 2] = col.b;
-  }
+                const col = Math.random() > 0.4 ? colGold : colAmber;
+                colors[i * 3] = col.r;
+                colors[i * 3 + 1] = col.g;
+                colors[i * 3 + 2] = col.b;
+            }
 
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+            geometry.setAttribute(
+                "position",
+                new THREE.BufferAttribute(positions, 3),
+            );
+            geometry.setAttribute(
+                "color",
+                new THREE.BufferAttribute(colors, 3),
+            );
 
-  // Circular particle texture
-  const pCanvas = document.createElement('canvas');
-  pCanvas.width = 32;
-  pCanvas.height = 32;
-  const pCtx = pCanvas.getContext('2d');
-  const pGrad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
-  pGrad.addColorStop(0, 'rgba(255,255,255,1)');
-  pGrad.addColorStop(0.3, 'rgba(254,194,0,0.8)');
-  pGrad.addColorStop(1, 'rgba(0,0,0,0)');
-  pCtx.fillStyle = pGrad;
-  pCtx.fillRect(0, 0, 32, 32);
-  const pTex = new THREE.CanvasTexture(pCanvas);
+            // Circular particle texture
+            const pCanvas = document.createElement("canvas");
+            pCanvas.width = 32;
+            pCanvas.height = 32;
+            const pCtx = pCanvas.getContext("2d");
+            const pGrad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+            pGrad.addColorStop(0, "rgba(255,255,255,1)");
+            pGrad.addColorStop(0.3, "rgba(254,194,0,0.8)");
+            pGrad.addColorStop(1, "rgba(0,0,0,0)");
+            pCtx.fillStyle = pGrad;
+            pCtx.fillRect(0, 0, 32, 32);
+            const pTex = new THREE.CanvasTexture(pCanvas);
 
-  const material = new THREE.PointsMaterial({
-    size: 2.2,
-    vertexColors: true,
-    map: pTex,
-    transparent: true,
-    opacity: 0.55,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false
-  });
+            const material = new THREE.PointsMaterial({
+                size: 2.2,
+                vertexColors: true,
+                map: pTex,
+                transparent: true,
+                opacity: 0.55,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+            });
 
-  const particles = new THREE.Points(geometry, material);
-  scene.add(particles);
+            const particles = new THREE.Points(geometry, material);
+            scene.add(particles);
 
-  /* Deterministic particle render function driven by timeline progress */
-  function updateParticles(t) {
-    particles.rotation.y = t * 0.04;
-    particles.rotation.x = Math.sin(t * 0.03) * 0.08;
-    renderer.render(scene, camera);
-  }
+            /* Deterministic particle render function driven by timeline progress */
+            function updateParticles(t) {
+                particles.rotation.y = t * 0.04;
+                particles.rotation.x = Math.sin(t * 0.03) * 0.08;
+                renderer.render(scene, camera);
+            }
 
-  /* ==========================================================================
+            /* ==========================================================================
      HEADLINE WORD-BY-WORD SPLITTER
      ========================================================================== */
-  const titleEl = document.getElementById('hero-title');
-  const originalTitleHtml = `Percepat Pertumbuhan <span class="brand-accent">Brand</span> Anda & Maksimalkan <span class="cuan-accent">Cuan Kreator</span>.`;
-  
-  // Create structured spans for each word to animate word-by-word
-  titleEl.innerHTML = `
+            const titleEl = document.getElementById("hero-title");
+            const originalTitleHtml = `Percepat Pertumbuhan <span class="brand-accent">Brand</span> Anda & Maksimalkan <span class="cuan-accent">Cuan Kreator</span>.`;
+
+            // Create structured spans for each word to animate word-by-word
+            titleEl.innerHTML = `
     <span class="word-span"><span class="word-inner">Percepat</span></span>
     <span class="word-span"><span class="word-inner">Pertumbuhan</span></span>
     <span class="word-span"><span class="word-inner brand-accent">Brand</span></span>
@@ -1523,482 +1949,654 @@
     <span class="word-span"><span class="word-inner cuan-accent">Kreator.</span></span>
   `;
 
-  const wordInners = document.querySelectorAll('.word-inner');
+            const wordInners = document.querySelectorAll(".word-inner");
 
-  /* ==========================================================================
+            /* ==========================================================================
      MASTER DETERMINISTIC GSAP TIMELINE (Strict 26.0s 60 FPS)
      ========================================================================== */
-  const DURATION = 26.0;
+            const DURATION = 26.0;
 
-  const tl = gsap.timeline({
-    paused: false,
-    onComplete: () => {
-      tl.play(0);
-    },
-    onUpdate: () => {
-      const cur = tl.time();
-      updateParticles(cur);
-      if (debugSlider) {
-        debugSlider.value = cur;
-        debugTime.textContent = `${cur.toFixed(2)}s / ${DURATION}s`;
-      }
-    }
-  });
-  window.tl = tl;
+            const tl = gsap.timeline({
+                paused: false,
+                onComplete: () => {
+                    tl.play(0);
+                },
+                onUpdate: () => {
+                    const cur = tl.time();
+                    updateParticles(cur);
+                    if (debugSlider) {
+                        debugSlider.value = cur;
+                        debugTime.textContent = `${cur.toFixed(2)}s / ${DURATION}s`;
+                    }
+                },
+            });
+            window.tl = tl;
 
-  /* --------------------------------------------------------------------------
+            /* --------------------------------------------------------------------------
      SCENE 1: OPENING & UI EMERGENCE (0.0s – 4.0s)
      Dark minimal environment, gradual scale-up from center, soft backlight
      -------------------------------------------------------------------------- */
-  tl.set('#ambient-glow', { opacity: 0, scale: 0.7 }, 0);
-  tl.set('#browser-frame', { 
-    scale: 0.84, 
-    opacity: 0, 
-    y: 45, 
-    rotateX: 6, 
-    rotateY: 0, 
-    transformPerspective: 1200 
-  }, 0);
-  tl.set('#camera-rig', { scale: 1.0, x: 0, y: 0, rotateX: 0, rotateY: 0 }, 0);
-  tl.set('#page-canvas', { y: 0 }, 0);
-  tl.set('#site-header', { y: -20, opacity: 0 }, 0);
-  tl.set('#hero-left', { opacity: 0, y: 30 }, 0);
-  tl.set('#hero-right', { opacity: 0, scale: 0.94, y: 30 }, 0);
-  tl.set('#virtual-cursor', { opacity: 0, x: 1300, y: 750 }, 0);
-  tl.set(wordInners, { y: '0%', opacity: 0.35, filter: 'blur(1px)' }, 0);
-  tl.set('#finale-overlay', { opacity: 0, y: -20 }, 0);
-  tl.set('#finale-brand-bottom', { opacity: 0, y: 30 }, 0);
-  tl.set('#focus-dimmer', { opacity: 0 }, 0);
+            tl.set("#ambient-glow", { opacity: 0, scale: 0.7 }, 0);
+            tl.set(
+                "#browser-frame",
+                {
+                    scale: 0.84,
+                    opacity: 0,
+                    y: 45,
+                    rotateX: 6,
+                    rotateY: 0,
+                    transformPerspective: 1200,
+                },
+                0,
+            );
+            tl.set(
+                "#camera-rig",
+                { scale: 1.0, x: 0, y: 0, rotateX: 0, rotateY: 0 },
+                0,
+            );
+            tl.set("#page-canvas", { y: 0 }, 0);
+            tl.set("#site-header", { y: -20, opacity: 0 }, 0);
+            tl.set("#hero-left", { opacity: 0, y: 30 }, 0);
+            tl.set("#hero-right", { opacity: 0, scale: 0.94, y: 30 }, 0);
+            tl.set("#virtual-cursor", { opacity: 0, x: 1300, y: 750 }, 0);
+            tl.set(
+                wordInners,
+                { y: "0%", opacity: 0.35, filter: "blur(1px)" },
+                0,
+            );
+            tl.set("#finale-overlay", { opacity: 0, y: -20 }, 0);
+            tl.set("#finale-brand-bottom", { opacity: 0, y: 30 }, 0);
+            tl.set("#focus-dimmer", { opacity: 0 }, 0);
 
-  // Soft light glow rises
-  tl.to('#ambient-glow', {
-    opacity: 0.95,
-    scale: 1.1,
-    duration: 3.5,
-    ease: 'power2.out'
-  }, 0.2);
+            // Soft light glow rises
+            tl.to(
+                "#ambient-glow",
+                {
+                    opacity: 0.95,
+                    scale: 1.1,
+                    duration: 3.5,
+                    ease: "power2.out",
+                },
+                0.2,
+            );
 
-  // Browser emerges from center
-  tl.to('#browser-frame', {
-    opacity: 1,
-    scale: 1.0,
-    y: 0,
-    rotateX: 0,
-    duration: 2.8,
-    ease: 'power3.out'
-  }, 0.3);
+            // Browser emerges from center
+            tl.to(
+                "#browser-frame",
+                {
+                    opacity: 1,
+                    scale: 1.0,
+                    y: 0,
+                    rotateX: 0,
+                    duration: 2.8,
+                    ease: "power3.out",
+                },
+                0.3,
+            );
 
-  // Glass bezel light sweep
-  tl.fromTo('#bezel-sheen', 
-    { x: '-120%' }, 
-    { x: '160%', duration: 1.8, ease: 'power2.inOut' }, 
-    1.0
-  );
+            // Glass bezel light sweep
+            tl.fromTo(
+                "#bezel-sheen",
+                { x: "-120%" },
+                { x: "160%", duration: 1.8, ease: "power2.inOut" },
+                1.0,
+            );
 
-  // Navbar and hero cards fade in gently
-  tl.to('#site-header', {
-    y: 0,
-    opacity: 1,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, 1.2);
+            // Navbar and hero cards fade in gently
+            tl.to(
+                "#site-header",
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power2.out",
+                },
+                1.2,
+            );
 
-  tl.to('#hero-left', {
-    y: 0,
-    opacity: 1,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, 1.5);
+            tl.to(
+                "#hero-left",
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    ease: "power2.out",
+                },
+                1.5,
+            );
 
-  tl.to('#hero-right', {
-    y: 0,
-    scale: 1,
-    opacity: 1,
-    duration: 1.4,
-    ease: 'power2.out'
-  }, 1.7);
+            tl.to(
+                "#hero-right",
+                {
+                    y: 0,
+                    scale: 1,
+                    opacity: 1,
+                    duration: 1.4,
+                    ease: "power2.out",
+                },
+                1.7,
+            );
 
-  /* --------------------------------------------------------------------------
+            /* --------------------------------------------------------------------------
      SCENE 2: HERO SHOWCASE, TYPOGRAPHY & CURSOR CLICK (4.0s – 9.5s)
      Zoom into hero, word-by-word headline, realistic mouse navigation & click
      -------------------------------------------------------------------------- */
-  // Cinematic camera push into Hero section
-  tl.to('#camera-rig', {
-    scale: 1.34,
-    x: 230,
-    y: 90,
-    rotateY: -2.5,
-    rotateX: 1.5,
-    duration: 2.4,
-    ease: 'power2.inOut'
-  }, 3.8);
+            // Cinematic camera push into Hero section
+            tl.to(
+                "#camera-rig",
+                {
+                    scale: 1.34,
+                    x: 230,
+                    y: 90,
+                    rotateY: -2.5,
+                    rotateX: 1.5,
+                    duration: 2.4,
+                    ease: "power2.inOut",
+                },
+                3.8,
+            );
 
-  // Word-by-word headline upward reveal with subtle blur fade
-  tl.fromTo(wordInners, 
-    { y: '30px', opacity: 0, filter: 'blur(4px)' },
-    {
-      y: '0%',
-      opacity: 1,
-      filter: 'blur(0px)',
-      duration: 0.65,
-      stagger: 0.08,
-      ease: 'power2.out'
-    }, 
-    4.1
-  );
+            // Word-by-word headline upward reveal with subtle blur fade
+            tl.fromTo(
+                wordInners,
+                { y: "30px", opacity: 0, filter: "blur(4px)" },
+                {
+                    y: "0%",
+                    opacity: 1,
+                    filter: "blur(0px)",
+                    duration: 0.65,
+                    stagger: 0.08,
+                    ease: "power2.out",
+                },
+                4.1,
+            );
 
-  // Primary Buttons gently fade and slide into position
-  tl.fromTo('#hero-cta-group', 
-    { y: 20, opacity: 0.2 },
-    { y: 0, opacity: 1, duration: 0.8, ease: 'power2.out' },
-    4.8
-  );
+            // Primary Buttons gently fade and slide into position
+            tl.fromTo(
+                "#hero-cta-group",
+                { y: 20, opacity: 0.2 },
+                { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+                4.8,
+            );
 
-  // Mouse cursor glides onto the stage
-  tl.to('#virtual-cursor', {
-    opacity: 1,
-    x: 580,
-    y: 420,
-    duration: 1.6,
-    ease: 'power2.out'
-  }, 5.2);
+            // Mouse cursor glides onto the stage
+            tl.to(
+                "#virtual-cursor",
+                {
+                    opacity: 1,
+                    x: 580,
+                    y: 420,
+                    duration: 1.6,
+                    ease: "power2.out",
+                },
+                5.2,
+            );
 
-  // Cursor moves directly over "Saya Brand: Mulai Promosi" button
-  tl.to('#virtual-cursor', {
-    x: 235,
-    y: 388,
-    duration: 1.2,
-    ease: 'power2.inOut'
-  }, 6.5);
+            // Cursor moves directly over "Saya Brand: Mulai Promosi" button
+            tl.to(
+                "#virtual-cursor",
+                {
+                    x: 235,
+                    y: 388,
+                    duration: 1.2,
+                    ease: "power2.inOut",
+                },
+                6.5,
+            );
 
-  // Button hover state triggers
-  tl.to('#btn-brand-primary', {
-    scale: 1.04,
-    backgroundColor: '#2b110b',
-    boxShadow: '0 14px 34px rgba(66, 27, 19, 0.4), 0 0 24px rgba(254, 194, 0, 0.45)',
-    borderColor: 'rgba(254, 194, 0, 0.8)',
-    duration: 0.25
-  }, 7.6);
+            // Button hover state triggers
+            tl.to(
+                "#btn-brand-primary",
+                {
+                    scale: 1.04,
+                    backgroundColor: "#2b110b",
+                    boxShadow:
+                        "0 14px 34px rgba(66, 27, 19, 0.4), 0 0 24px rgba(254, 194, 0, 0.45)",
+                    borderColor: "rgba(254, 194, 0, 0.8)",
+                    duration: 0.25,
+                },
+                7.6,
+            );
 
-  // Click down & ripple trigger
-  tl.to('#btn-brand-primary', {
-    scale: 0.97,
-    duration: 0.12,
-    ease: 'power1.in'
-  }, 7.9);
+            // Click down & ripple trigger
+            tl.to(
+                "#btn-brand-primary",
+                {
+                    scale: 0.97,
+                    duration: 0.12,
+                    ease: "power1.in",
+                },
+                7.9,
+            );
 
-  tl.fromTo('#cursor-ripple', 
-    { scale: 0, opacity: 0.9 }, 
-    { scale: 2.8, opacity: 0, duration: 0.55, ease: 'power2.out' }, 
-    7.9
-  );
+            tl.fromTo(
+                "#cursor-ripple",
+                { scale: 0, opacity: 0.9 },
+                { scale: 2.8, opacity: 0, duration: 0.55, ease: "power2.out" },
+                7.9,
+            );
 
-  tl.to('#btn-brand-primary', {
-    scale: 1.04,
-    duration: 0.18,
-    ease: 'power1.out'
-  }, 8.05);
+            tl.to(
+                "#btn-brand-primary",
+                {
+                    scale: 1.04,
+                    duration: 0.18,
+                    ease: "power1.out",
+                },
+                8.05,
+            );
 
-  // Cursor pauses and eases out of button
-  tl.to('#btn-brand-primary', {
-    scale: 1.0,
-    backgroundColor: '#421b13',
-    boxShadow: '0 8px 24px rgba(66, 27, 19, 0.25)',
-    borderColor: 'rgba(255, 255, 255, 0.12)',
-    duration: 0.4
-  }, 8.6);
+            // Cursor pauses and eases out of button
+            tl.to(
+                "#btn-brand-primary",
+                {
+                    scale: 1.0,
+                    backgroundColor: "#421b13",
+                    boxShadow: "0 8px 24px rgba(66, 27, 19, 0.25)",
+                    borderColor: "rgba(255, 255, 255, 0.12)",
+                    duration: 0.4,
+                },
+                8.6,
+            );
 
-  /* --------------------------------------------------------------------------
+            /* --------------------------------------------------------------------------
      SCENE 3: FEATURE SHOWCASE #1 — 40% LOCKED & CONTENT BANK (9.5s – 15.0s)
      Pan to right card, background dim & selective blur, floating 3D elevation
      -------------------------------------------------------------------------- */
-  // Camera pans to the right marketplace card
-  tl.to('#camera-rig', {
-    scale: 1.48,
-    x: -290,
-    y: 70,
-    rotateY: 3.5,
-    rotateX: -1.0,
-    duration: 2.2,
-    ease: 'power2.inOut'
-  }, 9.3);
+            // Camera pans to the right marketplace card
+            tl.to(
+                "#camera-rig",
+                {
+                    scale: 1.48,
+                    x: -290,
+                    y: 70,
+                    rotateY: 3.5,
+                    rotateX: -1.0,
+                    duration: 2.2,
+                    ease: "power2.inOut",
+                },
+                9.3,
+            );
 
-  // Selective Focus: hero text dims & blurs
-  tl.to('#hero-left', {
-    filter: 'blur(4px)',
-    opacity: 0.35,
-    duration: 0.9,
-    ease: 'power2.out'
-  }, 9.8);
+            // Selective Focus: hero text dims & blurs
+            tl.to(
+                "#hero-left",
+                {
+                    filter: "blur(4px)",
+                    opacity: 0.35,
+                    duration: 0.9,
+                    ease: "power2.out",
+                },
+                9.8,
+            );
 
-  // Showcase card lifts into 3D spotlight
-  tl.to('#showcase-card', {
-    boxShadow: '0 30px 80px rgba(213, 112, 40, 0.4), 0 0 0 2px rgba(213, 112, 40, 0.7)',
-    translateZ: 35,
-    duration: 0.9,
-    ease: 'power2.out'
-  }, 10.0);
+            // Showcase card lifts into 3D spotlight
+            tl.to(
+                "#showcase-card",
+                {
+                    boxShadow:
+                        "0 30px 80px rgba(213, 112, 40, 0.4), 0 0 0 2px rgba(213, 112, 40, 0.7)",
+                    translateZ: 35,
+                    duration: 0.9,
+                    ease: "power2.out",
+                },
+                10.0,
+            );
 
-  // 40% Locked badge pops forward with radiant aura
-  tl.to('#badge-40', {
-    scale: 1.12,
-    boxShadow: '0 10px 30px rgba(4, 120, 87, 0.4)',
-    borderColor: '#059669',
-    backgroundColor: '#d1fae5',
-    duration: 0.6,
-    ease: 'back.out(2)'
-  }, 10.4);
+            // 40% Locked badge pops forward with radiant aura
+            tl.to(
+                "#badge-40",
+                {
+                    scale: 1.12,
+                    boxShadow: "0 10px 30px rgba(4, 120, 87, 0.4)",
+                    borderColor: "#059669",
+                    backgroundColor: "#d1fae5",
+                    duration: 0.6,
+                    ease: "back.out(2)",
+                },
+                10.4,
+            );
 
-  // Cursor moves to the Bank Konten banner
-  tl.to('#virtual-cursor', {
-    x: 1040,
-    y: 355,
-    duration: 1.4,
-    ease: 'power2.inOut'
-  }, 10.6);
+            // Cursor moves to the Bank Konten banner
+            tl.to(
+                "#virtual-cursor",
+                {
+                    x: 1040,
+                    y: 355,
+                    duration: 1.4,
+                    ease: "power2.inOut",
+                },
+                10.6,
+            );
 
-  // Bank Konten banner lights up & sweeps
-  tl.to('#content-bank-banner', {
-    scale: 1.03,
-    boxShadow: '0 16px 36px rgba(213, 112, 40, 0.5), 0 0 20px rgba(254, 194, 0, 0.3)',
-    duration: 0.35
-  }, 11.9);
+            // Bank Konten banner lights up & sweeps
+            tl.to(
+                "#content-bank-banner",
+                {
+                    scale: 1.03,
+                    boxShadow:
+                        "0 16px 36px rgba(213, 112, 40, 0.5), 0 0 20px rgba(254, 194, 0, 0.3)",
+                    duration: 0.35,
+                },
+                11.9,
+            );
 
-  tl.fromTo('#banner-sweep', 
-    { x: '-100%' }, 
-    { x: '120%', duration: 0.9, ease: 'power2.inOut' }, 
-    12.0
-  );
+            tl.fromTo(
+                "#banner-sweep",
+                { x: "-100%" },
+                { x: "120%", duration: 0.9, ease: "power2.inOut" },
+                12.0,
+            );
 
-  tl.fromTo('#cursor-ripple', 
-    { scale: 0, opacity: 0.8 }, 
-    { scale: 2.2, opacity: 0, duration: 0.5, ease: 'power2.out' }, 
-    12.1
-  );
+            tl.fromTo(
+                "#cursor-ripple",
+                { scale: 0, opacity: 0.8 },
+                { scale: 2.2, opacity: 0, duration: 0.5, ease: "power2.out" },
+                12.1,
+            );
 
-  // Restore card elevation before scroll
-  tl.to(['#showcase-card', '#badge-40', '#content-bank-banner'], {
-    scale: 1.0,
-    boxShadow: '0 20px 50px rgba(66, 27, 19, 0.12)',
-    translateZ: 0,
-    borderColor: 'rgba(66, 27, 19, 0.08)',
-    backgroundColor: '',
-    duration: 0.7,
-    ease: 'power2.inOut'
-  }, 13.8);
+            // Restore card elevation before scroll
+            tl.to(
+                ["#showcase-card", "#badge-40", "#content-bank-banner"],
+                {
+                    scale: 1.0,
+                    boxShadow: "0 20px 50px rgba(66, 27, 19, 0.12)",
+                    translateZ: 0,
+                    borderColor: "rgba(66, 27, 19, 0.08)",
+                    backgroundColor: "",
+                    duration: 0.7,
+                    ease: "power2.inOut",
+                },
+                13.8,
+            );
 
-  tl.to('#hero-left', {
-    filter: 'blur(0px)',
-    opacity: 1,
-    duration: 0.7
-  }, 13.8);
+            tl.to(
+                "#hero-left",
+                {
+                    filter: "blur(0px)",
+                    opacity: 1,
+                    duration: 0.7,
+                },
+                13.8,
+            );
 
-  /* --------------------------------------------------------------------------
+            /* --------------------------------------------------------------------------
      SCENE 4: FEATURE SHOWCASE #2 — SMOOTH PAGE SCROLL & DUAL PATHWAYS (15.0s – 20.5s)
      Realistic page scroll, Dual Pathways illuminated, stats depth
      -------------------------------------------------------------------------- */
-  // Camera backs out slightly to view wide layout
-  tl.to('#camera-rig', {
-    scale: 1.22,
-    x: 0,
-    y: -30,
-    rotateY: 0,
-    rotateX: 0,
-    duration: 1.8,
-    ease: 'power2.inOut'
-  }, 14.8);
+            // Camera backs out slightly to view wide layout
+            tl.to(
+                "#camera-rig",
+                {
+                    scale: 1.22,
+                    x: 0,
+                    y: -30,
+                    rotateY: 0,
+                    rotateX: 0,
+                    duration: 1.8,
+                    ease: "power2.inOut",
+                },
+                14.8,
+            );
 
-  // Smooth realistic page scroll downwards to reveal Solusi & Pathways
-  tl.to('#page-canvas', {
-    y: -640,
-    duration: 2.2,
-    ease: 'power2.inOut'
-  }, 15.0);
+            // Smooth realistic page scroll downwards to reveal Solusi & Pathways
+            tl.to(
+                "#page-canvas",
+                {
+                    y: -640,
+                    duration: 2.2,
+                    ease: "power2.inOut",
+                },
+                15.0,
+            );
 
-  // Cursor moves naturally during scroll
-  tl.to('#virtual-cursor', {
-    x: 720,
-    y: 280,
-    duration: 1.6,
-    ease: 'power1.inOut'
-  }, 15.2);
+            // Cursor moves naturally during scroll
+            tl.to(
+                "#virtual-cursor",
+                {
+                    x: 720,
+                    y: 280,
+                    duration: 1.6,
+                    ease: "power1.inOut",
+                },
+                15.2,
+            );
 
-  // Highlight Jalur A (Direct Selection)
-  tl.to('#pathway-a', {
-    scale: 1.03,
-    boxShadow: '0 16px 36px rgba(213, 112, 40, 0.25), 0 0 0 2px var(--orange)',
-    duration: 0.6,
-    ease: 'power2.out'
-  }, 16.8);
+            // Highlight Jalur A (Direct Selection)
+            tl.to(
+                "#pathway-a",
+                {
+                    scale: 1.03,
+                    boxShadow:
+                        "0 16px 36px rgba(213, 112, 40, 0.25), 0 0 0 2px var(--orange)",
+                    duration: 0.6,
+                    ease: "power2.out",
+                },
+                16.8,
+            );
 
-  // Cursor hovers Jalur A
-  tl.to('#virtual-cursor', {
-    x: 430,
-    y: 330,
-    duration: 1.0,
-    ease: 'power2.out'
-  }, 16.9);
+            // Cursor hovers Jalur A
+            tl.to(
+                "#virtual-cursor",
+                {
+                    x: 430,
+                    y: 330,
+                    duration: 1.0,
+                    ease: "power2.out",
+                },
+                16.9,
+            );
 
-  // Highlight Jalur B (Evermos Marketplace)
-  tl.to('#pathway-b', {
-    scale: 1.03,
-    boxShadow: '0 16px 36px rgba(213, 40, 45, 0.25), 0 0 0 2px var(--red)',
-    duration: 0.6,
-    ease: 'power2.out'
-  }, 18.0);
+            // Highlight Jalur B (Evermos Marketplace)
+            tl.to(
+                "#pathway-b",
+                {
+                    scale: 1.03,
+                    boxShadow:
+                        "0 16px 36px rgba(213, 40, 45, 0.25), 0 0 0 2px var(--red)",
+                    duration: 0.6,
+                    ease: "power2.out",
+                },
+                18.0,
+            );
 
-  // Cursor smoothly glides over to Jalur B
-  tl.to('#virtual-cursor', {
-    x: 1020,
-    y: 330,
-    duration: 1.1,
-    ease: 'power2.inOut'
-  }, 17.9);
+            // Cursor smoothly glides over to Jalur B
+            tl.to(
+                "#virtual-cursor",
+                {
+                    x: 1020,
+                    y: 330,
+                    duration: 1.1,
+                    ease: "power2.inOut",
+                },
+                17.9,
+            );
 
-  // Subtle settle back
-  tl.to(['#pathway-a', '#pathway-b'], {
-    scale: 1.0,
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.04)',
-    borderColor: 'rgba(66, 27, 19, 0.08)',
-    duration: 0.6
-  }, 19.5);
+            // Subtle settle back
+            tl.to(
+                ["#pathway-a", "#pathway-b"],
+                {
+                    scale: 1.0,
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.04)",
+                    borderColor: "rgba(66, 27, 19, 0.08)",
+                    duration: 0.6,
+                },
+                19.5,
+            );
 
-  /* --------------------------------------------------------------------------
+            /* --------------------------------------------------------------------------
      SCENE 5: GRAND FINALE — CAMERA PULLBACK & "EXPERIENCE THE FUTURE" (20.5s – 26.0s)
      Pull camera back, full website center stage, final slogan, light sweep
      -------------------------------------------------------------------------- */
-  // Page scrolls gracefully back to top
-  tl.to('#page-canvas', {
-    y: 0,
-    duration: 1.8,
-    ease: 'power3.inOut'
-  }, 20.2);
+            // Page scrolls gracefully back to top
+            tl.to(
+                "#page-canvas",
+                {
+                    y: 0,
+                    duration: 1.8,
+                    ease: "power3.inOut",
+                },
+                20.2,
+            );
 
-  // Cursor fades out gracefully
-  tl.to('#virtual-cursor', {
-    opacity: 0,
-    scale: 0.6,
-    duration: 0.6
-  }, 20.3);
+            // Cursor fades out gracefully
+            tl.to(
+                "#virtual-cursor",
+                {
+                    opacity: 0,
+                    scale: 0.6,
+                    duration: 0.6,
+                },
+                20.3,
+            );
 
-  // Authoritative Camera Pullback to reveal complete interface in 3D perspective
-  tl.to('#camera-rig', {
-    scale: 0.77,
-    x: 0,
-    y: 50,
-    rotateX: 5.5,
-    rotateY: -3.0,
-    duration: 2.4,
-    ease: 'power3.out'
-  }, 20.5);
+            // Authoritative Camera Pullback to reveal complete interface in 3D perspective
+            tl.to(
+                "#camera-rig",
+                {
+                    scale: 0.77,
+                    x: 0,
+                    y: 50,
+                    rotateX: 5.5,
+                    rotateY: -3.0,
+                    duration: 2.4,
+                    ease: "power3.out",
+                },
+                20.5,
+            );
 
-  // Ambient glow intensifies behind centered browser
-  tl.to('#ambient-glow', {
-    opacity: 1,
-    scale: 1.35,
-    duration: 2.0,
-    ease: 'power2.out'
-  }, 20.8);
+            // Ambient glow intensifies behind centered browser
+            tl.to(
+                "#ambient-glow",
+                {
+                    opacity: 1,
+                    scale: 1.35,
+                    duration: 2.0,
+                    ease: "power2.out",
+                },
+                20.8,
+            );
 
-  // Final Headline Overlay: "Experience the Future of Web"
-  tl.to('#finale-overlay', {
-    opacity: 1,
-    y: 0,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, 21.2);
+            // Final Headline Overlay: "Experience the Future of Web"
+            tl.to(
+                "#finale-overlay",
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power2.out",
+                },
+                21.2,
+            );
 
-  // Final Official Brand Badge at bottom
-  tl.to('#finale-brand-bottom', {
-    opacity: 1,
-    y: 0,
-    duration: 1.2,
-    ease: 'power2.out'
-  }, 21.6);
+            // Final Official Brand Badge at bottom
+            tl.to(
+                "#finale-brand-bottom",
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power2.out",
+                },
+                21.6,
+            );
 
-  // Final sweeping light reflection on glass
-  tl.fromTo('#bezel-sheen', 
-    { x: '-120%' }, 
-    { x: '160%', duration: 1.5, ease: 'power2.inOut' }, 
-    22.2
-  );
+            // Final sweeping light reflection on glass
+            tl.fromTo(
+                "#bezel-sheen",
+                { x: "-120%" },
+                { x: "160%", duration: 1.5, ease: "power2.inOut" },
+                22.2,
+            );
 
-  // Gentle fade out at the very end to seamlessly loop back to 0.0s
-  tl.to(['#finale-overlay', '#finale-brand-bottom'], {
-    opacity: 0,
-    duration: 0.8,
-    ease: 'power2.in'
-  }, 25.2);
+            // Gentle fade out at the very end to seamlessly loop back to 0.0s
+            tl.to(
+                ["#finale-overlay", "#finale-brand-bottom"],
+                {
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.in",
+                },
+                25.2,
+            );
 
-  tl.to('#browser-frame', {
-    scale: 0.84,
-    opacity: 0,
-    y: 45,
-    rotateX: 6,
-    duration: 0.8,
-    ease: 'power2.in'
-  }, 25.2);
+            tl.to(
+                "#browser-frame",
+                {
+                    scale: 0.84,
+                    opacity: 0,
+                    y: 45,
+                    rotateX: 6,
+                    duration: 0.8,
+                    ease: "power2.in",
+                },
+                25.2,
+            );
 
-  tl.to('#ambient-glow', {
-    opacity: 0,
-    duration: 0.8
-  }, 25.2);
+            tl.to(
+                "#ambient-glow",
+                {
+                    opacity: 0,
+                    duration: 0.8,
+                },
+                25.2,
+            );
 
-  // End timeline marker exactly at DURATION
-  tl.to({}, { duration: 0.01 }, DURATION);
+            // End timeline marker exactly at DURATION
+            tl.to({}, { duration: 0.01 }, DURATION);
 
-  /* ==========================================================================
+            /* ==========================================================================
      DEBUG PANEL CONTROLS & KEYBOARD SHORTCUTS
      ========================================================================== */
-  const urlParams = new URLSearchParams(window.location.search);
-  const debugPanel = document.getElementById('debug-panel');
-  const debugSlider = document.getElementById('debug-slider');
-  const debugTime = document.getElementById('debug-time');
-  const btnPlay = document.getElementById('btn-play');
-  const btnRestart = document.getElementById('btn-restart');
+            const urlParams = new URLSearchParams(window.location.search);
+            const debugPanel = document.getElementById("debug-panel");
+            const debugSlider = document.getElementById("debug-slider");
+            const debugTime = document.getElementById("debug-time");
+            const btnPlay = document.getElementById("btn-play");
+            const btnRestart = document.getElementById("btn-restart");
 
-  if (urlParams.get('debug') === '1') {
-    debugPanel.classList.add('active');
-  }
+            if (urlParams.get("debug") === "1") {
+                debugPanel.classList.add("active");
+            }
 
-  debugSlider.addEventListener('input', (e) => {
-    tl.pause();
-    tl.time(parseFloat(e.target.value));
-    btnPlay.textContent = 'Play';
-  });
+            debugSlider.addEventListener("input", (e) => {
+                tl.pause();
+                tl.time(parseFloat(e.target.value));
+                btnPlay.textContent = "Play";
+            });
 
-  btnPlay.addEventListener('click', () => {
-    if (tl.paused()) {
-      tl.play();
-      btnPlay.textContent = 'Pause';
-    } else {
-      tl.pause();
-      btnPlay.textContent = 'Play';
-    }
-  });
+            btnPlay.addEventListener("click", () => {
+                if (tl.paused()) {
+                    tl.play();
+                    btnPlay.textContent = "Pause";
+                } else {
+                    tl.pause();
+                    btnPlay.textContent = "Play";
+                }
+            });
 
-  btnRestart.addEventListener('click', () => {
-    tl.play(0);
-    btnPlay.textContent = 'Pause';
-  });
+            btnRestart.addEventListener("click", () => {
+                tl.play(0);
+                btnPlay.textContent = "Pause";
+            });
 
-  window.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') {
-      e.preventDefault();
-      if (tl.paused()) {
-        tl.play();
-        if (btnPlay) btnPlay.textContent = 'Pause';
-      } else {
-        tl.pause();
-        if (btnPlay) btnPlay.textContent = 'Play';
-      }
-    } else if (e.code === 'KeyR') {
-      tl.play(0);
-      if (btnPlay) btnPlay.textContent = 'Pause';
-    } else if (e.code === 'KeyH') {
-      debugPanel.classList.toggle('active');
-    }
-  });
-</script>
-</body>
+            window.addEventListener("keydown", (e) => {
+                if (e.code === "Space") {
+                    e.preventDefault();
+                    if (tl.paused()) {
+                        tl.play();
+                        if (btnPlay) btnPlay.textContent = "Pause";
+                    } else {
+                        tl.pause();
+                        if (btnPlay) btnPlay.textContent = "Play";
+                    }
+                } else if (e.code === "KeyR") {
+                    tl.play(0);
+                    if (btnPlay) btnPlay.textContent = "Pause";
+                } else if (e.code === "KeyH") {
+                    debugPanel.classList.toggle("active");
+                }
+            });
+        </script>
+    </body>
 </html>

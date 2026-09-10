@@ -1,5 +1,5 @@
 /* =========================================
-   MAJAPAHIT INFLUENCE
+   kerajaan INFLUENCE
    DESIGN SYSTEM
 ========================================= */
 
@@ -3318,7 +3318,7 @@ button {
 }
 
 /* =========================================
-   MAJAPAHIT AGENCY - NAVBAR LOGO
+   kerajaan AGENCY - NAVBAR LOGO
 ========================================= */
 
 .navbar-logo {
@@ -3358,7 +3358,7 @@ button {
 }
 
 /* =========================================
-   OFFICIAL MAJAPAHIT AGENCY LOGO
+   OFFICIAL kerajaan AGENCY LOGO
 ========================================= */
 
 .brand {
@@ -3368,7 +3368,7 @@ button {
 }
 
 /* =========================================
-   OFFICIAL MAJAPAHIT AGENCY LOGO
+   OFFICIAL kerajaan AGENCY LOGO
    NAVBAR
 ========================================= */
 
@@ -3830,7 +3830,7 @@ button {
 }
 
 /* =========================================
-   EKOSISTEM MAJAPAHIT
+   EKOSISTEM kerajaan
 ========================================= */
 
 .ecosystem-section {
@@ -4824,14 +4824,15 @@ button {
 }
 
 .nav-join-brand {
-    color: #4a2117;
+    color: #071d49;
     border: 1px solid rgba(12, 54, 133, 0.18);
     background: #fefefe;
 }
 
 .nav-join-brand:hover {
-    color: #4a2117;
+    color: #0b64d4;
     border-color: #0b64d4;
+    background: rgba(11, 100, 212, 0.04);
     transform: translateY(-2px);
 }
 
@@ -4843,7 +4844,7 @@ button {
     padding: 0 20px;
     border: 1px solid rgba(12, 54, 133, 0.18);
     border-radius: 999px;
-    color: #4a2117;
+    color: #071d49;
     background: #fefefe;
     text-decoration: none;
     font-size: 13px;
@@ -4854,6 +4855,7 @@ button {
 .mobile-brand-link:hover {
     color: #0b64d4;
     border-color: #0b64d4;
+    background: rgba(11, 100, 212, 0.04);
 }
 
 /* =========================================
@@ -4883,7 +4885,7 @@ button {
         padding: 0;
         border: 0;
         background: transparent;
-        color: #4a2117;
+        color: #071d49;
         font-size: 25px;
         cursor: pointer;
     }
@@ -4935,7 +4937,7 @@ button {
         display: block;
         padding: 13px 0;
 
-        color: #4a2117;
+        color: #071d49;
         text-decoration: none;
 
         font-size: 15px;

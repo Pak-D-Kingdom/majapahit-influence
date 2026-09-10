@@ -32,7 +32,7 @@ class DashboardController extends Controller
             'stats' => [
                 'totalCampaigns' => $brand->campaigns()->count(),
                 'totalEndorsements' => $brand->endorsements()->count(),
-                'pendingProducts' => $brand->products()->where('verification_status', 'pending')->count(),
+                'pendingProducts' => $brand->products()->whereIn('verification_status', ['pending', 'pending_update', 'pending_delete'])->count(),
                 'unreadNotifications' => $user->unreadNotifications()->count(),
             ],
             'recentCampaigns' => $brand->campaigns()->latest()->limit(5)->get(),

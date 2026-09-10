@@ -11,7 +11,7 @@
             <a href="{{ url('/') }}" class="inline-flex flex-col items-center gap-2 mb-4 group transition-transform hover:scale-105">
                 <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-12 w-auto object-contain">
                 <span class="text-[11px] font-bold tracking-[0.22em] text-[#0c3685] uppercase">
-                    KERAJAAN &bull; MAJAPAHIT INFLUENCE
+                    KERAJAAN &bull; kerajaan INFLUENCE
                 </span>
             </a>
             <h1 class="text-2xl sm:text-3xl font-black text-[#0c3685] tracking-tight">
@@ -95,45 +95,97 @@
                     </div>
                 </div>
 
-                {{-- Section 2: Platform Sosial Media Utama --}}
+                {{-- Section 2: Platform Sosial Media --}}
                 <div class="border-t border-slate-100 pt-6 space-y-5">
                     <div class="flex items-center gap-2">
                         <span class="w-6 h-6 rounded-lg bg-blue-50 text-[#0b64d4] text-xs font-bold flex items-center justify-center">2</span>
-                        <h2 class="text-xs font-black uppercase tracking-wider text-[#0c3685]">Akun Media Sosial Utama</h2>
+                        <div>
+                            <h2 class="text-xs font-black uppercase tracking-wider text-[#0c3685]">Akun Media Sosial</h2>
+                            <p class="text-[11px] text-slate-500 mt-0.5">Pilih platform media sosial aktif yang Anda kelola (dapat memilih lebih dari satu).</p>
+                        </div>
                     </div>
 
-                    <div class="grid gap-4 sm:grid-cols-2">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                                Platform Utama <span class="text-rose-500">*</span>
-                            </label>
-                            <select name="platform" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white cursor-pointer">
-                                @foreach (['instagram' => 'Instagram', 'tiktok' => 'TikTok', 'youtube' => 'YouTube', 'twitter' => 'Twitter / X'] as $val => $lbl)
-                                    <option value="{{ $val }}" @selected(old('platform') === $val)>{{ $lbl }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    @php
+                        $availablePlatforms = [
+                            'instagram' => ['name' => 'Instagram', 'icon' => 'bi-instagram', 'color' => 'text-pink-600', 'bg' => 'bg-pink-50', 'border' => 'border-pink-200', 'placeholder' => '@username_instagram', 'url_example' => 'https://instagram.com/username'],
+                            'tiktok' => ['name' => 'TikTok', 'icon' => 'bi-tiktok', 'color' => 'text-slate-900', 'bg' => 'bg-slate-100', 'border' => 'border-slate-300', 'placeholder' => '@username_tiktok', 'url_example' => 'https://tiktok.com/@username'],
+                            'youtube' => ['name' => 'YouTube', 'icon' => 'bi-youtube', 'color' => 'text-red-600', 'bg' => 'bg-red-50', 'border' => 'border-red-200', 'placeholder' => '@channel_youtube', 'url_example' => 'https://youtube.com/@channel'],
+                            'facebook' => ['name' => 'Facebook', 'icon' => 'bi-facebook', 'color' => 'text-blue-600', 'bg' => 'bg-blue-50', 'border' => 'border-blue-200', 'placeholder' => 'Nama Halaman / Akun Facebook', 'url_example' => 'https://facebook.com/username'],
+                            'threads' => ['name' => 'Threads', 'icon' => 'bi-threads', 'color' => 'text-neutral-900', 'bg' => 'bg-neutral-100', 'border' => 'border-neutral-300', 'placeholder' => '@username_threads', 'url_example' => 'https://threads.net/@username'],
+                            'twitter' => ['name' => 'Twitter / X', 'icon' => 'bi-twitter-x', 'color' => 'text-slate-800', 'bg' => 'bg-slate-100', 'border' => 'border-slate-300', 'placeholder' => '@username_x', 'url_example' => 'https://x.com/username'],
+                        ];
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                                Username / Handle <span class="text-rose-500">*</span>
-                            </label>
-                            <input type="text" name="username" value="{{ old('username') }}" required placeholder="@username_anda" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white">
-                        </div>
+                        $oldPlatforms = old('platforms');
+                        if ($oldPlatforms === null) {
+                            $oldPlatforms = old('social_media') ? array_keys(old('social_media')) : ['instagram'];
+                        }
+                    @endphp
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                                URL Profil Medsos
-                            </label>
-                            <input type="url" name="profile_url" value="{{ old('profile_url') }}" placeholder="https://instagram.com/username" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white">
+                    {{-- Platform Selector Checkboxes --}}
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-2">
+                            Pilih Platform <span class="text-rose-500">*</span>
+                        </label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+                            @foreach ($availablePlatforms as $pKey => $pMeta)
+                                @php $isChecked = in_array($pKey, (array) $oldPlatforms); @endphp
+                                <label class="platform-choice-card relative flex items-center gap-2 p-2.5 sm:p-3 rounded-2xl border transition-all cursor-pointer select-none {{ $isChecked ? 'border-[#0b64d4] bg-blue-50/40 shadow-xs' : 'border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300' }}">
+                                    <input type="checkbox" name="platforms[]" value="{{ $pKey }}" @checked($isChecked) class="platform-checkbox rounded border-slate-300 text-[#0b64d4] focus:ring-[#0b64d4] cursor-pointer size-4" onchange="togglePlatformSection('{{ $pKey }}', this.checked)">
+                                    <div class="flex items-center gap-1.5 min-w-0">
+                                        <i class="bi {{ $pMeta['icon'] }} {{ $pMeta['color'] }} text-base"></i>
+                                        <span class="text-xs font-bold text-[#071d49] truncate">{{ $pMeta['name'] }}</span>
+                                    </div>
+                                </label>
+                            @endforeach
                         </div>
+                    </div>
 
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">
-                                Jumlah Followers <span class="text-rose-500">*</span>
-                            </label>
-                            <input type="number" min="0" name="followers_count" value="{{ old('followers_count', 0) }}" required placeholder="Contoh: 15000" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white">
-                        </div>
+                    {{-- Platform Detail Input Cards --}}
+                    <div class="space-y-4 pt-1">
+                        @foreach ($availablePlatforms as $pKey => $pMeta)
+                            @php
+                                $isActive = in_array($pKey, (array) $oldPlatforms);
+                                $oldUser = old("social_media.{$pKey}.username", $pKey === 'instagram' ? old('username') : '');
+                                $oldFollowers = old("social_media.{$pKey}.followers_count", $pKey === 'instagram' ? old('followers_count') : '');
+                                $oldUrl = old("social_media.{$pKey}.profile_url", $pKey === 'instagram' ? old('profile_url') : '');
+                            @endphp
+                            <div id="platform-card-{{ $pKey }}" class="platform-card rounded-2xl border border-slate-200 bg-white p-4 sm:p-5 shadow-xs transition-all {{ $isActive ? '' : 'hidden' }}">
+                                <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                                    <div class="flex items-center gap-2">
+                                        <span class="flex size-7 items-center justify-center rounded-lg {{ $pMeta['bg'] }} {{ $pMeta['color'] }}">
+                                            <i class="bi {{ $pMeta['icon'] }} text-sm"></i>
+                                        </span>
+                                        <h3 class="text-xs font-extrabold text-[#071d49] font-heading">{{ $pMeta['name'] }}</h3>
+                                    </div>
+                                    <span class="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-[#0b64d4]">
+                                        Aktif
+                                    </span>
+                                </div>
+
+                                <div class="grid gap-3 sm:grid-cols-3">
+                                    <div>
+                                        <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                            Username / Handle <span class="text-rose-500">*</span>
+                                        </label>
+                                        <input type="text" name="social_media[{{ $pKey }}][username]" value="{{ $oldUser }}" placeholder="{{ $pMeta['placeholder'] }}" class="platform-input w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                            Jumlah Followers <span class="text-rose-500">*</span>
+                                        </label>
+                                        <input type="number" min="0" name="social_media[{{ $pKey }}][followers_count]" value="{{ $oldFollowers }}" placeholder="Contoh: 15000" class="platform-input w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-[11px] font-bold text-slate-700 mb-1">
+                                            URL Profil Medsos <span class="text-slate-400 font-normal">(Opsional)</span>
+                                        </label>
+                                        <input type="url" name="social_media[{{ $pKey }}][profile_url]" value="{{ $oldUrl }}" placeholder="{{ $pMeta['url_example'] }}" class="platform-input w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0b64d4] focus:border-transparent transition bg-slate-50/50 hover:bg-white focus:bg-white">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
 
@@ -207,4 +259,34 @@
 
     </div>
 </main>
+
+@push('scripts')
+<script>
+    function togglePlatformSection(platformKey, isChecked) {
+        const card = document.getElementById('platform-card-' + platformKey);
+        const checkbox = document.querySelector(`input[name="platforms[]"][value="${platformKey}"]`);
+        const labelCard = checkbox?.closest('.platform-choice-card');
+
+        if (card) {
+            if (isChecked) {
+                card.classList.remove('hidden');
+                const firstInput = card.querySelector('input[type="text"]');
+                firstInput?.focus();
+            } else {
+                card.classList.add('hidden');
+            }
+        }
+
+        if (labelCard) {
+            if (isChecked) {
+                labelCard.classList.add('border-[#0b64d4]', 'bg-blue-50/40', 'shadow-xs');
+                labelCard.classList.remove('border-slate-200', 'bg-slate-50/50');
+            } else {
+                labelCard.classList.remove('border-[#0b64d4]', 'bg-blue-50/40', 'shadow-xs');
+                labelCard.classList.add('border-slate-200', 'bg-slate-50/50');
+            }
+        }
+    }
+</script>
+@endpush
 @endsection

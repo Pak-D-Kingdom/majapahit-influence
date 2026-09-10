@@ -5,22 +5,18 @@
 
 @section('content')
     {{-- Hero Welcome Banner --}}
-    <div class="relative mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-[#0c3685] via-[#092b6b] to-[#081d47] p-6 text-white shadow-xl shadow-blue-950/10 sm:p-8">
+    <div class="relative mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-[#071d49] via-[#0c3685] to-[#04102b] p-6 text-white shadow-xl shadow-[#071d49]/15 sm:p-8">
         {{-- Decorative glowing orbs --}}
         <div class="pointer-events-none absolute -right-16 -top-16 size-64 rounded-full bg-[#0b64d4]/25 blur-3xl"></div>
         <div class="pointer-events-none absolute -bottom-16 right-32 size-48 rounded-full bg-[#1698f6]/20 blur-3xl"></div>
 
         <div class="relative z-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
             <div class="max-w-2xl">
-                <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs font-semibold text-cyan-300 backdrop-blur-xs font-heading">
-                    <span class="size-2 rounded-full bg-cyan-400 animate-ping"></span>
-                    PORTAL BRAND &bull; KERAJAAN ECOSYSTEM
-                </div>
                 <h2 class="mt-4 text-2xl font-extrabold tracking-tight sm:text-3xl font-heading">
-                    Halo, <span class="bg-gradient-to-r from-white via-blue-100 to-sky-200 bg-clip-text text-transparent">{{ $brand->name }}</span>!
+                    Halo, <span class="text-[#78a5d6]">{{ $brand->name }}</span>!
                 </h2>
-                <p class="mt-2 text-sm leading-relaxed text-slate-300 sm:text-base">
-                    Pantau seluruh aktivitas campaign, kelola katalog produk, dan pantau perkembangan endorsement secara real-time di sini.
+                <p class="mt-2 text-sm leading-relaxed text-slate-200 sm:text-base">
+                    Pantau seluruh aktivitas campaign, kelola produk, dan lihat perkembangan endorsement secara real-time di sini.
                 </p>
             </div>
 
@@ -30,7 +26,7 @@
                     <span>Semua Campaign</span>
                 </a>
                 <a href="{{ route('brand.endorsements.index') }}" class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-xs transition hover:bg-white/20">
-                    <i class="bi bi-people-fill text-sky-300"></i>
+                    <i class="bi bi-people-fill text-[#78a5d6]"></i>
                     <span>Lihat Endorsement</span>
                 </a>
             </div>
@@ -75,7 +71,7 @@
         <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
             <div class="flex items-center justify-between border-b border-slate-100 p-5 sm:px-6">
                 <div>
-                    <h3 class="text-base font-extrabold text-[#0c3685] font-heading">Campaign Terbaru</h3>
+                    <h3 class="text-base font-extrabold text-[#071d49] font-heading">Campaign Terbaru</h3>
                     <p class="text-xs text-slate-500">Daftar campaign yang baru dibuat</p>
                 </div>
                 <a href="{{ route('brand.campaigns.index') }}" class="inline-flex items-center gap-1 text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] transition font-heading">
@@ -86,10 +82,10 @@
 
             @if ($recentCampaigns->isEmpty())
                 <div class="flex h-56 flex-col items-center justify-center p-6 text-center text-slate-500">
-                    <div class="flex size-14 items-center justify-center rounded-2xl bg-blue-50 text-[#0b64d4]">
+                    <div class="flex size-14 items-center justify-center rounded-2xl bg-slate-50 text-[#0b64d4]">
                         <i class="bi bi-megaphone text-2xl"></i>
                     </div>
-                    <p class="mt-3 text-sm font-semibold text-[#0c3685]">Belum ada campaign</p>
+                    <p class="mt-3 text-sm font-semibold text-[#071d49]">Belum ada campaign</p>
                     <p class="mt-1 text-xs text-slate-500">Campaign yang Anda buat akan tampil di sini.</p>
                 </div>
             @else
@@ -104,9 +100,9 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             @foreach ($recentCampaigns as $campaign)
-                                <tr class="group hover:bg-blue-50/40 transition">
+                                <tr class="group hover:bg-slate-50/70 transition">
                                     <td class="px-5 py-4 sm:px-6">
-                                        <span class="font-bold text-[#0c3685] group-hover:text-[#0b64d4] transition font-heading block">
+                                        <span class="font-bold text-[#071d49] group-hover:text-[#0b64d4] transition font-heading block">
                                             {{ $campaign->name }}
                                         </span>
                                         <p class="text-xs text-slate-500">Budget: Rp {{ number_format($campaign->budget, 0, ',', '.') }}</p>
@@ -131,7 +127,7 @@
         <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
             <div class="flex items-center justify-between border-b border-slate-100 p-5 sm:px-6">
                 <div>
-                    <h3 class="text-base font-extrabold text-[#0c3685] font-heading">Endorsement Terbaru</h3>
+                    <h3 class="text-base font-extrabold text-[#071d49] font-heading">Endorsement Terbaru</h3>
                     <p class="text-xs text-slate-500">Monitoring status endorsement KOL</p>
                 </div>
                 <a href="{{ route('brand.endorsements.index') }}" class="inline-flex items-center gap-1 text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] transition font-heading">
@@ -142,10 +138,10 @@
 
             @if ($recentEndorsements->isEmpty())
                 <div class="flex h-56 flex-col items-center justify-center p-6 text-center text-slate-500">
-                    <div class="flex size-14 items-center justify-center rounded-2xl bg-blue-50 text-[#0b64d4]">
+                    <div class="flex size-14 items-center justify-center rounded-2xl bg-slate-50 text-[#0b64d4]">
                         <i class="bi bi-people text-2xl"></i>
                     </div>
-                    <p class="mt-3 text-sm font-semibold text-[#0c3685]">Belum ada endorsement</p>
+                    <p class="mt-3 text-sm font-semibold text-[#071d49]">Belum ada endorsement</p>
                     <p class="mt-1 text-xs text-slate-500">Kerjasama KOL akan tampil di sini setelah ditugaskan.</p>
                 </div>
             @else
@@ -160,9 +156,9 @@
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             @foreach ($recentEndorsements as $endorsement)
-                                <tr class="group hover:bg-blue-50/40 transition">
+                                <tr class="group hover:bg-slate-50/70 transition">
                                     <td class="px-5 py-4 sm:px-6">
-                                        <span class="font-bold text-[#0c3685] group-hover:text-[#0b64d4] transition font-heading block">
+                                        <span class="font-bold text-[#071d49] group-hover:text-[#0b64d4] transition font-heading block">
                                             {{ $endorsement->kolProfile->nickname ?? $endorsement->kolProfile->user->name }}
                                         </span>
                                         <p class="text-xs text-slate-500">{{ $endorsement->campaign->name }}</p>
@@ -187,7 +183,7 @@
     <div class="mt-8 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs sm:p-6">
         <div class="flex items-center justify-between border-b border-slate-100 pb-4">
             <div>
-                <h3 class="text-base font-extrabold text-[#0c3685] font-heading">Notifikasi Terbaru</h3>
+                <h3 class="text-base font-extrabold text-[#071d49] font-heading">Notifikasi Terbaru</h3>
                 <p class="text-xs text-slate-500">Pembaruan status dari aktivitas Anda</p>
             </div>
             <a href="{{ route('brand.notifications.index') }}" class="inline-flex items-center gap-1 text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] transition font-heading">
@@ -204,13 +200,13 @@
         @else
             <div class="mt-4 grid gap-3 md:grid-cols-3">
                 @foreach ($notifications as $notification)
-                    <div class="rounded-xl border border-slate-100 bg-slate-50/70 p-4 transition hover:border-blue-200 hover:bg-white">
+                    <div class="rounded-xl border border-slate-200/70 bg-slate-50/60 p-4 transition hover:border-[#0b64d4]/30 hover:bg-white">
                         <div class="flex items-start gap-3">
-                            <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-[#0b64d4]">
+                            <span class="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#0b64d4]/10 text-[#0b64d4]">
                                 <i class="bi bi-bell-fill text-sm"></i>
                             </span>
                             <div class="min-w-0 flex-1">
-                                <p class="text-xs font-bold text-[#0c3685] font-heading truncate">{{ $notification->title }}</p>
+                                <p class="text-xs font-bold text-[#071d49] font-heading truncate">{{ $notification->title }}</p>
                                 <p class="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-600">{{ $notification->body }}</p>
                                 <p class="mt-2 text-[10px] text-slate-400">{{ $notification->created_at->diffForHumans() }}</p>
                             </div>

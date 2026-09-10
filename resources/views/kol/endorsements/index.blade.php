@@ -8,7 +8,7 @@
     <div class="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
             <p class="text-xs font-bold uppercase tracking-wider text-[#0b64d4] font-heading">Progress Kolaborasi</p>
-            <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0c3685] font-heading">Endorsement Saya</h2>
+            <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-[#071d49] font-heading">Endorsement Saya</h2>
             <p class="mt-1 text-sm text-slate-500">Pantau semua brief campaign, tenggat waktu konten, dan upload bukti pekerjaanmu.</p>
         </div>
     </div>
@@ -26,7 +26,7 @@
         @foreach ($tabs as $key => $item)
             @php $isSelected = ($tab ?? 'aktif') === $key; @endphp
             <a href="{{ route('kol.endorsements.index', ['tab' => $key]) }}"
-               class="flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-bold transition font-heading {{ $isSelected ? 'bg-gradient-to-r from-[#0b64d4] to-[#1698f6] text-white shadow-sm shadow-blue-500/25' : 'text-slate-500 hover:bg-blue-50/50 hover:text-[#0c3685]' }}">
+               class="flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-bold transition font-heading {{ $isSelected ? 'bg-gradient-to-r from-[#0b64d4] to-[#1698f6] text-white shadow-sm shadow-[#0b64d4]/25' : 'text-slate-500 hover:bg-slate-50 hover:text-[#071d49]' }}">
                 <i class="bi {{ $item['icon'] }}"></i>
                 <span>{{ $item['label'] }}</span>
             </a>
@@ -37,16 +37,16 @@
     <div class="space-y-3.5">
         @forelse ($endorsements as $endorsement)
             <a href="{{ route('kol.endorsements.show', $endorsement) }}"
-               class="group block rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs transition duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md hover:shadow-blue-950/5">
+               class="group block rounded-2xl border border-slate-200/80 bg-white p-5 shadow-xs transition duration-200 hover:-translate-y-0.5 hover:border-[#0b64d4]/30 hover:shadow-md hover:shadow-[#071d49]/5">
                 <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
                     {{-- Left info --}}
                     <div class="flex items-start sm:items-center gap-4">
-                        <div class="flex size-13 shrink-0 items-center justify-center rounded-2xl bg-blue-50 text-[#0b64d4] transition duration-200 group-hover:scale-105 group-hover:bg-[#0b64d4] group-hover:text-white">
+                        <div class="flex size-13 shrink-0 items-center justify-center rounded-2xl bg-[#0b64d4]/10 text-[#0b64d4] transition duration-200 group-hover:scale-105 group-hover:bg-gradient-to-br group-hover:from-[#0b64d4] group-hover:to-[#1698f6] group-hover:text-white">
                             <i class="bi bi-megaphone-fill text-xl"></i>
                         </div>
                         <div>
                             <div class="flex flex-wrap items-center gap-2">
-                                <span class="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-bold text-[#0c3685] border border-blue-200">
+                                <span class="rounded-md bg-blue-50 px-2 py-0.5 text-[11px] font-bold text-[#0b64d4] border border-blue-200">
                                     {{ $endorsement->campaign->brand->name }}
                                 </span>
                                 <span class="text-xs text-slate-300">•</span>
@@ -54,7 +54,7 @@
                                     {{ str($endorsement->content_type)->replace('_', ' ')->title() }}
                                 </span>
                             </div>
-                            <h3 class="mt-1.5 text-base font-extrabold text-[#0c3685] group-hover:text-[#0b64d4] transition font-heading">
+                            <h3 class="mt-1.5 text-base font-extrabold text-[#071d49] group-hover:text-[#0b64d4] transition font-heading">
                                 {{ $endorsement->campaign->name }}
                             </h3>
                             <p class="mt-1 text-xs font-semibold text-emerald-600">
@@ -67,7 +67,7 @@
                     <div class="flex items-center justify-between gap-5 sm:justify-end sm:text-right border-t border-slate-100 pt-3 sm:border-0 sm:pt-0">
                         <div>
                             <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-heading">Deadline</p>
-                            <p class="mt-0.5 text-xs font-bold text-[#0c3685]">
+                            <p class="mt-0.5 text-xs font-bold text-[#071d49]">
                                 <i class="bi bi-calendar3 text-[#0b64d4] mr-1"></i>
                                 {{ $endorsement->deadline->format('d M Y') }}
                             </p>
@@ -75,18 +75,18 @@
                         <div class="shrink-0">
                             <x-dashboard.status-badge :status="$endorsement->status" />
                         </div>
-                        <div class="hidden sm:flex size-8 items-center justify-center rounded-lg bg-blue-50 text-[#0b64d4] group-hover:bg-[#0b64d4] group-hover:text-white transition">
+                        <div class="hidden sm:flex size-8 items-center justify-center rounded-lg bg-slate-50 text-[#0b64d4] group-hover:bg-[#0b64d4] group-hover:text-white transition">
                             <i class="bi bi-chevron-right text-xs"></i>
                         </div>
                     </div>
                 </div>
             </a>
         @empty
-            <div class="rounded-3xl border border-dashed border-slate-200 bg-white py-16 px-6 text-center shadow-xs">
-                <div class="mx-auto flex size-16 items-center justify-center rounded-2xl bg-blue-50 text-[#0b64d4]">
+            <div class="rounded-3xl border border-dashed border-slate-300 bg-white py-16 px-6 text-center shadow-xs">
+                <div class="mx-auto flex size-16 items-center justify-center rounded-2xl bg-slate-50 text-[#0b64d4]">
                     <i class="bi bi-briefcase text-3xl"></i>
                 </div>
-                <h4 class="mt-4 text-base font-extrabold text-[#0c3685] font-heading">Tidak ada endorsement</h4>
+                <h4 class="mt-4 text-base font-extrabold text-[#071d49] font-heading">Tidak ada endorsement</h4>
                 <p class="mt-1 text-xs text-slate-500 max-w-sm mx-auto">
                     Belum ada endorsement yang masuk di kategori tab ini. Pantau terus notifikasi untuk assignment baru.
                 </p>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\SetPasswordController;
 use App\Http\Controllers\BrandRegistrationController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RegistrationController;
 use App\Models\Product;
@@ -31,7 +32,7 @@ Route::get('/', function () {
         return view('landing.index', compact('featuredProducts'));
     }
 
-    return response()->json(['message' => 'Majapahit Influence API is running']);
+    return response()->json(['message' => 'kerajaan Influence API is running']);
 })->name('home');
 
 // Public KOL Registration (Dev 2 & Frontend)
@@ -92,4 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.readAll');
     Route::match(['GET', 'POST', 'PATCH'], '/notifications/{notification}/read', [NotificationController::class, 'markAsRead'])->name('notifications.read');
+
+    // Chatbot (Dev 6)
+    Route::post('/chatbot/chat', [ChatbotController::class, 'chat'])->name('chatbot.chat');
 });

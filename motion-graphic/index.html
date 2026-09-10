@@ -1,840 +1,1441 @@
 <!doctype html>
 <html lang="id">
-<!-- Made with the Bang Motion skill v1.0.0 by Bang Tutorial (https://youtube.com/bangtutorial) - MIT - https://github.com/bangtutorial/bang-motion -->
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Majapahit Influence — Motion Graphic Showcase</title>
-<link rel="icon" type="image/png" href="../public/assets/Logo/majapahit.png">
-<!--
+    <!-- Made with the Bang Motion skill v1.0.0 by Bang Tutorial (https://youtube.com/bangtutorial) - MIT - https://github.com/bangtutorial/bang-motion -->
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>kerajaan Influence — Motion Graphic Showcase</title>
+        <link
+            rel="icon"
+            type="image/png"
+            href="../public/assets/Logo/kerajaan.png"
+        />
+        <!--
   STYLE BRIEF (SKILL.md Hukum #3)
-  Tema/produk + 3 kata sifat : Majapahit Influence | Megah (Regal), Presisi (High-Performance), Menguntungkan (Empowering)
+  Tema/produk + 3 kata sifat : kerajaan Influence | Megah (Regal), Presisi (High-Performance), Menguntungkan (Empowering)
   Palet (dari brand resmi)   : utama #d57028 (Terracotta) | latar #190906 (Mahogany Obsidian) | aksen #fec200 (Saffron Gold) & #d5282d (Crimson)
   Font display / pendamping   : Plus Jakarta Sans / Instrument Sans
   Bahasa latar                : Mewah Gelap (Mahogany & Emas) bertransisi ke Editorial Terang (Katalog Sand/Cream) lalu kembali ke Gelap
-  Tanda tangan gerak (objek)  : Golden Stamp & Prism Slice (irisan dinamis + cap surya majapahit emas)
-  Gerak latar (menu §7c)      : #6 & #7 — Bentuk Surya Majapahit berputar sangat lambat (30 dtk/putaran) + partikel percik emas NAIK perlahan
+  Tanda tangan gerak (objek)  : Golden Stamp & Prism Slice (irisan dinamis + cap surya kerajaan emas)
+  Gerak latar (menu §7c)      : #6 & #7 — Bentuk Surya kerajaan berputar sangat lambat (30 dtk/putaran) + partikel percik emas NAIK perlahan
   Permukaan latar (menu §7d)  : #b & #d — Duotone diagonal berlapis (#190906 -> #2e120c) + ambient spotlight hangat di horizon + kertas sand/cream
   Transisi (menu §4c)         : #1 Push-through 3D, #2 Kartu berputar 3D perspective, #4 Sapuan cahaya emas di titik cut
   Momen istimewa              : Mockup 3D interaktif portal dengan live counter 5.000+ KOL & kartu komisi 40% Locked Commission
 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Instrument+Sans:wght@500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script type="importmap">
-{"imports":{
-  "three":"https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
-  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
-}}
-</script>
-<style>
-:root {
-  --accent: #d57028;
-  --accent-lit: #fec200;
-  --crimson: #d5282d;
-  --base: #190906;
-  --base-card: rgba(35, 15, 10, 0.85);
-  --ink: #ffffff;
-  --ink-dark: #421b13;
-  --ink-muted: #a6847c;
-  --sand: #f7eee8;
-  --cream: #fff9f4;
-  --gold-glow: rgba(254, 194, 0, 0.45);
-}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=Instrument+Sans:wght@500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+        <script type="importmap">
+            {
+                "imports": {
+                    "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+                    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+                }
+            }
+        </script>
+        <style>
+            :root {
+                --accent: #d57028;
+                --accent-lit: #fec200;
+                --crimson: #d5282d;
+                --base: #190906;
+                --base-card: rgba(35, 15, 10, 0.85);
+                --ink: #ffffff;
+                --ink-dark: #421b13;
+                --ink-muted: #a6847c;
+                --sand: #f7eee8;
+                --cream: #fff9f4;
+                --gold-glow: rgba(254, 194, 0, 0.45);
+            }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  width: 100%; height: 100%;
-  background: #000;
-  overflow: hidden;
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  color: var(--ink);
-  -webkit-font-smoothing: antialiased;
-}
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                background: #000;
+                overflow: hidden;
+                font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+                color: var(--ink);
+                -webkit-font-smoothing: antialiased;
+            }
 
-#filters { position: fixed; width: 0; height: 0; opacity: 0; pointer-events: none; }
+            #filters {
+                position: fixed;
+                width: 0;
+                height: 0;
+                opacity: 0;
+                pointer-events: none;
+            }
 
-/* Panggung 1920x1080 discale ke jendela */
-#stage {
-  position: fixed; left: 50%; top: 50%;
-  width: 1920px; height: 1080px;
-  transform: translate(-50%, -50%) scale(1);
-  overflow: hidden;
-  background: var(--base);
-}
+            /* Panggung 1920x1080 discale ke jendela */
+            #stage {
+                position: fixed;
+                left: 50%;
+                top: 50%;
+                width: 1920px;
+                height: 1080px;
+                transform: translate(-50%, -50%) scale(1);
+                overflow: hidden;
+                background: var(--base);
+            }
 
-#world {
-  position: absolute; inset: 0;
-  will-change: transform;
-  transform-origin: 50% 50%;
-  perspective: 1400px;
-}
+            #world {
+                position: absolute;
+                inset: 0;
+                will-change: transform;
+                transform-origin: 50% 50%;
+                perspective: 1400px;
+            }
 
-#gl {
-  position: absolute; inset: 0;
-  width: 1920px; height: 1080px;
-  display: block;
-}
+            #gl {
+                position: absolute;
+                inset: 0;
+                width: 1920px;
+                height: 1080px;
+                display: block;
+            }
 
-/* Latar duotone berlapis + ambient glow horizon */
-.bgfx {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(65% 45% at 50% 98%, rgba(213, 112, 40, 0.35), rgba(254, 194, 0, 0.15) 42%, transparent 74%),
-    radial-gradient(45% 35% at 50% 15%, rgba(213, 40, 45, 0.18), transparent 60%),
-    linear-gradient(170deg, #130704 0%, #1f0b07 45%, #2a0f0a 100%);
-  mix-blend-mode: screen;
-}
+            /* Latar duotone berlapis + ambient glow horizon */
+            .bgfx {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background:
+                    radial-gradient(
+                        65% 45% at 50% 98%,
+                        rgba(213, 112, 40, 0.35),
+                        rgba(254, 194, 0, 0.15) 42%,
+                        transparent 74%
+                    ),
+                    radial-gradient(
+                        45% 35% at 50% 15%,
+                        rgba(213, 40, 45, 0.18),
+                        transparent 60%
+                    ),
+                    linear-gradient(
+                        170deg,
+                        #130704 0%,
+                        #1f0b07 45%,
+                        #2a0f0a 100%
+                    );
+                mix-blend-mode: screen;
+            }
 
-/* Latar terang Editorial (Katalog) */
-.paper {
-  position: absolute; inset: 0; opacity: 0; visibility: hidden;
-  background: linear-gradient(160deg, #fff9f4 0%, #f7eee8 50%, #f1e2d7 100%);
-  z-index: 2;
-}
-.paper .blob {
-  position: absolute; border-radius: 50%; pointer-events: none; filter: blur(70px);
-}
-.paper .b1 {
-  left: -200px; top: -250px; width: 1000px; height: 1000px;
-  background: radial-gradient(circle, rgba(213, 112, 40, 0.22), transparent 70%);
-}
-.paper .b2 {
-  right: -150px; bottom: -200px; width: 1100px; height: 1100px;
-  background: radial-gradient(circle, rgba(254, 194, 0, 0.25), transparent 70%);
-}
-.paper .b3 {
-  left: 35%; top: 30%; width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(213, 40, 45, 0.12), transparent 65%);
-}
+            /* Latar terang Editorial (Katalog) */
+            .paper {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+                visibility: hidden;
+                background: linear-gradient(
+                    160deg,
+                    #fff9f4 0%,
+                    #f7eee8 50%,
+                    #f1e2d7 100%
+                );
+                z-index: 2;
+            }
+            .paper .blob {
+                position: absolute;
+                border-radius: 50%;
+                pointer-events: none;
+                filter: blur(70px);
+            }
+            .paper .b1 {
+                left: -200px;
+                top: -250px;
+                width: 1000px;
+                height: 1000px;
+                background: radial-gradient(
+                    circle,
+                    rgba(213, 112, 40, 0.22),
+                    transparent 70%
+                );
+            }
+            .paper .b2 {
+                right: -150px;
+                bottom: -200px;
+                width: 1100px;
+                height: 1100px;
+                background: radial-gradient(
+                    circle,
+                    rgba(254, 194, 0, 0.25),
+                    transparent 70%
+                );
+            }
+            .paper .b3 {
+                left: 35%;
+                top: 30%;
+                width: 700px;
+                height: 700px;
+                background: radial-gradient(
+                    circle,
+                    rgba(213, 40, 45, 0.12),
+                    transparent 65%
+                );
+            }
 
-/* Kantong gelap di bawah teks untuk kontras sempurna */
-.pocket {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0;
-  background: radial-gradient(60% 48% at 50% 50%, rgba(15, 6, 4, 0.75), transparent 75%);
-  z-index: 3;
-}
+            /* Kantong gelap di bawah teks untuk kontras sempurna */
+            .pocket {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                opacity: 0;
+                background: radial-gradient(
+                    60% 48% at 50% 50%,
+                    rgba(15, 6, 4, 0.75),
+                    transparent 75%
+                );
+                z-index: 3;
+            }
 
-#dom {
-  position: absolute; inset: 0; z-index: 5;
-  pointer-events: none;
-}
+            #dom {
+                position: absolute;
+                inset: 0;
+                z-index: 5;
+                pointer-events: none;
+            }
 
-/* Tipografi Hidup - Proporsional 1920x1080 */
-.line {
-  font-size: 54px; font-weight: 600;
-  letter-spacing: -0.015em;
-  color: #ffffff; white-space: nowrap;
-  line-height: 1.15; opacity: 0;
-  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.85);
-}
-.line.sm { font-size: 44px; }
-.line.md { font-size: 54px; }
-.line.lg { font-size: 60px; font-weight: 700; }
-.line.ink {
-  color: var(--ink-dark);
-  text-shadow: 0 2px 14px rgba(66, 27, 19, 0.12);
-}
+            /* Tipografi Hidup - Proporsional 1920x1080 */
+            .line {
+                font-size: 54px;
+                font-weight: 600;
+                letter-spacing: -0.015em;
+                color: #ffffff;
+                white-space: nowrap;
+                line-height: 1.15;
+                opacity: 0;
+                text-shadow: 0 4px 28px rgba(0, 0, 0, 0.85);
+            }
+            .line.sm {
+                font-size: 44px;
+            }
+            .line.md {
+                font-size: 54px;
+            }
+            .line.lg {
+                font-size: 60px;
+                font-weight: 700;
+            }
+            .line.ink {
+                color: var(--ink-dark);
+                text-shadow: 0 2px 14px rgba(66, 27, 19, 0.12);
+            }
 
-.wd { display: inline-block; white-space: nowrap; }
-.ch { display: inline-block; will-change: transform, opacity, filter; opacity: 0; }
-.txt2 { display: inline-block; opacity: 0; color: var(--accent-lit); }
+            .wd {
+                display: inline-block;
+                white-space: nowrap;
+            }
+            .ch {
+                display: inline-block;
+                will-change: transform, opacity, filter;
+                opacity: 0;
+            }
+            .txt2 {
+                display: inline-block;
+                opacity: 0;
+                color: var(--accent-lit);
+            }
 
-/* Kata Sorotan varian UNDER */
-.hl { position: relative; display: inline-block; }
-.hl i {
-  position: absolute; left: 0; right: 0; bottom: -0.05em; height: 0.16em;
-  border-radius: 0.08em;
-  background: linear-gradient(90deg, var(--accent), var(--accent-lit));
-  transform: scaleX(0); transform-origin: 0 50%;
-  box-shadow: 0 0 16px var(--gold-glow);
-}
-.hl-t { position: relative; opacity: 0; color: #fff; }
-.line.ink .hl i {
-  background: linear-gradient(90deg, #d57028, #b86021);
-  box-shadow: none;
-}
-.line.ink .hl-t { color: #d57028; }
+            /* Kata Sorotan varian UNDER */
+            .hl {
+                position: relative;
+                display: inline-block;
+            }
+            .hl i {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -0.05em;
+                height: 0.16em;
+                border-radius: 0.08em;
+                background: linear-gradient(
+                    90deg,
+                    var(--accent),
+                    var(--accent-lit)
+                );
+                transform: scaleX(0);
+                transform-origin: 0 50%;
+                box-shadow: 0 0 16px var(--gold-glow);
+            }
+            .hl-t {
+                position: relative;
+                opacity: 0;
+                color: #fff;
+            }
+            .line.ink .hl i {
+                background: linear-gradient(90deg, #d57028, #b86021);
+                box-shadow: none;
+            }
+            .line.ink .hl-t {
+                color: #d57028;
+            }
 
-/* Eyebrow Pill / Kicker */
-.kicker-pill {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 8px 22px; border-radius: 999px;
-  background: rgba(254, 194, 0, 0.12);
-  border: 1px solid rgba(254, 194, 0, 0.35);
-  font-size: 18px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.14em;
-  color: var(--accent-lit);
-  margin-bottom: 16px; opacity: 0;
-  backdrop-filter: blur(8px);
-}
-.kicker-pill .pulse-dot {
-  width: 9px; height: 9px; border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent);
-}
-.kicker-pill.ink {
-  background: rgba(213, 112, 40, 0.12);
-  border-color: rgba(213, 112, 40, 0.3);
-  color: #b86021;
-}
+            /* Eyebrow Pill / Kicker */
+            .kicker-pill {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 22px;
+                border-radius: 999px;
+                background: rgba(254, 194, 0, 0.12);
+                border: 1px solid rgba(254, 194, 0, 0.35);
+                font-size: 18px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.14em;
+                color: var(--accent-lit);
+                margin-bottom: 16px;
+                opacity: 0;
+                backdrop-filter: blur(8px);
+            }
+            .kicker-pill .pulse-dot {
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: var(--accent);
+                box-shadow: 0 0 10px var(--accent);
+            }
+            .kicker-pill.ink {
+                background: rgba(213, 112, 40, 0.12);
+                border-color: rgba(213, 112, 40, 0.3);
+                color: #b86021;
+            }
 
-/* Light Leak Layer (Di atas vignette) */
-.leak {
-  position: absolute; left: 50%; top: 50%;
-  width: 2400px; height: 2400px;
-  margin: -1200px 0 0 -1200px;
-  border-radius: 50%;
-  background: radial-gradient(circle,
-    rgba(254, 194, 0, 0.85) 0%,
-    rgba(213, 112, 40, 0.5) 32%,
-    rgba(213, 40, 45, 0.2) 50%,
-    transparent 72%);
-  filter: blur(72px); mix-blend-mode: screen;
-  opacity: 0; pointer-events: none; z-index: 40;
-}
+            /* Light Leak Layer (Di atas vignette) */
+            .leak {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 2400px;
+                height: 2400px;
+                margin: -1200px 0 0 -1200px;
+                border-radius: 50%;
+                background: radial-gradient(
+                    circle,
+                    rgba(254, 194, 0, 0.85) 0%,
+                    rgba(213, 112, 40, 0.5) 32%,
+                    rgba(213, 40, 45, 0.2) 50%,
+                    transparent 72%
+                );
+                filter: blur(72px);
+                mix-blend-mode: screen;
+                opacity: 0;
+                pointer-events: none;
+                z-index: 40;
+            }
 
-.vignette {
-  position: absolute; inset: 0; pointer-events: none; z-index: 10;
-  background:
-    linear-gradient(180deg, rgba(10, 4, 3, 0.6) 0%, transparent 22%),
-    radial-gradient(ellipse 82% 72% at 50% 50%, transparent 45%, rgba(10, 4, 3, 0.65) 85%, rgba(6, 2, 2, 0.95) 100%);
-}
+            .vignette {
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                z-index: 10;
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(10, 4, 3, 0.6) 0%,
+                        transparent 22%
+                    ),
+                    radial-gradient(
+                        ellipse 82% 72% at 50% 50%,
+                        transparent 45%,
+                        rgba(10, 4, 3, 0.65) 85%,
+                        rgba(6, 2, 2, 0.95) 100%
+                    );
+            }
 
-/* ==================== ELEMEN VISUAL SPESIFIK PROYEK ==================== */
+            /* ==================== ELEMEN VISUAL SPESIFIK PROYEK ==================== */
 
-/* SCENE 1: Monogram MI Royal Crest */
-#scene1-wrap {
-  position: absolute; inset: 0;
-  opacity: 1;
-}
-#crest-wrap {
-  position: absolute; left: 50%; top: 38%;
-  transform: translate(-50%, -50%);
-  display: flex; flex-direction: column; align-items: center;
-  opacity: 0;
-}
-.crest-box {
-  width: 170px; height: 170px;
-  border-radius: 40px;
-  background: linear-gradient(135deg, #d57028 0%, #d5282d 52%, #fec200 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: "Cinzel", serif;
-  font-size: 78px; font-weight: 900; color: #ffffff;
-  box-shadow: 0 16px 50px rgba(213, 112, 40, 0.5), 0 0 80px rgba(254, 194, 0, 0.35);
-  border: 3px solid rgba(255, 255, 255, 0.35);
-  position: relative;
-}
-.crest-halo {
-  position: absolute; inset: -26px;
-  border-radius: 54px;
-  border: 1px dashed rgba(254, 194, 0, 0.4);
-  pointer-events: none;
-}
-.crest-label {
-  margin-top: 20px;
-  font-family: "Cinzel", serif;
-  font-size: 30px; font-weight: 700;
-  letter-spacing: 0.3em; color: var(--accent-lit);
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-}
-#text-group-1 {
-  position: absolute; left: 50%; bottom: 120px;
-  transform: translateX(-50%); text-align: center;
-  width: 100%; max-width: 1600px;
-}
+            /* SCENE 1: Monogram MI Royal Crest */
+            #scene1-wrap {
+                position: absolute;
+                inset: 0;
+                opacity: 1;
+            }
+            #crest-wrap {
+                position: absolute;
+                left: 50%;
+                top: 38%;
+                transform: translate(-50%, -50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                opacity: 0;
+            }
+            .crest-box {
+                width: 170px;
+                height: 170px;
+                border-radius: 40px;
+                background: linear-gradient(
+                    135deg,
+                    #d57028 0%,
+                    #d5282d 52%,
+                    #fec200 100%
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "Cinzel", serif;
+                font-size: 78px;
+                font-weight: 900;
+                color: #ffffff;
+                box-shadow:
+                    0 16px 50px rgba(213, 112, 40, 0.5),
+                    0 0 80px rgba(254, 194, 0, 0.35);
+                border: 3px solid rgba(255, 255, 255, 0.35);
+                position: relative;
+            }
+            .crest-halo {
+                position: absolute;
+                inset: -26px;
+                border-radius: 54px;
+                border: 1px dashed rgba(254, 194, 0, 0.4);
+                pointer-events: none;
+            }
+            .crest-label {
+                margin-top: 20px;
+                font-family: "Cinzel", serif;
+                font-size: 30px;
+                font-weight: 700;
+                letter-spacing: 0.3em;
+                color: var(--accent-lit);
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            }
+            #text-group-1 {
+                position: absolute;
+                left: 50%;
+                bottom: 120px;
+                transform: translateX(-50%);
+                text-align: center;
+                width: 100%;
+                max-width: 1600px;
+            }
 
-/* SCENE 2: 3D Portal Mockup (Brand & Maklon) */
-#scene2-wrap {
-  position: absolute; inset: 0;
-  opacity: 0;
-}
-#text-group-2 {
-  position: absolute; top: 90px; left: 50%;
-  transform: translateX(-50%); text-align: center;
-  width: 100%; max-width: 1600px;
-}
-.portal-card {
-  position: absolute; top: 270px; left: 50%;
-  transform: translateX(-50%) rotateX(10deg);
-  transform-style: preserve-3d;
-  width: 1240px; height: 600px;
-  background: linear-gradient(180deg, rgba(42, 17, 12, 0.95) 0%, rgba(25, 9, 6, 0.98) 100%);
-  border: 2px solid rgba(254, 194, 0, 0.35);
-  border-radius: 36px;
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.8), 0 0 60px rgba(213, 112, 40, 0.25);
-  padding: 36px 44px;
-  display: flex; flex-direction: column; gap: 26px;
-  backdrop-filter: blur(20px);
-}
-.portal-header {
-  display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 1px solid rgba(254, 194, 0, 0.2);
-  padding-bottom: 20px;
-}
-.portal-brand-id {
-  display: flex; align-items: center; gap: 16px;
-}
-.portal-mini-mi {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, #d57028, #d5282d);
-  display: flex; align-items: center; justify-content: center;
-  font-family: "Cinzel", serif; font-weight: 900; font-size: 20px; color: #fff;
-}
-.portal-title-text {
-  font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.01em;
-}
-.portal-sub-text {
-  font-size: 15px; font-weight: 600; color: var(--accent-lit);
-}
-.portal-tag {
-  padding: 7px 18px; border-radius: 999px;
-  background: rgba(213, 40, 45, 0.25);
-  border: 1px solid rgba(213, 40, 45, 0.5);
-  font-size: 15px; font-weight: 700; color: #ff8a8d;
-}
-.portal-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
-  flex: 1;
-}
-.portal-pillar {
-  background: rgba(60, 24, 16, 0.5);
-  border: 1px solid rgba(254, 194, 0, 0.25);
-  border-radius: 22px; padding: 26px 22px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  transform: translateZ(30px);
-}
-.pillar-icon {
-  width: 54px; height: 54px; border-radius: 14px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-lit));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px; color: #fff; box-shadow: 0 8px 24px rgba(213, 112, 40, 0.4);
-}
-.pillar-title {
-  font-size: 22px; font-weight: 800; color: #ffffff; line-height: 1.25; margin-top: 12px;
-}
-.pillar-desc {
-  font-size: 16px; font-weight: 500; color: var(--ink-muted); line-height: 1.45;
-}
+            /* SCENE 2: 3D Portal Mockup (Brand & Maklon) */
+            #scene2-wrap {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+            }
+            #text-group-2 {
+                position: absolute;
+                top: 90px;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                width: 100%;
+                max-width: 1600px;
+            }
+            .portal-card {
+                position: absolute;
+                top: 270px;
+                left: 50%;
+                transform: translateX(-50%) rotateX(10deg);
+                transform-style: preserve-3d;
+                width: 1240px;
+                height: 600px;
+                background: linear-gradient(
+                    180deg,
+                    rgba(42, 17, 12, 0.95) 0%,
+                    rgba(25, 9, 6, 0.98) 100%
+                );
+                border: 2px solid rgba(254, 194, 0, 0.35);
+                border-radius: 36px;
+                box-shadow:
+                    0 35px 90px rgba(0, 0, 0, 0.8),
+                    0 0 60px rgba(213, 112, 40, 0.25);
+                padding: 36px 44px;
+                display: flex;
+                flex-direction: column;
+                gap: 26px;
+                backdrop-filter: blur(20px);
+            }
+            .portal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid rgba(254, 194, 0, 0.2);
+                padding-bottom: 20px;
+            }
+            .portal-brand-id {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+            }
+            .portal-mini-mi {
+                width: 48px;
+                height: 48px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, #d57028, #d5282d);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "Cinzel", serif;
+                font-weight: 900;
+                font-size: 20px;
+                color: #fff;
+            }
+            .portal-title-text {
+                font-size: 22px;
+                font-weight: 800;
+                color: #fff;
+                letter-spacing: -0.01em;
+            }
+            .portal-sub-text {
+                font-size: 15px;
+                font-weight: 600;
+                color: var(--accent-lit);
+            }
+            .portal-tag {
+                padding: 7px 18px;
+                border-radius: 999px;
+                background: rgba(213, 40, 45, 0.25);
+                border: 1px solid rgba(213, 40, 45, 0.5);
+                font-size: 15px;
+                font-weight: 700;
+                color: #ff8a8d;
+            }
+            .portal-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 22px;
+                flex: 1;
+            }
+            .portal-pillar {
+                background: rgba(60, 24, 16, 0.5);
+                border: 1px solid rgba(254, 194, 0, 0.25);
+                border-radius: 22px;
+                padding: 26px 22px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                transform: translateZ(30px);
+            }
+            .pillar-icon {
+                width: 54px;
+                height: 54px;
+                border-radius: 14px;
+                background: linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-lit)
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 26px;
+                color: #fff;
+                box-shadow: 0 8px 24px rgba(213, 112, 40, 0.4);
+            }
+            .pillar-title {
+                font-size: 22px;
+                font-weight: 800;
+                color: #ffffff;
+                line-height: 1.25;
+                margin-top: 12px;
+            }
+            .pillar-desc {
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--ink-muted);
+                line-height: 1.45;
+            }
 
-/* SCENE 3: Katalog & Bank Konten (Editorial Terang) */
-#scene3-wrap {
-  position: absolute; inset: 0; z-index: 6;
-  opacity: 0;
-}
-#text-group-3 {
-  position: absolute; top: 90px; left: 50%;
-  transform: translateX(-50%); text-align: center;
-  width: 100%; max-width: 1600px;
-}
-.catalog-stage {
-  position: absolute; top: 270px; left: 50%;
-  transform: translateX(-50%);
-  width: 1260px; display: flex; gap: 32px; align-items: center;
-}
-.product-showcase-card {
-  flex: 1.2;
-  background: #ffffff;
-  border-radius: 34px;
-  border: 2px solid rgba(213, 112, 40, 0.2);
-  box-shadow: 0 25px 60px rgba(66, 27, 19, 0.12), 0 10px 24px rgba(0, 0, 0, 0.04);
-  padding: 34px;
-  display: flex; gap: 28px; align-items: center;
-}
-.product-img-box {
-  width: 200px; height: 200px; border-radius: 24px;
-  background: linear-gradient(135deg, #fcece3 0%, #f7d5c2 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 88px; box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: relative; overflow: hidden;
-}
-.product-info-col {
-  flex: 1; display: flex; flex-direction: column; gap: 12px;
-}
-.product-cat-pill {
-  align-self: flex-start;
-  padding: 5px 16px; border-radius: 999px;
-  background: #f7eee8; color: #b86021;
-  font-size: 14px; font-weight: 700;
-}
-.product-name-title {
-  font-size: 28px; font-weight: 800; color: #421b13; line-height: 1.2;
-}
-.product-pricing-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 10px; border-top: 1px solid #f1e2d7;
-}
-.product-price-val {
-  font-size: 26px; font-weight: 800; color: #421b13;
-}
-.product-cut-badge {
-  padding: 7px 18px; border-radius: 12px;
-  background: #f7eee8; border: 1.5px solid rgba(213, 112, 40, 0.4);
-  font-size: 16px; font-weight: 800; color: #b86021;
-}
+            /* SCENE 3: Katalog & Bank Konten (Editorial Terang) */
+            #scene3-wrap {
+                position: absolute;
+                inset: 0;
+                z-index: 6;
+                opacity: 0;
+            }
+            #text-group-3 {
+                position: absolute;
+                top: 90px;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                width: 100%;
+                max-width: 1600px;
+            }
+            .catalog-stage {
+                position: absolute;
+                top: 270px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 1260px;
+                display: flex;
+                gap: 32px;
+                align-items: center;
+            }
+            .product-showcase-card {
+                flex: 1.2;
+                background: #ffffff;
+                border-radius: 34px;
+                border: 2px solid rgba(213, 112, 40, 0.2);
+                box-shadow:
+                    0 25px 60px rgba(66, 27, 19, 0.12),
+                    0 10px 24px rgba(0, 0, 0, 0.04);
+                padding: 34px;
+                display: flex;
+                gap: 28px;
+                align-items: center;
+            }
+            .product-img-box {
+                width: 200px;
+                height: 200px;
+                border-radius: 24px;
+                background: linear-gradient(135deg, #fcece3 0%, #f7d5c2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 88px;
+                box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+                position: relative;
+                overflow: hidden;
+            }
+            .product-info-col {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .product-cat-pill {
+                align-self: flex-start;
+                padding: 5px 16px;
+                border-radius: 999px;
+                background: #f7eee8;
+                color: #b86021;
+                font-size: 14px;
+                font-weight: 700;
+            }
+            .product-name-title {
+                font-size: 28px;
+                font-weight: 800;
+                color: #421b13;
+                line-height: 1.2;
+            }
+            .product-pricing-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-top: 10px;
+                border-top: 1px solid #f1e2d7;
+            }
+            .product-price-val {
+                font-size: 26px;
+                font-weight: 800;
+                color: #421b13;
+            }
+            .product-cut-badge {
+                padding: 7px 18px;
+                border-radius: 12px;
+                background: #f7eee8;
+                border: 1.5px solid rgba(213, 112, 40, 0.4);
+                font-size: 16px;
+                font-weight: 800;
+                color: #b86021;
+            }
 
-.content-bank-side {
-  flex: 0.95; display: flex; flex-direction: column; gap: 18px;
-}
-.content-bank-banner {
-  background: linear-gradient(135deg, #d57028 0%, #b86021 100%);
-  border-radius: 26px; padding: 28px 26px;
-  color: #fff; box-shadow: 0 16px 40px rgba(213, 112, 40, 0.28);
-  display: flex; align-items: center; gap: 20px;
-}
-.bank-icon-sq {
-  width: 62px; height: 62px; border-radius: 18px;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 32px;
-}
-.bank-text-group h3 {
-  font-size: 22px; font-weight: 800; line-height: 1.25; margin-bottom: 5px;
-}
-.bank-text-group p {
-  font-size: 15px; font-weight: 500; color: #ffe6d4; line-height: 1.4;
-}
-.bank-tag-row {
-  display: flex; gap: 12px;
-}
-.tag-asset {
-  flex: 1; padding: 14px 12px; border-radius: 16px;
-  background: #ffffff; border: 1.5px solid rgba(213, 112, 40, 0.2);
-  text-align: center; font-size: 15px; font-weight: 700; color: #421b13;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
-}
+            .content-bank-side {
+                flex: 0.95;
+                display: flex;
+                flex-direction: column;
+                gap: 18px;
+            }
+            .content-bank-banner {
+                background: linear-gradient(135deg, #d57028 0%, #b86021 100%);
+                border-radius: 26px;
+                padding: 28px 26px;
+                color: #fff;
+                box-shadow: 0 16px 40px rgba(213, 112, 40, 0.28);
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+            .bank-icon-sq {
+                width: 62px;
+                height: 62px;
+                border-radius: 18px;
+                background: rgba(255, 255, 255, 0.2);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 32px;
+            }
+            .bank-text-group h3 {
+                font-size: 22px;
+                font-weight: 800;
+                line-height: 1.25;
+                margin-bottom: 5px;
+            }
+            .bank-text-group p {
+                font-size: 15px;
+                font-weight: 500;
+                color: #ffe6d4;
+                line-height: 1.4;
+            }
+            .bank-tag-row {
+                display: flex;
+                gap: 12px;
+            }
+            .tag-asset {
+                flex: 1;
+                padding: 14px 12px;
+                border-radius: 16px;
+                background: #ffffff;
+                border: 1.5px solid rgba(213, 112, 40, 0.2);
+                text-align: center;
+                font-size: 15px;
+                font-weight: 700;
+                color: #421b13;
+                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+            }
 
-/* SCENE 4: Komisi 40% & Jaringan KOL */
-#scene4-wrap {
-  position: absolute; inset: 0;
-  opacity: 0;
-}
-#text-group-4 {
-  position: absolute; top: 90px; left: 50%;
-  transform: translateX(-50%); text-align: center;
-  width: 100%; max-width: 1600px;
-}
-.stats-display-grid {
-  position: absolute; top: 270px; left: 50%;
-  transform: translateX(-50%);
-  width: 1240px; display: flex; gap: 36px; align-items: stretch;
-}
-.gold-commission-card {
-  flex: 1;
-  background: linear-gradient(145deg, rgba(60, 24, 15, 0.92) 0%, rgba(30, 11, 7, 0.95) 100%);
-  border: 2px solid var(--accent-lit);
-  border-radius: 34px; padding: 44px;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7), 0 0 50px rgba(254, 194, 0, 0.35);
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.comm-top-row {
-  display: flex; justify-content: space-between; align-items: center;
-}
-.comm-pill {
-  padding: 7px 20px; border-radius: 999px;
-  background: rgba(34, 197, 94, 0.18);
-  border: 1px solid rgba(34, 197, 94, 0.45);
-  font-size: 16px; font-weight: 800; color: #4ade80;
-}
-.huge-pct-val {
-  font-size: 110px; font-weight: 900;
-  letter-spacing: -0.03em;
-  background: linear-gradient(90deg, #fec200, #fffae0);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  line-height: 1; margin: 16px 0;
-}
-.comm-explain {
-  font-size: 20px; font-weight: 600; color: var(--ink-muted); line-height: 1.45;
-}
+            /* SCENE 4: Komisi 40% & Jaringan KOL */
+            #scene4-wrap {
+                position: absolute;
+                inset: 0;
+                opacity: 0;
+            }
+            #text-group-4 {
+                position: absolute;
+                top: 90px;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                width: 100%;
+                max-width: 1600px;
+            }
+            .stats-display-grid {
+                position: absolute;
+                top: 270px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 1240px;
+                display: flex;
+                gap: 36px;
+                align-items: stretch;
+            }
+            .gold-commission-card {
+                flex: 1;
+                background: linear-gradient(
+                    145deg,
+                    rgba(60, 24, 15, 0.92) 0%,
+                    rgba(30, 11, 7, 0.95) 100%
+                );
+                border: 2px solid var(--accent-lit);
+                border-radius: 34px;
+                padding: 44px;
+                box-shadow:
+                    0 25px 80px rgba(0, 0, 0, 0.7),
+                    0 0 50px rgba(254, 194, 0, 0.35);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .comm-top-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .comm-pill {
+                padding: 7px 20px;
+                border-radius: 999px;
+                background: rgba(34, 197, 94, 0.18);
+                border: 1px solid rgba(34, 197, 94, 0.45);
+                font-size: 16px;
+                font-weight: 800;
+                color: #4ade80;
+            }
+            .huge-pct-val {
+                font-size: 110px;
+                font-weight: 900;
+                letter-spacing: -0.03em;
+                background: linear-gradient(90deg, #fec200, #fffae0);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                line-height: 1;
+                margin: 16px 0;
+            }
+            .comm-explain {
+                font-size: 20px;
+                font-weight: 600;
+                color: var(--ink-muted);
+                line-height: 1.45;
+            }
 
-.kol-counter-card {
-  flex: 1;
-  background: rgba(42, 17, 12, 0.85);
-  border: 2px solid rgba(213, 112, 40, 0.4);
-  border-radius: 34px; padding: 44px;
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7);
-  display: flex; flex-direction: column; justify-content: space-between;
-}
-.huge-kol-val {
-  font-size: 104px; font-weight: 900;
-  letter-spacing: -0.02em; color: #ffffff;
-  line-height: 1; margin: 16px 0;
-  font-variant-numeric: tabular-nums;
-}
-.pathways-subrow {
-  display: flex; gap: 16px;
-}
-.path-pill {
-  flex: 1; padding: 15px; border-radius: 16px;
-  background: rgba(25, 9, 6, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  text-align: center; font-size: 17px; font-weight: 700; color: #fff;
-}
+            .kol-counter-card {
+                flex: 1;
+                background: rgba(42, 17, 12, 0.85);
+                border: 2px solid rgba(213, 112, 40, 0.4);
+                border-radius: 34px;
+                padding: 44px;
+                box-shadow: 0 25px 80px rgba(0, 0, 0, 0.7);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            .huge-kol-val {
+                font-size: 104px;
+                font-weight: 900;
+                letter-spacing: -0.02em;
+                color: #ffffff;
+                line-height: 1;
+                margin: 16px 0;
+                font-variant-numeric: tabular-nums;
+            }
+            .pathways-subrow {
+                display: flex;
+                gap: 16px;
+            }
+            .path-pill {
+                flex: 1;
+                padding: 15px;
+                border-radius: 16px;
+                background: rgba(25, 9, 6, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                text-align: center;
+                font-size: 17px;
+                font-weight: 700;
+                color: #fff;
+            }
 
-/* SCENE 5: Grand Finale & Call to Action */
-#scene5-wrap {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  opacity: 0; text-align: center;
-}
-.finale-brand-box {
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
-  margin-bottom: 28px;
-}
-.finale-logo-crest {
-  width: 120px; height: 120px; border-radius: 30px;
-  background: linear-gradient(135deg, #d57028 0%, #d5282d 50%, #fec200 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: "Cinzel", serif; font-size: 56px; font-weight: 900; color: #fff;
-  box-shadow: 0 16px 50px rgba(213, 112, 40, 0.6), 0 0 70px rgba(254, 194, 0, 0.4);
-  border: 3px solid rgba(255, 255, 255, 0.4);
-}
-.finale-title-majapahit {
-  font-family: "Cinzel", serif;
-  font-size: 54px; font-weight: 900; letter-spacing: 0.12em;
-  color: #ffffff; line-height: 1.1;
-  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
-}
-.finale-title-majapahit span { color: var(--accent); }
-.finale-tagline {
-  font-size: 22px; font-weight: 600; color: var(--accent-lit);
-  letter-spacing: 0.08em; text-transform: uppercase;
-}
+            /* SCENE 5: Grand Finale & Call to Action */
+            #scene5-wrap {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                text-align: center;
+            }
+            .finale-brand-box {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 14px;
+                margin-bottom: 28px;
+            }
+            .finale-logo-crest {
+                width: 120px;
+                height: 120px;
+                border-radius: 30px;
+                background: linear-gradient(
+                    135deg,
+                    #d57028 0%,
+                    #d5282d 50%,
+                    #fec200 100%
+                );
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "Cinzel", serif;
+                font-size: 56px;
+                font-weight: 900;
+                color: #fff;
+                box-shadow:
+                    0 16px 50px rgba(213, 112, 40, 0.6),
+                    0 0 70px rgba(254, 194, 0, 0.4);
+                border: 3px solid rgba(255, 255, 255, 0.4);
+            }
+            .finale-title-kerajaan {
+                font-family: "Cinzel", serif;
+                font-size: 54px;
+                font-weight: 900;
+                letter-spacing: 0.12em;
+                color: #ffffff;
+                line-height: 1.1;
+                text-shadow: 0 6px 30px rgba(0, 0, 0, 0.8);
+            }
+            .finale-title-kerajaan span {
+                color: var(--accent);
+            }
+            .finale-tagline {
+                font-size: 22px;
+                font-weight: 600;
+                color: var(--accent-lit);
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
 
-.cta-row-actions {
-  display: flex; gap: 24px; justify-content: center;
-}
-.btn-cta-persona {
-  display: flex; align-items: center; gap: 14px;
-  padding: 20px 38px; border-radius: 20px;
-  font-size: 22px; font-weight: 800; text-decoration: none;
-  letter-spacing: 0.02em; transition: transform 0.2s;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-}
-.btn-brand-dark {
-  background: #110503; color: #ffffff;
-  border: 2px solid rgba(254, 194, 0, 0.4);
-}
-.btn-kol-gradient {
-  background: linear-gradient(135deg, #d57028 0%, #d5282d 100%);
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 16px 40px rgba(213, 112, 40, 0.45);
-}
-.domain-badge-pill {
-  margin-top: 28px;
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 8px 24px; border-radius: 999px;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  font-size: 18px; font-weight: 600; color: var(--ink-muted);
-}
+            .cta-row-actions {
+                display: flex;
+                gap: 24px;
+                justify-content: center;
+            }
+            .btn-cta-persona {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 20px 38px;
+                border-radius: 20px;
+                font-size: 22px;
+                font-weight: 800;
+                text-decoration: none;
+                letter-spacing: 0.02em;
+                transition: transform 0.2s;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            }
+            .btn-brand-dark {
+                background: #110503;
+                color: #ffffff;
+                border: 2px solid rgba(254, 194, 0, 0.4);
+            }
+            .btn-kol-gradient {
+                background: linear-gradient(135deg, #d57028 0%, #d5282d 100%);
+                color: #ffffff;
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 16px 40px rgba(213, 112, 40, 0.45);
+            }
+            .domain-badge-pill {
+                margin-top: 28px;
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px 24px;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.07);
+                border: 1px solid rgba(255, 255, 255, 0.16);
+                font-size: 18px;
+                font-weight: 600;
+                color: var(--ink-muted);
+            }
 
-/* Developer UI Panel (?debug=1) */
-#ui {
-  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
-  display: none; align-items: center; gap: 16px; padding: 12px 22px;
-  border-radius: 18px;
-  background: rgba(25, 9, 6, 0.95);
-  border: 1px solid rgba(254, 194, 0, 0.3);
-  font-size: 14px; color: #fec200; z-index: 50;
-  backdrop-filter: blur(12px);
-}
-#ui.on { display: flex; }
-#ui button {
-  background: #3c1810; color: #fff; border: 1px solid rgba(254, 194, 0, 0.3);
-  padding: 8px 18px; border-radius: 10px; font: inherit; font-weight: 700; cursor: pointer;
-}
-#scrub { width: 380px; accent-color: var(--accent-lit); }
-#clock { font-variant-numeric: tabular-nums; min-width: 5.5ch; text-align: right; font-weight: 700; }
-</style>
-</head>
-<body>
+            /* Developer UI Panel (?debug=1) */
+            #ui {
+                position: fixed;
+                left: 50%;
+                bottom: 24px;
+                transform: translateX(-50%);
+                display: none;
+                align-items: center;
+                gap: 16px;
+                padding: 12px 22px;
+                border-radius: 18px;
+                background: rgba(25, 9, 6, 0.95);
+                border: 1px solid rgba(254, 194, 0, 0.3);
+                font-size: 14px;
+                color: #fec200;
+                z-index: 50;
+                backdrop-filter: blur(12px);
+            }
+            #ui.on {
+                display: flex;
+            }
+            #ui button {
+                background: #3c1810;
+                color: #fff;
+                border: 1px solid rgba(254, 194, 0, 0.3);
+                padding: 8px 18px;
+                border-radius: 10px;
+                font: inherit;
+                font-weight: 700;
+                cursor: pointer;
+            }
+            #scrub {
+                width: 380px;
+                accent-color: var(--accent-lit);
+            }
+            #clock {
+                font-variant-numeric: tabular-nums;
+                min-width: 5.5ch;
+                text-align: right;
+                font-weight: 700;
+            }
+        </style>
+    </head>
+    <body>
+        <svg id="filters"><defs></defs></svg>
 
-<svg id="filters"><defs></defs></svg>
+        <div id="stage">
+            <div id="world">
+                <canvas id="gl"></canvas>
+                <div class="bgfx"></div>
 
-<div id="stage">
-  <div id="world">
-    <canvas id="gl"></canvas>
-    <div class="bgfx"></div>
+                <!-- Background terang Editorial -->
+                <div class="paper" id="paper">
+                    <i class="blob b1"></i><i class="blob b2"></i
+                    ><i class="blob b3"></i>
+                </div>
 
-    <!-- Background terang Editorial -->
-    <div class="paper" id="paper">
-      <i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i>
-    </div>
+                <!-- Kantong kontras teks -->
+                <div class="pocket" id="pocket"></div>
 
-    <!-- Kantong kontras teks -->
-    <div class="pocket" id="pocket"></div>
+                <div id="dom">
+                    <!-- SCENE 1: The Empire Awakes -->
+                    <div id="scene1-wrap">
+                        <div id="crest-wrap">
+                            <div
+                                class="crest-box"
+                                style="
+                                    background: #ffffff;
+                                    padding: 14px;
+                                    overflow: hidden;
+                                    border: 3px solid rgba(254, 194, 0, 0.6);
+                                "
+                            >
+                                <img
+                                    src="../public/assets/Logo/kerajaan.png"
+                                    alt="kerajaan Influence"
+                                    style="
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: contain;
+                                        border-radius: 26px;
+                                    "
+                                />
+                                <div class="crest-halo"></div>
+                            </div>
+                            <div class="crest-label">kerajaan INFLUENCE</div>
+                        </div>
+                        <div id="text-group-1">
+                            <div class="kicker-pill" id="kicker-1">
+                                <span class="pulse-dot"></span> Ekosistem Brand
+                                & Maklon Nusantara
+                            </div>
+                            <h1 class="line lg" id="line-1">
+                                <span class="txt"
+                                    >Ekosistem kolaborasi brand paling</span
+                                >&nbsp;<span class="hl under" id="hl-1"
+                                    ><i></i
+                                    ><span class="hl-t">berpengaruh</span></span
+                                ><span class="txt2">.</span>
+                            </h1>
+                        </div>
+                    </div>
 
-    <div id="dom">
+                    <!-- SCENE 2: Solusi Brand & Maklon -->
+                    <div id="scene2-wrap">
+                        <div id="text-group-2">
+                            <div class="kicker-pill" id="kicker-2">
+                                <span class="pulse-dot"></span> Solusi
+                                Terintegrasi Pak De Group
+                            </div>
+                            <h1 class="line md" id="line-2">
+                                <span class="txt"
+                                    >Akselerasi bisnis lewat produksi</span
+                                >&nbsp;<span class="hl under" id="hl-2"
+                                    ><i></i
+                                    ><span class="hl-t">maklon</span></span
+                                >&nbsp;<span class="txt">dan promosi masif</span
+                                ><span class="txt2">.</span>
+                            </h1>
+                        </div>
+                        <div class="portal-card" id="portal-card">
+                            <div class="portal-header">
+                                <div class="portal-brand-id">
+                                    <div class="portal-mini-mi">MI</div>
+                                    <div>
+                                        <div class="portal-title-text">
+                                            Layanan Maklon & Brand Partnership
+                                        </div>
+                                        <div class="portal-sub-text">
+                                            Produksi Standar BPOM & Distribusi
+                                            Kreator
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portal-tag">Official Ecosystem</div>
+                            </div>
+                            <div class="portal-grid">
+                                <div class="portal-pillar">
+                                    <div class="pillar-icon">🏭</div>
+                                    <div>
+                                        <div class="pillar-title">
+                                            Maklon Produksi Custom
+                                        </div>
+                                        <div class="pillar-desc">
+                                            Formulasi eksklusif skincare,
+                                            herbal, dan kosmetik berstandar
+                                            industri.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portal-pillar">
+                                    <div class="pillar-icon">🤝</div>
+                                    <div>
+                                        <div class="pillar-title">
+                                            5.000+ Seleksi KOL
+                                        </div>
+                                        <div class="pillar-desc">
+                                            Kurasi kreator tertarget sesuai
+                                            niche demografi konsumen brand.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portal-pillar">
+                                    <div class="pillar-icon">📊</div>
+                                    <div>
+                                        <div class="pillar-title">
+                                            Laporan Realtime
+                                        </div>
+                                        <div class="pillar-desc">
+                                            Audit konversi, link tracking, dan
+                                            transparansi ROAS tanpa jeda.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-      <!-- SCENE 1: The Empire Awakes -->
-      <div id="scene1-wrap">
-        <div id="crest-wrap">
-          <div class="crest-box" style="background: #ffffff; padding: 14px; overflow: hidden; border: 3px solid rgba(254, 194, 0, 0.6);">
-            <img src="../public/assets/Logo/majapahit.png" alt="Majapahit Influence" style="width: 100%; height: 100%; object-fit: contain; border-radius: 26px;">
-            <div class="crest-halo"></div>
-          </div>
-          <div class="crest-label">MAJAPAHIT INFLUENCE</div>
-        </div>
-        <div id="text-group-1">
-          <div class="kicker-pill" id="kicker-1"><span class="pulse-dot"></span> Ekosistem Brand & Maklon Nusantara</div>
-          <h1 class="line lg" id="line-1">
-            <span class="txt">Ekosistem kolaborasi brand paling</span>&nbsp;<span class="hl under" id="hl-1"><i></i><span class="hl-t">berpengaruh</span></span><span class="txt2">.</span>
-          </h1>
-        </div>
-      </div>
+                    <!-- SCENE 3: Katalog E-Commerce & Bank Konten (Segmen Terang) -->
+                    <div id="scene3-wrap">
+                        <div id="text-group-3">
+                            <div class="kicker-pill ink" id="kicker-3">
+                                <span class="pulse-dot"></span> Evermos-Style
+                                Marketplace
+                            </div>
+                            <h1 class="line md ink" id="line-3">
+                                <span class="txt"
+                                    >Ribuan aset promosi siap unduh di</span
+                                >&nbsp;<span class="hl under" id="hl-3"
+                                    ><i></i
+                                    ><span class="hl-t">katalog</span></span
+                                >&nbsp;<span class="txt">terintegrasi</span
+                                ><span class="txt2">.</span>
+                            </h1>
+                        </div>
+                        <div class="catalog-stage" id="catalog-stage">
+                            <div class="product-showcase-card">
+                                <div class="product-img-box">✨</div>
+                                <div class="product-info-col">
+                                    <span class="product-cat-pill"
+                                        >Beauty & Skincare</span
+                                    >
+                                    <h2 class="product-name-title">
+                                        GlowUp Niacinamide 10% Serum
+                                    </h2>
+                                    <div class="product-pricing-row">
+                                        <span class="product-price-val"
+                                            >Rp 120.000</span
+                                        >
+                                        <span class="product-cut-badge"
+                                            >+Rp 48.000 Komisi (40%)</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-bank-side">
+                                <div class="content-bank-banner">
+                                    <div class="bank-icon-sq">📂</div>
+                                    <div class="bank-text-group">
+                                        <h3>Bank Konten Brand Siap Unduh</h3>
+                                        <p>
+                                            Materi promosi profesional langsung
+                                            dari brand tanpa perlu shooting
+                                            ulang.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="bank-tag-row">
+                                    <div class="tag-asset">
+                                        📸 Foto Resolusi 4K
+                                    </div>
+                                    <div class="tag-asset">
+                                        🎬 B-roll Video Reels
+                                    </div>
+                                    <div class="tag-asset">
+                                        📝 Copywriting Script
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-      <!-- SCENE 2: Solusi Brand & Maklon -->
-      <div id="scene2-wrap">
-        <div id="text-group-2">
-          <div class="kicker-pill" id="kicker-2"><span class="pulse-dot"></span> Solusi Terintegrasi Pak De Group</div>
-          <h1 class="line md" id="line-2">
-            <span class="txt">Akselerasi bisnis lewat produksi</span>&nbsp;<span class="hl under" id="hl-2"><i></i><span class="hl-t">maklon</span></span>&nbsp;<span class="txt">dan promosi masif</span><span class="txt2">.</span>
-          </h1>
-        </div>
-        <div class="portal-card" id="portal-card">
-          <div class="portal-header">
-            <div class="portal-brand-id">
-              <div class="portal-mini-mi">MI</div>
-              <div>
-                <div class="portal-title-text">Layanan Maklon & Brand Partnership</div>
-                <div class="portal-sub-text">Produksi Standar BPOM & Distribusi Kreator</div>
-              </div>
+                    <!-- SCENE 4: Komisi 40% & Jaringan KOL -->
+                    <div id="scene4-wrap">
+                        <div id="text-group-4">
+                            <div class="kicker-pill" id="kicker-4">
+                                <span class="pulse-dot"></span> Transparansi
+                                Penghasilan Kreator
+                            </div>
+                            <h1 class="line md" id="line-4">
+                                <span class="txt"
+                                    >Maksimalkan cuan kreator dengan
+                                    komisi</span
+                                >&nbsp;<span class="hl under" id="hl-4"
+                                    ><i></i
+                                    ><span class="hl-t">40% pasti</span></span
+                                ><span class="txt2">!</span>
+                            </h1>
+                        </div>
+                        <div class="stats-display-grid" id="stats-grid">
+                            <div class="gold-commission-card">
+                                <div class="comm-top-row">
+                                    <span
+                                        style="
+                                            font-size: 24px;
+                                            font-weight: 800;
+                                            color: #fff;
+                                        "
+                                        >Garansi Komisi Tetap</span
+                                    >
+                                    <span class="comm-pill"
+                                        >🛡️ 40% Locked Rate</span
+                                    >
+                                </div>
+                                <div class="huge-pct-val">40%</div>
+                                <div class="comm-explain">
+                                    Komisi langsung masuk dompet digital kreator
+                                    tanpa potongan tersembunyi.
+                                </div>
+                            </div>
+                            <div class="kol-counter-card">
+                                <span
+                                    style="
+                                        font-size: 22px;
+                                        font-weight: 700;
+                                        color: var(--accent-lit);
+                                        text-transform: uppercase;
+                                        letter-spacing: 0.1em;
+                                    "
+                                    >Jaringan Terverifikasi</span
+                                >
+                                <div class="huge-kol-val" id="kol-number-val">
+                                    5.000+
+                                </div>
+                                <div class="pathways-subrow">
+                                    <div class="path-pill">
+                                        🌟 Jalur Direct KOL
+                                    </div>
+                                    <div class="path-pill">
+                                        🛒 Jalur Marketplace
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SCENE 5: Climax & Call to Action -->
+                    <div id="scene5-wrap">
+                        <div class="finale-brand-box" id="finale-brand">
+                            <div
+                                class="finale-logo-crest"
+                                style="
+                                    background: #ffffff;
+                                    padding: 10px;
+                                    overflow: hidden;
+                                    border: 3px solid rgba(254, 194, 0, 0.6);
+                                "
+                            >
+                                <img
+                                    src="../public/assets/Logo/kerajaan.png"
+                                    alt="kerajaan Influence"
+                                    style="
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: contain;
+                                        border-radius: 20px;
+                                    "
+                                />
+                            </div>
+                            <h2 class="finale-title-kerajaan">
+                                kerajaan <span>INFLUENCE</span>
+                            </h2>
+                            <div class="finale-tagline">
+                                Ekosistem Influencer & Maklon Pak De Group
+                            </div>
+                        </div>
+                        <h1
+                            class="line md"
+                            id="line-5"
+                            style="margin-bottom: 28px"
+                        >
+                            <span class="txt"
+                                >Satukan kekuatan brand dan kreator di</span
+                            >&nbsp;<span class="hl under" id="hl-5"
+                                ><i></i><span class="hl-t">kerajaan</span></span
+                            ><span class="txt2">!</span>
+                        </h1>
+                        <div class="cta-row-actions" id="cta-actions">
+                            <a href="#" class="btn-cta-persona btn-brand-dark">
+                                <span>🚀 Saya Brand: Mulai Promosi</span>
+                            </a>
+                            <a
+                                href="#"
+                                class="btn-cta-persona btn-kol-gradient"
+                            >
+                                <span>📹 Saya Kreator: Join KOL</span>
+                            </a>
+                        </div>
+                        <div class="domain-badge-pill" id="domain-pill">
+                            <span>🌐 kerajaan-influence-test.test</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="portal-tag">Official Ecosystem</div>
-          </div>
-          <div class="portal-grid">
-            <div class="portal-pillar">
-              <div class="pillar-icon">🏭</div>
-              <div>
-                <div class="pillar-title">Maklon Produksi Custom</div>
-                <div class="pillar-desc">Formulasi eksklusif skincare, herbal, dan kosmetik berstandar industri.</div>
-              </div>
-            </div>
-            <div class="portal-pillar">
-              <div class="pillar-icon">🤝</div>
-              <div>
-                <div class="pillar-title">5.000+ Seleksi KOL</div>
-                <div class="pillar-desc">Kurasi kreator tertarget sesuai niche demografi konsumen brand.</div>
-              </div>
-            </div>
-            <div class="portal-pillar">
-              <div class="pillar-icon">📊</div>
-              <div>
-                <div class="pillar-title">Laporan Realtime</div>
-                <div class="pillar-desc">Audit konversi, link tracking, dan transparansi ROAS tanpa jeda.</div>
-              </div>
-            </div>
-          </div>
+
+            <div class="leak" id="leak"></div>
+            <div class="vignette"></div>
         </div>
-      </div>
 
-      <!-- SCENE 3: Katalog E-Commerce & Bank Konten (Segmen Terang) -->
-      <div id="scene3-wrap">
-        <div id="text-group-3">
-          <div class="kicker-pill ink" id="kicker-3"><span class="pulse-dot"></span> Evermos-Style Marketplace</div>
-          <h1 class="line md ink" id="line-3">
-            <span class="txt">Ribuan aset promosi siap unduh di</span>&nbsp;<span class="hl under" id="hl-3"><i></i><span class="hl-t">katalog</span></span>&nbsp;<span class="txt">terintegrasi</span><span class="txt2">.</span>
-          </h1>
+        <!-- Debug UI (?debug=1) -->
+        <div id="ui">
+            <button id="btn-play">Pause</button>
+            <button id="btn-restart">Restart</button>
+            <input id="scrub" type="range" min="0" max="1000" value="0" />
+            <span id="clock">0.00s</span>
         </div>
-        <div class="catalog-stage" id="catalog-stage">
-          <div class="product-showcase-card">
-            <div class="product-img-box">✨</div>
-            <div class="product-info-col">
-              <span class="product-cat-pill">Beauty & Skincare</span>
-              <h2 class="product-name-title">GlowUp Niacinamide 10% Serum</h2>
-              <div class="product-pricing-row">
-                <span class="product-price-val">Rp 120.000</span>
-                <span class="product-cut-badge">+Rp 48.000 Komisi (40%)</span>
-              </div>
-            </div>
-          </div>
-          <div class="content-bank-side">
-            <div class="content-bank-banner">
-              <div class="bank-icon-sq">📂</div>
-              <div class="bank-text-group">
-                <h3>Bank Konten Brand Siap Unduh</h3>
-                <p>Materi promosi profesional langsung dari brand tanpa perlu shooting ulang.</p>
-              </div>
-            </div>
-            <div class="bank-tag-row">
-              <div class="tag-asset">📸 Foto Resolusi 4K</div>
-              <div class="tag-asset">🎬 B-roll Video Reels</div>
-              <div class="tag-asset">📝 Copywriting Script</div>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- SCENE 4: Komisi 40% & Jaringan KOL -->
-      <div id="scene4-wrap">
-        <div id="text-group-4">
-          <div class="kicker-pill" id="kicker-4"><span class="pulse-dot"></span> Transparansi Penghasilan Kreator</div>
-          <h1 class="line md" id="line-4">
-            <span class="txt">Maksimalkan cuan kreator dengan komisi</span>&nbsp;<span class="hl under" id="hl-4"><i></i><span class="hl-t">40% pasti</span></span><span class="txt2">!</span>
-          </h1>
-        </div>
-        <div class="stats-display-grid" id="stats-grid">
-          <div class="gold-commission-card">
-            <div class="comm-top-row">
-              <span style="font-size: 24px; font-weight: 800; color: #fff;">Garansi Komisi Tetap</span>
-              <span class="comm-pill">🛡️ 40% Locked Rate</span>
-            </div>
-            <div class="huge-pct-val">40%</div>
-            <div class="comm-explain">Komisi langsung masuk dompet digital kreator tanpa potongan tersembunyi.</div>
-          </div>
-          <div class="kol-counter-card">
-            <span style="font-size: 22px; font-weight: 700; color: var(--accent-lit); text-transform: uppercase; letter-spacing: 0.1em;">Jaringan Terverifikasi</span>
-            <div class="huge-kol-val" id="kol-number-val">5.000+</div>
-            <div class="pathways-subrow">
-              <div class="path-pill">🌟 Jalur Direct KOL</div>
-              <div class="path-pill">🛒 Jalur Marketplace</div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <script type="module">
+            import * as THREE from "three";
+            import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+            import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+            import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+            import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 
-      <!-- SCENE 5: Climax & Call to Action -->
-      <div id="scene5-wrap">
-        <div class="finale-brand-box" id="finale-brand">
-          <div class="finale-logo-crest" style="background: #ffffff; padding: 10px; overflow: hidden; border: 3px solid rgba(254, 194, 0, 0.6);">
-            <img src="../public/assets/Logo/majapahit.png" alt="Majapahit Influence" style="width: 100%; height: 100%; object-fit: contain; border-radius: 20px;">
-          </div>
-          <h2 class="finale-title-majapahit">MAJAPAHIT <span>INFLUENCE</span></h2>
-          <div class="finale-tagline">Ekosistem Influencer & Maklon Pak De Group</div>
-        </div>
-        <h1 class="line md" id="line-5" style="margin-bottom: 28px;">
-          <span class="txt">Satukan kekuatan brand dan kreator di</span>&nbsp;<span class="hl under" id="hl-5"><i></i><span class="hl-t">Majapahit</span></span><span class="txt2">!</span>
-        </h1>
-        <div class="cta-row-actions" id="cta-actions">
-          <a href="#" class="btn-cta-persona btn-brand-dark">
-            <span>🚀 Saya Brand: Mulai Promosi</span>
-          </a>
-          <a href="#" class="btn-cta-persona btn-kol-gradient">
-            <span>📹 Saya Kreator: Join KOL</span>
-          </a>
-        </div>
-        <div class="domain-badge-pill" id="domain-pill">
-          <span>🌐 majapahit-influence-test.test</span>
-        </div>
-      </div>
+            /* ============ UTIL: split per huruf + directional motion blur ============ */
+            const $ = (s, r = document) => r.querySelector(s);
+            const defs = $("#filters defs");
+            let fc = 0;
 
-    </div>
-  </div>
+            function makeBlur() {
+                const id = "mb" + fc++,
+                    NS = "http://www.w3.org/2000/svg";
+                const f = document.createElementNS(NS, "filter");
+                f.id = id;
+                f.setAttribute("x", "-70%");
+                f.setAttribute("y", "-70%");
+                f.setAttribute("width", "240%");
+                f.setAttribute("height", "240%");
+                const g = document.createElementNS(NS, "feGaussianBlur");
+                g.setAttribute("stdDeviation", "0 0");
+                f.appendChild(g);
+                defs.appendChild(f);
+                return { url: `url(#${id})`, node: g };
+            }
 
-  <div class="leak" id="leak"></div>
-  <div class="vignette"></div>
-</div>
+            function blurTween(
+                tl,
+                targets,
+                at,
+                from,
+                to,
+                dur,
+                { ease = "power3.out", ax = 1, ay = 0.08 } = {},
+            ) {
+                const b = makeBlur(),
+                    o = { v: from };
+                tl.set(targets, { filter: b.url }, at);
+                tl.to(
+                    o,
+                    {
+                        v: to,
+                        duration: dur,
+                        ease,
+                        onUpdate() {
+                            b.node.setAttribute(
+                                "stdDeviation",
+                                `${(o.v * ax).toFixed(2)} ${(o.v * ay).toFixed(2)}`,
+                            );
+                        },
+                    },
+                    at,
+                );
+                tl.set(targets, { filter: "none" }, at + dur);
+            }
+            const VERT = { ax: 0.1, ay: 1 };
 
-<!-- Debug UI (?debug=1) -->
-<div id="ui">
-  <button id="btn-play">Pause</button>
-  <button id="btn-restart">Restart</button>
-  <input id="scrub" type="range" min="0" max="1000" value="0">
-  <span id="clock">0.00s</span>
-</div>
+            function splitChars(container) {
+                const txtEls = container.querySelectorAll(".txt");
+                const out = [];
+                txtEls.forEach((el) => {
+                    const words = (el.textContent || "").split(" ");
+                    el.textContent = "";
+                    words.forEach((w, i) => {
+                        const wr = document.createElement("span");
+                        wr.className = "wd";
+                        for (const c of w) {
+                            const s = document.createElement("span");
+                            s.className = "ch";
+                            s.textContent = c;
+                            wr.appendChild(s);
+                            out.push(s);
+                        }
+                        el.appendChild(wr);
+                        if (i < words.length - 1) {
+                            const sp = document.createElement("span");
+                            sp.className = "ch";
+                            sp.innerHTML = "&nbsp;";
+                            el.appendChild(sp);
+                            out.push(sp);
+                        }
+                    });
+                });
+                return out;
+            }
 
-<script type="module">
-import * as THREE from 'three';
-import { EffectComposer }  from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass }      from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { OutputPass }      from 'three/addons/postprocessing/OutputPass.js';
+            /* ============ THREE.JS WEBGL DUNIA BER-STATE ============ */
+            const W = 1920,
+                H = 1080;
+            const renderer = new THREE.WebGLRenderer({
+                canvas: $("#gl"),
+                antialias: true,
+            });
+            renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+            renderer.setSize(W, H, false);
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
-/* ============ UTIL: split per huruf + directional motion blur ============ */
-const $ = (s, r = document) => r.querySelector(s);
-const defs = $('#filters defs');
-let fc = 0;
+            const ACC = new THREE.Color("#d57028");
+            const ACL = new THREE.Color("#fec200");
+            const CRIMSON = new THREE.Color("#d5282d");
+            const BASE = new THREE.Color("#190906");
 
-function makeBlur() {
-  const id = 'mb' + (fc++), NS = 'http://www.w3.org/2000/svg';
-  const f = document.createElementNS(NS, 'filter'); f.id = id;
-  f.setAttribute('x', '-70%'); f.setAttribute('y', '-70%');
-  f.setAttribute('width', '240%'); f.setAttribute('height', '240%');
-  const g = document.createElementNS(NS, 'feGaussianBlur');
-  g.setAttribute('stdDeviation', '0 0');
-  f.appendChild(g); defs.appendChild(f);
-  return { url: `url(#${id})`, node: g };
-}
+            const scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(BASE.getHex(), 0.015);
+            const camera = new THREE.PerspectiveCamera(48, W / H, 0.1, 400);
 
-function blurTween(tl, targets, at, from, to, dur, { ease = 'power3.out', ax = 1, ay = 0.08 } = {}) {
-  const b = makeBlur(), o = { v: from };
-  tl.set(targets, { filter: b.url }, at);
-  tl.to(o, {
-    v: to, duration: dur, ease,
-    onUpdate() {
-      b.node.setAttribute('stdDeviation', `${(o.v * ax).toFixed(2)} ${(o.v * ay).toFixed(2)}`);
-    }
-  }, at);
-  tl.set(targets, { filter: 'none' }, at + dur);
-}
-const VERT = { ax: 0.1, ay: 1 };
+            const S = {
+                grid: 0.25,
+                dust: 0.7,
+                suryaRot: 0,
+                suryaScale: 1.0,
+                suryaO: 0.85,
+                camX: 0,
+                camY: 0,
+                camZ: 18,
+                camRoll: 0,
+                bloom: 0.85,
+                shake: 0,
+            };
 
-function splitChars(container) {
-  const txtEls = container.querySelectorAll('.txt');
-  const out = [];
-  txtEls.forEach(el => {
-    const words = (el.textContent || '').split(' ');
-    el.textContent = '';
-    words.forEach((w, i) => {
-      const wr = document.createElement('span'); wr.className = 'wd';
-      for (const c of w) {
-        const s = document.createElement('span'); s.className = 'ch';
-        s.textContent = c; wr.appendChild(s); out.push(s);
-      }
-      el.appendChild(wr);
-      if (i < words.length - 1) {
-        const sp = document.createElement('span'); sp.className = 'ch';
-        sp.innerHTML = '&nbsp;'; el.appendChild(sp); out.push(sp);
-      }
-    });
-  });
-  return out;
-}
-
-/* ============ THREE.JS WEBGL DUNIA BER-STATE ============ */
-const W = 1920, H = 1080;
-const renderer = new THREE.WebGLRenderer({ canvas: $('#gl'), antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.setSize(W, H, false);
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-
-const ACC = new THREE.Color('#d57028');
-const ACL = new THREE.Color('#fec200');
-const CRIMSON = new THREE.Color('#d5282d');
-const BASE = new THREE.Color('#190906');
-
-const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(BASE.getHex(), 0.015);
-const camera = new THREE.PerspectiveCamera(48, W / H, 0.1, 400);
-
-const S = {
-  grid: 0.25, dust: 0.7, suryaRot: 0, suryaScale: 1.0, suryaO: 0.85,
-  camX: 0, camY: 0, camZ: 18, camRoll: 0,
-  bloom: 0.85, shake: 0
-};
-
-/* Partikel Debu Emas Melayang NAIK perlahan (Menu §7c #7) */
-{
-  const N = 1000, pos = new Float32Array(N * 3), seed = new Float32Array(N);
-  for (let i = 0; i < N; i++) {
-    pos[i * 3] = (Math.random() - 0.5) * 80;
-    pos[i * 3 + 1] = (Math.random() - 0.5) * 45;
-    pos[i * 3 + 2] = -Math.random() * 55 + 6;
-    seed[i] = Math.random() * 6.283;
-  }
-  const g = new THREE.BufferGeometry();
-  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-  g.setAttribute('aSeed', new THREE.BufferAttribute(seed, 1));
-  var dustMat = new THREE.ShaderMaterial({
-    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
-    uniforms: {
-      uTime: { value: 0 }, uOpacity: { value: 0.7 },
-      uPix: { value: Math.min(devicePixelRatio, 2) }, uColor: { value: ACL }
-    },
-    vertexShader: `
+            /* Partikel Debu Emas Melayang NAIK perlahan (Menu §7c #7) */
+            {
+                const N = 1000,
+                    pos = new Float32Array(N * 3),
+                    seed = new Float32Array(N);
+                for (let i = 0; i < N; i++) {
+                    pos[i * 3] = (Math.random() - 0.5) * 80;
+                    pos[i * 3 + 1] = (Math.random() - 0.5) * 45;
+                    pos[i * 3 + 2] = -Math.random() * 55 + 6;
+                    seed[i] = Math.random() * 6.283;
+                }
+                const g = new THREE.BufferGeometry();
+                g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+                g.setAttribute("aSeed", new THREE.BufferAttribute(seed, 1));
+                var dustMat = new THREE.ShaderMaterial({
+                    transparent: true,
+                    depthWrite: false,
+                    blending: THREE.AdditiveBlending,
+                    uniforms: {
+                        uTime: { value: 0 },
+                        uOpacity: { value: 0.7 },
+                        uPix: { value: Math.min(devicePixelRatio, 2) },
+                        uColor: { value: ACL },
+                    },
+                    vertexShader: `
       attribute float aSeed; varying float vA; uniform float uTime; uniform float uPix;
       void main(){
         vec3 p = position;
@@ -845,27 +1446,35 @@ const S = {
         gl_Position = projectionMatrix * mv;
       }
     `,
-    fragmentShader: `
+                    fragmentShader: `
       varying float vA; uniform float uOpacity; uniform vec3 uColor;
       void main(){
         float d = length(gl_PointCoord - 0.5);
         if (d > 0.5) discard;
         gl_FragColor = vec4(uColor, pow(1.0 - d * 2.0, 2.2) * vA * uOpacity);
       }
-    `
-  });
-  scene.add(new THREE.Points(g, dustMat));
-}
+    `,
+                });
+                scene.add(new THREE.Points(g, dustMat));
+            }
 
-/* Grid lantai halus bertekstur */
-const gridMat = new THREE.ShaderMaterial({
-  transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
-  uniforms: { uTime: { value: 0 }, uOpacity: { value: 0.25 }, uC1: { value: ACC }, uC2: { value: ACL } },
-  vertexShader: `
+            /* Grid lantai halus bertekstur */
+            const gridMat = new THREE.ShaderMaterial({
+                transparent: true,
+                depthWrite: false,
+                blending: THREE.AdditiveBlending,
+                side: THREE.DoubleSide,
+                uniforms: {
+                    uTime: { value: 0 },
+                    uOpacity: { value: 0.25 },
+                    uC1: { value: ACC },
+                    uC2: { value: ACL },
+                },
+                vertexShader: `
     varying vec2 vUv; void main(){ vUv = uv;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }
   `,
-  fragmentShader: `
+                fragmentShader: `
     varying vec2 vUv; uniform float uTime; uniform float uOpacity; uniform vec3 uC1; uniform vec3 uC2;
     void main(){
       vec2 p = vUv * 40.0; p.y += uTime * 1.8;
@@ -875,350 +1484,762 @@ const gridMat = new THREE.ShaderMaterial({
       float fade = 1.0 - smoothstep(0.06, 0.65, d);
       gl_FragColor = vec4(mix(uC1, uC2, fade), line * fade * uOpacity);
     }
-  `
-});
-const grid = new THREE.Mesh(new THREE.PlaneGeometry(160, 160), gridMat);
-grid.rotation.x = -Math.PI / 2; grid.position.y = -6.2; scene.add(grid);
+  `,
+            });
+            const grid = new THREE.Mesh(
+                new THREE.PlaneGeometry(160, 160),
+                gridMat,
+            );
+            grid.rotation.x = -Math.PI / 2;
+            grid.position.y = -6.2;
+            scene.add(grid);
 
-/* Ornamen 3D: Surya Majapahit Bintang 8-Penjuru (Menu §7c #6) */
-scene.add(new THREE.AmbientLight(0xffecd6, 1.2));
-const keyLight = new THREE.DirectionalLight(ACL.getHex(), 2.8);
-keyLight.position.set(6, 8, 12); scene.add(keyLight);
-const fillLight = new THREE.DirectionalLight(CRIMSON.getHex(), 1.8);
-fillLight.position.set(-8, -4, 6); scene.add(fillLight);
+            /* Ornamen 3D: Surya kerajaan Bintang 8-Penjuru (Menu §7c #6) */
+            scene.add(new THREE.AmbientLight(0xffecd6, 1.2));
+            const keyLight = new THREE.DirectionalLight(ACL.getHex(), 2.8);
+            keyLight.position.set(6, 8, 12);
+            scene.add(keyLight);
+            const fillLight = new THREE.DirectionalLight(CRIMSON.getHex(), 1.8);
+            fillLight.position.set(-8, -4, 6);
+            scene.add(fillLight);
 
-function makeSuryaShape() {
-  const shape = new THREE.Shape();
-  const points = 16;
-  const rOuter = 5.2;
-  const rInner = 2.4;
-  for (let i = 0; i < points; i++) {
-    const angle = (i / points) * Math.PI * 2;
-    const r = (i % 2 === 0) ? rOuter : rInner;
-    const x = Math.cos(angle) * r;
-    const y = Math.sin(angle) * r;
-    if (i === 0) shape.moveTo(x, y);
-    else shape.lineTo(x, y);
-  }
-  shape.closePath();
-  const hole = new THREE.Path();
-  hole.absarc(0, 0, 1.1, 0, Math.PI * 2, true);
-  shape.holes.push(hole);
-  return shape;
-}
-const suryaGeo = new THREE.ExtrudeGeometry(makeSuryaShape(), {
-  depth: 0.4, bevelEnabled: true, bevelThickness: 0.12, bevelSize: 0.12, bevelSegments: 3
-});
-suryaGeo.center();
+            function makeSuryaShape() {
+                const shape = new THREE.Shape();
+                const points = 16;
+                const rOuter = 5.2;
+                const rInner = 2.4;
+                for (let i = 0; i < points; i++) {
+                    const angle = (i / points) * Math.PI * 2;
+                    const r = i % 2 === 0 ? rOuter : rInner;
+                    const x = Math.cos(angle) * r;
+                    const y = Math.sin(angle) * r;
+                    if (i === 0) shape.moveTo(x, y);
+                    else shape.lineTo(x, y);
+                }
+                shape.closePath();
+                const hole = new THREE.Path();
+                hole.absarc(0, 0, 1.1, 0, Math.PI * 2, true);
+                shape.holes.push(hole);
+                return shape;
+            }
+            const suryaGeo = new THREE.ExtrudeGeometry(makeSuryaShape(), {
+                depth: 0.4,
+                bevelEnabled: true,
+                bevelThickness: 0.12,
+                bevelSize: 0.12,
+                bevelSegments: 3,
+            });
+            suryaGeo.center();
 
-const suryaMat = new THREE.MeshStandardMaterial({
-  color: 0x4a1f0a,
-  emissive: ACC.getHex(),
-  emissiveIntensity: 0.85,
-  roughness: 0.35,
-  metalness: 0.8,
-  transparent: true,
-  opacity: 0.85
-});
-const suryaMesh = new THREE.Mesh(suryaGeo, suryaMat);
-suryaMesh.position.set(0, 0.5, -12);
-scene.add(suryaMesh);
+            const suryaMat = new THREE.MeshStandardMaterial({
+                color: 0x4a1f0a,
+                emissive: ACC.getHex(),
+                emissiveIntensity: 0.85,
+                roughness: 0.35,
+                metalness: 0.8,
+                transparent: true,
+                opacity: 0.85,
+            });
+            const suryaMesh = new THREE.Mesh(suryaGeo, suryaMat);
+            suryaMesh.position.set(0, 0.5, -12);
+            scene.add(suryaMesh);
 
-const composer = new EffectComposer(renderer);
-composer.setSize(W, H);
-composer.addPass(new RenderPass(scene, camera));
-const bloom = new UnrealBloomPass(new THREE.Vector2(W, H), 0.85, 0.7, 0.52);
-composer.addPass(bloom);
-composer.addPass(new OutputPass());
+            const composer = new EffectComposer(renderer);
+            composer.setSize(W, H);
+            composer.addPass(new RenderPass(scene, camera));
+            const bloom = new UnrealBloomPass(
+                new THREE.Vector2(W, H),
+                0.85,
+                0.7,
+                0.52,
+            );
+            composer.addPass(bloom);
+            composer.addPass(new OutputPass());
 
-function render(t) {
-  dustMat.uniforms.uTime.value = t;
-  dustMat.uniforms.uOpacity.value = S.dust;
-  gridMat.uniforms.uTime.value = t;
-  gridMat.uniforms.uOpacity.value = S.grid;
+            function render(t) {
+                dustMat.uniforms.uTime.value = t;
+                dustMat.uniforms.uOpacity.value = S.dust;
+                gridMat.uniforms.uTime.value = t;
+                gridMat.uniforms.uOpacity.value = S.grid;
 
-  suryaMesh.rotation.z = -t * 0.08 + S.suryaRot;
-  suryaMesh.rotation.y = Math.sin(t * 0.4) * 0.25;
-  suryaMesh.scale.setScalar(S.suryaScale);
-  suryaMat.opacity = S.suryaO;
-  suryaMesh.visible = S.suryaO > 0.02;
+                suryaMesh.rotation.z = -t * 0.08 + S.suryaRot;
+                suryaMesh.rotation.y = Math.sin(t * 0.4) * 0.25;
+                suryaMesh.scale.setScalar(S.suryaScale);
+                suryaMat.opacity = S.suryaO;
+                suryaMesh.visible = S.suryaO > 0.02;
 
-  const sh = S.shake;
-  camera.position.set(
-    S.camX + Math.sin(t * 0.45) * 0.2 + Math.sin(t * 125.0) * sh,
-    S.camY + Math.cos(t * 0.35) * 0.15 + Math.cos(t * 110.0) * sh,
-    S.camZ
-  );
-  camera.lookAt(S.camX * 0.3, S.camY * 0.3, 0);
-  camera.rotation.z += S.camRoll;
-  bloom.strength = S.bloom;
+                const sh = S.shake;
+                camera.position.set(
+                    S.camX +
+                        Math.sin(t * 0.45) * 0.2 +
+                        Math.sin(t * 125.0) * sh,
+                    S.camY +
+                        Math.cos(t * 0.35) * 0.15 +
+                        Math.cos(t * 110.0) * sh,
+                    S.camZ,
+                );
+                camera.lookAt(S.camX * 0.3, S.camY * 0.3, 0);
+                camera.rotation.z += S.camRoll;
+                bloom.strength = S.bloom;
 
-  composer.render();
-}
+                composer.render();
+            }
 
-/* ============ TIMELINE & MOTION GRAPHIC ORCHESTRATION ============ */
-const DURATION = 30.0;
-const tl = gsap.timeline({ paused: true });
-const rig = $('#world'), leak = $('#leak');
+            /* ============ TIMELINE & MOTION GRAPHIC ORCHESTRATION ============ */
+            const DURATION = 30.0;
+            const tl = gsap.timeline({ paused: true });
+            const rig = $("#world"),
+                leak = $("#leak");
 
-let leakSide = 1;
-const sweep = (at, dur = 0.95) => {
-  const side = (leakSide *= -1);
-  tl.fromTo(leak, { x: side * 1600, y: -260, scale: 0.85 },
-    { x: side * 300, y: 120, scale: 1.15, duration: dur, ease: 'sine.out', immediateRender: false }, at);
-  tl.fromTo(leak, { opacity: 0 }, { opacity: 0.9, duration: dur * 0.4, ease: 'sine.in', immediateRender: false }, at);
-  tl.to(leak, { opacity: 0, duration: dur * 0.6, ease: 'sine.out' }, at + dur * 0.4);
-};
+            let leakSide = 1;
+            const sweep = (at, dur = 0.95) => {
+                const side = (leakSide *= -1);
+                tl.fromTo(
+                    leak,
+                    { x: side * 1600, y: -260, scale: 0.85 },
+                    {
+                        x: side * 300,
+                        y: 120,
+                        scale: 1.15,
+                        duration: dur,
+                        ease: "sine.out",
+                        immediateRender: false,
+                    },
+                    at,
+                );
+                tl.fromTo(
+                    leak,
+                    { opacity: 0 },
+                    {
+                        opacity: 0.9,
+                        duration: dur * 0.4,
+                        ease: "sine.in",
+                        immediateRender: false,
+                    },
+                    at,
+                );
+                tl.to(
+                    leak,
+                    { opacity: 0, duration: dur * 0.6, ease: "sine.out" },
+                    at + dur * 0.4,
+                );
+            };
 
-const camThrough = (atCut, { push = 2.1, from = 1.45, inDur = 0.48, outDur = 0.85, oOut = '50% 50%', oIn = '50% 50%' } = {}) => {
-  tl.set(rig, { transformOrigin: oOut }, atCut - inDur);
-  tl.to(rig, { scale: push, duration: inDur, ease: 'power2.in' }, atCut - inDur);
-  tl.set(rig, { transformOrigin: oIn, scale: from }, atCut);
-  tl.to(rig, { scale: 1, duration: outDur, ease: 'power3.out' }, atCut);
-};
+            const camThrough = (
+                atCut,
+                {
+                    push = 2.1,
+                    from = 1.45,
+                    inDur = 0.48,
+                    outDur = 0.85,
+                    oOut = "50% 50%",
+                    oIn = "50% 50%",
+                } = {},
+            ) => {
+                tl.set(rig, { transformOrigin: oOut }, atCut - inDur);
+                tl.to(
+                    rig,
+                    { scale: push, duration: inDur, ease: "power2.in" },
+                    atCut - inDur,
+                );
+                tl.set(rig, { transformOrigin: oIn, scale: from }, atCut);
+                tl.to(
+                    rig,
+                    { scale: 1, duration: outDur, ease: "power3.out" },
+                    atCut,
+                );
+            };
 
-/* Helper Tipografi Hidup */
-const inUp = (ch, el, at, { dur = 0.75, st = 0.02 } = {}) => {
-  tl.fromTo(ch, { opacity: 0, yPercent: 65, scaleY: 1.35 },
-    { opacity: 1, yPercent: 0, scaleY: 1, duration: dur, ease: 'power4.out', stagger: st, immediateRender: false }, at);
-  blurTween(tl, el, at, 26, 0, dur, VERT);
-};
-const inLeft = (ch, el, at, { dur = 0.7, st = 0.018 } = {}) => {
-  tl.fromTo(ch, { opacity: 0, xPercent: -50 },
-    { opacity: 1, xPercent: 0, duration: dur, ease: 'power4.out', stagger: st, immediateRender: false }, at);
-  blurTween(tl, el, at, 40, 0, dur, { ease: 'power4.out' });
-};
-const outUp = (ch, el, at, { dur = 0.4, st = 0.01 } = {}) => {
-  tl.to(ch, { opacity: 0, yPercent: -70, duration: dur, ease: 'power2.in', stagger: st }, at);
-  blurTween(tl, el, at, 0, 40, dur + 0.1, { ease: 'power2.in', ...VERT });
-};
-const outLeft = (ch, el, at, { dur = 0.4, st = 0.01 } = {}) => {
-  tl.to(ch, { opacity: 0, xPercent: -60, duration: dur, ease: 'power2.in', stagger: st }, at);
-  blurTween(tl, el, at, 0, 50, dur + 0.1, { ease: 'power2.in' });
-};
-const mark = (hl, at) => {
-  const i = $('i', hl);
-  if (i) tl.fromTo(i, { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: 'power3.out', immediateRender: false }, at);
-  tl.fromTo($('.hl-t', hl), { opacity: 0, yPercent: 50 }, { opacity: 1, yPercent: 0, duration: 0.65, ease: 'power4.out', immediateRender: false }, at);
-};
-const popDot = (el, at) => tl.fromTo(el, { opacity: 0, yPercent: 60, scale: 0.4 }, { opacity: 1, yPercent: 0, scale: 1, duration: 0.45, ease: 'back.out(2)', immediateRender: false }, at);
+            /* Helper Tipografi Hidup */
+            const inUp = (ch, el, at, { dur = 0.75, st = 0.02 } = {}) => {
+                tl.fromTo(
+                    ch,
+                    { opacity: 0, yPercent: 65, scaleY: 1.35 },
+                    {
+                        opacity: 1,
+                        yPercent: 0,
+                        scaleY: 1,
+                        duration: dur,
+                        ease: "power4.out",
+                        stagger: st,
+                        immediateRender: false,
+                    },
+                    at,
+                );
+                blurTween(tl, el, at, 26, 0, dur, VERT);
+            };
+            const inLeft = (ch, el, at, { dur = 0.7, st = 0.018 } = {}) => {
+                tl.fromTo(
+                    ch,
+                    { opacity: 0, xPercent: -50 },
+                    {
+                        opacity: 1,
+                        xPercent: 0,
+                        duration: dur,
+                        ease: "power4.out",
+                        stagger: st,
+                        immediateRender: false,
+                    },
+                    at,
+                );
+                blurTween(tl, el, at, 40, 0, dur, { ease: "power4.out" });
+            };
+            const outUp = (ch, el, at, { dur = 0.4, st = 0.01 } = {}) => {
+                tl.to(
+                    ch,
+                    {
+                        opacity: 0,
+                        yPercent: -70,
+                        duration: dur,
+                        ease: "power2.in",
+                        stagger: st,
+                    },
+                    at,
+                );
+                blurTween(tl, el, at, 0, 40, dur + 0.1, {
+                    ease: "power2.in",
+                    ...VERT,
+                });
+            };
+            const outLeft = (ch, el, at, { dur = 0.4, st = 0.01 } = {}) => {
+                tl.to(
+                    ch,
+                    {
+                        opacity: 0,
+                        xPercent: -60,
+                        duration: dur,
+                        ease: "power2.in",
+                        stagger: st,
+                    },
+                    at,
+                );
+                blurTween(tl, el, at, 0, 50, dur + 0.1, { ease: "power2.in" });
+            };
+            const mark = (hl, at) => {
+                const i = $("i", hl);
+                if (i)
+                    tl.fromTo(
+                        i,
+                        { scaleX: 0 },
+                        {
+                            scaleX: 1,
+                            duration: 0.55,
+                            ease: "power3.out",
+                            immediateRender: false,
+                        },
+                        at,
+                    );
+                tl.fromTo(
+                    $(".hl-t", hl),
+                    { opacity: 0, yPercent: 50 },
+                    {
+                        opacity: 1,
+                        yPercent: 0,
+                        duration: 0.65,
+                        ease: "power4.out",
+                        immediateRender: false,
+                    },
+                    at,
+                );
+            };
+            const popDot = (el, at) =>
+                tl.fromTo(
+                    el,
+                    { opacity: 0, yPercent: 60, scale: 0.4 },
+                    {
+                        opacity: 1,
+                        yPercent: 0,
+                        scale: 1,
+                        duration: 0.45,
+                        ease: "back.out(2)",
+                        immediateRender: false,
+                    },
+                    at,
+                );
 
-/* Inisialisasi Karakter untuk Animasi Split */
-const l1 = $('#line-1'), l2 = $('#line-2'), l3 = $('#line-3'), l4 = $('#line-4'), l5 = $('#line-5');
-const ch1 = splitChars(l1);
-const ch2 = splitChars(l2);
-const ch3 = splitChars(l3);
-const ch4 = splitChars(l4);
-const ch5 = splitChars(l5);
+            /* Inisialisasi Karakter untuk Animasi Split */
+            const l1 = $("#line-1"),
+                l2 = $("#line-2"),
+                l3 = $("#line-3"),
+                l4 = $("#line-4"),
+                l5 = $("#line-5");
+            const ch1 = splitChars(l1);
+            const ch2 = splitChars(l2);
+            const ch3 = splitChars(l3);
+            const ch4 = splitChars(l4);
+            const ch5 = splitChars(l5);
 
-/* ------------------ SCENE 1: THE EMPIRE AWAKES (0.0s - 5.5s) ------------------ */
-tl.set(S, { grid: 0.15, dust: 0.8, suryaScale: 0.3, suryaO: 0, camZ: 28, camRoll: 0.15, bloom: 1.1 }, 0);
-tl.to(S, { suryaO: 0.85, suryaScale: 1.0, duration: 1.4, ease: 'back.out(1.6)' }, 0.2);
-tl.to(S, { camZ: 17, camRoll: 0, grid: 0.3, duration: 2.8, ease: 'power2.inOut' }, 0.2);
+            /* ------------------ SCENE 1: THE EMPIRE AWAKES (0.0s - 5.5s) ------------------ */
+            tl.set(
+                S,
+                {
+                    grid: 0.15,
+                    dust: 0.8,
+                    suryaScale: 0.3,
+                    suryaO: 0,
+                    camZ: 28,
+                    camRoll: 0.15,
+                    bloom: 1.1,
+                },
+                0,
+            );
+            tl.to(
+                S,
+                {
+                    suryaO: 0.85,
+                    suryaScale: 1.0,
+                    duration: 1.4,
+                    ease: "back.out(1.6)",
+                },
+                0.2,
+            );
+            tl.to(
+                S,
+                {
+                    camZ: 17,
+                    camRoll: 0,
+                    grid: 0.3,
+                    duration: 2.8,
+                    ease: "power2.inOut",
+                },
+                0.2,
+            );
 
-tl.fromTo('#crest-wrap', { opacity: 0, scale: 0.5, y: 40 },
-  { opacity: 1, scale: 1, y: 0, duration: 1.2, ease: 'back.out(1.8)' }, 0.4);
+            tl.fromTo(
+                "#crest-wrap",
+                { opacity: 0, scale: 0.5, y: 40 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "back.out(1.8)",
+                },
+                0.4,
+            );
 
-tl.to('#pocket', { opacity: 0.85, duration: 0.8 }, 0.9);
-tl.fromTo('#kicker-1', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 1.1);
-tl.set(l1, { opacity: 1 }, 1.3);
-inUp(ch1, l1, 1.35);
-mark($('#hl-1'), 1.95);
-popDot($('.txt2', l1), 2.3);
+            tl.to("#pocket", { opacity: 0.85, duration: 0.8 }, 0.9);
+            tl.fromTo(
+                "#kicker-1",
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
+                1.1,
+            );
+            tl.set(l1, { opacity: 1 }, 1.3);
+            inUp(ch1, l1, 1.35);
+            mark($("#hl-1"), 1.95);
+            popDot($(".txt2", l1), 2.3);
 
-/* Exit Scene 1 */
-outLeft(ch1, l1, 4.8);
-tl.to(['#hl-1', '.txt2', '#kicker-1'], { opacity: 0, x: -60, duration: 0.4, ease: 'power2.in' }, 4.8);
-tl.to('#crest-wrap', { opacity: 0, scale: 1.5, y: -80, duration: 0.6, ease: 'power2.in' }, 4.9);
-sweep(4.9, 0.9);
-camThrough(5.4, { push: 1.9, from: 1.4 });
+            /* Exit Scene 1 */
+            outLeft(ch1, l1, 4.8);
+            tl.to(
+                ["#hl-1", ".txt2", "#kicker-1"],
+                { opacity: 0, x: -60, duration: 0.4, ease: "power2.in" },
+                4.8,
+            );
+            tl.to(
+                "#crest-wrap",
+                {
+                    opacity: 0,
+                    scale: 1.5,
+                    y: -80,
+                    duration: 0.6,
+                    ease: "power2.in",
+                },
+                4.9,
+            );
+            sweep(4.9, 0.9);
+            camThrough(5.4, { push: 1.9, from: 1.4 });
 
-/* ------------------ SCENE 2: SOLUSI BRAND & MAKLON (5.5s - 11.5s) ------------------ */
-tl.set('#scene2-wrap', { opacity: 1 }, 5.35);
-tl.fromTo('#kicker-2', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 5.5);
-tl.set(l2, { opacity: 1 }, 5.6);
-inLeft(ch2, l2, 5.65);
-mark($('#hl-2'), 6.15);
-popDot($('.txt2', l2), 6.5);
+            /* ------------------ SCENE 2: SOLUSI BRAND & MAKLON (5.5s - 11.5s) ------------------ */
+            tl.set("#scene2-wrap", { opacity: 1 }, 5.35);
+            tl.fromTo(
+                "#kicker-2",
+                { opacity: 0, y: -20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+                5.5,
+            );
+            tl.set(l2, { opacity: 1 }, 5.6);
+            inLeft(ch2, l2, 5.65);
+            mark($("#hl-2"), 6.15);
+            popDot($(".txt2", l2), 6.5);
 
-/* Mockup 3D Portal Slide Up with Perspective Tilt */
-tl.fromTo('#portal-card',
-  { opacity: 0, y: 240, rotateX: 28, scale: 0.85 },
-  { opacity: 1, y: 0, rotateX: 10, scale: 1, duration: 1.2, ease: 'power3.out' }, 5.75);
+            /* Mockup 3D Portal Slide Up with Perspective Tilt */
+            tl.fromTo(
+                "#portal-card",
+                { opacity: 0, y: 240, rotateX: 28, scale: 0.85 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateX: 10,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: "power3.out",
+                },
+                5.75,
+            );
 
-/* Subtle 3D camera drift during Scene 2 */
-tl.to(S, { camY: -0.6, camZ: 16.2, duration: 4.5, ease: 'sine.inOut' }, 5.5);
+            /* Subtle 3D camera drift during Scene 2 */
+            tl.to(
+                S,
+                { camY: -0.6, camZ: 16.2, duration: 4.5, ease: "sine.inOut" },
+                5.5,
+            );
 
-/* Exit Scene 2 */
-outUp(ch2, l2, 10.6);
-tl.to(['#hl-2', '.txt2', '#kicker-2'], { opacity: 0, y: -50, duration: 0.4, ease: 'power2.in' }, 10.6);
-tl.to('#portal-card', { opacity: 0, scale: 1.8, z: 200, duration: 0.65, ease: 'power2.in' }, 10.7);
-sweep(10.8, 0.9);
-camThrough(11.3, { push: 2.2, from: 1.5 });
+            /* Exit Scene 2 */
+            outUp(ch2, l2, 10.6);
+            tl.to(
+                ["#hl-2", ".txt2", "#kicker-2"],
+                { opacity: 0, y: -50, duration: 0.4, ease: "power2.in" },
+                10.6,
+            );
+            tl.to(
+                "#portal-card",
+                {
+                    opacity: 0,
+                    scale: 1.8,
+                    z: 200,
+                    duration: 0.65,
+                    ease: "power2.in",
+                },
+                10.7,
+            );
+            sweep(10.8, 0.9);
+            camThrough(11.3, { push: 2.2, from: 1.5 });
 
-/* Ganti ke Latar Terang Editorial (Katalog) di balik cut */
-tl.set('#paper', { autoAlpha: 0 }, 0);
-tl.set(['#gl', '.bgfx'], { opacity: 1 }, 0);
-tl.set('#paper', { autoAlpha: 1 }, 11.3);
-tl.to(['#gl', '.bgfx'], { opacity: 0, duration: 0.25 }, 11.3);
-tl.to('.vignette', { opacity: 0.25, duration: 0.4 }, 11.3);
-tl.to('#pocket', { opacity: 0, duration: 0.3 }, 11.2);
-tl.to('.paper .blob', { x: 50, y: -30, duration: 4.5, ease: 'sine.inOut', yoyo: true, repeat: 1, stagger: 0.3 }, 11.3);
+            /* Ganti ke Latar Terang Editorial (Katalog) di balik cut */
+            tl.set("#paper", { autoAlpha: 0 }, 0);
+            tl.set(["#gl", ".bgfx"], { opacity: 1 }, 0);
+            tl.set("#paper", { autoAlpha: 1 }, 11.3);
+            tl.to(["#gl", ".bgfx"], { opacity: 0, duration: 0.25 }, 11.3);
+            tl.to(".vignette", { opacity: 0.25, duration: 0.4 }, 11.3);
+            tl.to("#pocket", { opacity: 0, duration: 0.3 }, 11.2);
+            tl.to(
+                ".paper .blob",
+                {
+                    x: 50,
+                    y: -30,
+                    duration: 4.5,
+                    ease: "sine.inOut",
+                    yoyo: true,
+                    repeat: 1,
+                    stagger: 0.3,
+                },
+                11.3,
+            );
 
-/* ------------------ SCENE 3: KATALOG & BANK KONTEN (11.5s - 17.5s) ------------------ */
-tl.set('#scene3-wrap', { opacity: 1 }, 11.28);
-tl.fromTo('#kicker-3', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 11.4);
-tl.set(l3, { opacity: 1 }, 11.5);
-inUp(ch3, l3, 11.55);
-mark($('#hl-3'), 12.1);
-popDot($('.txt2', l3), 12.45);
+            /* ------------------ SCENE 3: KATALOG & BANK KONTEN (11.5s - 17.5s) ------------------ */
+            tl.set("#scene3-wrap", { opacity: 1 }, 11.28);
+            tl.fromTo(
+                "#kicker-3",
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+                11.4,
+            );
+            tl.set(l3, { opacity: 1 }, 11.5);
+            inUp(ch3, l3, 11.55);
+            mark($("#hl-3"), 12.1);
+            popDot($(".txt2", l3), 12.45);
 
-/* Masuk Kartu Produk E-Commerce & Bank Konten */
-tl.fromTo('.product-showcase-card',
-  { opacity: 0, x: -120, rotateY: -15, scale: 0.9 },
-  { opacity: 1, x: 0, rotateY: 0, scale: 1, duration: 1.0, ease: 'back.out(1.5)' }, 11.7);
+            /* Masuk Kartu Produk E-Commerce & Bank Konten */
+            tl.fromTo(
+                ".product-showcase-card",
+                { opacity: 0, x: -120, rotateY: -15, scale: 0.9 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    rotateY: 0,
+                    scale: 1,
+                    duration: 1.0,
+                    ease: "back.out(1.5)",
+                },
+                11.7,
+            );
 
-tl.fromTo('.content-bank-banner',
-  { opacity: 0, x: 120, scale: 0.9 },
-  { opacity: 1, x: 0, scale: 1, duration: 0.9, ease: 'power3.out' }, 11.9);
+            tl.fromTo(
+                ".content-bank-banner",
+                { opacity: 0, x: 120, scale: 0.9 },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 0.9,
+                    ease: "power3.out",
+                },
+                11.9,
+            );
 
-tl.fromTo('.tag-asset',
-  { opacity: 0, y: 30, scale: 0.8 },
-  { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'back.out(1.8)', stagger: 0.15 }, 12.4);
+            tl.fromTo(
+                ".tag-asset",
+                { opacity: 0, y: 30, scale: 0.8 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: "back.out(1.8)",
+                    stagger: 0.15,
+                },
+                12.4,
+            );
 
-/* Exit Scene 3 */
-outLeft(ch3, l3, 16.5);
-tl.to(['#hl-3', '.txt2', '#kicker-3'], { opacity: 0, x: -60, duration: 0.4, ease: 'power2.in' }, 16.5);
-tl.to('.product-showcase-card', { opacity: 0, x: -180, duration: 0.5, ease: 'power2.in' }, 16.6);
-tl.to('.content-bank-side', { opacity: 0, x: 180, duration: 0.5, ease: 'power2.in' }, 16.6);
-sweep(16.7, 0.9);
-camThrough(17.2, { push: 1.9, from: 1.45 });
+            /* Exit Scene 3 */
+            outLeft(ch3, l3, 16.5);
+            tl.to(
+                ["#hl-3", ".txt2", "#kicker-3"],
+                { opacity: 0, x: -60, duration: 0.4, ease: "power2.in" },
+                16.5,
+            );
+            tl.to(
+                ".product-showcase-card",
+                { opacity: 0, x: -180, duration: 0.5, ease: "power2.in" },
+                16.6,
+            );
+            tl.to(
+                ".content-bank-side",
+                { opacity: 0, x: 180, duration: 0.5, ease: "power2.in" },
+                16.6,
+            );
+            sweep(16.7, 0.9);
+            camThrough(17.2, { push: 1.9, from: 1.45 });
 
-/* Kembalikan Latar Gelap Kerajaan di balik cut */
-tl.set('#paper', { autoAlpha: 0 }, 17.2);
-tl.to(['#gl', '.bgfx'], { opacity: 1, duration: 0.3 }, 17.2);
-tl.to('.vignette', { opacity: 1, duration: 0.4 }, 17.2);
-tl.to('#pocket', { opacity: 0.85, duration: 0.4 }, 17.2);
+            /* Kembalikan Latar Gelap Kerajaan di balik cut */
+            tl.set("#paper", { autoAlpha: 0 }, 17.2);
+            tl.to(["#gl", ".bgfx"], { opacity: 1, duration: 0.3 }, 17.2);
+            tl.to(".vignette", { opacity: 1, duration: 0.4 }, 17.2);
+            tl.to("#pocket", { opacity: 0.85, duration: 0.4 }, 17.2);
 
-/* ------------------ SCENE 4: KOMISI 40% & JARINGAN KOL (17.5s - 23.5s) ------------------ */
-tl.set('#scene4-wrap', { opacity: 1 }, 17.18);
-tl.fromTo('#kicker-4', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, 17.3);
-tl.set(l4, { opacity: 1 }, 17.4);
-inLeft(ch4, l4, 17.45);
-mark($('#hl-4'), 18.0);
-popDot($('.txt2', l4), 18.35);
+            /* ------------------ SCENE 4: KOMISI 40% & JARINGAN KOL (17.5s - 23.5s) ------------------ */
+            tl.set("#scene4-wrap", { opacity: 1 }, 17.18);
+            tl.fromTo(
+                "#kicker-4",
+                { opacity: 0, y: -20 },
+                { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
+                17.3,
+            );
+            tl.set(l4, { opacity: 1 }, 17.4);
+            inLeft(ch4, l4, 17.45);
+            mark($("#hl-4"), 18.0);
+            popDot($(".txt2", l4), 18.35);
 
-/* Showcase Kartu Komisi Emas & KOL */
-tl.fromTo('.gold-commission-card',
-  { opacity: 0, y: 150, rotateY: -12, scale: 0.88 },
-  { opacity: 1, y: 0, rotateY: 0, scale: 1, duration: 1.0, ease: 'back.out(1.6)' }, 17.6);
+            /* Showcase Kartu Komisi Emas & KOL */
+            tl.fromTo(
+                ".gold-commission-card",
+                { opacity: 0, y: 150, rotateY: -12, scale: 0.88 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateY: 0,
+                    scale: 1,
+                    duration: 1.0,
+                    ease: "back.out(1.6)",
+                },
+                17.6,
+            );
 
-tl.fromTo('.kol-counter-card',
-  { opacity: 0, y: 150, rotateY: 12, scale: 0.88 },
-  { opacity: 1, y: 0, rotateY: 0, scale: 1, duration: 1.0, ease: 'back.out(1.6)' }, 17.8);
+            tl.fromTo(
+                ".kol-counter-card",
+                { opacity: 0, y: 150, rotateY: 12, scale: 0.88 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    rotateY: 0,
+                    scale: 1,
+                    duration: 1.0,
+                    ease: "back.out(1.6)",
+                },
+                17.8,
+            );
 
-/* Live Counter Deterministik 5.000+ KOL */
-const kolCounterObj = { val: 0 };
-tl.fromTo(kolCounterObj, { val: 0 }, {
-  val: 5000, duration: 2.2, ease: 'power2.out',
-  onUpdate() {
-    $('#kol-number-val').textContent = Math.round(kolCounterObj.val).toLocaleString('id-ID') + '+';
-  }
-}, 18.2);
+            /* Live Counter Deterministik 5.000+ KOL */
+            const kolCounterObj = { val: 0 };
+            tl.fromTo(
+                kolCounterObj,
+                { val: 0 },
+                {
+                    val: 5000,
+                    duration: 2.2,
+                    ease: "power2.out",
+                    onUpdate() {
+                        $("#kol-number-val").textContent =
+                            Math.round(kolCounterObj.val).toLocaleString(
+                                "id-ID",
+                            ) + "+";
+                    },
+                },
+                18.2,
+            );
 
-/* Exit Scene 4 */
-outUp(ch4, l4, 22.5);
-tl.to(['#hl-4', '.txt2', '#kicker-4'], { opacity: 0, y: -50, duration: 0.4, ease: 'power2.in' }, 22.5);
-tl.to('#stats-grid', { opacity: 0, scale: 1.6, duration: 0.6, ease: 'power2.in' }, 22.6);
-sweep(22.8, 0.95);
-camThrough(23.3, { push: 2.0, from: 1.4 });
+            /* Exit Scene 4 */
+            outUp(ch4, l4, 22.5);
+            tl.to(
+                ["#hl-4", ".txt2", "#kicker-4"],
+                { opacity: 0, y: -50, duration: 0.4, ease: "power2.in" },
+                22.5,
+            );
+            tl.to(
+                "#stats-grid",
+                { opacity: 0, scale: 1.6, duration: 0.6, ease: "power2.in" },
+                22.6,
+            );
+            sweep(22.8, 0.95);
+            camThrough(23.3, { push: 2.0, from: 1.4 });
 
-/* ------------------ SCENE 5: CLIMAX & CALL TO ACTION (23.5s - 30.0s) ------------------ */
-tl.set('#scene5-wrap', { opacity: 1 }, 23.28);
-tl.to(S, { suryaScale: 1.4, suryaO: 0.9, camZ: 15, duration: 4.5, ease: 'sine.out' }, 23.3);
+            /* ------------------ SCENE 5: CLIMAX & CALL TO ACTION (23.5s - 30.0s) ------------------ */
+            tl.set("#scene5-wrap", { opacity: 1 }, 23.28);
+            tl.to(
+                S,
+                {
+                    suryaScale: 1.4,
+                    suryaO: 0.9,
+                    camZ: 15,
+                    duration: 4.5,
+                    ease: "sine.out",
+                },
+                23.3,
+            );
 
-tl.fromTo('#finale-brand',
-  { opacity: 0, scale: 0.6, y: -40 },
-  { opacity: 1, scale: 1, y: 0, duration: 1.1, ease: 'back.out(1.8)' }, 23.5);
+            tl.fromTo(
+                "#finale-brand",
+                { opacity: 0, scale: 0.6, y: -40 },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 1.1,
+                    ease: "back.out(1.8)",
+                },
+                23.5,
+            );
 
-tl.set(l5, { opacity: 1 }, 24.2);
-inUp(ch5, l5, 24.25);
-mark($('#hl-5'), 24.8);
-popDot($('.txt2', l5), 25.15);
+            tl.set(l5, { opacity: 1 }, 24.2);
+            inUp(ch5, l5, 24.25);
+            mark($("#hl-5"), 24.8);
+            popDot($(".txt2", l5), 25.15);
 
-tl.fromTo('#cta-actions .btn-cta-persona',
-  { opacity: 0, y: 40, scale: 0.9 },
-  { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'back.out(1.8)', stagger: 0.2 }, 25.2);
+            tl.fromTo(
+                "#cta-actions .btn-cta-persona",
+                { opacity: 0, y: 40, scale: 0.9 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "back.out(1.8)",
+                    stagger: 0.2,
+                },
+                25.2,
+            );
 
-tl.fromTo('#domain-pill',
-  { opacity: 0, scale: 0.8 },
-  { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' }, 26.0);
+            tl.fromTo(
+                "#domain-pill",
+                { opacity: 0, scale: 0.8 },
+                { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
+                26.0,
+            );
 
-/* Gentle end breathing settle */
-tl.to(rig, { scale: 1.04, duration: 4.0, ease: 'sine.inOut' }, 26.0);
-tl.to({}, { duration: 0.01 }, DURATION);
+            /* Gentle end breathing settle */
+            tl.to(
+                rig,
+                { scale: 1.04, duration: 4.0, ease: "sine.inOut" },
+                26.0,
+            );
+            tl.to({}, { duration: 0.01 }, DURATION);
 
-/* ============ PEREKAT SISTEM, AUTOPLAY & LOOP ============ */
-const stage = $('#stage');
-const fit = () => {
-  const s = Math.min(innerWidth / 1920, innerHeight / 1080);
-  stage.style.transform = `translate(-50%, -50%) scale(${s})`;
-};
-addEventListener('resize', fit);
-fit();
+            /* ============ PEREKAT SISTEM, AUTOPLAY & LOOP ============ */
+            const stage = $("#stage");
+            const fit = () => {
+                const s = Math.min(innerWidth / 1920, innerHeight / 1080);
+                stage.style.transform = `translate(-50%, -50%) scale(${s})`;
+            };
+            addEventListener("resize", fit);
+            fit();
 
-const clock = $('#clock'), scrub = $('#scrub'), btn = $('#btn-play');
-let scrubbing = false;
+            const clock = $("#clock"),
+                scrub = $("#scrub"),
+                btn = $("#btn-play");
+            let scrubbing = false;
 
-(function frame() {
-  const t = tl.time();
-  render(t);
-  clock.textContent = t.toFixed(2) + 's';
-  if (!scrubbing) scrub.value = String((t / DURATION) * 1000);
-  requestAnimationFrame(frame);
-})();
+            (function frame() {
+                const t = tl.time();
+                render(t);
+                clock.textContent = t.toFixed(2) + "s";
+                if (!scrubbing) scrub.value = String((t / DURATION) * 1000);
+                requestAnimationFrame(frame);
+            })();
 
-const toggle = () => {
-  if (tl.paused() || tl.progress() >= 1) {
-    if (tl.progress() >= 1) tl.progress(0);
-    tl.play(); btn.textContent = 'Pause';
-  } else {
-    tl.pause(); btn.textContent = 'Play';
-  }
-};
-btn.onclick = toggle;
-$('#btn-restart').onclick = () => { tl.pause(0); tl.play(); btn.textContent = 'Pause'; };
+            const toggle = () => {
+                if (tl.paused() || tl.progress() >= 1) {
+                    if (tl.progress() >= 1) tl.progress(0);
+                    tl.play();
+                    btn.textContent = "Pause";
+                } else {
+                    tl.pause();
+                    btn.textContent = "Play";
+                }
+            };
+            btn.onclick = toggle;
+            $("#btn-restart").onclick = () => {
+                tl.pause(0);
+                tl.play();
+                btn.textContent = "Pause";
+            };
 
-scrub.addEventListener('pointerdown', () => { scrubbing = true; tl.pause(); btn.textContent = 'Play'; });
-addEventListener('pointerup', () => { scrubbing = false; });
-scrub.addEventListener('input', () => { tl.pause(); tl.time((scrub.value / 1000) * DURATION); });
+            scrub.addEventListener("pointerdown", () => {
+                scrubbing = true;
+                tl.pause();
+                btn.textContent = "Play";
+            });
+            addEventListener("pointerup", () => {
+                scrubbing = false;
+            });
+            scrub.addEventListener("input", () => {
+                tl.pause();
+                tl.time((scrub.value / 1000) * DURATION);
+            });
 
-addEventListener('keydown', e => {
-  if (e.code === 'Space') { e.preventDefault(); toggle(); }
-  if (/^[rR]$/.test(e.key)) { tl.pause(0); tl.play(); }
-  if (/^[hH]$/.test(e.key)) $('#ui').classList.toggle('on');
-});
+            addEventListener("keydown", (e) => {
+                if (e.code === "Space") {
+                    e.preventDefault();
+                    toggle();
+                }
+                if (/^[rR]$/.test(e.key)) {
+                    tl.pause(0);
+                    tl.play();
+                }
+                if (/^[hH]$/.test(e.key)) $("#ui").classList.toggle("on");
+            });
 
-const Q = new URLSearchParams(location.search);
-if (Q.has('debug')) $('#ui').classList.add('on');
-tl.eventCallback('onComplete', () => { tl.play(0); }); // Seamless loop
+            const Q = new URLSearchParams(location.search);
+            if (Q.has("debug")) $("#ui").classList.add("on");
+            tl.eventCallback("onComplete", () => {
+                tl.play(0);
+            }); // Seamless loop
 
-const seek = t => {
-  tl.pause(); tl.time(t, false);
-  if (gsap.ticker.tick) gsap.ticker.tick();
-  render(t);
-};
-window.OPENER = { tl, DURATION, seek, ready: false, W: 1920, H: 1080 };
+            const seek = (t) => {
+                tl.pause();
+                tl.time(t, false);
+                if (gsap.ticker.tick) gsap.ticker.tick();
+                render(t);
+            };
+            window.OPENER = {
+                tl,
+                DURATION,
+                seek,
+                ready: false,
+                W: 1920,
+                H: 1080,
+            };
 
-let started = false;
-function startPlay() {
-  if (started) return;
-  started = true;
-  window.OPENER.ready = true;
-  if (!Q.has('clean')) tl.play(0);
-}
-document.fonts.ready.then(startPlay);
-setTimeout(startPlay, 800);
-</script>
-</body>
+            let started = false;
+            function startPlay() {
+                if (started) return;
+                started = true;
+                window.OPENER.ready = true;
+                if (!Q.has("clean")) tl.play(0);
+            }
+            document.fonts.ready.then(startPlay);
+            setTimeout(startPlay, 800);
+        </script>
+    </body>
 </html>

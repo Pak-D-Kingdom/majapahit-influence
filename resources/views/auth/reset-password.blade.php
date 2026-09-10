@@ -10,18 +10,13 @@
     <div class="pointer-events-none absolute bottom-[-15%] right-[-10%] w-[550px] h-[550px] rounded-full bg-gradient-to-tl from-[#0b64d4]/15 via-[#1698f6]/10 to-transparent blur-3xl -z-10"></div>
     <div class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-radial from-blue-100/30 to-transparent blur-2xl -z-10"></div>
 
-    <div class="max-w-md w-full mx-auto my-auto relative z-10">
-
-        {{-- Brand Logo & Tagline Header --}}
-        <div class="text-center mb-7">
-            <a href="{{ url('/') }}" class="inline-flex flex-col items-center gap-2.5 group transition-transform duration-300 hover:scale-105">
-                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="h-12 sm:h-14 w-auto object-contain drop-shadow-sm">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-blue-100/90 shadow-sm backdrop-blur-sm">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#1698f6] animate-pulse"></span>
-                    <span class="text-[10px] font-extrabold tracking-[0.22em] text-[#0c3685] uppercase">
-                        PEMBARUAN KEAMANAN
-                    </span>
-                </div>
+        {{-- Brand Logo Header --}}
+        <div class="text-center mb-8">
+            <a href="{{ url('/') }}" class="inline-flex flex-col items-center gap-2 group transition-transform hover:scale-105">
+                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}" alt="KERAJAAN" class="h-12 w-auto object-contain">
+                <span class="text-[11px] font-bold tracking-[0.22em] text-[#0c3685] uppercase">
+                    KERAJAAN &bull; kerajaan INFLUENCE
+                </span>
             </a>
         </div>
 

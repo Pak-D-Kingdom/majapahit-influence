@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard Superadmin') | KERAJAAN</title>
+    <title>@yield('title', 'Dashboard Superadmin') — KERAJAAN</title>
+    
     <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/kerajaanlogov1.png') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -20,8 +23,9 @@
                             sky: '#1698f6',
                             soft: '#78a5d6',
                             navy: '#0c3685',
+                            dark: '#071d49',
                         },
-                        majapahit: {
+                        kerajaan: {
                             orange: '#0b64d4',
                             red: '#1698f6',
                             yellow: '#78a5d6',
@@ -42,8 +46,8 @@
     </script>
     <style>
         .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .font-sans { font-family: 'DM Sans', sans-serif; }
-        .btn-majapahit-primary, .btn-kerajaan-primary {
+        .font-sans, .font-body { font-family: 'DM Sans', sans-serif; }
+        .btn-kerajaan-primary, .btn-kerajaan-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -51,18 +55,18 @@
             padding: 0.625rem 1.25rem;
             border-radius: 0.75rem;
             font-size: 0.875rem;
-            font-weight: 600;
+            font-weight: 700;
             color: #ffffff;
             background: linear-gradient(135deg, #0b64d4, #1698f6);
             box-shadow: 0 4px 14px rgba(11, 100, 212, 0.25);
             transition: all 0.2s ease;
         }
-        .btn-majapahit-primary:hover, .btn-kerajaan-primary:hover {
+        .btn-kerajaan-primary:hover, .btn-kerajaan-primary:hover {
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(11, 100, 212, 0.35);
             filter: brightness(1.05);
         }
-        .btn-majapahit-secondary, .btn-kerajaan-secondary {
+        .btn-kerajaan-secondary, .btn-kerajaan-secondary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -73,13 +77,19 @@
             font-weight: 600;
             color: #0c3685;
             background-color: #ffffff;
-            border: 1px solid rgba(12, 54, 133, 0.15);
+            border: 1px solid rgba(12, 54, 133, 0.18);
             transition: all 0.2s ease;
         }
-        .btn-majapahit-secondary:hover, .btn-kerajaan-secondary:hover {
-            background-color: #eff6ff;
+        .btn-kerajaan-secondary:hover, .btn-kerajaan-secondary:hover {
+            background-color: #f8fafc;
             border-color: rgba(11, 100, 212, 0.4);
             color: #0b64d4;
+        }
+        .kerajaan-card, .kerajaan-card {
+            background-color: #ffffff;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            border-radius: 1rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
     </style>
     @if (file_exists(public_path('build/manifest.json')))
@@ -87,11 +97,11 @@
     @endif
     @stack('styles')
 </head>
-<body class="min-h-screen bg-[#f8fafc] font-sans text-[#0c3685] antialiased selection:bg-[#0b64d4] selection:text-white">
+<body class="min-h-screen bg-[#f8fafc] font-sans text-slate-800 antialiased selection:bg-[#0b64d4]/20 selection:text-[#0c3685]">
     <div class="min-h-screen lg:flex">
-        <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-[#0c3685]/40 backdrop-blur-xs transition-opacity lg:hidden" aria-hidden="true"></div>
+        <div id="sidebar-overlay" class="fixed inset-0 z-30 hidden bg-[#071d49]/50 backdrop-blur-xs transition-opacity lg:hidden" aria-hidden="true"></div>
         @include('superadmin.layouts.sidebar')
-        <div class="min-w-0 flex-1 flex flex-col min-h-screen">
+        <div class="min-w-0 flex-1 flex flex-col min-h-screen bg-[#f8fafc]">
             @include('superadmin.layouts.navbar')
             <main class="flex-1 p-4 sm:p-6 lg:p-8">
                 <div class="mx-auto max-w-[1600px]">
