@@ -52,28 +52,35 @@
                     Informasi Profil & Media Sosial
                 </h3>
 
-                <div class="mt-5 grid gap-4 sm:grid-cols-2 text-sm">
-                    <div class="rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
-                        <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Platform Utama</p>
-                        <p class="mt-1 font-bold text-[#421b13]">
-                            {{ str(data_get($registration->social_media, 'platform', '-'))->title() }}
-                        </p>
+                <div class="mt-5 space-y-3">
+                    <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Akun Media Sosial Terdaftar</p>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        @forelse ($registration->normalized_social_media as $account)
+                            <div class="rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <span class="inline-flex items-center gap-1.5 font-bold text-[#421b13] text-xs">
+                                        <i class="bi bi-{{ match(strtolower($account['platform'] ?? '')) { 'tiktok' => 'tiktok', 'youtube' => 'youtube', 'facebook' => 'facebook', 'threads' => 'threads', 'twitter', 'x' => 'twitter-x', default => 'instagram' } }} text-[#d57028]"></i>
+                                        <span>{{ str($account['platform'] ?? 'Platform')->title() }}</span>
+                                    </span>
+                                    <span class="text-[11px] font-bold text-[#765f58]">{{ number_format($account['followers_count'] ?? 0) }} followers</span>
+                                </div>
+                                <p class="text-sm font-extrabold text-[#421b13] truncate">{{ $account['username'] ?: '-' }}</p>
+                                @if (!empty($account['profile_url']))
+                                    <a href="{{ $account['profile_url'] }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-bold text-[#d57028] hover:underline">
+                                        <span class="truncate max-w-[200px]">{{ $account['profile_url'] }}</span>
+                                        <i class="bi bi-box-arrow-up-right text-[9px]"></i>
+                                    </a>
+                                @endif
+                            </div>
+                        @empty
+                            <div class="sm:col-span-2 rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5 text-xs text-[#765f58]">
+                                Tidak ada data media sosial.
+                            </div>
+                        @endforelse
                     </div>
+                </div>
 
-                    <div class="rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
-                        <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Username / Akun</p>
-                        <p class="mt-1 font-bold text-[#421b13]">
-                            {{ data_get($registration->social_media, 'username', '-') }}
-                        </p>
-                    </div>
-
-                    <div class="rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
-                        <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Jumlah Followers</p>
-                        <p class="mt-1 font-bold text-[#421b13]">
-                            {{ number_format(data_get($registration->social_media, 'followers_count', 0)) }} followers
-                        </p>
-                    </div>
-
+                <div class="mt-4 grid gap-4 sm:grid-cols-2 text-sm">
                     <div class="rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
                         <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Kota / Domisili</p>
                         <p class="mt-1 font-bold text-[#421b13]">
@@ -81,15 +88,12 @@
                         </p>
                     </div>
 
-                    @if (data_get($registration->social_media, 'profile_url'))
-                        <div class="sm:col-span-2 rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
-                            <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Tautan Profil</p>
-                            <a href="{{ data_get($registration->social_media, 'profile_url') }}" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-1 font-bold text-[#d57028] hover:underline">
-                                <span>{{ data_get($registration->social_media, 'profile_url') }}</span>
-                                <i class="bi bi-box-arrow-up-right text-xs"></i>
-                            </a>
-                        </div>
-                    @endif
+                    <div class="rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
+                        <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Total Followers</p>
+                        <p class="mt-1 font-bold text-[#421b13]">
+                            {{ number_format(collect($registration->normalized_social_media)->sum('followers_count')) }} followers
+                        </p>
+                    </div>
 
                     <div class="sm:col-span-2 rounded-xl bg-[#fbf7f4] border border-[#421b13]/6 p-3.5">
                         <p class="text-[11px] font-bold uppercase tracking-wider text-[#765f58] font-heading">Niche / Kategori</p>

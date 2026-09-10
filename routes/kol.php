@@ -4,6 +4,7 @@ use App\Http\Controllers\Kol\CommissionController;
 use App\Http\Controllers\Kol\ContentProofController;
 use App\Http\Controllers\Kol\DashboardController;
 use App\Http\Controllers\Kol\EndorsementController;
+use App\Http\Controllers\Kol\LeaderboardController;
 use App\Http\Controllers\Kol\ProfileController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'role:kol'])->group(function (): void {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    // KOL Leaderboard
+    Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard.index');
 
     // KOL Profile Management (support /profil and /profile)
     Route::get('/profil', [ProfileController::class, 'show'])->name('profile.show');

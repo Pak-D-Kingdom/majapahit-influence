@@ -3,32 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Masuk') — Majapahit Influence</title>
+    <title>@yield('title', 'Masuk') — KERAJAAN</title>
 
-    <meta name="description" content="Portal Akses Majapahit Influence Management Platform">
+    <meta name="description" content="Portal Akses KERAJAAN Creator-Powered Commerce Platform">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     {{-- Bootstrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
         :root {
-            --orange: #d57028;
-            --red: #d5282d;
-            --yellow: #fec200;
-            --dark: #1b0c08;
-            --dark-card: #24110b;
-            --dark-border: #442217;
-            --brown: #b86021;
+            --primary: #0b64d4;
+            --primary-light: #1698f6;
+            --navy: #071d49;
+            --navy-dark: #04102b;
             --white: #ffffff;
-            --off-white: #fff9f4;
-            --muted: #a68c85;
+            --off-white: #f8fafc;
+            --muted: #64748b;
             --font-heading: 'Plus Jakarta Sans', sans-serif;
-            --font-body: 'DM Sans', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
         * {
@@ -39,7 +36,7 @@
 
         body {
             font-family: var(--font-body);
-            background: linear-gradient(135deg, #120704 0%, #1f0d08 50%, #100604 100%);
+            background: linear-gradient(135deg, #071d49 0%, #0c3685 50%, #04102b 100%);
             color: var(--off-white);
             min-height: 100vh;
             display: flex;
@@ -62,14 +59,14 @@
         .glow-1 {
             width: 450px;
             height: 450px;
-            background: var(--orange);
+            background: var(--primary);
             top: -100px;
             left: -100px;
         }
         .glow-2 {
             width: 400px;
             height: 400px;
-            background: var(--yellow);
+            background: var(--primary-light);
             bottom: -80px;
             right: -80px;
         }
@@ -98,13 +95,13 @@
             width: 44px;
             height: 44px;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--orange), var(--red));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 22px;
             color: var(--white);
-            box-shadow: 0 4px 16px rgba(213, 112, 40, 0.4);
+            box-shadow: 0 4px 16px rgba(11, 100, 212, 0.4);
         }
 
         .brand-text h1 {
@@ -112,9 +109,7 @@
             font-size: 22px;
             font-weight: 800;
             letter-spacing: -0.5px;
-            background: linear-gradient(90deg, #ffffff, #fec200);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: #ffffff;
             text-align: left;
         }
 
@@ -123,19 +118,19 @@
             font-size: 11px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--orange);
+            color: var(--primary-light);
             font-weight: 600;
             text-align: left;
         }
 
         .auth-card {
-            background: rgba(36, 17, 11, 0.85);
+            background: rgba(7, 29, 73, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--dark-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
             padding: 36px 32px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
         .auth-header {
@@ -226,18 +221,18 @@
         }
 
         .form-control:focus {
-            border-color: var(--orange);
-            background: rgba(25, 11, 7, 0.9);
-            box-shadow: 0 0 0 3px rgba(213, 112, 40, 0.25);
+            border-color: var(--primary);
+            background: rgba(7, 29, 73, 0.95);
+            box-shadow: 0 0 0 3px rgba(11, 100, 212, 0.25);
         }
 
         .form-control:focus + .input-icon,
         .input-wrapper:focus-within .input-icon {
-            color: var(--orange);
+            color: var(--primary-light);
         }
 
         .form-control.is-invalid {
-            border-color: var(--red);
+            border-color: #ef4444;
         }
 
         .invalid-feedback {
@@ -265,7 +260,7 @@
         }
 
         .password-toggle-btn:hover {
-            color: var(--yellow);
+            color: var(--primary-light);
         }
 
         /* Checkbox & Options */
@@ -287,28 +282,28 @@
         }
 
         .custom-checkbox input[type="checkbox"] {
-            accent-color: var(--orange);
+            accent-color: var(--primary);
             width: 16px;
             height: 16px;
             cursor: pointer;
         }
 
         .auth-link {
-            color: var(--orange);
+            color: var(--primary-light);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s;
         }
 
         .auth-link:hover {
-            color: var(--yellow);
+            color: #ffffff;
             text-decoration: underline;
         }
 
         /* Submit Button */
         .btn-submit {
             width: 100%;
-            background: linear-gradient(135deg, var(--orange) 0%, var(--brown) 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #0c3685 100%);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: var(--white);
             padding: 14px;
@@ -322,13 +317,13 @@
             justify-content: center;
             gap: 10px;
             transition: all 0.25s ease;
-            box-shadow: 0 4px 20px rgba(213, 112, 40, 0.35);
+            box-shadow: 0 4px 20px rgba(11, 100, 212, 0.35);
         }
 
         .btn-submit:hover {
-            background: linear-gradient(135deg, #e47d33 0%, #c46825 100%);
+            background: linear-gradient(135deg, #1698f6 0%, #0b64d4 100%);
             transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(213, 112, 40, 0.5);
+            box-shadow: 0 6px 24px rgba(11, 100, 212, 0.5);
         }
 
         .btn-submit:active {
@@ -343,13 +338,13 @@
         }
 
         .auth-footer a {
-            color: var(--orange);
+            color: var(--primary-light);
             font-weight: 600;
             text-decoration: none;
         }
 
         .auth-footer a:hover {
-            color: var(--yellow);
+            color: #ffffff;
             text-decoration: underline;
         }
     </style>
@@ -362,13 +357,7 @@
     <div class="auth-wrapper">
         <div class="auth-brand">
             <a href="{{ url('/') }}">
-                <div class="brand-icon">
-                    <i class="bi bi-shield-shaded"></i>
-                </div>
-                <div class="brand-text">
-                    <h1>MAJAPAHIT</h1>
-                    <span>Influence Platform</span>
-                </div>
+                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN Logo" class="h-10 mx-auto w-auto drop-shadow-md">
             </a>
         </div>
 
@@ -377,7 +366,7 @@
         </div>
 
         <div class="auth-footer">
-            <p>&copy; {{ date('Y') }} Majapahit Influence. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} KERAJAAN. All rights reserved.</p>
         </div>
     </div>
 

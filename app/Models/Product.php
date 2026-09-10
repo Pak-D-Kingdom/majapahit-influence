@@ -31,6 +31,8 @@ class Product extends Model
         'is_active',
         'verification_status',
         'rejection_reason',
+        'pending_changes',
+        'deletion_reason',
     ];
 
     protected function casts(): array
@@ -41,6 +43,7 @@ class Product extends Model
             'locked_commission_amount' => 'decimal:2',
             'stock' => 'integer',
             'is_active' => 'boolean',
+            'pending_changes' => 'array',
         ];
     }
 
@@ -100,5 +103,41 @@ class Product extends Model
         }
 
         return Storage::url($this->image_path);
+    }
+
+    public function getPendingImageUrlAttribute(): ?string
+    {
+        $pendingPath = $this->pending_changes['image_path'] ?? null;
+        if (empty($pendingPath)) {
+            return null;
+        }
+
+        if (str_starts_with($pendingPath, 'http://') || str_starts_with($pendingPath, 'https://')) {
+            return $pendingPath;
+        }
+
+        return Storage::url($pendingPath);
+    }
+
+    public function getPendingCategoryAttribute(): ?ProductCategory
+    {
+        $catId = $this->pending_changes['category_id'] ?? null;
+        if (! $catId) {
+            return null;
+        }
+
+        return ProductCategory::find($catId);
+    }
+
+    public function getVerificationStatusLabelAttribute(): string
+    {
+        return match ($this->verification_status) {
+            'approved' => 'Disetujui',
+            'pending' => 'Menunggu Review Baru',
+            'pending_update' => 'Menunggu Persetujuan Edit',
+            'pending_delete' => 'Menunggu Persetujuan Hapus',
+            'rejected' => 'Ditolak',
+            default => ucfirst((string) $this->verification_status),
+        };
     }
 }

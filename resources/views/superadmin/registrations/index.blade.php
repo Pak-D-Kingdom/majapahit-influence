@@ -66,7 +66,7 @@
                                 <p class="text-xs text-[#765f58]">{{ $registration->email }}</p>
                             </td>
                             <td class="px-5 py-4 text-[#421b13]">
-                                <div class="font-semibold">{{ str(data_get($registration->social_media, 'platform', '-'))->title() }}</div>
+                                <div class="font-semibold">{{ $registration->platforms_label }}</div>
                                 <div class="text-[11px] text-[#765f58]">{{ $registration->city ?: 'Kota belum diisi' }}</div>
                             </td>
                             <td class="px-5 py-4 text-[#765f58] whitespace-nowrap">

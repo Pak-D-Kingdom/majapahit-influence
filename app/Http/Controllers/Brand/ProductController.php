@@ -9,7 +9,6 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -86,6 +85,10 @@ class ProductController extends Controller
             abort(403);
         }
 
+        if ($product->verification_status === 'pending_delete') {
+            return back()->with('error', 'Produk ini sedang dalam proses pengajuan penghapusan dan tidak dapat diubah.');
+        }
+
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'category_id' => ['required', 'exists:product_categories,id'],
@@ -93,35 +96,27 @@ class ProductController extends Controller
             'price' => ['required', 'numeric', 'min:0'],
             'locked_commission_percent' => ['required', 'numeric', 'min:0', 'max:100'],
             'image' => ['nullable', 'image', 'max:2048'],
+            'short_description' => ['nullable', 'string', 'max:500'],
+            'sku' => ['nullable', 'string', 'max:100'],
         ]);
 
-        $data = [
-            'name' => $validated['name'],
-            'product_category_id' => $validated['category_id'],
-            'description' => $validated['description'],
-            'price' => $validated['price'],
-            'locked_commission_percent' => $validated['locked_commission_percent'],
-        ];
+        $image = $request->file('image');
+        $this->productService->requestUpdate($product, $validated, $image);
 
-        if ($request->hasFile('image')) {
-            if ($product->image_path && Storage::disk('public')->exists($product->image_path)) {
-                Storage::disk('public')->delete($product->image_path);
-            }
-            $data['image_path'] = $request->file('image')->store('products', 'public');
-        }
-
-        $product->update($data);
-
-        return redirect()->route('brand.products.index')->with('success', 'Produk berhasil diperbarui.');
+        return redirect()->route('brand.products.index')
+            ->with('success', 'Pengajuan perubahan data produk telah dikirim dan menunggu persetujuan Superadmin.');
     }
 
-    public function destroy(Product $product)
+    public function destroy(Request $request, Product $product)
     {
         if ($product->brand_id !== $this->getBrand()->id) {
             abort(403);
         }
-        $product->delete();
 
-        return redirect()->route('brand.products.index')->with('success', 'Produk berhasil dihapus.');
+        $reason = $request->input('deletion_reason', 'Pengajuan penghapusan oleh Brand.');
+        $this->productService->requestDeletion($product, $reason);
+
+        return redirect()->route('brand.products.index')
+            ->with('success', 'Pengajuan penghapusan produk telah dikirim dan menunggu persetujuan Superadmin.');
     }
 }
