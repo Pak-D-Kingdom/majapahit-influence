@@ -1050,6 +1050,87 @@
         </section>
 
         {{-- ================================
+    VIDEO TUTORIAL
+================================= --}}
+        <section class="tutorial-section" id="tutorial">
+
+            <div class="container">
+
+                <div class="tutorial-header">
+                    <div class="section-label">
+                        <span></span>
+                        PANDUAN KERAJAAN
+                    </div>
+
+                    <div class="tutorial-heading">
+                        <h2>
+                            Belum tahu mulai dari mana?
+                            <span>Lihat caranya.</span>
+                        </h2>
+
+                        <p>
+                            Pelajari langkah bergabung dan mulai menggunakan
+                            ekosistem KERAJAAN melalui video tutorial berikut.
+                        </p>
+                    </div>
+                </div>
+
+
+                {{-- VIDEO SWITCHER --}}
+                <div class="tutorial-tabs">
+
+                    <button type="button" class="tutorial-tab active" data-video="creator">
+                        <i class="bi bi-person-video3"></i>
+                        Tutorial Creator
+                    </button>
+
+                    <button type="button" class="tutorial-tab" data-video="brand">
+                        <i class="bi bi-building"></i>
+                        Tutorial Brand
+                    </button>
+
+                </div>
+
+
+                {{-- VIDEO PLAYER --}}
+                <div class="tutorial-video-wrapper">
+
+                    {{-- CREATOR VIDEO --}}
+                    <video id="tutorialVideoCreator" class="tutorial-video active" autoplay muted controls playsinline
+                        preload="metadata">
+
+                        <source src="{{ asset('assets/landing/videos/tutorial-creator.mp4') }}" type="video/mp4">
+
+                        Browser kamu tidak mendukung video.
+                    </video>
+
+
+                    {{-- BRAND VIDEO --}}
+                    <video id="tutorialVideoBrand" class="tutorial-video" muted controls playsinline preload="metadata">
+
+                        <source src="{{ asset('assets/landing/videos/tutorial-brand.mp4') }}" type="video/mp4">
+
+                        Browser kamu tidak mendukung video.
+                    </video>
+
+                </div>
+
+
+                <div class="tutorial-note">
+                    <i class="bi bi-info-circle"></i>
+
+                    <span>
+                        Video akan diputar otomatis tanpa suara.
+                        Kamu tetap bisa pause, memutar kembali, mengaktifkan suara,
+                        atau memilih menit yang ingin ditonton.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+        {{-- ================================
     CTA AKHIR
 ================================= --}}
         <section class="cta-section" id="gabung">
@@ -1396,3 +1477,70 @@
     </main>
 
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const tabs = document.querySelectorAll('.tutorial-tab');
+
+        const creatorVideo = document.getElementById('tutorialVideoCreator');
+        const brandVideo = document.getElementById('tutorialVideoBrand');
+
+        if (!tabs.length || !creatorVideo || !brandVideo) {
+            return;
+        }
+
+        tabs.forEach(function (tab) {
+
+            tab.addEventListener('click', function () {
+
+                const target = this.dataset.video;
+
+                // Reset active tab
+                tabs.forEach(function (item) {
+                    item.classList.remove('active');
+                });
+
+                this.classList.add('active');
+
+                // Stop all videos
+                creatorVideo.pause();
+                brandVideo.pause();
+
+                // Hide all videos
+                creatorVideo.classList.remove('active');
+                brandVideo.classList.remove('active');
+
+                // Switch video
+                if (target === 'creator') {
+
+                    creatorVideo.classList.add('active');
+                    creatorVideo.currentTime = 0;
+
+                    creatorVideo.play().catch(function () {
+                        // Browser bisa memblokir autoplay pada kondisi tertentu.
+                    });
+
+                } else if (target === 'brand') {
+
+                    brandVideo.classList.add('active');
+                    brandVideo.currentTime = 0;
+
+                    brandVideo.play().catch(function () {
+                        // Browser bisa memblokir autoplay pada kondisi tertentu.
+                    });
+                }
+
+            });
+
+        });
+
+        // Pastikan Creator menjadi video pertama
+        creatorVideo.muted = true;
+        creatorVideo.currentTime = 0;
+
+        creatorVideo.play().catch(function () {
+            // Autoplay akan tetap bisa dijalankan manual lewat controls.
+        });
+
+    });
+</script>
