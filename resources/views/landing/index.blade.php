@@ -24,14 +24,6 @@
                 {{-- Hero Content --}}
                 <div class="hero-content">
 
-                    <div class="eyebrow">
-
-                        <span class="eyebrow-dot"></span>
-
-                        CREATOR-POWERED COMMERCE
-
-                    </div>
-
 
                     <h1>
                         Connect.
@@ -216,10 +208,6 @@
 
                 <div class="about-header">
 
-                    <div class="section-label">
-                        <span></span>
-                        TENTANG KERAJAAN
-                    </div>
 
                     <div>
 
@@ -340,10 +328,6 @@
                 {{-- Section Header --}}
                 <div class="benefits-header">
 
-                    <div class="section-label">
-                        <span></span>
-                        CREATOR × BRAND
-                    </div>
 
                     <div class="benefits-heading">
 
@@ -431,7 +415,7 @@
                         </div>
 
 
-                        <a href="#" class="role-card-link">
+                        <a href="{{ route('registration.create') }}" class="role-card-link">
                             Gabung sebagai Creator
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
@@ -503,7 +487,7 @@
                         </div>
 
 
-                        <a href="#" class="role-card-link">
+                        <a href="{{ route('brand.register') }}" class="role-card-link">
                             Gabung sebagai Brand
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
@@ -548,10 +532,6 @@
                 {{-- Section Header --}}
                 <div class="partners-header">
 
-                    <div class="section-label">
-                        <span></span>
-                        PRODUK, BRAND, & INFLUENCER
-                    </div>
 
                     <div class="partners-heading">
 
@@ -580,26 +560,28 @@
                     </span>
 
                     <div class="category-list">
-
-                        <span><a href="{{ url('/explore/food-beverage') }}">
-                                F&B
-                            </a></span>
-                        <span> <a href="{{ url('/explore/beauty') }}">
-                                Beauty
-                            </a></span>
-                        <span> <a href="{{ url('/explore/fashion') }}">
-                                Fashion
-                            </a></span>
-                        <span><a href="{{ url('/explore/lifestyle') }}">
-                                Lifestyle
-                            </a></span>
-                        <span> <a href="{{ url('/explore/home-living') }}">
-                                Home & Living
-                            </a></span>
-                        <span><a href="{{ url('/explore') }}">
-                                More
-                            </a></span>
-
+                        @if(isset($categories) && $categories->isNotEmpty())
+                            @foreach($categories as $category)
+                                <span>
+                                    <a href="{{ route('catalog.index', ['category' => $category->slug]) }}">
+                                        {{ $category->name }}
+                                    </a>
+                                </span>
+                            @endforeach
+                            <span>
+                                <a href="{{ route('catalog.index') }}">
+                                    Lihat Semua
+                                </a>
+                            </span>
+                        @else
+                            <span><a href="{{ route('catalog.index', ['category' => 'beauty-skincare']) }}">Beauty & Skincare</a></span>
+                            <span><a href="{{ route('catalog.index', ['category' => 'herbal-kesehatan']) }}">Herbal & Kesehatan</a></span>
+                            <span><a href="{{ route('catalog.index', ['category' => 'food-beverage']) }}">Food & Beverage (F&B)</a></span>
+                            <span><a href="{{ route('catalog.index', ['category' => 'fashion-apparel']) }}">Fashion & Apparel</a></span>
+                            <span><a href="{{ route('catalog.index', ['category' => 'mom-baby']) }}">Mom & Baby</a></span>
+                            <span><a href="{{ route('catalog.index', ['category' => 'gadget-home-living']) }}">Gadget & Home Living</a></span>
+                            <span><a href="{{ route('catalog.index') }}">Lihat Semua</a></span>
+                        @endif
                     </div>
 
                 </div>
@@ -635,7 +617,7 @@
                                 content dan kolaborasi para creator.
                             </p>
 
-                            <a href="{{ url('/explore/products') }}" class="partners-card-link">
+                            <a href="{{ route('catalog.index') }}" class="partners-card-link">
                                 Lihat Produk Kami
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
@@ -756,10 +738,7 @@
                 {{-- Header --}}
                 <div class="join-header">
 
-                    <div class="section-label">
-                        <span></span>
-                        CARA BERGABUNG
-                    </div>
+
 
                     <div class="join-heading">
 
@@ -967,10 +946,6 @@
 
                 <div class="cta-content">
 
-                    <div class="section-label cta-label">
-                        <span></span>
-                        JADI BAGIAN DARI EKOSISTEM
-                    </div>
 
 
                     <h2>
@@ -1022,11 +997,6 @@
             <div class="container">
 
                 <div class="faq-header">
-
-                    <div class="section-label">
-                        <span></span>
-                        FAQ
-                    </div>
 
                     <div class="faq-heading">
 

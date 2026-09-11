@@ -10,13 +10,22 @@ use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RegistrationController;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
 
 // Public Landing Page
 Route::get('/', function () {
     $featuredProducts = collect();
+    $categories = collect();
     try {
+        if (Schema::hasTable('product_categories')) {
+            $categories = ProductCategory::where('is_active', true)
+                ->withCount(['products' => function ($q) {
+                    $q->where('is_active', true);
+                }])
+                ->get();
+        }
         if (Schema::hasTable('products')) {
             $featuredProducts = Product::where('is_active', true)
                 ->with(['brand', 'category'])
@@ -26,10 +35,11 @@ Route::get('/', function () {
         }
     } catch (Throwable) {
         $featuredProducts = collect();
+        $categories = collect();
     }
 
     if (view()->exists('landing.index')) {
-        return view('landing.index', compact('featuredProducts'));
+        return view('landing.index', compact('featuredProducts', 'categories'));
     }
 
     return response()->json(['message' => 'kerajaan Influence API is running']);
