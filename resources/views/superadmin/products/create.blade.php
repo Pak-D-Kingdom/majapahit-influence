@@ -12,7 +12,7 @@
             <span>Kembali ke Katalog Produk</span>
         </a>
         <h2 class="mt-3 text-2xl font-black tracking-tight text-kerajaan-dark font-heading">Tambah Produk Baru</h2>
-        <p class="mt-1 text-xs text-kerajaan-muted">Input produk ke katalog e-commerce Evermos dan tetapkan persentase komisi terkunci untuk kreator.</p>
+        <p class="mt-1 text-xs text-kerajaan-muted">Input produk ke katalog e-commerce KERAJAAN dan tetapkan persentase komisi terkunci untuk kreator.</p>
     </div>
 
     {{-- Error Alert --}}
@@ -119,7 +119,7 @@
                     </label>
                     <select id="promotion_pathway" name="promotion_pathway" class="w-full rounded-xl border border-kerajaan-dark/15 bg-white px-3.5 py-2.5 text-xs text-kerajaan-dark focus:border-kerajaan-orange focus:ring-2 focus:ring-kerajaan-orange/20 focus:outline-hidden" required>
                         <option value="both" {{ old('promotion_pathway') == 'both' ? 'selected' : '' }}>Keduanya (Direct & Marketplace)</option>
-                        <option value="marketplace" {{ old('promotion_pathway') == 'marketplace' ? 'selected' : '' }}>Marketplace Otomatis (Evermos Hub)</option>
+                        <option value="marketplace" {{ old('promotion_pathway') == 'marketplace' ? 'selected' : '' }}>Marketplace Otomatis (Open Catalog)</option>
                         <option value="direct" {{ old('promotion_pathway') == 'direct' ? 'selected' : '' }}>Direct Selection Only</option>
                     </select>
                 </div>
@@ -176,7 +176,7 @@
                 <a href="{{ route('superadmin.products.index') }}" class="px-5 py-2.5 rounded-xl border border-kerajaan-dark/15 bg-white hover:bg-kerajaan-sand text-kerajaan-dark font-bold text-xs transition font-heading">
                     Batal
                 </a>
-                <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown hover:from-kerajaan-brown hover:to-[#934510] text-white font-bold text-xs shadow-xs transition font-heading">
+                <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown hover:from-kerajaan-brown hover:to-[#0953b3] text-white font-bold text-xs shadow-xs transition font-heading">
                     Simpan Produk ke Katalog
                 </button>
             </div>

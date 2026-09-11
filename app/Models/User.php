@@ -139,6 +139,26 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the appropriate dashboard URL based on user role.
+     */
+    public function getDashboardUrl(): string
+    {
+        if ($this->isAdmin()) {
+            return route('superadmin.dashboard');
+        }
+
+        if ($this->isBrand()) {
+            return route('brand.dashboard');
+        }
+
+        if ($this->isKol()) {
+            return route('kol.dashboard');
+        }
+
+        return url('/');
+    }
+
+    /**
      * The Brand profile associated with the user.
      */
     public function brand(): HasOne

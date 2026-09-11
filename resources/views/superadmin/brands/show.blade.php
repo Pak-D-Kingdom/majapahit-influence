@@ -24,7 +24,7 @@
         </div>
         <div class="flex items-center gap-3">
             <x-dashboard.status-badge :status="$brand->is_active ? 'aktif' : 'nonaktif'" />
-            <a href="{{ route('superadmin.brands.edit', $brand) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#190906] font-heading">
+            <a href="{{ route('superadmin.brands.edit', $brand) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#071d49] font-heading">
                 <i class="bi bi-pencil"></i>
                 <span>Edit Brand</span>
             </a>

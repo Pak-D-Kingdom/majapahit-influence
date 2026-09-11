@@ -39,7 +39,7 @@
             </select>
         </div>
 
-        <button type="submit" class="rounded-xl bg-kerajaan-dark px-4 py-2 text-xs font-bold text-white transition hover:bg-[#190906] font-heading">
+        <button type="submit" class="rounded-xl bg-kerajaan-dark px-4 py-2 text-xs font-bold text-white transition hover:bg-[#071d49] font-heading">
             Filter
         </button>
         <a href="{{ route('superadmin.endorsements.index') }}" class="rounded-xl border border-kerajaan-dark/15 px-4 py-2 text-xs font-bold text-kerajaan-muted transition hover:bg-kerajaan-sand font-heading">

@@ -160,8 +160,8 @@
                 <i class="bi bi-trash3 text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Hapus Produk</h3>
-                <p class="text-xs text-[#765f58]">Tindakan ini tidak dapat dibatalkan.</p>
+                <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Hapus Produk</h3>
+                <p class="text-xs text-[#64748b]">Tindakan ini tidak dapat dibatalkan.</p>
             </div>
         </div>
 
@@ -200,8 +200,8 @@
                 <i class="bi bi-eye-slash text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Tarik dari E-Commerce</h3>
-                <p class="text-xs text-[#765f58]">Sembunyikan produk dari katalog publik.</p>
+                <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Tarik dari E-Commerce</h3>
+                <p class="text-xs text-[#64748b]">Sembunyikan produk dari katalog publik.</p>
             </div>
         </div>
 

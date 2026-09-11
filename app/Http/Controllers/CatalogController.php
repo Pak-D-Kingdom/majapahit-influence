@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CatalogController extends Controller
 {
     /**
-     * Display the Evermos-style E-Commerce / Product Catalog.
+     * Display the Kerajaan E-Commerce / Product Catalog.
      */
     public function index(Request $request): View|Response
     {

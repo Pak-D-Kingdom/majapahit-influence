@@ -11,7 +11,7 @@
             <a href="{{ url('/') }}" class="inline-flex flex-col items-center gap-2 mb-4 group transition-transform hover:scale-105">
                 <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}" alt="KERAJAAN" class="h-12 w-auto object-contain">
                 <span class="text-[11px] font-bold tracking-[0.22em] text-[#0c3685] uppercase">
-                    KERAJAAN &bull; kerajaan INFLUENCE
+                    KERAJAAN &bull; CREATOR COMMERCE
                 </span>
             </a>
             <h1 class="text-2xl sm:text-3xl font-black text-[#0c3685] tracking-tight">Form Pendaftaran Kemitraan Brand</h1>
