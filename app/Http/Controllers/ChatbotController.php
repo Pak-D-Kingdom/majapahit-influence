@@ -89,7 +89,7 @@ class ChatbotController extends Controller
         $messages[] = ['role' => 'user', 'content' => $message];
 
         $apiKey = config('services.groq.api_key');
-        $model = config('services.groq.model', 'llama-3.3-70b-versatile');
+        $model = config('services.groq.model', 'openai/gpt-oss-120b');
 
         try {
             $response = Http::withToken($apiKey)
