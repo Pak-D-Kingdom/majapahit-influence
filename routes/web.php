@@ -35,6 +35,12 @@ Route::get('/', function () {
     return response()->json(['message' => 'kerajaan Influence API is running']);
 })->name('home');
 
+// Public Registration Portal (Pilih Peran: Creator / Brand)
+Route::get('/register', function () {
+    return view('auth.register-role-select');
+})->name('register');
+Route::get('/gabung', fn () => redirect()->route('register'))->name('join');
+
 // Public KOL Registration (Dev 2 & Frontend)
 Route::get('/daftar', [RegistrationController::class, 'create'])->name('registration.create');
 Route::get('/daftar-kol', [RegistrationController::class, 'create'])->name('public.register');
@@ -52,7 +58,7 @@ Route::middleware('throttle:10,1')->group(function () {
     Route::post('/daftar-brand', [BrandRegistrationController::class, 'store'])->name('brand.register.store');
 });
 
-// Evermos-Style Product Catalog & Brand Content Bank
+// Kerajaan Product Catalog & Brand Content Bank
 Route::get('/katalog', [CatalogController::class, 'index'])->name('catalog.index');
 Route::get('/ecommerce', fn () => redirect()->route('catalog.index'))->name('ecommerce');
 Route::get('/katalog/{product:slug}', [CatalogController::class, 'show'])->name('catalog.show');
@@ -96,4 +102,9 @@ Route::middleware('auth')->group(function () {
 
     // Chatbot (Dev 6)
     Route::post('/chatbot/chat', [ChatbotController::class, 'chat'])->name('chatbot.chat');
+
+    // Central Dashboard Redirect by Role
+    Route::get('/dashboard', function () {
+        return redirect(auth()->user()->getDashboardUrl());
+    })->name('dashboard');
 });

@@ -31,8 +31,8 @@
                     $isActive = request()->routeIs($route, $route.'.*', str_replace('.index', '', $route).'.*');
                 @endphp
                 <a href="{{ Route::has($route) ? route($route) : '#' }}" 
-                   class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kerajaan-yellow {{ $isActive ? 'bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown font-semibold text-white shadow-md shadow-kerajaan-orange/25' : 'text-kerajaan-sand/75 hover:bg-white/6 hover:text-white' }}">
-                    <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-kerajaan-orange' }}"></i>
+                   class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1698f6] {{ $isActive ? 'bg-gradient-to-r from-[#0b64d4] to-[#1698f6] font-semibold text-white shadow-md shadow-blue-600/25' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                    <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-[#78a5d6]' }}"></i>
                     <span>{{ $label }}</span>
                 </a>
             @endforeach
@@ -53,7 +53,7 @@
                         $isActive = request()->routeIs($route, $route.'.*', str_replace('.index', '', $route).'.*');
                     @endphp
                     <a href="{{ route($route) }}" 
-                       class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1698f6] {{ $isActive ? 'bg-gradient-to-r from-kerajaan-orange to-kerajaan-red font-semibold text-white shadow-md shadow-kerajaan-orange/25' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
+                       class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1698f6] {{ $isActive ? 'bg-gradient-to-r from-[#0b64d4] to-[#1698f6] font-semibold text-white shadow-md shadow-blue-600/25' : 'text-slate-300 hover:bg-white/10 hover:text-white' }}">
                         <i class="bi {{ $icon }} text-base {{ $isActive ? 'text-white' : 'text-[#78a5d6]' }}"></i>
                         <span>{{ $label }}</span>
                     </a>
@@ -66,7 +66,7 @@
     <div class="border-t border-white/10 p-4">
         <div class="rounded-xl border border-white/10 bg-[#0a2560]/70 p-3.5 backdrop-blur-xs">
             <div class="flex items-center gap-3">
-                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-kerajaan-orange to-kerajaan-red text-xs font-bold text-white font-heading shadow-xs">
+                <div class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-tr from-[#0b64d4] to-[#1698f6] text-xs font-bold text-white font-heading shadow-xs">
                     SA
                 </div>
                 <div class="min-w-0 flex-1">

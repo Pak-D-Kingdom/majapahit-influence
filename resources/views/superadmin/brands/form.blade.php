@@ -46,7 +46,7 @@
                     <label class="block text-xs font-bold text-kerajaan-dark font-heading">
                         Nama Brand <span class="text-kerajaan-red">*</span>
                     </label>
-                    <input type="text" name="name" value="{{ old('name', $brand->name) }}" required placeholder="Contoh: Evermos Herbal" class="mt-2 w-full rounded-xl border border-kerajaan-dark/15 bg-white px-3.5 py-2.5 text-sm text-kerajaan-dark focus:border-kerajaan-orange focus:ring-2 focus:ring-kerajaan-orange/20 focus:outline-hidden">
+                    <input type="text" name="name" value="{{ old('name', $brand->name) }}" required placeholder="Contoh: Keraton Herbal" class="mt-2 w-full rounded-xl border border-kerajaan-dark/15 bg-white px-3.5 py-2.5 text-sm text-kerajaan-dark focus:border-kerajaan-orange focus:ring-2 focus:ring-kerajaan-orange/20 focus:outline-hidden">
                 </div>
 
                 <div>
@@ -112,7 +112,7 @@
             <a href="{{ route('superadmin.brands.index') }}" class="rounded-xl border border-kerajaan-dark/15 bg-white px-5 py-2.5 text-xs font-bold text-kerajaan-dark transition hover:bg-kerajaan-sand font-heading">
                 Batal
             </a>
-            <button type="submit" class="rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown px-6 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#934510] font-heading">
+            <button type="submit" class="rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown px-6 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#0953b3] font-heading">
                 {{ $mode === 'create' ? 'Simpan Brand' : 'Perbarui Brand' }}
             </button>
         </div>

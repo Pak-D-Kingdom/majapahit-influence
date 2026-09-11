@@ -26,7 +26,7 @@
         </div>
         <div class="flex items-center gap-3">
             <x-dashboard.status-badge :status="$kol->status" />
-            <a href="{{ route('superadmin.kol.edit', $kol) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#190906] font-heading">
+            <a href="{{ route('superadmin.kol.edit', $kol) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#071d49] font-heading">
                 <i class="bi bi-pencil"></i>
                 <span>Edit Profil</span>
             </a>

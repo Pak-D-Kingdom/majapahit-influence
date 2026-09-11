@@ -201,8 +201,8 @@
                 <i class="bi bi-x-circle text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Tolak Verifikasi Produk</h3>
-                <p class="text-xs text-[#765f58]">Berikan alasan penolakan secara jelas untuk diteruskan ke Brand.</p>
+                <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Tolak Verifikasi Produk</h3>
+                <p class="text-xs text-[#64748b]">Berikan alasan penolakan secara jelas untuk diteruskan ke Brand.</p>
             </div>
         </div>
 
@@ -217,7 +217,7 @@
             <input type="hidden" name="filter_type" value="{{ $type }}">
 
             <div>
-                <label for="reject-modal-reason" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
+                <label for="reject-modal-reason" class="block text-xs font-bold text-[#071d49] font-heading mb-1.5">
                     Alasan Penolakan <span class="text-rose-500">*</span>
                 </label>
                 <textarea 
@@ -256,8 +256,8 @@
                 <i class="bi bi-check-circle text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Setujui Verifikasi</h3>
-                <p class="text-xs text-[#765f58]">Konfirmasi persetujuan produk.</p>
+                <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Setujui Verifikasi</h3>
+                <p class="text-xs text-[#64748b]">Konfirmasi persetujuan produk.</p>
             </div>
         </div>
 

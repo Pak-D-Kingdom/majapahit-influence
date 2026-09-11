@@ -310,4 +310,54 @@ class AuthTest extends TestCase
 
         $this->assertDatabaseMissing('sessions', ['id' => 'session-to-revoke']);
     }
+
+    public function test_landing_header_dashboard_link_points_to_correct_role_dashboard(): void
+    {
+        $brandRole = Role::firstOrCreate(['name' => 'brand'], ['display_name' => 'Brand']);
+        $brandUser = User::firstOrCreate(
+            ['email' => 'brand_test@kerajaan.com'],
+            ['name' => 'Test Brand', 'password' => Hash::make('password123'), 'is_active' => true]
+        );
+        $brandUser->assignRole('brand');
+
+        // 1. Superadmin sees superadmin dashboard link
+        $adminResp = $this->actingAs($this->adminUser)->get('/');
+        $adminResp->assertStatus(200);
+        $adminResp->assertSee(route('superadmin.dashboard'));
+
+        // 2. Brand sees brand dashboard link
+        $brandResp = $this->actingAs($brandUser)->get('/');
+        $brandResp->assertStatus(200);
+        $brandResp->assertSee(route('brand.dashboard'));
+
+        // 3. KOL sees KOL dashboard link
+        $kolResp = $this->actingAs($this->kolUser)->get('/');
+        $kolResp->assertStatus(200);
+        $kolResp->assertSee(route('kol.dashboard'));
+    }
+
+    public function test_dashboard_redirect_route_redirects_by_role(): void
+    {
+        $brandRole = Role::firstOrCreate(['name' => 'brand'], ['display_name' => 'Brand']);
+        $brandUser = User::firstOrCreate(
+            ['email' => 'brand_test2@kerajaan.com'],
+            ['name' => 'Test Brand 2', 'password' => Hash::make('password123'), 'is_active' => true]
+        );
+        $brandUser->assignRole('brand');
+
+        // Superadmin
+        $this->actingAs($this->adminUser)
+            ->get('/dashboard')
+            ->assertRedirect(route('superadmin.dashboard'));
+
+        // Brand
+        $this->actingAs($brandUser)
+            ->get('/dashboard')
+            ->assertRedirect(route('brand.dashboard'));
+
+        // KOL
+        $this->actingAs($this->kolUser)
+            ->get('/dashboard')
+            ->assertRedirect(route('kol.dashboard'));
+    }
 }

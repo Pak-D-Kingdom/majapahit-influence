@@ -28,7 +28,7 @@
                 </button>
             @endif
 
-            <a href="{{ route('superadmin.endorsements.edit', $endorsement) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#190906] font-heading">
+            <a href="{{ route('superadmin.endorsements.edit', $endorsement) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#071d49] font-heading">
                 <i class="bi bi-pencil"></i>
                 <span>Edit Endorsement</span>
             </a>
@@ -205,8 +205,8 @@
                     <i class="bi bi-check2-all text-2xl"></i>
                 </div>
                 <div>
-                    <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Selesaikan Endorsement</h3>
-                    <p class="text-xs text-[#765f58]">Tandai penugasan ini telah tuntas.</p>
+                    <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Selesaikan Endorsement</h3>
+                    <p class="text-xs text-[#64748b]">Tandai penugasan ini telah tuntas.</p>
                 </div>
             </div>
 

@@ -12,7 +12,7 @@
             <h2 class="mt-1 text-2xl sm:text-3xl font-black tracking-tight text-kerajaan-dark font-heading">Daftar Campaign</h2>
             <p class="mt-1 text-xs text-kerajaan-muted">Pantau seluruh program promosi brand dan penugasan kreator.</p>
         </div>
-        <a href="{{ route('superadmin.campaigns.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#934510] font-heading">
+        <a href="{{ route('superadmin.campaigns.create') }}" class="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#0953b3] font-heading">
             <i class="bi bi-plus-lg"></i>
             <span>Tambah Campaign</span>
         </a>
@@ -28,7 +28,7 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="rounded-xl bg-kerajaan-dark px-4 py-2 text-xs font-bold text-white transition hover:bg-[#190906] font-heading">
+        <button type="submit" class="rounded-xl bg-kerajaan-dark px-4 py-2 text-xs font-bold text-white transition hover:bg-[#071d49] font-heading">
             Filter
         </button>
         <a href="{{ route('superadmin.campaigns.index') }}" class="rounded-xl border border-kerajaan-dark/15 px-4 py-2 text-xs font-bold text-kerajaan-muted transition hover:bg-kerajaan-sand font-heading">

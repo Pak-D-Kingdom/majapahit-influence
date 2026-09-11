@@ -146,8 +146,8 @@
                     <i class="bi bi-building-check text-2xl"></i>
                 </div>
                 <div>
-                    <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Setujui Brand</h3>
-                    <p class="text-xs text-[#765f58]">Buat akun dan entitas Brand resmi.</p>
+                    <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Setujui Brand</h3>
+                    <p class="text-xs text-[#64748b]">Buat akun dan entitas Brand resmi.</p>
                 </div>
             </div>
 
@@ -160,7 +160,7 @@
             <form action="{{ route('superadmin.brand-registrations.approve', $registration->id) }}" method="POST" class="space-y-4">
                 @csrf
                 <div>
-                    <label class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
+                    <label class="block text-xs font-bold text-[#071d49] font-heading mb-1.5">
                         Catatan Persetujuan (Opsional)
                     </label>
                     <input type="text" name="admin_notes" placeholder="Tulis catatan persetujuan jika ada..." class="w-full rounded-2xl border border-slate-300 p-3 text-xs text-slate-800 placeholder-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 focus:outline-hidden transition">
@@ -191,8 +191,8 @@
                     <i class="bi bi-x-circle text-2xl"></i>
                 </div>
                 <div>
-                    <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Tolak Pendaftaran Brand</h3>
-                    <p class="text-xs text-[#765f58]">Berikan alasan penolakan secara jelas.</p>
+                    <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Tolak Pendaftaran Brand</h3>
+                    <p class="text-xs text-[#64748b]">Berikan alasan penolakan secara jelas.</p>
                 </div>
             </div>
 
@@ -204,7 +204,7 @@
             <form action="{{ route('superadmin.brand-registrations.reject', $registration->id) }}" method="POST" class="space-y-4">
                 @csrf
                 <div>
-                    <label for="reject-brand-notes" class="block text-xs font-bold text-[#421b13] font-heading mb-1.5">
+                    <label for="reject-brand-notes" class="block text-xs font-bold text-[#071d49] font-heading mb-1.5">
                         Alasan Penolakan <span class="text-rose-500">*</span>
                     </label>
                     <textarea 
