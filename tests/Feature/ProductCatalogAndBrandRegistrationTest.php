@@ -112,6 +112,21 @@ class ProductCatalogAndBrandRegistrationTest extends TestCase
 
         $bankResponse = $this->get(route('catalog.content-bank', $product->slug));
         $bankResponse->assertStatus(200);
-        $bankResponse->assertSee('BANK KONTEN BRAND RESMI');
+        $bankResponse->assertSee('Bank Konten Promosi');
+        $bankResponse->assertSee($product->name);
+    }
+
+    public function test_role_selection_page_renders_successfully(): void
+    {
+        $response = $this->get(route('register'));
+        $response->assertStatus(200);
+        $response->assertSee('Mulai Kolaborasi di Ekosistem KERAJAAN');
+        $response->assertSee('Creator / Influencer');
+        $response->assertSee('Brand Partner');
+        $response->assertSee(route('registration.create'));
+        $response->assertSee(route('brand.register'));
+
+        $joinRedirect = $this->get('/gabung');
+        $joinRedirect->assertRedirect(route('register'));
     }
 }

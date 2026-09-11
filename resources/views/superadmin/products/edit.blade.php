@@ -181,8 +181,8 @@
                         Jalur Promosi <span class="text-kerajaan-red">*</span>
                     </label>
                     <select id="promotion_pathway" name="promotion_pathway" class="w-full rounded-xl border border-kerajaan-dark/15 bg-white px-3.5 py-2.5 text-xs text-kerajaan-dark focus:border-kerajaan-orange focus:ring-2 focus:ring-kerajaan-orange/20 focus:outline-hidden" required>
-                        <option value="both" {{ old('promotion_pathway', $product->promotion_pathway) == 'both' ? 'selected' : '' }}>Keduanya (Direct & Marketplace)</option>
-                        <option value="marketplace" {{ old('promotion_pathway', $product->promotion_pathway) == 'marketplace' ? 'selected' : '' }}>Marketplace Otomatis (KERAJAAN Hub)</option>
+                        <option value="both" {{ old('promotion_pathway', $product->promotion_pathway) == 'both' ? 'selected' : '' }}>Keduanya (Direct & Open Catalog)</option>
+                        <option value="marketplace" {{ old('promotion_pathway', $product->promotion_pathway) == 'marketplace' ? 'selected' : '' }}>Marketplace Otomatis (Open Catalog)</option>
                         <option value="direct" {{ old('promotion_pathway', $product->promotion_pathway) == 'direct' ? 'selected' : '' }}>Direct Selection Only</option>
                     </select>
                 </div>
@@ -208,7 +208,7 @@
                 <a href="{{ route('superadmin.products.index') }}" class="px-5 py-2.5 rounded-xl border border-kerajaan-dark/15 bg-white hover:bg-kerajaan-sand text-kerajaan-dark font-bold text-xs transition font-heading">
                     Batal
                 </a>
-                <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown hover:from-kerajaan-brown hover:to-[#934510] text-white font-bold text-xs shadow-xs transition font-heading">
+                <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown hover:from-kerajaan-brown hover:to-[#0953b3] text-white font-bold text-xs shadow-xs transition font-heading">
                     Simpan Perubahan Produk
                 </button>
             </div>
@@ -422,8 +422,8 @@
                 <i class="bi bi-eye-slash text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Tarik dari E-Commerce</h3>
-                <p class="text-xs text-[#765f58]">Sembunyikan produk dari katalog publik.</p>
+                <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Tarik dari E-Commerce</h3>
+                <p class="text-xs text-[#64748b]">Sembunyikan produk dari katalog publik.</p>
             </div>
         </div>
 
@@ -461,8 +461,8 @@
                 <i class="bi bi-trash3 text-2xl"></i>
             </div>
             <div>
-                <h3 class="text-lg font-extrabold text-[#421b13] font-heading">Hapus Bank Konten</h3>
-                <p class="text-xs text-[#765f58]">Tindakan ini tidak dapat dibatalkan.</p>
+                <h3 class="text-lg font-extrabold text-[#071d49] font-heading">Hapus Bank Konten</h3>
+                <p class="text-xs text-[#64748b]">Tindakan ini tidak dapat dibatalkan.</p>
             </div>
         </div>
 

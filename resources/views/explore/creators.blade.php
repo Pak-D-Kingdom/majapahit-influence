@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('partials.landing-header')
+
 <div class="creator-bank-page">
 
     {{-- =========================================
@@ -715,5 +717,7 @@
     </section>
 
 </div>
+
+@include('partials.landing-footer')
 
 @endsection

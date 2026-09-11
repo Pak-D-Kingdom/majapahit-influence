@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('partials.landing-header')
+
 <div class="brand-bank-page">
 
     {{-- =========================================
@@ -773,5 +775,7 @@
     </section>
 
 </div>
+
+@include('partials.landing-footer')
 
 @endsection

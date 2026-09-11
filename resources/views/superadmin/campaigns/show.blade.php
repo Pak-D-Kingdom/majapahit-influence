@@ -20,7 +20,7 @@
         </div>
         <div class="flex items-center gap-3">
             <x-dashboard.status-badge :status="$campaign->status" />
-            <a href="{{ route('superadmin.campaigns.edit', $campaign) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#190906] font-heading">
+            <a href="{{ route('superadmin.campaigns.edit', $campaign) }}" class="inline-flex items-center gap-2 rounded-xl bg-kerajaan-dark px-4 py-2.5 text-xs font-bold text-white shadow-xs transition hover:bg-[#071d49] font-heading">
                 <i class="bi bi-pencil"></i>
                 <span>Edit Campaign</span>
             </a>
@@ -128,7 +128,7 @@
                     </div>
 
                     <div class="sm:col-span-2 pt-1">
-                        <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#934510] font-heading flex items-center justify-center gap-1.5">
+                        <button type="submit" class="w-full rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#0953b3] font-heading flex items-center justify-center gap-1.5">
                             <i class="bi bi-person-plus mr-1"></i>
                             <span>Tugaskan KOL Sekarang</span>
                         </button>

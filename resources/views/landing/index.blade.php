@@ -3,102 +3,10 @@
 @section('title', 'Kerajaan | Connect, Create, Grow')
 @section('content')
 
-    {{-- Navbar --}}
-    <header class="site-header" id="siteHeader">
-
-        <div class="container navbar">
-
-            {{-- Logo --}}
-            <a href="{{ url('/') }}" class="brand">
-                <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3.png') }}" alt="KERAJAAN" class="brand-logo">
-            </a>
-
-
-            {{-- Desktop Navigation --}}
-            <nav class="desktop-nav">
-
-                <a href="#home" class="nav-link active">
-                    Beranda
-                </a>
-
-                <a href="#tentang" class="nav-link">
-                    Tentang Kami
-                </a>
-
-                <a href="#roles" class="nav-link">
-                    Ekosistem
-                </a>
-
-                <a href="#mitra" class="nav-link">
-                    Produk & Brand
-                </a>
-                <a href="{{ route('catalog.index') }}" class="nav-link nav-ecommerce">
-                    E-Commerce
-                </a>
-
-            </nav>
-
-            {{-- Navbar Actions --}}
-            <div class="navbar-actions">
-
-                <a href="{{ route('login') }}" class="btn-login">
-                    Masuk
-                </a>
-
-                <a href="{{ route('registration.create') }}" class="nav-join-creator">
-                    Gabung sebagai Creator
-                    <i class="bi bi-arrow-up-right"></i>
-                </a>
-
-                <a href="{{ route('brand.register') }}" class="nav-join-brand">
-                    Gabung sebagai Brand
-                    <i class="bi bi-arrow-up-right"></i>
-                </a>
-
-            </div>
-
-
-            {{-- Mobile Menu Button --}}
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileNav">
-                <i class="bi bi-list"></i>
-            </button>
-
-        </div>
-
-
-        {{-- Mobile Navigation --}}
-        <div class="mobile-nav" id="mobileNav">
-
-            <a href="#home">Beranda</a>
-
-            <a href="#tentang">Tentang Kami</a>
-
-            <a href="#roles">Ekosistem</a>
-
-            <a href="#mitra">Produk & Brand</a>
-            <a href="{{ route('catalog.index') }}" class="nav-ecommerce">
-                E-Commerce
-            </a>
-
-            <div class="mobile-nav-actions">
-
-                <a href="{{ route('login') }}" class="btn-login">
-                    Masuk
-                </a>
-
-                <a href="{{ route('registration.create') }}" class="btn-primary">
-                    Gabung sebagai Creator
-                </a>
-
-                <a href="{{ route('brand.register') }}" class="mobile-brand-link">
-                    Gabung sebagai Brand
-                </a>
-
-            </div>
-
-        </div>
-
-    </header>
+    {{-- ================================
+        NAVBAR
+    ================================= --}}
+    @include('partials.landing-header', ['active' => 'home'])
 
 
     {{-- Hero Section --}}
@@ -1224,9 +1132,9 @@
 
                         <div class="faq-answer">
                             <p>
-                                Ya. KERAJAAN menyediakan akses menuju platform
-                                E-Commerce yang dikelola melalui website
-                                E-Commerce terpisah.
+                                Ya. KERAJAAN menyediakan akses menuju katalog
+                                E-Commerce yang terintegrasi langsung dalam ekosistem
+                                KERAJAAN untuk memudahkan kreator memilih produk promosi dan komisi.
                             </p>
                         </div>
 
@@ -1238,139 +1146,10 @@
 
         </section>
 
-        {{-- Footer --}}
-        <footer class="site-footer">
-
-            <div class="container">
-
-                {{-- Footer Main --}}
-                <div class="footer-main">
-
-                    {{-- Brand --}}
-                    <div class="footer-brand">
-
-                        <a href="{{ url('/') }}" class="footer-logo">
-                            <img src="{{ asset('assets/landing/images/logo/logokerajaannew.png') }}" alt="KERAJAAN">
-                        </a>
-
-                        <p>
-                            Creator-powered commerce ecosystem yang
-                            mempertemukan creator, brand, produk,
-                            dan peluang kolaborasi.
-                        </p>
-
-                        <div class="footer-tagline">
-                            Connect. Create. Grow.
-                        </div>
-
-                    </div>
-
-
-                    {{-- Navigation --}}
-                    <div class="footer-column">
-
-                        <h4>
-                            NAVIGASI
-                        </h4>
-
-                        <a href="#home">
-                            Beranda
-                        </a>
-
-                        <a href="#tentang">
-                            Tentang Kami
-                        </a>
-
-                        <a href="#roles">
-                            Ekosistem
-                        </a>
-
-                        <a href="#mitra">
-                            Produk & Brand
-                        </a>
-
-                        <a href="#cara-bergabung">
-                            Cara Bergabung
-                        </a>
-                        <a href="{{ route('catalog.index') }}" class="footer-ecommerce">
-                            E-Commerce
-                        </a>
-
-                    </div>
-
-
-                    {{-- Join --}}
-                    <div class="footer-column">
-
-                        <h4>
-                            BERGABUNG
-                        </h4>
-
-                        <a href="{{ route('registration.create') }}">
-                            Gabung sebagai Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                        <a href="{{ route('brand.register') }}">
-                            Gabung sebagai Brand
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-
-                    {{-- Contact / Social --}}
-                    <div class="footer-column">
-
-                        <h4>
-                            TERHUBUNG
-                        </h4>
-
-                        <a href="#" class="footer-social">
-                            <i class="bi bi-instagram"></i>
-                            Instagram
-                        </a>
-
-                        <a href="#" class="footer-social">
-                            <i class="bi bi-tiktok"></i>
-                            TikTok
-                        </a>
-
-                        <a href="#" class="footer-social">
-                            <i class="bi bi-envelope"></i>
-                            Email
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- Footer Bottom --}}
-                <div class="footer-bottom">
-
-                    <span>
-                        © {{ date('Y') }} KERAJAAN.
-                        All rights reserved.
-                    </span>
-
-                    <div class="footer-bottom-links">
-
-                        <a href="#">
-                            Privacy Policy
-                        </a>
-
-                        <a href="#">
-                            Terms & Conditions
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </footer>
+        {{-- ================================
+            FOOTER
+        ================================= --}}
+        @include('partials.landing-footer')
 
     </main>
 

@@ -130,7 +130,7 @@
             <a href="{{ route('superadmin.campaigns.index') }}" class="rounded-xl border border-kerajaan-dark/15 bg-white px-5 py-2.5 text-xs font-bold text-kerajaan-dark transition hover:bg-kerajaan-sand font-heading">
                 Batal
             </a>
-            <button type="submit" class="rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown px-6 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#934510] font-heading flex items-center gap-1.5">
+            <button type="submit" class="rounded-xl bg-gradient-to-r from-kerajaan-orange to-kerajaan-brown px-6 py-2.5 text-xs font-bold text-white shadow-xs transition hover:from-kerajaan-brown hover:to-[#0953b3] font-heading flex items-center gap-1.5">
                 <i class="bi bi-check2-circle text-base"></i>
                 <span>{{ $mode === 'create' ? 'Simpan Campaign' : 'Perbarui Campaign' }}</span>
             </button>

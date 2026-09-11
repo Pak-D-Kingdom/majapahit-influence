@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex items-center gap-3 sm:gap-4">
-        <x-dashboard.notification-link route="kol.notifications.index" :count="$unreadNotificationCount ?? 0" />
+        <x-dashboard.notification-link route="kol.notifications.index" />
 
         <div class="flex items-center gap-3 pl-2 border-l border-slate-200">
             <div class="hidden sm:block text-right">
