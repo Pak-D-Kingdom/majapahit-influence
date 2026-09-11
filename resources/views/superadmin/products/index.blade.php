@@ -28,13 +28,13 @@
             <table class="w-full text-left text-xs">
                 <thead class="bg-kerajaan-cream border-b border-kerajaan-dark/8 text-kerajaan-muted font-heading font-bold uppercase tracking-wider text-[11px]">
                     <tr>
-                        <th class="py-3.5 px-4">Produk</th>
-                        <th class="py-3.5 px-4">Brand & Kategori</th>
-                        <th class="py-3.5 px-4">Harga Retail</th>
-                        <th class="py-3.5 px-4">Komisi Terkunci</th>
-                        <th class="py-3.5 px-4">Bank Konten (GDrive)</th>
-                        <th class="py-3.5 px-4 text-center">Status E-Commerce</th>
-                        <th class="py-3.5 px-4 text-center">Aksi</th>
+                        <th scope="col" class="py-3.5 px-4">Produk</th>
+                        <th scope="col" class="py-3.5 px-4">Brand & Kategori</th>
+                        <th scope="col" class="py-3.5 px-4">Harga Retail</th>
+                        <th scope="col" class="py-3.5 px-4">Komisi Terkunci</th>
+                        <th scope="col" class="py-3.5 px-4">Bank Konten (GDrive)</th>
+                        <th scope="col" class="py-3.5 px-4 text-center">Status E-Commerce</th>
+                        <th scope="col" class="py-3.5 px-4 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-kerajaan-dark/6">
@@ -110,16 +110,17 @@
                             </td>
                             <td class="py-4 px-4 text-center whitespace-nowrap">
                                 <div class="flex items-center justify-center gap-1.5">
-                                    <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" title="Lihat Halaman Katalog">
+                                    <a href="{{ route('catalog.show', $prod->slug) }}" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition" title="Lihat Halaman Katalog" aria-label="Lihat halaman katalog {{ $prod->name }}">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="p-2 rounded-lg bg-[#0b64d4]/10 hover:bg-[#0b64d4]/20 text-[#0b64d4] transition" title="Edit Produk & Bank Konten">
+                                    <a href="{{ route('superadmin.products.edit', $prod->id) }}" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-[#0b64d4]/10 hover:bg-[#0b64d4]/20 text-[#0b64d4] transition" title="Edit Produk & Bank Konten" aria-label="Edit produk {{ $prod->name }}">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
                                     <button type="button" 
                                         onclick="openDeleteModal('{{ $prod->id }}', '{{ addslashes($prod->name) }}')"
-                                        class="p-2 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 transition" 
-                                        title="Hapus Produk">
+                                        class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 transition" 
+                                        title="Hapus Produk"
+                                        aria-label="Hapus produk {{ $prod->name }}">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </div>

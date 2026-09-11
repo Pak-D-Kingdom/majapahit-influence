@@ -82,25 +82,31 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollToBottom();
     }
 
-    // Handle Form Submit
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const message = input.value.trim();
+    const suggestionsContainer = document.getElementById('chatbot-suggestions');
+    const suggestionBtns = document.querySelectorAll('.cb-suggestion-card');
+
+    // Handle Send Message
+    async function handleSendMessage(rawText) {
+        const message = (rawText || '').trim();
         if (!message) return;
+
+        // Hide recommendation cards once interaction begins
+        if (suggestionsContainer) {
+            suggestionsContainer.classList.add('hidden');
+        }
 
         // Add User Message
         appendMessage('user', message);
         chatHistory.push({ role: 'user', content: message });
-        input.value = '';
+        if (input) input.value = '';
         
         // Show Typing
-        typingIndicator.classList.remove('hidden');
+        typingIndicator?.classList.remove('hidden');
         scrollToBottom();
 
         // Fetch CSRF Token
-        const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]');
-        const csrfToken = csrfTokenMeta ? csrfTokenMeta.content : '';
+        const csrfTokenMeta = document.querySelector('meta[name="csrf-token"]') || document.querySelector('input[name="_token"]');
+        const csrfToken = csrfTokenMeta ? (csrfTokenMeta.content || csrfTokenMeta.value) : '';
 
         try {
             const response = await fetch('/chatbot/chat', {
@@ -119,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             
-            typingIndicator.classList.add('hidden');
+            typingIndicator?.classList.add('hidden');
             
             if (response.ok && data.success) {
                 appendMessage('assistant', data.reply);
@@ -129,8 +135,24 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             console.error('Chatbot Error:', error);
-            typingIndicator.classList.add('hidden');
+            typingIndicator?.classList.add('hidden');
             appendMessage('assistant', 'Maaf, gagal terhubung ke server. Silakan coba lagi.');
         }
+    }
+
+    // Attach click listeners to suggestion cards
+    suggestionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const prompt = btn.getAttribute('data-prompt');
+            if (prompt) {
+                handleSendMessage(prompt);
+            }
+        });
+    });
+
+    // Handle Form Submit
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleSendMessage(input?.value);
     });
 });

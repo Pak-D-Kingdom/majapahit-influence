@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Gabung sebagai Creator — KERAJAAN')
+@section('title', 'Gabung sebagai Creator | KERAJAAN')
 
 @section('content')
 <main class="min-h-screen bg-gradient-to-b from-blue-50/50 via-white to-slate-50 py-12 px-4 sm:px-6 lg:px-8">

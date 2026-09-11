@@ -1,28 +1,28 @@
 @extends('layouts.app')
 
-@section('title', 'Bank Konten — ' . $product->name)
+@section('title', 'Bank Konten | ' . $product->name)
 
 @section('content')
 <div class="min-h-screen bg-gray-50/70 pb-20">
     
     {{-- Top Header --}}
-    <div class="bg-gradient-to-r from-gray-900 via-gray-900 to-amber-950 text-white py-10 px-4 sm:px-6 lg:px-8">
+    <div class="bg-gradient-to-r from-[#071d49] via-[#0c3685] to-[#04102b] text-white py-10 px-4 sm:px-6 lg:px-8 border-b border-[#1698f6]/20">
         <div class="container mx-auto max-w-6xl flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div class="space-y-2">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1698f6]/20 text-[#78a5d6] border border-[#1698f6]/30 text-xs font-bold">
                     <i class="bi bi-folder-symlink-fill"></i> BANK KONTEN BRAND RESMI
                 </div>
-                <h1 class="text-2xl sm:text-3xl font-black">{{ $product->name }}</h1>
+                <h1 class="text-2xl sm:text-3xl font-black font-heading tracking-tight">{{ $product->name }}</h1>
                 <p class="text-xs sm:text-sm text-gray-300">
-                    Materi promosi resmi dari Brand <strong class="text-amber-400">{{ $product->brand->name ?? 'Partner' }}</strong>. Bebas diunduh dan digunakan untuk konten promosi Anda.
+                    Materi promosi resmi dari Brand <strong class="text-[#1698f6]">{{ $product->brand->name ?? 'Partner' }}</strong>. Bebas diunduh dan digunakan untuk konten promosi Anda.
                 </p>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="{{ route('catalog.show', $product->slug) }}" class="px-4 py-2.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold transition-colors">
+                <a href="{{ route('catalog.show', $product->slug) }}" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-gray-100 text-xs font-bold transition-all">
                     <i class="bi bi-arrow-left mr-1"></i> Kembali ke Produk
                 </a>
-                <a href="{{ route('catalog.index') }}" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold transition-colors">
+                <a href="{{ route('catalog.index') }}" class="px-4 py-2.5 rounded-xl bg-[#0b64d4] hover:bg-[#0c3685] text-white text-xs font-bold transition-all shadow-sm">
                     <i class="bi bi-shop mr-1"></i> Katalog
                 </a>
             </div>
@@ -38,7 +38,7 @@
                 <div>
                     <span class="text-xs font-bold text-gray-400 block">{{ $product->category->name ?? 'Kategori' }}</span>
                     <h3 class="text-base font-black text-gray-900">{{ $product->name }}</h3>
-                    <span class="text-xs text-amber-700 font-extrabold">Harga: {{ $product->formatted_price }} | Komisi Anda: {{ $product->formatted_commission }} ({{ number_format($product->locked_commission_percent, 0) }}%)</span>
+                    <span class="text-xs text-[#0c3685] font-extrabold">Harga: {{ $product->formatted_price }} | Komisi Anda: {{ $product->formatted_commission }} ({{ number_format($product->locked_commission_percent, 0) }}%)</span>
                 </div>
             </div>
 
@@ -50,7 +50,7 @@
         {{-- Content Assets Grid --}}
         <div class="space-y-6">
             <h2 class="text-lg font-black text-gray-900 flex items-center gap-2">
-                <i class="bi bi-collection-fill text-amber-600"></i> Daftar Aset & Materi Promosi
+                <i class="bi bi-collection-fill text-[#0b64d4]"></i> Daftar Aset & Materi Promosi
             </h2>
 
             <div class="grid md:grid-cols-2 gap-6">
@@ -126,7 +126,7 @@
                                     <i class="bi bi-clipboard-check"></i> Salin Semua Teks
                                 </button>
                             @elseif (!empty($asset->external_url))
-                                <a href="{{ $asset->external_url }}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs text-center transition-colors flex items-center justify-center gap-2">
+                                <a href="{{ $asset->external_url }}" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 rounded-xl bg-[#0b64d4] hover:bg-[#0c3685] text-white font-bold text-xs text-center transition-colors flex items-center justify-center gap-2 shadow-sm">
                                     <i class="bi bi-google"></i> Buka di Google Drive
                                 </a>
                             @endif

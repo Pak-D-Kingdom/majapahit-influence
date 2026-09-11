@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Masuk ke Akun — KERAJAAN')
+@section('title', 'Masuk ke Akun | KERAJAAN')
 
 @section('content')
 <main class="relative min-h-screen flex flex-col justify-between bg-[#f8fafc] text-[#0c3685] font-sans selection:bg-[#0b64d4] selection:text-white overflow-hidden py-10 px-4 sm:px-6 lg:px-8">

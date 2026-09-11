@@ -13,7 +13,8 @@
     --white: #fefefe;
     --off-white: #fefefe;
     --light-brown: #78a5d6;
-    --muted: #0c3685;
+    --body: #24467d;
+    --muted: #4f709c;
 
     --container: 1200px;
 
@@ -401,9 +402,9 @@ button {
 
     font-size: clamp(48px, 5.2vw, 76px);
 
-    line-height: 1.04;
+    line-height: 1.08;
 
-    letter-spacing: -3.5px;
+    letter-spacing: -0.025em;
 
     font-weight: 800;
 
@@ -2286,8 +2287,8 @@ button {
 .benefits-heading h2 {
     margin: 0 0 20px;
     font-size: clamp(2.5rem, 5vw, 4.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.04em;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: #0c3685;
 }
 
@@ -2299,7 +2300,7 @@ button {
 .benefits-heading p {
     max-width: 620px;
     margin: 0;
-    color: #0c3685;
+    color: var(--muted);
     font-size: 1rem;
     line-height: 1.8;
 }
@@ -2670,7 +2671,7 @@ button {
 
 .partners-intro {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
@@ -2774,7 +2775,7 @@ button {
 
     margin: 0;
 
-    color: #0c3685;
+    color: var(--muted);
 
     font-size: 0.93rem;
     line-height: 1.75;
@@ -2933,8 +2934,8 @@ button {
     margin: 25px 0 20px;
 
     font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 0.98;
-    letter-spacing: -0.05em;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
 
     color: #0c3685;
 }
@@ -4489,8 +4490,8 @@ button {
 .cta-content h2 {
     margin: 25px 0 0;
     font-size: clamp(48px, 6vw, 82px);
-    line-height: 0.98;
-    letter-spacing: -0.06em;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
     font-weight: 800;
     color: #0c3685;
 }

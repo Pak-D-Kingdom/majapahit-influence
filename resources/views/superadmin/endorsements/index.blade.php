@@ -53,12 +53,12 @@
             <table class="w-full min-w-[850px] text-left text-sm">
                 <thead class="border-y border-kerajaan-dark/10 bg-kerajaan-cream text-xs font-bold uppercase tracking-wider text-kerajaan-muted font-heading">
                     <tr>
-                        <th class="px-5 py-3.5">Kreator (KOL)</th>
-                        <th class="px-5 py-3.5">Campaign & Brand</th>
-                        <th class="px-5 py-3.5">Fee Endorsement</th>
-                        <th class="px-5 py-3.5">Deadline</th>
-                        <th class="px-5 py-3.5">Status Pengerjaan</th>
-                        <th class="px-5 py-3.5 text-right">Aksi</th>
+                        <th scope="col" class="px-5 py-3.5">Kreator (KOL)</th>
+                        <th scope="col" class="px-5 py-3.5">Campaign & Brand</th>
+                        <th scope="col" class="px-5 py-3.5">Fee Endorsement</th>
+                        <th scope="col" class="px-5 py-3.5">Deadline</th>
+                        <th scope="col" class="px-5 py-3.5">Status Pengerjaan</th>
+                        <th scope="col" class="px-5 py-3.5 text-right">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-kerajaan-dark/5">
@@ -97,7 +97,7 @@
                                 <x-dashboard.status-badge :status="$endorsement->status" />
                             </td>
                             <td class="px-5 py-4 text-right">
-                                <a href="{{ route('superadmin.endorsements.show', $endorsement) }}" class="inline-flex items-center gap-1 text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown font-heading">
+                                <a href="{{ route('superadmin.endorsements.show', $endorsement) }}" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-end gap-1 text-xs font-bold text-kerajaan-orange hover:text-kerajaan-brown font-heading py-2 px-2" aria-label="Detail endorsement {{ $endorsement->campaign->name }} untuk {{ $endorsement->kolProfile->user->name }}">
                                     <span>Detail</span>
                                     <i class="bi bi-arrow-right text-[10px]"></i>
                                 </a>

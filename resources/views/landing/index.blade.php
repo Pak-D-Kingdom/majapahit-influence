@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Kerajaan — Connect, Create, Grow')
+@section('title', 'Kerajaan | Connect, Create, Grow')
 @section('content')
 
-    {{-- ================================
-        NAVBAR
-    ================================= --}}
+    {{-- Navbar --}}
     <header class="site-header" id="siteHeader">
 
         <div class="container navbar">
@@ -61,7 +59,7 @@
 
 
             {{-- Mobile Menu Button --}}
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Open navigation">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileNav">
                 <i class="bi bi-list"></i>
             </button>
 
@@ -103,9 +101,7 @@
     </header>
 
 
-    {{-- ================================
-        HERO
-    ================================= --}}
+    {{-- Hero Section --}}
     <main>
 
         <section class="hero" id="home">
@@ -145,12 +141,12 @@
 
                     <div class="hero-actions">
 
-                        <a href="#cara-bergabung" class="btn-primary btn-large">
+                        <a href="{{ route('registration.create') }}" class="btn-primary btn-large">
                             Gabung sebagai Creator
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
 
-                        <a href="#cara-bergabung" class="btn-secondary btn-large">
+                        <a href="{{ route('brand.register') }}" class="btn-secondary btn-large">
                             Gabung sebagai Brand
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
@@ -166,7 +162,7 @@
 
                         <div class="trust-avatars">
 
-                            <span>MA</span>
+                            <span>KJ</span>
                             <span>PD</span>
                             <span>+</span>
 
@@ -306,9 +302,7 @@
         </section>
 
 
-        {{-- ================================
-    TENTANG KERAJAAN
-================================= --}}
+        {{-- Tentang KERAJAAN --}}
         <section class="about-section company-section" id="tentang">
 
             <div class="container">
@@ -340,7 +334,7 @@
                         <div class="company-logo-card">
 
                             <div class="company-logo-mark">
-                                MA
+                                KJ
                             </div>
 
                             <div>
@@ -429,9 +423,7 @@
 
         </section>
 
-        {{-- ================================
-    CREATOR × BRAND
-================================= --}}
+        {{-- Creator and Brand Section --}}
         <section class="benefits-section ecosystem-roles-section" id="roles">
 
             <div class="container">
@@ -466,9 +458,7 @@
                 {{-- Creator & Brand Cards --}}
                 <div class="role-cards-grid">
 
-                    {{-- ================================
-                CREATOR
-            ================================= --}}
+                    {{-- Role: Creator --}}
                     <div class="role-card role-card-creator">
 
                         <div class="role-card-top">
@@ -530,7 +520,7 @@
                         </div>
 
 
-                        <a href="#" class="role-card-link">
+                        <a href="{{ route('registration.create') }}" class="role-card-link">
                             Gabung sebagai Creator
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
@@ -538,9 +528,7 @@
                     </div>
 
 
-                    {{-- ================================
-                BRAND
-            ================================= --}}
+                    {{-- Role: Brand --}}
                     <div class="role-card role-card-brand">
 
                         <div class="role-card-top">
@@ -602,7 +590,7 @@
                         </div>
 
 
-                        <a href="#" class="role-card-link">
+                        <a href="{{ route('brand.register') }}" class="role-card-link">
                             Gabung sebagai Brand
                             <i class="bi bi-arrow-up-right"></i>
                         </a>
@@ -637,9 +625,7 @@
         </section>
 
 
-        {{-- ================================
-    PRODUK & BRAND
-================================= --}}
+        {{-- Produk dan Brand --}}
         <section class="partners-section" id="mitra">
 
             <div class="container">
@@ -680,22 +666,22 @@
 
                     <div class="category-list">
 
-                        <span><a href="{{ url('/explore/food-beverage') }}">
+                        <span><a href="{{ route('catalog.index', ['category' => 'food-beverage']) }}">
                                 F&B
                             </a></span>
-                        <span> <a href="{{ url('/explore/beauty') }}">
+                        <span><a href="{{ route('catalog.index', ['category' => 'beauty']) }}">
                                 Beauty
                             </a></span>
-                        <span> <a href="{{ url('/explore/fashion') }}">
+                        <span><a href="{{ route('catalog.index', ['category' => 'fashion']) }}">
                                 Fashion
                             </a></span>
-                        <span><a href="{{ url('/explore/lifestyle') }}">
+                        <span><a href="{{ route('catalog.index', ['category' => 'lifestyle']) }}">
                                 Lifestyle
                             </a></span>
-                        <span> <a href="{{ url('/explore/home-living') }}">
+                        <span><a href="{{ route('catalog.index', ['category' => 'home-living']) }}">
                                 Home & Living
                             </a></span>
-                        <span><a href="{{ url('/explore') }}">
+                        <span><a href="{{ route('catalog.index') }}">
                                 More
                             </a></span>
 
@@ -734,7 +720,7 @@
                                 content dan kolaborasi para creator.
                             </p>
 
-                            <a href="{{ url('/explore/products') }}" class="partners-card-link">
+                            <a href="{{ route('catalog.index') }}" class="partners-card-link">
                                 Lihat Produk Kami
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
@@ -771,7 +757,7 @@
                                 kolaborasi dengan creator yang relevan.
                             </p>
 
-                            <a href="{{ url('/explore/brands') }}" class="partners-card-link">
+                            <a href="{{ route('explore.brands') }}" class="partners-card-link">
                                 Lihat Brand Partner Kami
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
@@ -807,7 +793,7 @@
                                 kolaborasi dengan brand dan produk yang relevan.
                             </p>
 
-                            <a href="{{ url('/explore/creators') }}" class="partners-card-link">
+                            <a href="{{ route('explore.creators') }}" class="partners-card-link">
                                 Lihat Creator Kami
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
@@ -845,9 +831,7 @@
 
         </section>
 
-        {{-- ================================
-    CARA BERGABUNG
-================================= --}}
+        {{-- Cara Bergabung --}}
         <section class="join-section" id="cara-bergabung">
 
             <div class="container">
@@ -881,9 +865,7 @@
                 {{-- Role Selection --}}
                 <div class="join-role-grid">
 
-                    {{-- ================================
-                CREATOR
-            ================================= --}}
+                    {{-- Step: Creator --}}
                     <div class="join-role-card join-role-creator">
 
                         <div class="join-role-top">
@@ -953,9 +935,7 @@
                     </div>
 
 
-                    {{-- ================================
-                BRAND
-            ================================= --}}
+                    {{-- Step: Brand --}}
                     <div class="join-role-card join-role-brand">
 
                         <div class="join-role-top">
@@ -1054,9 +1034,7 @@
 
         </section>
 
-        {{-- ================================
-    CTA AKHIR
-================================= --}}
+        {{-- CTA Banner --}}
         <section class="cta-section" id="gabung">
 
             <div class="cta-decoration cta-decoration-one"></div>
@@ -1113,9 +1091,7 @@
         </section>
 
 
-        {{-- ================================
-    FAQ
-================================ --}}
+        {{-- FAQ --}}
         <section class="faq-section" id="faq">
 
             <div class="container">
@@ -1262,9 +1238,7 @@
 
         </section>
 
-        {{-- ================================
-    FOOTER
-================================= --}}
+        {{-- Footer --}}
         <footer class="site-footer">
 
             <div class="container">

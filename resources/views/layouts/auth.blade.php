@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Masuk') — KERAJAAN</title>
+    <title>@yield('title', 'Masuk') | KERAJAAN</title>
 
     <meta name="description" content="Portal Akses KERAJAAN Creator-Powered Commerce Platform">
 
