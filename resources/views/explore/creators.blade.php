@@ -116,19 +116,17 @@
 
             <div class="creator-grid">
 
-
-                {{-- CREATOR 01 --}}
-
+                @forelse($creators as $index => $creator)
                 <div class="creator-card">
 
                     <div class="creator-card-image">
 
                         <img
-                            src="{{ asset('assets/landing/images/creator/creator-01.jpg') }}"
+                            src="{{ $creator->photo_path ? Storage::url($creator->photo_path) : asset('assets/landing/images/creator/creator-0' . (($index % 10) + 1) . '.jpg') }}"
                             alt="Creator">
 
                         <span class="creator-rank">
-                            #01
+                            #{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
                         </span>
 
                     </div>
@@ -136,27 +134,34 @@
                     <div class="creator-card-body">
 
                         <span class="creator-category">
-                            F&B
+                            {{ $creator->niches->first()?->name ?? 'General' }}
                         </span>
 
                         <h3>
-                            Creator Name
+                            {{ $creator->user->name }}
                         </h3>
 
                         <p>
-                            Food & Lifestyle Creator
+                            {{ $creator->bio ? Str::limit($creator->bio, 50) : ($creator->niches->first()?->name ?? 'Creator') . ' Creator' }}
                         </p>
 
                         <div class="creator-meta">
 
                             <span>
                                 <i class="bi bi-people"></i>
-                                125K Followers
+                                @php
+                                    $followers = $creator->socialMedia->sum('followers_count');
+                                    $formattedFollowers = $followers >= 1000 ? number_format($followers / 1000, 1) . 'K' : $followers;
+                                @endphp
+                                {{ $formattedFollowers }} Followers
                             </span>
 
                             <span>
                                 <i class="bi bi-graph-up-arrow"></i>
-                                4.8% Engagement
+                                @php
+                                    $engRate = $creator->socialMedia->avg('engagement_rate') ?? 0;
+                                @endphp
+                                {{ number_format($engRate, 1) }}% Engagement
                             </span>
 
                         </div>
@@ -170,491 +175,13 @@
                     </div>
 
                 </div>
-
-
-                {{-- CREATOR 02 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-02.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #02
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Beauty
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Beauty Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                98K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                5.2% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
+                @empty
+                <div class="col-12 text-center" style="grid-column: 1 / -1; padding: 3rem 0;">
+                    <p style="color: #64748b;">Belum ada creator yang bergabung.</p>
                 </div>
+                @endforelse
 
-
-                {{-- CREATOR 03 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-03.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #03
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Fashion
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Fashion Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                87K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                4.6% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 04 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-04.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #04
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Lifestyle
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Lifestyle Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                76K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                4.4% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 05 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-05.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #05
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            F&B
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Food Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                69K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                4.2% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 06 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-06.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #06
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Beauty
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Beauty Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                61K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                4.1% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 07 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-07.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #07
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Fashion
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Fashion Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                57K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                3.9% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 08 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-08.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #08
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Lifestyle
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Lifestyle Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                52K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                3.8% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 09 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-09.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #09
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            Home & Living
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Home & Living Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                48K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                3.7% Engagement
-                            </span>
-
-                        </div>
-
-                        <a href="#"
-                           class="creator-card-link">
-                            Lihat Creator
-                            <i class="bi bi-arrow-up-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- CREATOR 10 --}}
-
-                <div class="creator-card">
-
-                    <div class="creator-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/creator/creator-10.jpg') }}"
-                            alt="Creator">
-
-                        <span class="creator-rank">
-                            #10
-                        </span>
-
-                    </div>
-
-                    <div class="creator-card-body">
-
-                        <span class="creator-category">
-                            F&B
-                        </span>
-
-                        <h3>
-                            Creator Name
-                        </h3>
-
-                        <p>
-                            Food Creator
-                        </p>
-
-                        <div class="creator-meta">
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                43K Followers
-                            </span>
-
-                            <span>
-                                <i class="bi bi-graph-up-arrow"></i>
-                                3.5% Engagement
-                            </span>
-
-                        </div>
+            </div>
 
                         <a href="#"
                            class="creator-card-link">

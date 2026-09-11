@@ -76,10 +76,23 @@ Route::get('/katalog/{product:slug}/bank-konten', [CatalogController::class, 'co
 
 // Public Explore Pages (from Adinda Frontend)
 Route::get('/explore/creators', function () {
-    return view('explore.creators');
+    $creators = \App\Models\KolProfile::active()
+        ->with(['user', 'niches', 'socialMedia'])
+        ->latest()
+        ->take(10)
+        ->get();
+
+    return view('explore.creators', compact('creators'));
 })->name('explore.creators');
+
 Route::get('/explore/brands', function () {
-    return view('explore.brands');
+    $brands = \App\Models\Brand::where('is_active', true)
+        ->withCount(['products', 'campaigns'])
+        ->latest()
+        ->take(10)
+        ->get();
+
+    return view('explore.brands', compact('brands'));
 })->name('explore.brands');
 
 // Authentication Routes (Guest Only) (Dev 1)

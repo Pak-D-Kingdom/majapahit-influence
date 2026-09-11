@@ -143,19 +143,17 @@
 
             <div class="brand-grid">
 
-
-                {{-- BRAND 01 --}}
-
+                @forelse($brands as $index => $brand)
                 <div class="brand-card">
 
                     <div class="brand-card-image">
 
                         <img
-                            src="{{ asset('assets/landing/images/brand/brand-01.jpg') }}"
+                            src="{{ $brand->logo_path ? Storage::url($brand->logo_path) : asset('assets/landing/images/brand/brand-0' . (($index % 10) + 1) . '.jpg') }}"
                             alt="Brand">
 
                         <span class="brand-rank">
-                            #01
+                            #{{ str_pad($loop->iteration, 2, '0', STR_PAD_LEFT) }}
                         </span>
 
                     </div>
@@ -163,27 +161,27 @@
                     <div class="brand-card-body">
 
                         <span class="brand-category">
-                            F&B
+                            {{ $brand->industry ?? 'Brand' }}
                         </span>
 
                         <h3>
-                            Brand Name
+                            {{ $brand->name }}
                         </h3>
 
                         <p>
-                            Food & Beverage Brand
+                            {{ $brand->notes ? Str::limit($brand->notes, 50) : ($brand->industry ?? 'Brand') . ' Brand' }}
                         </p>
 
                         <div class="brand-meta">
 
                             <span>
                                 <i class="bi bi-box-seam"></i>
-                                24 Produk
+                                {{ $brand->products_count ?? 0 }} Produk
                             </span>
 
                             <span>
                                 <i class="bi bi-people"></i>
-                                35 Creator
+                                {{ $brand->campaigns_count ?? 0 }} Campaign
                             </span>
 
                         </div>
@@ -200,515 +198,13 @@
                     </div>
 
                 </div>
-
-
-                {{-- BRAND 02 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-02.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #02
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Beauty
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Beauty Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                18 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                29 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
+                @empty
+                <div class="col-12 text-center" style="grid-column: 1 / -1; padding: 3rem 0;">
+                    <p style="color: #64748b;">Belum ada brand yang bergabung.</p>
                 </div>
+                @endforelse
 
-
-                {{-- BRAND 03 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-03.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #03
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Fashion
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Fashion Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                15 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                24 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 04 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-04.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #04
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Lifestyle
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Lifestyle Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                13 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                21 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 05 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-05.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #05
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            F&B
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Food Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                11 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                19 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 06 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-06.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #06
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Beauty
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Beauty Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                10 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                17 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 07 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-07.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #07
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Fashion
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Fashion Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                9 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                15 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 08 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-08.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #08
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Lifestyle
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Lifestyle Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                8 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                14 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 09 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-09.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #09
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            Home & Living
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Home & Living Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                7 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                12 Creator
-                            </span>
-
-                        </div>
-
-                        <a href="{{ route('catalog.index') }}"
-                           class="brand-card-link">
-
-                            Lihat Brand
-
-                            <i class="bi bi-arrow-up-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                {{-- BRAND 10 --}}
-
-                <div class="brand-card">
-
-                    <div class="brand-card-image">
-
-                        <img
-                            src="{{ asset('assets/landing/images/brand/brand-10.jpg') }}"
-                            alt="Brand">
-
-                        <span class="brand-rank">
-                            #10
-                        </span>
-
-                    </div>
-
-                    <div class="brand-card-body">
-
-                        <span class="brand-category">
-                            F&B
-                        </span>
-
-                        <h3>
-                            Brand Name
-                        </h3>
-
-                        <p>
-                            Food & Beverage Brand
-                        </p>
-
-                        <div class="brand-meta">
-
-                            <span>
-                                <i class="bi bi-box-seam"></i>
-                                6 Produk
-                            </span>
-
-                            <span>
-                                <i class="bi bi-people"></i>
-                                10 Creator
-                            </span>
-
-                        </div>
+            </div>
 
                         <a href="{{ route('catalog.index') }}"
                            class="brand-card-link">
