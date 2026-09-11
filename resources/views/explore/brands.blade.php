@@ -39,10 +39,10 @@
 
                     </a>
 
-                    <a href="{{ url('/') }}#roles"
+                    <a href="{{ url('/') }}#mitra"
                        class="btn-secondary">
 
-                        Kembali ke Ekosistem
+                        Kembali ke Produk, Brand, & Creator
 
                     </a>
 

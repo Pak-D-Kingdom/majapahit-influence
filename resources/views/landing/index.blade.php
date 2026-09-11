@@ -32,7 +32,7 @@
                 </a>
 
                 <a href="#mitra" class="nav-link">
-                    Produk & Brand
+                    Produk, Brand, & Creator
                 </a>
                 <a href="#" class="nav-link nav-ecommerce">
                     E-Commerce
@@ -77,7 +77,7 @@
 
             <a href="#program">Ekosistem</a>
 
-            <a href="#mitra">Produk & Brand</a>
+            <a href="#mitra">Produk, Brand, & Creator</a>
             <a href="#" class="nav-ecommerce">
                 E-Commerce
             </a>
@@ -1307,7 +1307,7 @@
                         </a>
 
                         <a href="#mitra">
-                            Produk & Brand
+                            Produk, Brand, & Creator
                         </a>
 
                         <a href="#cara-bergabung">

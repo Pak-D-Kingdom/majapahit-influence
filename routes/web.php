@@ -11,3 +11,6 @@ Route::get('/explore/creators', function () {
 Route::get('/explore/brands', function () {
     return view('explore.brands');
 });
+Route::get('/explore/products', function () {
+    return view('explore.products');
+});

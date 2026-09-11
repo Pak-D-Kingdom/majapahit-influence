@@ -37,9 +37,9 @@
                         <i class="bi bi-arrow-up-right"></i>
                     </a>
 
-                    <a href="{{ url('/') }}#roles"
+                    <a href="{{ url('/') }}#mitra"
                        class="btn-secondary">
-                        Kembali ke Ekosistem
+                        Kembali ke Produk, brand, & Creator
                     </a>
 
                 </div>
