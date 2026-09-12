@@ -617,6 +617,344 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /*
     |--------------------------------------------------------------------------
+    | Interactive Product Demo ("HOW IT WORKS") Controller
+    |--------------------------------------------------------------------------
+    */
+    const initInteractiveProductDemo = () => {
+        const demoSection = document.getElementById('how-it-works');
+        if (!demoSection) return;
+
+        const stepButtons = demoSection.querySelectorAll('.demo-step-btn');
+        const slides = demoSection.querySelectorAll('.mockup-slide');
+        const browserUrlText = document.getElementById('browserUrlText');
+        const virtualCursor = document.getElementById('mockupVirtualCursor');
+        const cursorLabel = document.getElementById('cursorActionLabel');
+        const browserFrame = document.getElementById('demoBrowserFrame');
+        const viewport = document.getElementById('browserViewport');
+
+        // Modal Elements
+        const modal = document.getElementById('demoVideoModal');
+        const btnOpenModal = document.getElementById('btnOpenDemoModal');
+        const btnCloseModal = document.getElementById('btnCloseDemoModal');
+        const modalBackdrop = document.getElementById('demoModalBackdrop');
+        const videoElement = document.getElementById('demoVideoElement');
+        const fallbackStepBadge = document.getElementById('fallbackStepBadge');
+        const fallbackStepTitle = document.getElementById('fallbackStepTitle');
+        const fallbackStepDesc = document.getElementById('fallbackStepDesc');
+        const fallbackScrubFill = document.getElementById('fallbackScrubFill');
+        const fallbackPlayToggle = document.getElementById('fallbackPlayToggle');
+        const fallbackPlayIcon = document.getElementById('fallbackPlayIcon');
+        const fallbackTimeDisplay = document.getElementById('fallbackTimeDisplay');
+
+        const steps = [
+            {
+                url: 'https://app.majapahit.id/explore/creators',
+                cursorLabel: 'Pilih Creator F&B...',
+                targetSelector: '#step1ViewProfileBtn',
+                badge: 'STEP 01 OF 05',
+                title: 'Discover & Filter Influencer',
+                desc: 'Temukan lebih dari 500+ kreator terkurasi dengan filter kategori dan analitik keterlibatan langsung.'
+            },
+            {
+                url: 'https://app.majapahit.id/kol/sarah-amelia',
+                cursorLabel: 'Ajak Kolaborasi...',
+                targetSelector: '#step2InviteBtn',
+                badge: 'STEP 02 OF 05',
+                title: 'Explore Profil & Kinerja KOL',
+                desc: 'Analisis metrik riil: 142K+ followers, 4.9% engagement rate, dan riwayat sukses kolaborasi.'
+            },
+            {
+                url: 'https://app.majapahit.id/campaigns/create',
+                cursorLabel: 'Publish Brief & Anggaran...',
+                targetSelector: '#step3PublishBtn',
+                badge: 'STEP 03 OF 05',
+                title: 'Setup Campaign & Deliverables',
+                desc: 'Buat brief kampanye, tetapkan deliverables Instagram Reels / TikTok, dan tentukan target alokasi budget.'
+            },
+            {
+                url: 'https://app.majapahit.id/collaborations/COL-2026-089',
+                cursorLabel: 'Setujui Draft Konten...',
+                targetSelector: '#step4ApproveBtn',
+                badge: 'STEP 04 OF 05',
+                title: 'Collaboration & Approval Hub',
+                desc: 'Review draft konten video dari kreator, beri catatan revisi atau setujui secara langsung dalam satu workspace.'
+            },
+            {
+                url: 'https://app.majapahit.id/analytics/campaign-089',
+                cursorLabel: 'Pantau Laporan ROI...',
+                targetSelector: '#step5DownloadBtn',
+                badge: 'STEP 05 OF 05',
+                title: 'Track Live Analytics & ROI',
+                desc: 'Pantau 1.2M+ impresi, 3.8x ROI, dan peringkat kontribusi kreator secara real-time dengan grafik akurat.'
+            }
+        ];
+
+        let activeIndex = 0;
+        let cycleTimer = null;
+        let isHovered = false;
+        let isSectionInView = true;
+        const CYCLE_INTERVAL = 5500;
+
+        function updateModalFallback(index) {
+            if (!fallbackStepBadge || !steps[index]) return;
+            const current = steps[index];
+            fallbackStepBadge.textContent = current.badge;
+            fallbackStepTitle.textContent = current.title;
+            fallbackStepDesc.textContent = current.desc;
+        }
+
+        // Animate Virtual Cursor to current target element inside viewport
+        function moveVirtualCursor(index) {
+            if (!virtualCursor || window.innerWidth < 768 || prefersReducedMotion) return;
+
+            const stepInfo = steps[index];
+            if (cursorLabel) cursorLabel.textContent = stepInfo.cursorLabel;
+
+            setTimeout(() => {
+                const target = demoSection.querySelector(stepInfo.targetSelector);
+                if (!target || !viewport) return;
+
+                const vpRect = viewport.getBoundingClientRect();
+                const targetRect = target.getBoundingClientRect();
+
+                const targetX = targetRect.left - vpRect.left + (targetRect.width / 2);
+                const targetY = targetRect.top - vpRect.top + (targetRect.height / 2);
+
+                if (typeof gsap !== 'undefined') {
+                    gsap.to(virtualCursor, {
+                        x: targetX,
+                        y: targetY,
+                        duration: 0.7,
+                        ease: 'power2.out',
+                        onComplete: () => {
+                            gsap.fromTo(virtualCursor, 
+                                { scale: 0.88 }, 
+                                { scale: 1, duration: 0.25, ease: 'back.out(2)' }
+                            );
+                        }
+                    });
+                } else {
+                    virtualCursor.style.transform = `translate(${targetX}px, ${targetY}px)`;
+                }
+            }, 80);
+        }
+
+        function resetCycleTimer() {
+            if (cycleTimer) clearInterval(cycleTimer);
+            cycleTimer = setInterval(nextStep, CYCLE_INTERVAL);
+        }
+
+        function nextStep() {
+            if (isHovered || !isSectionInView) return;
+            const nextIdx = (activeIndex + 1) % steps.length;
+            setActiveStep(nextIdx, false);
+        }
+
+        function setActiveStep(index, manual = false) {
+            if (index < 0 || index >= steps.length) return;
+            activeIndex = index;
+
+            // Update Tab Buttons
+            stepButtons.forEach((btn, i) => {
+                const isSelected = i === index;
+                btn.classList.toggle('active', isSelected);
+                btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+            });
+
+            // Update Slides
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+
+            // Update Browser Address URL
+            if (browserUrlText) {
+                browserUrlText.textContent = steps[index].url;
+            }
+
+            // Move Virtual Cursor
+            moveVirtualCursor(index);
+
+            // Update video fallback step display if modal is active
+            updateModalFallback(index);
+
+            // Reset Timer on user interaction
+            if (manual) {
+                resetCycleTimer();
+            }
+        }
+
+        // Attach Click to Step Navigation Tabs
+        stepButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const stepIdx = parseInt(btn.getAttribute('data-step') || '0', 10);
+                setActiveStep(stepIdx, true);
+            });
+        });
+
+        // Pause cycle when user hovers over browser frame
+        if (browserFrame) {
+            browserFrame.addEventListener('mouseenter', () => { isHovered = true; });
+            browserFrame.addEventListener('mouseleave', () => { isHovered = false; });
+        }
+
+        // Action Buttons inside slides trigger next relevant step
+        const step1Btn = document.getElementById('step1ViewProfileBtn');
+        if (step1Btn) {
+            step1Btn.addEventListener('click', () => setActiveStep(1, true));
+        }
+
+        const step2Btn = document.getElementById('step2InviteBtn');
+        if (step2Btn) {
+            step2Btn.addEventListener('click', () => setActiveStep(2, true));
+        }
+
+        const step3Btn = document.getElementById('step3PublishBtn');
+        if (step3Btn) {
+            step3Btn.addEventListener('click', () => setActiveStep(3, true));
+        }
+
+        const step4Btn = document.getElementById('step4ApproveBtn');
+        if (step4Btn) {
+            step4Btn.addEventListener('click', () => setActiveStep(4, true));
+        }
+
+        // Initialize First Step Position
+        setActiveStep(0, false);
+        resetCycleTimer();
+
+        // GSAP ScrollTrigger Entrance
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined' && !prefersReducedMotion) {
+            // Header Entrance
+            gsap.from('#how-it-works .demo-header', {
+                scrollTrigger: {
+                    trigger: '#how-it-works',
+                    start: 'top 80%'
+                },
+                y: 35,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+
+            // Step Nav Entrance
+            gsap.from('#how-it-works .demo-nav-wrapper', {
+                scrollTrigger: {
+                    trigger: '#how-it-works',
+                    start: 'top 75%'
+                },
+                y: 25,
+                opacity: 0,
+                duration: 0.75,
+                delay: 0.15,
+                ease: 'power3.out'
+            });
+
+            // Browser Frame Reveal (Fade + Scale)
+            gsap.from(browserFrame, {
+                scrollTrigger: {
+                    trigger: '#how-it-works .demo-showcase-wrap',
+                    start: 'top 75%',
+                    onEnter: () => { isSectionInView = true; },
+                    onLeave: () => { isSectionInView = false; },
+                    onEnterBack: () => { isSectionInView = true; },
+                    onLeaveBack: () => { isSectionInView = false; }
+                },
+                scale: 0.95,
+                y: 40,
+                opacity: 0,
+                duration: 0.95,
+                delay: 0.25,
+                ease: 'power3.out'
+            });
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Video Demo Modal / Lightbox Logic
+        |--------------------------------------------------------------------------
+        */
+        let fallbackTimer = null;
+        let fallbackSeconds = 8;
+        let isFallbackPlaying = true;
+
+        const openModal = () => {
+            if (!modal) return;
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+
+            if (videoElement && !videoElement.paused) {
+                videoElement.play().catch(() => {});
+            }
+
+            startFallbackSimulation();
+        };
+
+        const closeModal = () => {
+            if (!modal) return;
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+
+            if (videoElement) {
+                videoElement.pause();
+            }
+
+            if (fallbackTimer) clearInterval(fallbackTimer);
+        };
+
+        const startFallbackSimulation = () => {
+            if (fallbackTimer) clearInterval(fallbackTimer);
+            fallbackTimer = setInterval(() => {
+                if (!isFallbackPlaying) return;
+                fallbackSeconds = (fallbackSeconds + 1) % 31;
+                const formattedSec = fallbackSeconds.toString().padStart(2, '0');
+                if (fallbackTimeDisplay) {
+                    fallbackTimeDisplay.textContent = `00:${formattedSec} / 00:30`;
+                }
+                if (fallbackScrubFill) {
+                    const pct = (fallbackSeconds / 30) * 100;
+                    fallbackScrubFill.style.width = `${pct}%`;
+                }
+
+                const modalStepIdx = Math.floor(fallbackSeconds / 6) % steps.length;
+                updateModalFallback(modalStepIdx);
+            }, 1000);
+        };
+
+        if (btnOpenModal) {
+            btnOpenModal.addEventListener('click', openModal);
+        }
+
+        if (btnCloseModal) {
+            btnCloseModal.addEventListener('click', closeModal);
+        }
+
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeModal);
+        }
+
+        // Close on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+                closeModal();
+            }
+        });
+
+        // Fallback Play/Pause Toggle
+        if (fallbackPlayToggle) {
+            fallbackPlayToggle.addEventListener('click', () => {
+                isFallbackPlaying = !isFallbackPlaying;
+                if (fallbackPlayIcon) {
+                    fallbackPlayIcon.classList.toggle('bi-play-fill', !isFallbackPlaying);
+                    fallbackPlayIcon.classList.toggle('bi-pause-fill', isFallbackPlaying);
+                }
+            });
+        }
+    };
+
+    /*
+    |--------------------------------------------------------------------------
     | Initialize Motion Systems
     |--------------------------------------------------------------------------
     */
@@ -625,12 +963,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initOrganicFloating();
     initHeroEntrance();
     initScrollAnimations();
+    initInteractiveProductDemo();
+
     /*
     |--------------------------------------------------------------------------
     | ScrollSpy & Active Menu Highlighting
     |--------------------------------------------------------------------------
     */
-    const sectionIds = ['home', 'tentang', 'roles', 'mitra'];
+    const sectionIds = ['home', 'tentang', 'roles', 'how-it-works', 'mitra'];
     const sections = sectionIds
         .map(id => document.getElementById(id))
         .filter(Boolean);

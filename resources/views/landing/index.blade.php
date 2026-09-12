@@ -532,6 +532,8 @@
 
         </section>
 
+        {{-- Interactive Product Demo Section ("HOW IT WORKS") --}}
+        @include('landing.sections.how-it-works')
 
         {{-- Produk dan Brand --}}
         <section class="partners-section" id="mitra">
