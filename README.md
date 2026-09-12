@@ -1,17 +1,25 @@
-﻿# Threads FYP Caption Scraper (Proof of Concept)
+﻿# Threads FYP Caption Scraper & Groq AI Summarizer (Proof of Concept)
 
-Script otomasi berbasis Python dan **Playwright** untuk mengumpulkan dataset caption postingan dari feed *For You* (FYP) Threads secara aman, bertahap, dan terstruktur.
+Proyek otomasi Python terintegrasi untuk:
+1. **Scraping**: Mengumpulkan 100 caption postingan dari feed *For You* (FYP) Threads secara aman & bertahap.
+2. **Summarizing**: Menganalisis statistik, kata kunci tren, hashtag dominan, serta menyusun rangkuman naratif & kesimpulan eksekutif menggunakan **Groq AI (Llama 3.3 70B)** atau engine analitik bawaan.
 
 ---
 
 ## 🚀 Fitur Utama
 
-- **Persistent Browser Context**: Menyimpan sesi login di folder lokal (`data/browser_profile/`) sehingga tidak perlu login ulang setiap kali script dijalankan.
-- **Login Manual yang Aman**: Pengguna melakukan login mandiri di browser; tidak ada kredensial atau password yang disimpan di kode.
-- **Multi-layer Deduplication**: Mencegah duplikasi postingan menggunakan hierarki identifier: `post_id` → `url` → `username + caption` → `hash(caption)`.
-- **Lightweight Caption Cleaning**: Membersihkan spasi dan baris baru berlebih tanpa merusak emoji, hashtag (`#`), dan mention (`@`).
-- **Resilient Extraction**: Ekstraksi elemen berbasis semantik HTML (`article`, link profil `/@username`, tag `<time>`) yang tahan terhadap perubahan CSS class dinamis.
-- **Export Ganda & Validasi**: Menghasilkan file `threads_fyp_100.csv` (dengan format UTF-8 BOM yang ramah Microsoft Excel) dan `threads_fyp_100.json`, disertai ringkasan statistik dataset.
+### 1. Threads Scraper (`threads_scraper.py`)
+- **Persistent Browser Context**: Menyimpan sesi login di folder lokal (`data/browser_profile/`) sehingga tidak perlu login ulang tiap kali script dijalankan.
+- **Login Manual yang Aman**: Pengguna login mandiri di browser tanpa menyimpan kredensial di kode.
+- **Multi-layer Deduplication**: Mencegah duplikasi postingan (`post_id` → `url` → `username + caption` → `hash(caption)`).
+- **Lightweight Caption Cleaning**: Membersihkan spasi, relative timestamp (`21h`), tombol translate, dan baris baru berlebih tanpa merusak emoji, hashtag (`#`), dan mention (`@`).
+- **Export Dataset**: Menghasilkan file `threads_fyp_100.csv` (UTF-8 BOM untuk Excel) dan `threads_fyp_100.json`.
+
+### 2. Dataset Summarizer & Analyzer (`summarizer.py`)
+- **Analitik & Frekuensi NLP**: Ekstraksi otomatis kata kunci topik, hashtag terpopuler, dan kreator paling aktif di feed.
+- **Groq AI Executive Summary (Llama 3.3 70B)**: Kecepatan inferensi super cepat dari Groq untuk merangkum tema utama, nuansa sentimen publik, perdebatan/isu yang sedang viral, dan kesimpulan penting (*key takeaways*).
+- **Dual Mode (Dengan/Tanpa API Key)**: Jika tidak memiliki API key, tetap menghasilkan statistik lengkap dan menyusun template prompt siap pakai (*ready-to-paste*) untuk AI web.
+- **Laporan Markdown & JSON**: Hasil tersimpan di `data/threads_fyp_summary.md` dan `data/threads_fyp_summary.json`.
 
 ---
 
@@ -20,12 +28,15 @@ Script otomasi berbasis Python dan **Playwright** untuk mengumpulkan dataset cap
 ```text
 scrap-threads/
 │
-├── config.py             # Konfigurasi konstanta & limit scraping
-├── threads_scraper.py    # Logika utama (browser, parser, scroll, dedup, export)
+├── config.py             # Konfigurasi konstanta, limit, path, dan Groq API settings
+├── threads_scraper.py    # Logika scraping (browser, parser, scroll, export)
+├── summarizer.py         # Logika perangkum (analisis statistik & Groq AI summary)
 ├── requirements.txt      # Dependency package (playwright)
 ├── data/                 # Folder output & session lokal
 │   ├── threads_fyp_100.csv
 │   ├── threads_fyp_100.json
+│   ├── threads_fyp_summary.md
+│   ├── threads_fyp_summary.json
 │   └── browser_profile/  # Session cookies browser (di-gitignore)
 ├── prd.md                # Dokumen spesifikasi teknis
 └── README.md             # Petunjuk instalasi & penggunaan
@@ -37,7 +48,6 @@ scrap-threads/
 
 ### 1. Prasyarat
 - **Python 3.10** atau lebih baru
-- Koneksi internet stabil
 
 ### 2. Install Dependencies
 Buka terminal / PowerShell di folder proyek ini (`d:\Intern\scrap-threads`), lalu jalankan:
@@ -49,57 +59,47 @@ playwright install chromium
 
 ---
 
-## 💻 Cara Penggunaan (Langkah Demi Langkah)
+## 💻 Alur Penggunaan Lengkap
 
-1. **Jalankan Script**:
-   ```bash
-   python threads_scraper.py
-   ```
+### Langkah 1: Jalankan Scraper
+```bash
+python threads_scraper.py
+```
+1. Browser Chromium akan terbuka secara otomatis menuju `https://www.threads.net`.
+2. Login akun Threads Anda secara manual dan pastikan berada di tab **For You**.
+3. Kembali ke terminal, tekan **[ENTER]**.
+4. Script akan scroll otomatis hingga 100 postingan unik terkumpul di `data/threads_fyp_100.csv`.
 
-2. **Jendela Browser Terbuka**:
-   - Browser Chromium akan terbuka secara otomatis menuju `https://www.threads.net`.
-   - Jika belum login, silakan **login akun Threads Anda secara manual**.
-   - Pastikan feed yang aktif adalah tab **For You** (Untuk Anda).
+---
 
-3. **Mulai Scraping**:
-   - Kembali ke terminal.
-   - Tekan tombol **[ENTER]**.
+### Langkah 2: Jalankan Perangkum dengan Groq AI
+Setelah dataset CSV/JSON terkumpul, jalankan:
 
-4. **Proses Otomatis Berjalan**:
-   - Script akan mulai membaca postingan yang terlihat di layar.
-   - Script melakukan scroll bertahap ke bawah dan mengekstrak postingan baru secara otomatis.
-   - Progress akan ditampilkan secara *real-time* di terminal:
-     ```text
-     [+] #001 | @user_a         | Caption pertama...
-     [+] #002 | @user_b         | Caption kedua...
-     [INFO] Scroll #01 | Post Baru: 02 | Terkumpul: 2/100
-     ```
+```bash
+python summarizer.py
+```
 
-5. **Selesai**:
-   - Script berhenti otomatis saat target 100 post unik tercapai (atau batas scroll tercapai).
-   - Hasil tersimpan di:
-     - `data/threads_fyp_100.csv`
-     - `data/threads_fyp_100.json`
-   - Ringkasan statistik dataset akan dicetak di terminal.
+* **Mode Groq AI Otomatis**:
+  Masukkan Groq API Key Anda sebelum menjalankan script:
+  ```powershell
+  # PowerShell
+  $env:GROQ_API_KEY="gsk_..."
+  python summarizer.py
+  ```
+  *(Atau masukkan langsung ke variabel `GROQ_API_KEY = "gsk_..."` di dalam [config.py](file:///d:/Intern/scrap-threads/config.py))*.
+
+* **Hasil Ringkasan**:
+  Buka file `data/threads_fyp_summary.md` untuk membaca kesimpulan, tema diskusi, dan tren FYP Anda!
 
 ---
 
 ## ⚙️ Kustomisasi (`config.py`)
 
-Anda dapat mengubah parameter scraping di dalam file `config.py` sesuai kebutuhan:
-
 | Variabel | Default | Penjelasan |
 |---|---|---|
-| `TARGET_POSTS` | `100` | Jumlah postingan unik yang ingin dikumpulkan |
-| `MAX_SCROLLS` | `100` | Batas maksimal scroll per sesi |
+| `TARGET_POSTS` | `100` | Jumlah postingan unik yang dikumpulkan |
 | `SCROLL_PIXELS` | `1500` | Jarak scroll per putaran (pixel) |
-| `SCROLL_DELAY` | `2.0` | Jeda waktu setelah scroll (detik) untuk render feed |
-| `EMPTY_SCROLL_LIMIT` | `5` | Batas toleransi jika feed tidak memuat konten baru berturut-turut |
-| `ONLY_COUNT_WITH_CAPTION` | `True` | Hanya menghitung post yang memiliki caption ke target |
-
----
-
-## 🔒 Catatan Keamanan & Privasi
-
-- **Peringatan "Stop! / Self-XSS" di Console Browser**: Merupakan fitur keamanan bawaan dari Meta untuk memperingatkan pengguna agar tidak menempelkan script sembarangan. Script kita tidak menginjeksi kode berbahaya ke console browser.
-- **Folder `data/browser_profile/`**: Berisi cookies dan token sesi login Anda. Folder ini sudah otomatis diabaikan oleh `.gitignore` agar tidak terunggah ke repositori publik seperti GitHub.
+| `SCROLL_DELAY` | `2.0` | Jeda waktu setelah scroll (detik) |
+| `EMPTY_SCROLL_LIMIT` | `5` | Batas toleransi jika feed tidak memuat konten baru |
+| `GROQ_API_KEY` | `""` | API Key Groq (didapat dari https://console.groq.com) |
+| `GROQ_MODEL` | `llama-3.3-70b-versatile` | Model AI Groq berkecepatan tinggi |

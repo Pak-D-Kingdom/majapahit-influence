@@ -7,12 +7,20 @@ Menggunakan Playwright Sync API dengan persistent browser context.
 import csv
 import hashlib
 import json
+import os
 import re
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set, Tuple
+
+# Set UTF-8 encoding untuk terminal Windows
+if sys.stdout and hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 from playwright.sync_api import BrowserContext, ElementHandle, Page, sync_playwright
 
@@ -32,21 +40,32 @@ UI_EXCLUDE_PHRASES = {
 
 def clean_caption(text: Optional[str]) -> str:
     """
-    Membersihkan teks caption secara ringan sesuai PRD §9:
+    Membersihkan teks caption secara rapi sesuai PRD §9:
     - Normalisasi line breaks berlebih (\n\n\n+ -> \n\n)
-    - Hilangkan spasi berlebih
+    - Bersihkan non-breaking space (\xa0)
+    - Bersihkan timestamp awal (contoh: '21h\n\n', '1d\n\n', '5m\n\n')
+    - Bersihkan UI trailing text ('Translate', 'Terjemahkan', pagination '1/3')
     - Pertahankan emoji, hashtag (#), dan mention (@)
-    - Bersihkan jika ada teks UI nempel
     """
     if not text:
         return ""
 
-    # Normalisasi spasi dan newline
-    cleaned = text.strip()
+    # Ganti non-breaking space & tab
+    cleaned = text.replace("\xa0", " ").strip()
     cleaned = re.sub(r"[ \t]+", " ", cleaned)
     cleaned = re.sub(r"\n\s*\n\s*\n+", "\n\n", cleaned)
 
-    # Filter teks UI sederhana jika hanya berupa frase tombol
+    # Bersihkan header topic & waktu di baris awal (misal: "technology\n\n1h\n\n" atau "21h\n\n")
+    cleaned = re.sub(r"^([a-zA-Z0-9_-]+\s*\n+)?\d+\s*(?:s|m|h|d|w|y|detik|menit|jam|hari|minggu)\s*\n+", "", cleaned, flags=re.IGNORECASE)
+
+    # Bersihkan tombol translate / terjemahkan di akhir teks
+    cleaned = re.sub(r"[\s\xa0]*(?:Translate|Terjemahkan|See translation|Lihat terjemahan)[\s\xa0]*$", "", cleaned, flags=re.IGNORECASE)
+    # Bersihkan pagination (misal: " 1/3")
+    cleaned = re.sub(r"[\s\xa0]*\d+/\d+[\s\xa0]*$", "", cleaned)
+
+    cleaned = cleaned.strip()
+
+    # Filter jika hanya berisi frase tombol UI
     if cleaned.lower() in UI_EXCLUDE_PHRASES:
         return ""
 
@@ -80,7 +99,6 @@ def is_duplicate(post: Dict[str, Any], seen_identifiers: Set[str]) -> bool:
     """Mengecek apakah post sudah ada di set seen_identifiers."""
     ident = get_post_identifier(post)
     if ident is None:
-        # Jika tidak ada identifier, anggap tidak duplikat tapi berisiko
         return False
     return ident in seen_identifiers
 
@@ -91,7 +109,6 @@ def is_duplicate(post: Dict[str, Any], seen_identifiers: Set[str]) -> bool:
 def extract_post_data(post_el: ElementHandle, feed_order: int) -> Optional[Dict[str, Any]]:
     """
     Mengekstrak data terstruktur dari satu elemen kartu postingan Threads.
-    Dibungkus try/except agar error pada satu post tidak menghentikan keseluruhan run.
     """
     try:
         username = ""
@@ -203,25 +220,17 @@ def extract_post_data(post_el: ElementHandle, feed_order: int) -> Optional[Dict[
             "scraped_at": scraped_now,
         }
 
-    except Exception as e:
+    except Exception:
         return None
 
 
 def extract_visible_posts(page: Page, start_order: int, retries: int = 3) -> List[Dict[str, Any]]:
-    """
-    Mengambil semua elemen post yang saat ini ada di DOM / Viewport dengan retry mechanism
-    untuk menangani situasi SPA / re-render / navigasi yang sedang berjalan.
-    """
+    """Mengambil elemen post di viewport dengan retry otomatis."""
     for attempt in range(retries):
         try:
-            # Prioritas 1: tag <article>
             post_elements = page.query_selector_all("article")
-
-            # Prioritas 2 fallback: data-pressable-container
             if not post_elements:
                 post_elements = page.query_selector_all('div[data-pressable-container="true"]')
-
-            # Prioritas 3 fallback: div yang mengandung link /@username
             if not post_elements:
                 post_elements = page.query_selector_all('div:has(a[href*="/@"])')
 
@@ -234,21 +243,18 @@ def extract_visible_posts(page: Page, start_order: int, retries: int = 3) -> Lis
                     current_order += 1
 
             return posts_data
-
-        except Exception as err:
-            # Jika konteks DOM sedang dihancurkan/direfresh oleh SPA, tunggu dan coba lagi
+        except Exception:
             if attempt < retries - 1:
                 time.sleep(1.0)
                 continue
-            else:
-                return []
+            return []
 
 
 # ==============================================================================
 # 4. Browser Management & Navigation
 # ==============================================================================
 def get_active_page(context: BrowserContext) -> Page:
-    """Mendapatkan halaman/tab aktif dari browser context."""
+    """Mendapatkan halaman/tab aktif."""
     if not context.pages:
         return context.new_page()
     for p in reversed(context.pages):
@@ -286,10 +292,7 @@ def launch_browser(playwright_inst) -> Tuple[BrowserContext, Page]:
 
 
 def wait_for_user_ready(context: BrowserContext) -> Page:
-    """
-    Menampilkan panduan di terminal agar user login dan membuka feed For You,
-    lalu menunggu konfirmasi 'Enter' sebelum scraping dimulai.
-    """
+    """Panduan interaktif di terminal menunggu login & kesiapan feed."""
     print("\n" + "=" * 65)
     print("  PANDUAN PENGGUNA (MANUAL STEP):")
     print("  1. Periksa jendela browser yang terbuka.")
@@ -314,7 +317,7 @@ def wait_for_user_ready(context: BrowserContext) -> Page:
 # 5. Scrolling & Scraping Loop
 # ==============================================================================
 def scroll_feed(page: Page, pixels: int, delay: float) -> None:
-    """Melakukan scroll ke bawah dan menunggu lazy-load render dengan proteksi error."""
+    """Melakukan scroll ke bawah secara bertahap."""
     try:
         page.evaluate(f"window.scrollBy(0, {pixels});")
     except Exception:
@@ -323,10 +326,7 @@ def scroll_feed(page: Page, pixels: int, delay: float) -> None:
 
 
 def run_scraper(context: BrowserContext) -> List[Dict[str, Any]]:
-    """
-    Looping utama scraping:
-    Extract visible -> Deduplicate -> Check Target -> Scroll -> Repeat.
-    """
+    """Looping scraping hingga target 100 post tercapai."""
     collected_posts: List[Dict[str, Any]] = []
     seen_identifiers: Set[str] = set()
 
@@ -337,43 +337,32 @@ def run_scraper(context: BrowserContext) -> List[Dict[str, Any]]:
     print(f"[INFO] Target: {config.TARGET_POSTS} postingan unik.")
     print(f"[INFO] Memulai loop scraping...\n")
 
-    page = get_active_page(context)
-
     while len(collected_posts) < config.TARGET_POSTS and scroll_count < config.MAX_SCROLLS:
-        # Pastikan page yang aktif
         page = get_active_page(context)
-
-        # 1. Ekstrak post yang terlihat di viewport
         visible_raw_posts = extract_visible_posts(page, feed_order_counter)
         new_posts_in_this_round = 0
 
         for post in visible_raw_posts:
-            # Cek duplikasi
             if is_duplicate(post, seen_identifiers):
                 continue
 
-            # Cek kriteria caption jika ONLY_COUNT_WITH_CAPTION aktif
             has_caption = bool(post.get("caption") and len(post["caption"]) >= config.MIN_CAPTION_LENGTH)
 
             if config.ONLY_COUNT_WITH_CAPTION and not has_caption:
-                # Catat identifier agar tidak diproses berulang, tapi tidak masuk ke target
                 ident = get_post_identifier(post)
                 if ident:
                     seen_identifiers.add(ident)
                 continue
 
-            # Tambahkan identifier ke set
             ident = get_post_identifier(post)
             if ident:
                 seen_identifiers.add(ident)
 
-            # Assign nomor urut penyimpanan
             post["no"] = len(collected_posts) + 1
             collected_posts.append(post)
             new_posts_in_this_round += 1
             feed_order_counter += 1
 
-            # Log post singkat
             username_display = post["username"] or "unknown"
             snippet = (post["caption"][:50] + "...") if len(post["caption"]) > 50 else post["caption"]
             snippet_clean = snippet.replace("\n", " ")
@@ -382,14 +371,12 @@ def run_scraper(context: BrowserContext) -> List[Dict[str, Any]]:
             if len(collected_posts) >= config.TARGET_POSTS:
                 break
 
-        # 2. Log status putaran scroll
         scroll_count += 1
         print(
             f"[INFO] Scroll #{scroll_count:02d} | Post Baru: {new_posts_in_this_round:02d} | "
             f"Terkumpul: {len(collected_posts)}/{config.TARGET_POSTS}"
         )
 
-        # 3. Cek apakah feed stuck / tidak menghasilkan post baru
         if new_posts_in_this_round == 0:
             empty_scroll_count += 1
             if empty_scroll_count >= config.EMPTY_SCROLL_LIMIT:
@@ -401,12 +388,8 @@ def run_scraper(context: BrowserContext) -> List[Dict[str, Any]]:
         else:
             empty_scroll_count = 0
 
-        # 4. Scroll jika target belum tercapai
         if len(collected_posts) < config.TARGET_POSTS:
             scroll_feed(page, config.SCROLL_PIXELS, config.SCROLL_DELAY)
-
-    if scroll_count >= config.MAX_SCROLLS:
-        print(f"\n[INFO] Mencapai batas maksimum scroll ({config.MAX_SCROLLS}).")
 
     return collected_posts
 
@@ -415,7 +398,7 @@ def run_scraper(context: BrowserContext) -> List[Dict[str, Any]]:
 # 6. Storage & Validation
 # ==============================================================================
 def save_to_csv(posts: List[Dict[str, Any]], filepath: Path) -> None:
-    """Menyimpan hasil list post ke CSV ber-encoding utf-8-sig."""
+    """Menyimpan list post ke CSV."""
     filepath.parent.mkdir(parents=True, exist_ok=True)
     fields = ["no", "username", "display_name", "caption", "post_id", "url", "timestamp", "feed_order", "scraped_at"]
 
@@ -430,7 +413,7 @@ def save_to_csv(posts: List[Dict[str, Any]], filepath: Path) -> None:
 
 
 def save_to_json(posts: List[Dict[str, Any]], filepath: Path) -> None:
-    """Menyimpan hasil list post ke format JSON untuk keperluan debugging."""
+    """Menyimpan list post ke JSON."""
     filepath.parent.mkdir(parents=True, exist_ok=True)
     with open(filepath, mode="w", encoding="utf-8") as f:
         json.dump(posts, f, ensure_ascii=False, indent=2)
@@ -439,7 +422,7 @@ def save_to_json(posts: List[Dict[str, Any]], filepath: Path) -> None:
 
 
 def validate_dataset(posts: List[Dict[str, Any]], target: int) -> None:
-    """Mencetak ringkasan validasi dataset di akhir eksekusi (PRD §18)."""
+    """Mencetak ringkasan validasi dataset."""
     total = len(posts)
     unique_ids = set()
     with_caption = 0
@@ -481,14 +464,11 @@ def main():
             context, _ = launch_browser(playwright_inst)
             wait_for_user_ready(context)
 
-            # Mulai scraping
             posts = run_scraper(context)
 
             if posts:
-                # Simpan dataset
                 save_to_csv(posts, config.OUTPUT_CSV)
                 save_to_json(posts, config.OUTPUT_JSON)
-                # Validasi dataset
                 validate_dataset(posts, config.TARGET_POSTS)
             else:
                 print("\n[WARNING] Tidak ada postingan yang berhasil dikumpulkan.")
@@ -497,8 +477,6 @@ def main():
             print("\n[INFO] Proses dihentikan oleh pengguna (Ctrl+C).")
         except Exception as err:
             print(f"\n[ERROR FATAL] Terjadi kesalahan: {err}")
-            import traceback
-            traceback.print_exc()
         finally:
             if context:
                 print("[INFO] Menutup browser session...")
