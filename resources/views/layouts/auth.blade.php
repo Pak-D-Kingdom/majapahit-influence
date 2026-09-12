@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Masuk') — KERAJAAN</title>
+    <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}">
 
     <meta name="description" content="Portal Akses KERAJAAN Creator-Powered Commerce Platform">
 

@@ -521,6 +521,11 @@
 
         </section>
 
+        {{-- ================================
+            CARA KERJA (INTERACTIVE DEMO)
+        ================================= --}}
+        @include('landing.sections.how-it-works')
+
 
         {{-- ================================
     PRODUK & BRAND

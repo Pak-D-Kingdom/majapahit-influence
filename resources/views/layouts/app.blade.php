@@ -13,7 +13,7 @@
         content="kerajaan Influence: Connect, Create, and Grow with Brands."
     >
 
-    <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/kerajaanlogov1.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}">
 
     {{-- Google Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">

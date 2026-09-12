@@ -9,6 +9,8 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RegistrationController;
+use App\Models\Brand;
+use App\Models\KolProfile;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Route;
@@ -76,21 +78,35 @@ Route::get('/katalog/{product:slug}/bank-konten', [CatalogController::class, 'co
 
 // Public Explore Pages (from Adinda Frontend)
 Route::get('/explore/creators', function () {
-    $creators = \App\Models\KolProfile::active()
-        ->with(['user', 'niches', 'socialMedia'])
-        ->latest()
-        ->take(10)
-        ->get();
+    $creators = collect();
+    try {
+        if (Schema::hasTable('kol_profiles')) {
+            $creators = KolProfile::active()
+                ->with(['user', 'niches', 'socialMedia'])
+                ->latest()
+                ->take(10)
+                ->get();
+        }
+    } catch (Throwable) {
+        $creators = collect();
+    }
 
     return view('explore.creators', compact('creators'));
 })->name('explore.creators');
 
 Route::get('/explore/brands', function () {
-    $brands = \App\Models\Brand::where('is_active', true)
-        ->withCount(['products', 'campaigns'])
-        ->latest()
-        ->take(10)
-        ->get();
+    $brands = collect();
+    try {
+        if (Schema::hasTable('brands')) {
+            $brands = Brand::where('is_active', true)
+                ->withCount(['products', 'campaigns'])
+                ->latest()
+                ->take(10)
+                ->get();
+        }
+    } catch (Throwable) {
+        $brands = collect();
+    }
 
     return view('explore.brands', compact('brands'));
 })->name('explore.brands');
