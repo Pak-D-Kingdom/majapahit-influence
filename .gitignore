@@ -1,0 +1,16 @@
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+# Playwright browser profile (contains user session/cookies - keep private!)
+data/browser_profile/
+
+# Scraped outputs (optional, user can un-ignore if needed)
+data/*.csv
+data/*.json
+!data/.gitkeep
