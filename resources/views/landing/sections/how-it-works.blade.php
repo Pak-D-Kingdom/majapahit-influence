@@ -117,10 +117,7 @@
                         <span class="browser-url-text" id="browserUrlText">https://app.kerajaan.id/explore/creators</span>
                     </div>
 
-                    <div class="browser-meta-status">
-                        <span class="meta-dot"></span>
-                        <span class="meta-text">INTERACTIVE DEMO</span>
-                    </div>
+  
                 </div>
 
                 {{-- Browser Viewport Containing 5 Live Slides --}}

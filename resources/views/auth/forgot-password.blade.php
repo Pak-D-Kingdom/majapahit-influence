@@ -23,10 +23,6 @@
                 <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0b64d4] hover:text-[#0c3685] mb-4 transition">
                     <i class="bi bi-arrow-left"></i> Kembali ke Halaman Masuk
                 </a>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold text-[#0b64d4] tracking-wider uppercase mb-2 block w-fit">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#0b64d4]"></span>
-                    PEMULIHAN AKUN
-                </div>
                 <h1 class="text-2xl font-black text-[#0c3685] tracking-tight">Lupa Kata Sandi?</h1>
                 <p class="text-xs text-slate-500 mt-1 leading-relaxed">
                     Masukkan alamat email yang terdaftar. Kami akan mengirimkan tautan untuk mengatur ulang kata sandi Anda.
