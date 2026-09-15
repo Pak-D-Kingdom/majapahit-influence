@@ -1,5 +1,5 @@
 <footer class="site-footer">
-    <div class="container">
+    <div class="landing-container">
         {{-- Footer Main Grid --}}
         <div class="footer-main">
             {{-- Brand Column --}}

@@ -6,7 +6,7 @@
 @endphp
 
 <header class="site-header" id="siteHeader">
-    <div class="container navbar">
+    <div class="landing-container navbar">
         {{-- Logo --}}
         <a href="{{ url('/') }}" class="brand">
             <img src="{{ asset('assets/landing/images/logo/logokerajaantransv3-nobg.png') }}" alt="KERAJAAN" class="brand-logo">

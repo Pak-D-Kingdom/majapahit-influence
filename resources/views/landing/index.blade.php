@@ -19,7 +19,7 @@
             <div class="hero-decoration hero-decoration-one"></div>
             <div class="hero-decoration hero-decoration-two"></div>
 
-            <div class="container hero-container">
+            <div class="landing-container hero-container">
 
                 {{-- Hero Content --}}
                 <div class="hero-content">
@@ -204,7 +204,7 @@
 ================================= --}}
         <section class="about-section company-section" id="tentang">
 
-            <div class="container">
+            <div class="landing-container">
 
                 <div class="about-header">
 
@@ -323,7 +323,7 @@
 ================================= --}}
         <section class="benefits-section ecosystem-roles-section" id="roles">
 
-            <div class="container">
+            <div class="landing-container">
 
                 {{-- Section Header --}}
                 <div class="benefits-header">
@@ -532,7 +532,7 @@
 ================================= --}}
         <section class="partners-section" id="mitra">
 
-            <div class="container">
+            <div class="landing-container">
 
                 {{-- Section Header --}}
                 <div class="partners-header">
@@ -738,7 +738,7 @@
 ================================= --}}
         <section class="join-section" id="cara-bergabung">
 
-            <div class="container">
+            <div class="landing-container">
 
                 {{-- Header --}}
                 <div class="join-header">
@@ -947,7 +947,7 @@
             <div class="cta-decoration cta-decoration-one"></div>
             <div class="cta-decoration cta-decoration-two"></div>
 
-            <div class="container">
+            <div class="landing-container">
 
                 <div class="cta-content">
 
@@ -999,7 +999,7 @@
 ================================ --}}
         <section class="faq-section" id="faq">
 
-            <div class="container">
+            <div class="landing-container">
 
                 <div class="faq-header">
 
